@@ -1,1 +1,1 @@
-1. 适配1080p分辨率，Other分辨率不能使用属于正常现象，能够使用纯属巧合
+1. Calibrated for 1080p resolution. Inability to function at other resolutions is expected; functioning at other resolutions is purely coincidental.

@@ -1,166 +1,166 @@
-# AccountSwitch工具Instructions
+# Account Switch Tool Instructions
 
-## FastStarting Up
+## Quick Start
 
-### 方式一：Account图片识别（Recommended）
+### Method 1: Account Image Recognition (Recommended)
 
-1. **准备Account图片**
-   - **Recommended方式**：使用脚本的"截图模式"Auto 获取并保存截图（详见截图模式部分）
-   - **手动方式**：在 `accounts/` 目录下放置Account截图
-   - 图片命名为 `{UID}.png`，如 `284073800.png`
-   - 截图应包含Account选择界面中该Account的明显标识
+1. **Prepare Account Images**
+   - **Recommended Method**: Use the script's "Screenshot Mode" to automatically capture and save account screenshots (see the Screenshot Mode section for details).
+   - **Manual Method**: Place account screenshots in the `accounts/` directory.
+   - Name images as `{UID}.png`, for example `284073800.png`.
+   - The screenshot should clearly include identifiable features of that account on the account selection screen.
 
-2. **Configuration脚本**
-   - 打开BetterGIConfiguration面板
-   - 填写目标AccountUID
-   - 确保"跳过搜索直接输入Account密码"未勾选
+2. **Configure Script**
+   - Open the BetterGI configuration panel.
+   - Fill in the target account's UID.
+   - Ensure "Skip search and directly enter account/password" is unchecked.
 
-3. **运行脚本**
-   - 脚本会Auto 定位到Account选择界面
-   - 识别并点击对应Account图片
-   - Auto 进入游戏并返回主界面
+3. **Run Script**
+   - The script will automatically navigate to the account selection screen.
+   - Recognize and click the corresponding account image.
+   - Automatically enter the game and return to the main interface.
 
-### 方式二：Account密码输入
+### Method 2: Account & Password Input
 
-1. **Configuration脚本**
-   - 打开BetterGIConfiguration面板
-   - 填写目标AccountUID（用于通知显示）
-   - 填写Account和密码
-   - 勾选"跳过搜索直接输入Account密码"
+1. **Configure Script**
+   - Open the BetterGI configuration panel.
+   - Fill in the target account's UID (used for notifications).
+   - Enter your account username and password.
+   - Check "Skip search and directly enter account/password".
 
-2. **运行脚本**
-   - 脚本会Auto 进入Account密码输入界面
-   - Auto 点击同意按钮、输入Account密码
-   - Auto 进入游戏并返回主界面
+2. **Run Script**
+   - The script will automatically navigate to the account/password login screen.
+   - Automatically click the agreement button and enter credentials.
+   - Automatically enter the game and return to the main interface.
 
-### Guide / Instructions
-- **两种方式可同时使用**：方式二作为方式一的补充，当图片识别Defeat时会Auto 回退到Account密码方式
-- **RecommendedConfiguration**：同时填写Account密码作为Alternate，提高Switch成功率
+### Notes
+- **Both methods can be used together**: Method 2 acts as a fallback for Method 1. If image recognition fails, it will automatically fall back to the account/password method.
+- **Recommended Configuration**: Configure account & password as a backup to maximize switch success rate.
 
-## 截图模式
+## Screenshot Mode
 
-截图模式是一个辅助Features，用于Auto 获取并保存Account图片，方便后续使用Account图片识别方式进行Switch。
+Screenshot Mode is an auxiliary feature used to automatically capture and save account images, making it easy to switch using the image recognition method later.
 
-**使用步骤**：
-1. **Configuration脚本**
-   - 打开BetterGIConfiguration面板
-   - 填写目标AccountUID（优先使用，用于命名图片）
-   - 勾选"截图模式"
+**Steps**:
+1. **Configure Script**
+   - Open the BetterGI configuration panel.
+   - Enter the target account UID (prioritized for naming the screenshot).
+   - Check "Screenshot Mode".
 
-2. **运行脚本**
-   - 脚本会优先使用Configuration中的"要Switch到的AccountUID"命名图片
-   - 如果未填写该项，会尝试Auto 识别当前Account的UID
-   - 导航到Account选择界面
-   - Auto 截图并保存Account图片
-   - 返回主界面并发送成功通知
+2. **Run Script**
+   - The script prioritizes using the configured "Target Account UID" to name the image.
+   - If left blank, it will attempt to automatically detect the current account's UID.
+   - Navigates to the account selection screen.
+   - Automatically captures and saves the account image.
+   - Returns to the main interface and sends a success notification.
 
-**保存位置**：
-- 图片保存在 `accounts/` 目录下
-- 文件名格式为 `{UID}.png`
+**Save Location**:
+- Images are saved in the `accounts/` directory.
+- File naming format: `{UID}.png`.
 
-## ConfigurationGuide / Instructions
+## Configuration Guide
 
-在BetterGI的Configuration面板中进行以下Settings：
+Configure the following settings in the BetterGI configuration panel:
 
-### 1. 目标AccountUID
-- 输入要Switch到的AccountUID
-- 用于识别Account图片文件名、通知显示和截图模式命名
+### 1. Target Account UID
+- Enter the UID of the account to switch to.
+- Used to match account image filenames, display notifications, and name screenshots in Screenshot Mode.
 
-### 2. Account（可选）
-- 当无法通过图片识别找到Account时Alternate
-- 建议填写，以防图片识别Defeat
+### 2. Account (Optional)
+- Fallback credential when the account cannot be recognized via image.
+- Recommended to fill in as a backup.
 
-### 3. 密码（可选）
-- 当无法通过图片识别找到Account时Alternate
-- 建议填写，以防图片识别Defeat
+### 3. Password (Optional)
+- Fallback credential when the account cannot be recognized via image.
+- Recommended to fill in as a backup.
 
-### 4. 跳过搜索直接输入Account密码
-- **勾选**：不尝试查找Account图片，直接使用Account密码登录
-- **不勾选**：优先尝试通过Account图片识别Switch，Defeat时回退到Account密码方式
+### 4. Skip Search and Directly Enter Account/Password
+- **Checked**: Skips searching for account images and logs in directly with username/password.
+- **Unchecked**: Prioritizes image recognition, falling back to credentials on failure.
 
-### 5. UID校验
-- **勾选**：在Switch前后检查当前AccountUID，辅助判断Switch是否成功
-- **不勾选**：不进行UID校验
+### 5. UID Validation
+- **Checked**: Checks current account UID before and after switching to verify success.
+- **Unchecked**: Skips UID validation.
 
-### 6. UID验证Defeat时尝试停止Configuration组
-- **勾选**：当UID验证Defeat时Auto 终止整个Configuration组（需配合停止Shortcut Keys使用）
-- **不勾选**：仅Recording错误Log，不干预后续任务
-- **停止Shortcut Keys**：填写 `VK_` 格式的虚拟键码（如 `VK_F8`），需与BetterGI全局Settings一致
+### 6. Stop Configuration Group on UID Verification Failure
+- **Checked**: Automatically terminates the entire configuration group if UID verification fails (requires configuring Stop Shortcut Key).
+- **Unchecked**: Only logs errors without interfering with subsequent tasks.
+- **Stop Shortcut Key**: Enter virtual key codes in `VK_` format (e.g., `VK_F8`), matching your BetterGI global settings.
 
-### 7. 截图模式
-- **勾选**：进入截图模式，Auto 截图保存对应UID的Account图片
-- **不勾选**：正常执行AccountSwitch流程
+### 7. Screenshot Mode
+- **Checked**: Enters screenshot mode to automatically capture and save the account image for the specified UID.
+- **Unchecked**: Executes the standard account switching workflow.
 
 ## FAQ
 
-### Q: Account图片识别Defeat怎么办？
-A: 确保：
-1. 图片存放在 `accounts/` 目录下
-2. 图片命名为正确的UID格式
-3. 截图清晰，包含Account的明显标识
-4. 同时填写Account密码作为Alternate方案
+### Q: What should I do if account image recognition fails?
+A: Make sure:
+1. Images are placed in the `accounts/` directory.
+2. Images are named with the correct UID format (`{UID}.png`).
+3. Screenshots are clear and contain distinguishable account identifiers.
+4. Account credentials are configured as a fallback.
 
-### Q: 提示"Account图片不存在且未ConfigurationAccount密码"怎么办？
-A: 脚本在Switch前会检查Account图片是否存在。出现此提示Guide / Instructions：
-1. `accounts/{UID}.png` 不存在或无法读取（可能是更新脚本后图片被清空）
-2. 同时NopeConfigurationAccount密码作为Alternate
+### Q: What should I do if prompted "Account image does not exist and credentials are not configured"?
+A: The script checks whether the account image exists before switching. This prompt indicates:
+1. `accounts/{UID}.png` does not exist or cannot be read (images might have been cleared after updating the script).
+2. No account credentials have been configured as a fallback.
 
-### Q: SwitchDefeat后会怎样？
-A: 脚本会尝试返回主界面，并发送Defeat通知。如果Configuration了Account密码，建议手动检查Account状态。
+### Q: What happens if switching fails?
+A: The script attempts to return to the main interface and sends a failure notification. If credentials were configured, it is recommended to manually check the account status.
 
-### Q: 为什么需要填写UID？
-A: UID用于：
-1. 确定Account图片文件名
-2. 在通知中显示Switch的Account信息
-3. 截图模式下命名保存的图片文件
+### Q: Why do I need to enter a UID?
+A: UID is used to:
+1. Determine the account image filename.
+2. Display account information in notifications.
+3. Name saved image files in Screenshot Mode.
 
-## Precautions / Notes
+## Precautions
 
-1. 首次使用前建议先手动测试一遍Switch流程
-2. 确保游戏分辨率为1920x1080
-3. Account图片建议截取Account选择界面中该Account的清晰截图
-4. 密码输入时不会显示，属于正常现象
-5. 截图模式下，默认使用Settings的目标UID，未Settings时会尝试Auto 识别
-6. **更新\重新订阅脚本后 `accounts/` 目录下的Account图片可能会被清空**，请在更新后重新放入Account图片，或提前ConfigurationAccount密码作为Alternate
+1. It is recommended to test the switching process manually once before first use.
+2. Ensure the game resolution is set to 1920x1080.
+3. Account screenshots should clearly capture recognizable account elements on the selection screen.
+4. Passwords are not displayed while being entered; this is normal.
+5. In Screenshot Mode, the target UID setting is used by default; if unset, it attempts auto-detection.
+6. **Updating or resubscribing to the script may clear images in the `accounts/` directory**. Please re-add account images or configure backup credentials after updating.
 
-## 问题反馈
+## Feedback
 
-如果在使用过程中遇到预料之外的弹窗或Other问题，脚本可能无法处理，请按照以下方式反馈：
+If you encounter unexpected popups or issues that the script cannot handle:
 
-1. **截图保存**：截取全屏原图，确保包含完整的游戏界面和弹窗
-2. **联系Author**：QQ号 718135749
-3. **提供信息**：简要描述遇到的问题和操作步骤
+1. **Take a full-screen screenshot**: Ensure the entire game window and popup are visible.
+2. **Contact Author**: QQ 718135749.
+3. **Provide info**: Briefly describe the issue and reproduction steps.
 
-Thank You您的Supports！
+Thank you for your support!
 
 <details>
-<summary>项目介绍（点击展开）</summary>
+<summary>Project Overview (Click to expand)</summary>
 
-## 项目介绍
+## Project Overview
 
-基于状态机实现的Auto AccountSwitch脚本，Supports通过Account图片识别或手动输入Account密码两种方式Switch原神Account。
+An automated account switching script based on a finite state machine (FSM), supporting Genshin Impact account switching via image recognition or manual credential input.
 
-### Features特性
+### Features
 
-- **双模式Switch**：SupportsAccount图片Auto 识别和Account密码手动输入两种方式
-- **状态机管理**：使用有限状态机管理Switch流程，Stable可靠
-- **Auto 返回**：SwitchDefeat时Auto 尝试返回原Account
-- **通知提醒**：Switch成功或Defeat时发送系统通知
-- **循环防护**：防止状态循环卡死
-- **UID校验**：SupportsSwitch前后检查当前AccountUID，提高Switch准确性
-- **智能终止** UID验证Defeat时可Auto 终止整个Configuration组
-- **截图模式**：Auto 截图保存Account图片，方便后续Switch
+- **Dual-Mode Switching**: Supports automatic image recognition and manual credential input.
+- **State Machine Management**: Uses a finite state machine for reliable switching flow control.
+- **Auto-Recovery**: Attempts to return to the original account upon failure.
+- **Notifications**: Sends system notifications on success or failure.
+- **Loop Protection**: Prevents getting stuck in infinite state loops.
+- **UID Verification**: Supports pre- and post-switch UID checks for accuracy.
+- **Smart Termination**: Automatically stops configuration group execution on UID mismatch.
+- **Screenshot Mode**: Automatically captures and saves account images for future switches.
 
-### 目录结构
+### Directory Structure
 
 ```
 AccountSwitchStateMachine/
-├── main.js                    # 主脚本文件
-├── manifest.json              # 脚本清单
-├── settings.json              # Configuration定义
+├── main.js                    # Main script
+├── manifest.json              # Script manifest
+├── settings.json              # Configuration definition
 ├── assets/
-│   ├── states.json            # 状态机Configuration
-│   └── RecognitionObjects/    # 状态识别图片
+│   ├── states.json            # State machine configuration
+│   └── RecognitionObjects/    # State recognition template images
 │       ├── Paimon.png
 │       ├── Menu.png
 │       ├── PrepareToLogOut.png
@@ -176,73 +176,73 @@ AccountSwitchStateMachine/
 │       ├── EnterGame2.png
 │       ├── Login.png
 │       └── Confirm.png
-└── accounts/                  # Account图片存放目录
-    └── {uid}.png              # 以UID命名的Account截图
+└── accounts/                  # Account screenshots directory
+    └── {uid}.png              # Account screenshot named by UID
 ```
 
-### Working流程
+### Workflow
 
 ```
-Starting Up
+Start
 │
-├─► 截图模式（勾选时）
-│   ├─► 使用Settings的UID或识别当前UID
-│   ├─► 导航到Account选择界面
-│   ├─► 截图保存Account图片
-│   └─► 返回主界面
-│       ├─► 成功 → 发送成功通知
-│       └─► Defeat → 发送Defeat通知
+├─► Screenshot Mode (if enabled)
+│   ├─► Use configured UID or detect current UID
+│   ├─► Navigate to account selection screen
+│   ├─► Capture and save account image
+│   └─► Return to main interface
+│       ├─► Success → Send success notification
+│       └─► Failure → Send failure notification
 │
-├─► 前置检查（Account图片是否存在，Account密码是否已Configuration）
-│   ├─► 图片存在 → 继续
-│   └─► 图片缺失且无Account密码 → 终止并提示
+├─► Pre-checks (verify account image exists or credentials configured)
+│   ├─► Image exists → Proceed
+│   └─► Image missing & no credentials → Terminate and prompt
 │
-├─► 尝试Account图片方式（未勾选跳过时）
-│   ├─► 预加载Account图片
-│   ├─► Switch到选择Account界面
-│   ├─► 查找并点击Account图片
-│   └─► Switch到主界面
-│       ├─► 成功 → 发送成功通知
-│       └─► Defeat → 回退到Account密码方式
+├─► Image Recognition Method (if skip is unchecked)
+│   ├─► Preload account image
+│   ├─► Switch to account selection screen
+│   ├─► Find and click account image
+│   └─► Transition to main interface
+│       ├─► Success → Send success notification
+│       └─► Failure → Fall back to credential login
 │
-└─► Account密码方式
-    ├─► 检查Account密码
-    ├─► Switch到输入Account密码界面
-    ├─► 点击同意按钮
-    ├─► 输入Account密码
-    ├─► 点击进入游戏
-    └─► Switch到主界面
-        ├─► 成功 → 发送成功通知
-        └─► Defeat → 尝试返回原Account → 发送Defeat通知
+└─► Credential Login Method
+    ├─► Check credentials
+    ├─► Switch to login input screen
+    ├─► Click Agree button
+    ├─► Enter username & password
+    ├─► Click Enter Game
+    └─► Transition to main interface
+        ├─► Success → Send success notification
+        └─► Failure → Attempt return to original account → Send failure notification
 ```
 
-### 状态Guide / Instructions
+### State Descriptions
 
-| 状态名 | Guide / Instructions |
-|--------|------|
-| mainUI | 主界面（派蒙图标） |
-| menuUI | 菜单界面（ESC菜单） |
-| prepareToLogOut | 预备退出登录界面 |
-| loginScreen | 登录界面（SwitchAccount按钮） |
-| exitAccount | 退出Account界面 |
-| enterGame | 进入游戏或登录OtherAccount界面 |
-| selectAccount | 选择Account界面 |
-| enterAccountAndPassword | 输入Account密码界面 |
-| noAccount | 无Account登录界面 |
+| State Name | Description |
+|------------|-------------|
+| mainUI | Main game interface (Paimon icon visible) |
+| menuUI | Pause menu (ESC menu) |
+| prepareToLogOut | Log out confirmation screen |
+| loginScreen | Login title screen (Switch Account button) |
+| exitAccount | Account logout screen |
+| enterGame | Enter game / Log in to another account screen |
+| selectAccount | Account selection screen |
+| enterAccountAndPassword | Account & password input screen |
+| noAccount | Unregistered / no account screen |
 
 ### Changelog
 
 #### v1.2
-- **新增**：Switch前检查Account图片是否存在，缺失且未ConfigurationAccount密码时提前终止并提示，避免在Switch流程中途出错
+- **New**: Pre-switch check for account image existence; terminates early with a prompt if missing without credentials configured, avoiding mid-flow errors.
 
 #### v1.1
-- **新增**：UID验证Defeat时Auto 终止Configuration组Features，SupportsConfiguration对应键值
-- **优化**：修改了Account密码界面的识别条件，修复可能会出现的误识别问题
+- **New**: Auto-terminate configuration group on UID verification failure, with configurable shortcut keys.
+- **Optimization**: Refined recognition conditions for account/password input screen to fix potential false matches.
 
 #### v1.0
-- 初始Version
-- 实现状态机管理
-- SupportsAccount图片和Account密码两种Switch方式
-- 添加Auto 返回和通知Features
+- Initial release.
+- State machine management implemented.
+- Supports both image recognition and credential login.
+- Added auto-return and notification features.
 
 </details>

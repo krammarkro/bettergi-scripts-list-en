@@ -1,19 +1,19 @@
-# Amethyst Lump之Claymore矿闻录 Precautions / Notes
-## 一、前言
-- 本地图追蹤以Inazuma、Enkanomiya 解谜全解 与 宝箱Full Collection 情况下制作
-- 制作脚本时，以**The BellNoelle**作为行走位
-- 部份地图追蹤會使用Mavuika趕路
-- 队伍 : Noelle、Mavuika、Escoffier、Barbara
+# Amethyst Lump Claymore Mining Records Precautions / Notes
 
-- 预期用时 1小时35分~40分 / 235~275 个
+## 1. Preface
+- These pathing routes were created assuming Inazuma and Enkanomiya puzzles are 100% solved and chests are 100% collected.
+- When creating the script, **Noelle equipped with The Bell** was used as the active runner.
+- Some pathing routes use Mavuika for transit.
+- Team: Noelle, Mavuika, Escoffier, Barbara
+- Estimated Time: 1 hour 35 minutes ~ 1 hour 40 minutes / 235 ~ 275 items
 
-## 二、Configuration简介
-- 生存位技能 : Barbara
-- CD : `300`
+## 2. Configuration Overview
+- Survivability slot skill: Barbara
+- CD: `300`
 
-- 以下为Combat脚本
+- Combat script:
 
-    ```
+    ```text
     Noelle e
     Columbina attack(0.01),keypress(q),attack(0.2),e,wait(0.2),attack(0.4),keypress(e),charge(0.2),keypress(q),charge(0.12),attack(0.08),keypress(e),keypress(q),w(0.01),attack(0.2),keypress(e),keypress(q)
     Linnea attack(0.18),keypress(q),wait(0.1), ready,attack(0.05), e,attack(0.65), keypress(q),wait(0.1) ,keypress(q),attack(0.1)
@@ -27,37 +27,35 @@
     Kaedehara Kazuha attack(0.01),wait(0.25),e(hold),click(middle),wait(0.48),attack,wait(0.3),keypress(q),wait(0.3),keypress(q),wait(0.3),keypress(q),wait(0.1),keydown(E),wait(0.55),keyup(E),click(middle),wait(0.45),attack,w(0.01),wait(0.19)
     ```
 
-- 開啟 更快檢查結束戰鬥
-- 自動撿取掉落物 : 關閉
-- 戰鬥超時為`45`秒
-- **Combat脚本 与 Combat超时时间 请以个人配队练度及实力自行调整**
+- Enable Faster Combat Finish Check
+- Auto Pick Drops: Disabled
+- Combat timeout: `45` seconds
+- **Please adjust the combat script and combat timeout according to your own team lineup, character investment level, and preferences.**
 
+## 3. Expected Yields
 
-## 三、预期数量
+- **Narukami Island**: 42
+  - Narukami Island (No Combat) = 27
+  - Narukami Island (With Combat) = 15
+- **Kannazuka**: 35
+  - Kannazuka (No Combat) = 29
+  - Kannazuka (With Combat) = 6
+- **Yashiori Island**: 27
+  - Yashiori Island (No Combat) = 23
+  - Yashiori Island (With Combat) = 4
+- **Watatsumi Island**: 24
+  - Watatsumi Island (No Combat) = 20
+  - Watatsumi Island (With Combat) = 4
+- **Seirai Island**: 35
+  - Seirai Island (No Combat) = 27
+  - Seirai Island (With Combat) = 8
+- **Tsurumi Island**: 26
+  - Tsurumi Island (No Combat) = 24
+  - Tsurumi Island (With Combat) = 2
+- **Enkanomiya**: 46
+  - Enkanomiya (No Combat) = 20
+  - Enkanomiya (With Combat) = 26
 
-- **Narukami Island** : 42
-  - Narukami Island No Combat = 27
-  - Narukami Island 有Combat = 15
-- **Kannazuka** : 35
-  - Kannazuka No Combat = 29
-  - Kannazuka 有Combat = 6
-- **Yashiori Island** : 27
-  - Yashiori Island No Combat = 23
-  - Yashiori Island 有Combat = 4
-- **Watatsumi Island** : 24
-  - Watatsumi Island No Combat = 20
-  - Watatsumi Island 有Combat = 4
-- **Seirai Island** : 35
-  - Seirai Island No Combat = 27
-  - Seirai Island 有Combat = 8
-- **Tsurumi Island**   : 26
-  - Tsurumi Island   No Combat = 24
-  - Tsurumi Island   有Combat = 2
-- **Enkanomiya** : 46
-  - Enkanomiya No Combat = 20
-  - Enkanomiya 有Combat = 26
+**Expected Total: 235 items**
 
-**预期总计：235 个**
-
-
-**去除Combat脚本 (-67) = 168个**
+**Excluding Combat routes (-67) = 168 items**

@@ -1,64 +1,62 @@
-# 🌌 千星奇域 · Achievements经验Auto 刷取脚本
+# 🌌 Thousand Stars Realm · Auto Achievement EXP Farming
 
-**⚠️ 提醒：目前暂不需要自己找图，Achievements模式所需的地图定制化程度较高，如默认地图被下架不方便替换，请使用非Achievements模式刷取固定 20 经验的关卡😇**
+**⚠️ Note**: You do not need to search for maps manually. Achievement Mode requires specifically configured stages. If the default map is taken down, switch to Non-Achievement Mode to farm fixed 20 EXP stages.
 
-> Achievements模式所需地图要求：时间较长 + 能Auto Settlement + 有Achievements（必要）
-
----
-
-## ❗ 使用前重要Guide / Instructions（免责声明）
-
-本脚本依赖“**删除奇域地图存档**”来实现重复获取Achievements经验。
-
-这意味着：
-
-- 当脚本执行删除存档时，可能会误删你正常游玩的关卡数据。
-
-若你完全理解并接受此风险，请在脚本的 *自定义 JS Configuration* 中手动勾选 `我已阅读Guide / Instructions中的免责声明` 才可继续执行脚本。  
-请务必确认你能承担潜在损失后再继续使用。
+> Achievement Mode stage requirements: Sufficient duration + automated completion settlement + in-stage achievements (mandatory).
 
 ---
 
-## 🔥 焚诀
+## ❗ Important Notice & Disclaimer
 
-自己发布的千星奇域的地图也可以用来增长经验，但是并不需要发布成功，仅需要点击一下发布再预览详情，即可在弹窗中进行收藏。  
-这就意味着可以自行制作秒刷图，然后“发布”进行收藏，在收藏中使用自己实际上并未真正发布的地图进行秒刷。  
-最新版脚本进行了重构，优化了点击速度，秒刷图一周刷完仅需8分45秒。  
-焚诀存档地图已存放至BetterGI/User/JsScript/WeeklyThousandStarRealm/map目录下，可自行在游戏中导入。
+This script relies on **deleting realm stage save data** to repeatedly obtain achievement EXP.
 
-## 🌟 Features特点
+**What this means:**
+- When deleting save data, progress in stages you play normally could potentially be cleared.
 
-* Auto 重复通关指定奇域地图
-* Auto 删除存档，实现Achievements经验可重复获取
-* Auto 监测每周经验上限，到达后Auto 停止
-* 完成后Auto 返回Teyvat大陆，不影响OtherAuto 化脚本
-* 可刷收藏地图，Supports自定义地图名称
+If you fully understand and accept this risk, check `I have read the disclaimer in the guide` in the script's *Custom JS Configuration* to proceed. Please ensure you accept potential losses before using this tool.
 
 ---
 
-## 🛠️ 脚本Settings项Guide / Instructions
+## 🔥 Fast Farming Method
 
-| Configuration项            | 描述                                    | 默认值            |
-|------------------|---------------------------------------|----------------|
-| **runJS**         | 我已阅读免责声明（未勾选无法执行）                     | `否`            |
-| **room**          | 奇域关卡关键词或 GUID（仅Supports单个，空则使用默认地图）         | `37135473336`  |
-| **achievementMode** | Achievements模式（请确保地图有Achievements）                        | `是`            |
-| **starMode**       | 收藏模式（请确保地图未失效，并确保地图已被收藏）              | `否`            |
-| **starRoomName**   | 使用的地图名称（不是房间ID，是地图名字。包含即可，但不要与Other地图重复） | `碰碰墙`        |
-| **thisAttempts**   | 指定通关次数（`0` = 无限，直到达到每周上限）             | `0`             |
-| **weekMaxExp**     | 每周可获取的经验值上限                           | `4000`          |
-| **singleExp**      | 每次通关可获得的经验值（不可为零）                     | `270`           |
+Custom-created Thousand Stars Realm maps also grant EXP without needing full public approval: simply clicking Publish, previewing stage details, and favoriting the map from the popup is enough.  
+This allows you to create an instant-clear map, favorite it during preview, and farm your unreleased map from your Favorites tab.  
+The updated script has optimized click intervals, completing the weekly EXP cap in just 8 minutes and 45 seconds.  
+A template map file is included under `BetterGI/User/JsScript/WeeklyThousandStarRealm/map` and can be imported in-game.
+
+## 🌟 Features
+
+* Automatically and repeatedly clears designated realm stages.
+* Automatically deletes stage save data so achievement EXP can be re-earned.
+* Tracks weekly EXP progress, stopping automatically upon reaching the cap.
+* Automatically returns to Teyvat upon completion without interrupting scheduled tasks.
+* Supports farming favorited maps with custom map name matching.
 
 ---
 
-## ❗ Precautions / Notes
+## 🛠️ Configuration Settings
 
-- 游戏窗口需保持 **16:9** 的宽高比例，否则可能影响图像识别。
-- `每次通关可获得的经验值` 请填写正确，否则脚本的剩余次数计算会不准确。
-- 若默认地图下架，请手动输入可游玩的地图号。
-- 勾选收藏模式后，请确保 `收藏模式所使用的地图名称` 填写正确地图名称。
-- 请勿将收藏模式中需要刷取的地图置顶！否则将无法搜索！
-- Achievements模式和收藏模式可以同时开启，但请确保地图符合对应要求。
-- 若出现红色报错，提示文件不存在，无需I care，不会造成问题。
+| Setting | Description | Default |
+| --- | --- | --- |
+| **runJS** | Acknowledged disclaimer (must be checked to execute) | `No` |
+| **room** | Stage keyword or GUID (single stage; uses default if empty) | `37135473336` |
+| **achievementMode** | Achievement Mode (ensure stage features achievements) | `Yes` |
+| **starMode** | Favorite Mode (ensure stage is valid and favorited) | `No` |
+| **starRoomName** | Map name in favorites (substring match, avoid name collisions) | `碰碰墙` (Bumper Wall) |
+| **thisAttempts** | Clear attempt limit (`0` = unlimited until weekly cap) | `0` |
+| **weekMaxExp** | Weekly obtainable EXP limit | `4000` |
+| **singleExp** | EXP gained per stage clear (cannot be zero) | `270` |
+
+---
+
+## ❗ Precautions
+
+- The game window must maintain a **16:9** aspect ratio to prevent image recognition errors.
+- Ensure `EXP gained per stage clear` matches actual stage rewards accurately; otherwise, remaining run calculations will be skewed.
+- If the default map is delisted, manually enter a valid stage GUID.
+- When enabling Favorite Mode, ensure `Map name in favorites` matches the exact target title.
+- Do not pin the target map to the top of your favorites list, or search queries may fail!
+- Both Achievement Mode and Favorite Mode can be enabled simultaneously provided the stage satisfies requirements.
+- Red console errors indicating missing files can be safely ignored and will not cause operational issues.
 
 ---

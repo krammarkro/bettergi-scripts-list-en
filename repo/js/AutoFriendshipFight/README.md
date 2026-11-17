@@ -1,272 +1,285 @@
-### Author
-- [秋云](https://github.com/physligl)（原Author）
+### Authors
+- [QiuYun (秋云)](https://github.com/physligl) (Original Author)
 - Volcano
-- 莫酱
+- MoJiang (莫酱)
 
-> Auto 化刷取CharacterFriendship度的脚本，SupportsTreasure Hoarder、愚人众、鳄鱼等敌人类型（Floating Fungi与雷Cicin Mage为测试项）。通过Auto 触发和完成突发任务来获得Friendship度经验。
+> An automated script for farming Character Companionship EXP. Supports enemy types such as Treasure Hoarders, Fatui, and Spinocrocodiles (Floating Fungi and Electro Cicin Mages are experimental). Earns Companionship EXP by automatically triggering and completing Random Events.
 
-### 目录
-- [Features简介](#Features简介)
-- [敌人类型](#敌人类型)
-- [FastStarting Up](#FastStarting Up)
-- [运行流程](#运行流程)
-- [FAQ](#FAQ)
-- [文件结构](#文件结构)
-- [Precautions / Notes](#Precautions / Notes)
-- [Changelog](#Changelog)
-
-### Features简介
-
-Auto 化刷取CharacterFriendship度的脚本，SupportsTreasure Hoarder、愚人众、鳄鱼等敌人类型（Floating Fungi与雷Cicin Mage为测试项）。通过Auto 触发和完成突发任务来获得Friendship度经验。
-
-
-
-- **日限制**: 每日最多获得10次Friendship度奖励，50次任务触发，在别的地方触发过Friendship任务会扣减相应次数。
-- **循环控制**: 运行次数由 `runTimes` 控制；若未触发任务或Happy提前终止条件会Auto 结束。
-- **平均时长**: 每次循环约1分钟，效率高时可以达到40秒单次循环。
-- **成功率**: Configuration正确的情况下接近98%，有概率丢失第一次Friendship任务。
-
-### 敌人类型
-
-#### Treasure Hoarder
-| 属性 | 详情 |
-|------|------|
-| **触发任务** | 岛上无贼 - 消灭鬼鬼祟祟的Treasure Hoarder |
-| **活动地区** | Inazuma地区 |
-| **敌人强度** | ⭐⭐⭐ (中等) |
-| **特殊Features** | （可选）Supports清理原住民（Hilichurl） |
-
-#### 愚人众&Hilichurl&Treasure Hoarder
-| 属性 | 详情 |
-|------|------|
-| **触发任务** | 买卖不成正义存 - 打倒愚人众与镀金旅团<br>禁止危险运输！ - 打倒所有Treasure Hoarder<br>Hilichurl今晚的伙食 - 打倒所有Hilichurl |
-| **活动地区** | Sumeru地区 |
-| **敌人强度** | ⭐⭐⭐⭐ (较高) |
-
-
-#### 鳄鱼
-| 属性 | 详情 |
-|------|------|
-| **触发任务** | 张牙舞爪的恶党 - 打倒所有鳄鱼 |
-| **活动地区** | Sumeru地区 |
-| **敌人强度** | ⭐⭐ (较低) |
-### FastStarting Up
-#### 环境准备
-✅ 安装 BetterGI，Version大于 0.44.7
-✅ 订阅脚本并添加至调度器
-
-#### Floating Fungi & 雷Cicin Mage
-属于测试Version，暂时并Unstable，可以进行测试，但不建议作为日常脚本使用。
-
-#### 调度器Configuration
-- **地图追踪行走Configuration**:
-  - ✅ 勾选"只在Teleport Waypoint时回复"
-  - ✅ 勾选"允许在JsScript使用"
-  - ✅ 勾选"覆盖JS中的Auto CombatConfiguration"
-
-- **CombatConfiguration**
-  - **Combat策略**: 根据队伍选择或者制定合适的Combat策略文件
-  - **练度要求**: 建议较高练度，纯Friendship队可能无法击败敌人
-  - **重要Settings**:
-    - 默认：❌ 关闭"Auto 检测Combat结束"
-    - 若勾选“禁用异步Combat（更Stable）”：✅ 需要开启并正确Configuration"Auto 检测Combat结束"（对所有敌人生效）
-- **Recommended队伍Configuration**
- > 基于社区测试的EfficientCharacterRecommended，Other效率高的Character欢迎通过 pull request 添加到本文档，需附带理由和演示视频。
-
-| Character | 优先级 | 特点 | Precautions / Notes |
-|------|--------|------|----------|
-| **Neuvillette** | ⭐⭐⭐⭐⭐ | 群友测试效率最高 | 输出Stable，适合Auto Combat |
-| **Citlali** | ⭐⭐⭐⭐ | 带盾，后台冰冻结敌人 | 提供生存保障 |
-| **Kaedehara Kazuha** | ⭐⭐⭐⭐ | 拾取材料，扩散伤害 | 增加收益效率 |
-| **Furina** | ⭐⭐⭐ | 后台输出 | 生存压力较大 |
-| **Zhongli** | ⭐⭐⭐ | 提供护盾 | Combat策略中E技能应左右释放 |
-#### **脚本Settings**
-> 通过调度器脚本右键-修改JS自定义Configuration
-
-   - 禁用Auto 拾取实时任务（`disablePickup`）
-     - 不勾选：启用Auto 拾取（默认）
-     - 勾选：禁用Auto 拾取
-   - 敌人类型: Supports"Treasure Hoarder"、"愚人众"、"鳄鱼"、"Floating Fungi"、"雷Cicin Mage"
-   - 运行次数:
-     - 请输入正整数（默认10次）
-     - 刷Friendship通常建议 10 次以内，避免超过每日奖励上限
-   - 清理Hilichurl超时时间（`qiuQiuRen`，秒）
-     - 默认 0（不执行）
-     - 仅Treasure Hoarder有效，填入大于 0 的秒数后会先执行清理阶段
-   - 队伍名称: 
-     - 填入您的Combat队伍名称
-     - 不填默认当前队伍
-   - OCR超时:
-    - OCR检测超时时间（默认10秒）
-    - 过短可能识别Defeat导致结束任务
-    - 过长则会长时间检测导致等待时间过长
-    - Recommended保持默认值
-   - Combat超时: 
-    - 单次Combat超时时间（默认120秒）
-    - Combat超时会直接取消任务，因此不建议过短
-    - 脚本会Auto 检测任务结束，识别精度很高
-   - 禁用异步Combat（更Stable；需Configuration“Combat结束检测”；对所有敌人生效）
-    - 开启后统一走同步Combat执行分支
-    - 关闭时走异步Combat + OCR 判定分支
-
-#### 一键运行
-Configuration完成后，直接运行脚本即可Starting UpAuto 刷取Friendship度。
-
-
-#### 高级Settings
-- **清理原住民**: 仅Treasure Hoarder模式有效，清理Hilichurl
-- **卡时间模式**: Supports按日期周期运行
-
-### 运行流程
-
-1. **队伍Switch**: Auto Switch到指定队伍
-2. **准备阶段**: 
-   - Treasure Hoarder: (可选) 清理Hilichurl → Go to触发点
-   - 愚人众: 直接Go to触发点
-3. **任务检测**: 使用OCR检测突发任务触发
-4. **Combat执行**: Auto 导航到Combat点并Starting UpCombat
-5. **结果判定**: 检测Combat结果并Recording
-6. **循环执行**: 重复上述流程直到完成设定次数或者检测到任务未触发
-
-
-### FAQ
-
-#### 重要提醒
-- 脚本运行时请勿手动操作游戏
-
-#### FAQ解答
-
-##### Q: 为什么Combat策略Nope生效或CombatDefeat率较高？
-**A**: 检查以下几点：
-- 是否正确Settings了Combat策略
-- Combat策略是否适合当前队伍
-- 队伍练度是否足够
-- 是否正确勾选了"覆盖JS中的Auto CombatConfiguration"
-
-
-##### Q: OCR超时但是任务已经触发？
-**A**: 
-- 尝试提高 OCR 超时时间
-- 如果Observing到触发任务时，Left SideNope任务文字，则游戏中关闭任务Focused模式
-
-##### Q: 如何选择合适的敌人类型？
-**A**:
-- **Treasure Hoarder**: 适合中等练度队伍，敌人相对较弱
-- **愚人众**: 需要高练度队伍，怪物强度相对较高
-
-##### Q: 脚本运行中断怎么办？
-**A**:
-- 检查是否有手动操作游戏
-- 查看Log确定中断原因
-- 重新运行脚本
-- 若仍然未恢复，提交 issue
-
-##### Q: 脚本卡在某个步骤不动怎么办？
-**A**:
-- 确认是否卡在了复活界面
-- 重启脚本并检查 BetterGI 状态
-- 若仍然未恢复，提交 issue
-
-##### Q: 如何选择Treasure Hoarder还是愚人众？
-**A**:
-- **新手Recommended**: 选择Treasure Hoarder，敌人较弱，容错率高
-- **高练度队伍**: 选择愚人众，效率更高
-- **Friendship度优先**: 两者都可以，选择队伍更适合的类型
-
-##### Q: Combat策略如何Configuration？
-**A**:
-- 查阅 BetterGI 文档
-
-##### Q: 为什么任务触发Defeat？
-**A**:
-- 检查是否已达到每日任务触发上限
-- 尝试手动触发
-
-##### Q: 队伍SwitchDefeat怎么办？
-**A**:
-- 确认队伍名称填写正确（建议四字中文）
-
-##### Q: 脚本运行速度慢怎么办？
-**A**:
-- 降低OCR超时时间（但不要过短）
-- 优化Combat策略，减少不必要的等待
-- 确保BetterGIVersion为最新
-- 检查计算机性能和网络状况
-- 提高计算机Configuration
-
-##### Q: 如何备份和恢复Configuration？
-**A**:
-- Configuration保存在调度器Configuration文件中
-- 可以手动备份该文件，当然建议直接备份 `User` 文件夹
-- 重装后将备份文件复制回原位置即可恢复
-
-> 💡 如遇Other问题，请在 GitHub 上提出 issue
-
-### 文件结构
-
-- `main.js`: 主要脚本逻辑
-- `settings.json`: Configuration文件
-- `assets/AutoPath/`: Path文件目录
-  - `Treasure Hoarder-准备.json`: Treasure Hoarder准备阶段Path，清理Hilichurl
-  - `Treasure Hoarder-触发点.json`: Treasure Hoarder触发点Path
-  - `Treasure Hoarder-Combat点.json`: Treasure HoarderCombat点Path
-  - `愚人众-准备.json`: 愚人众准备阶段Path，从Teleport Waypoint到触发点
-  - `愚人众-触发点.json`: 愚人众触发点Path
-  - `愚人众-Combat点.json`: 愚人众Combat点Path
-
-### Precautions / Notes
-
-#### 使用须知
-- **仅供Learning交流**: 本脚本仅用于技术研究和Learning交流
-- **风险自担**: 使用Auto 化脚本存在一定风险，请谨慎使用
-- **适度使用**: 建议合理安排游戏时间，避免过度依赖Auto 化
-
-#### 安全建议
-- **备份存档**: 使用前建议备份游戏存档数据
-- **监督运行**: 运行期间建议保持关注，及时处理Exception / Error情况
-- **Version更新**: 及时更新 BetterGI 和脚本到最新Version
-- **社区反馈**: 遇到问题及时向社区反馈，帮助改进脚本
-
-### Changelog
-
-| Version | 更新内容 | 
-|------|----------|
-| **v2.0.0** | `main.js` 重构Version：重点修复 V8 弹窗报错与内存溢出问题；统一敌人Configuration驱动与主循环流程；“禁用异步Combat”明确为对所有敌人生效；移除卡时间Features及相关Configuration入口 |
-| **v1.5.3** | Stable性提升：资源释放更完整；Treasure Hoarder游泳统计仅在Treasure Hoarder启用；“禁用异步Combat”增加超时Protection避免卡死；SettingsGuide / Instructions更易懂 |
-| **v1.4.2** | 新增拾取模式，能选择不拾取 | 
-| **v1.3** | 新增愚人众Supports，优化敌人类型Switch | 
-| **v1.2** | Combat触发检测，异步检测Combat结束 | 
-| **v1.1** | Treasure Hoarder重登Features优化，卡时间Supports |
-| **v1.0** | 基础Treasure HoarderFriendship度刷取Features | 
+### Table of Contents
+- [Features Overview](#features-overview)
+- [Enemy Types](#enemy-types)
+- [Quick Start](#quick-start)
+- [Execution Workflow](#execution-workflow)
+- [FAQ](#faq)
+- [File Structure](#file-structure)
+- [Precautions / Notes](#precautions--notes)
+- [Changelog](#changelog)
+- [Contribution Guide](#contribution-guide)
+- [Issue Feedback](#issue-feedback)
+- [Community Support](#community-support)
 
 ---
 
-### 贡献指南
-欢迎提交 Pull Request 来改进此脚本！请遵循以下指南：
+### Features Overview
 
-#### 代码贡献
-- **Features改进**: 新增Features、性能优化、bug修复
-- **文档完善**: 改进README、添加注释、使用指南
-- **测试验证**: 提供测试用例、兼容性验证
+An automated script for farming Character Companionship EXP. Supports enemy types such as Treasure Hoarders, Fatui, and Spinocrocodiles (Floating Fungi and Electro Cicin Mages are experimental). Automatically triggers and completes Random Events to earn Companionship EXP.
 
-#### 提交规范
-- 清晰的提交信息描述
-- 详细的PRGuide / Instructions和测试结果
-- 遵循现有代码风格
-- 避免在同一个提交中格式化代码
+- **Daily Limits**: Up to 10 Companionship EXP rewards per day across a maximum of 50 event triggers. Triggering Random Events elsewhere deducts from this count.
+- **Loop Control**: Run count is controlled by `runTimes`. If no event is triggered or an early termination condition is met, the script exits automatically.
+- **Average Duration**: Approximately 1 minute per cycle; high-efficiency teams can complete a cycle in around 40 seconds.
+- **Success Rate**: Close to 98% under proper configuration, with a small probability of missing the first Random Event.
 
-### 问题反馈
-遇到问题请在 GitHub 上提出 issue，包含以下信息：
-- 详细的错误描述和复现步骤
-- 相关Log截图或错误信息
-- 使用的BetterGIVersion和游戏环境
-- 脚本Configuration参数
+---
 
-### 社区Supports
-- 📖 **文档**: 查看完整文档和教程
-- 🐛 **报告问题**: 通过Issues报告bug和建议
-- 🤝 **贡献代码**: 通过Pull Request贡献代码
+### Enemy Types
 
-> 💝 **Thank You所有为此项目做出贡献的开发者和测试者！**
+#### Treasure Hoarders
+| Property | Details |
+|---|---|
+| **Trigger Event** | "No Thieves on the Island" - Defeat sneaky Treasure Hoarders |
+| **Region** | Inazuma |
+| **Difficulty** | ⭐⭐⭐ (Medium) |
+| **Special Feature** | (Optional) Supports clearing native Hilichurls first |
 
-> 🌟 **如果这个脚本对您有帮助，请给项目点个星标Supports！**
+#### Fatui & Hilichurls & Treasure Hoarders
+| Property | Details |
+|---|---|
+| **Trigger Event** | "Fair Trade, Clear Conscience" - Defeat the Fatui and The Eremites<br>"Hazardous Cargo Prohibited!" - Defeat all Treasure Hoarders<br>"Hilichurls' Dinner Tonight" - Defeat all Hilichurls |
+| **Region** | Sumeru |
+| **Difficulty** | ⭐⭐⭐⭐ (Higher) |
+
+#### Spinocrocodiles
+| Property | Details |
+|---|---|
+| **Trigger Event** | "Fierce Foes" - Defeat all Spinocrocodiles |
+| **Region** | Sumeru |
+| **Difficulty** | ⭐⭐ (Lower) |
+
+---
+
+### Quick Start
+
+#### Prerequisites
+- ✅ Install BetterGI (version > 0.44.7)
+- ✅ Subscribe to the script and add it to the Task Scheduler
+
+#### Floating Fungi & Electro Cicin Mage
+These are experimental features and currently unstable. You may test them, but they are not recommended for daily automated use.
+
+#### Task Scheduler Configuration
+- **Pathing Configuration**:
+  - ✅ Enable "Only heal at Teleport Waypoints"
+  - ✅ Enable "Allow use in JS scripts"
+  - ✅ Enable "Override Auto Combat Configuration in JS"
+
+- **Combat Configuration**:
+  - **Combat Strategy**: Select or design an appropriate combat strategy file for your team.
+  - **Team Investment**: High character investment is recommended; pure Companionship-farming teams with unbuilt characters may fail to defeat enemies.
+  - **Important Settings**:
+    - Default: ❌ Disable "Auto-detect combat end"
+    - If "Disable asynchronous combat (more stable)" is enabled: ✅ Enable and properly configure "Auto-detect combat end" (applies to all enemy types).
+
+- **Recommended Team Lineups**
+> Based on community testing for optimal efficiency. Contributions of other efficient setups are welcome via Pull Request (please include rationale and demo video).
+
+| Character | Priority | Features | Notes |
+|---|---|---|---|
+| **Neuvillette** | ⭐⭐⭐⭐⭐ | Highest efficiency in community testing | Consistent damage output, ideal for auto combat |
+| **Citlali** | ⭐⭐⭐⭐ | Provides shield, off-field Cryo freezes enemies | Offers survivability |
+| **Kaedehara Kazuha** | ⭐⭐⭐⭐ | Material grouping, Swirl damage | Boosts clear and pickup efficiency |
+| **Furina** | ⭐⭐⭐ | Off-field damage | Requires sustained healing |
+| **Zhongli** | ⭐⭐⭐ | Strong shield protection | In combat strategies, cast Skill left/right appropriately |
+
+#### Script Settings
+> Configure by right-clicking the script in the Task Scheduler -> "Edit JS Custom Configuration"
+
+- **Disable Auto-pickup in Real-time Tasks (`disablePickup`)**:
+  - Unchecked: Enable auto-pickup (Default)
+  - Checked: Disable auto-pickup
+- **Enemy Type**: Supports "Treasure Hoarders", "Fatui", "Spinocrocodiles", "Floating Fungi", and "Electro Cicin Mage".
+- **Run Times**:
+  - Enter a positive integer (Default: 10).
+  - Recommended <= 10 runs to match the daily reward cap.
+- **Hilichurl Clear Timeout (`qiuQiuRen`, seconds)**:
+  - Default: `0` (Disabled).
+  - Only valid for Treasure Hoarders. Setting > 0 runs an initial Hilichurl clearing phase.
+- **Team Name**:
+  - Enter your combat party name.
+  - Leave empty to use the active party.
+- **OCR Timeout**:
+  - OCR detection timeout (Default: 10 seconds).
+  - Too short may cause missed detection and premature exit; too long may cause unnecessary waiting.
+  - Recommended to keep the default value.
+- **Combat Timeout**:
+  - Single combat timeout in seconds (Default: 120 seconds).
+  - Reaching timeout cancels the task, so do not set it too short.
+  - The script automatically detects combat completion with high accuracy.
+- **Disable Asynchronous Combat (More stable; requires "Combat End Detection"; applies to all enemies)**:
+  - When enabled: Uses synchronous combat execution branch.
+  - When disabled: Uses asynchronous combat + OCR determination branch.
+
+#### One-Click Run
+Once configured, simply run the script to begin automated Companionship EXP farming.
+
+#### Advanced Settings
+- **Clear Natives**: Only applies to Treasure Hoarders mode, clears nearby Hilichurls.
+- **Time Window Mode**: Supports scheduling runs based on specific date cycles.
+
+---
+
+### Execution Workflow
+
+1. **Team Switch**: Automatically switches to the specified party.
+2. **Preparation Phase**:
+   - Treasure Hoarders: (Optional) Clear Hilichurls -> Proceed to trigger point.
+   - Fatui: Proceed directly to trigger point.
+3. **Event Detection**: Uses OCR to detect Random Event trigger.
+4. **Combat Execution**: Automatically paths to combat point and starts combat.
+5. **Result Evaluation**: Checks and logs combat result.
+6. **Loop Execution**: Repeats until target runs are finished or no event is triggered.
+
+---
+
+### FAQ
+
+#### Important Reminder
+- Do NOT perform manual game operations while the script is running.
+
+#### Common Questions
+
+##### Q: Why is the combat strategy not working or has a high defeat rate?
+**A**: Check the following:
+- Ensure the combat strategy is properly selected.
+- Ensure the strategy matches your current team lineup.
+- Ensure your characters have sufficient artifact/talent investment.
+- Ensure "Override Auto Combat Configuration in JS" is checked in Task Scheduler.
+
+##### Q: OCR timed out even though the event was triggered?
+**A**:
+- Try increasing the OCR timeout setting.
+- If the event triggers but no text appears on the left side of the screen, disable "Focused Experience Mode" in the game quest settings.
+
+##### Q: How do I choose the best enemy type?
+**A**:
+- **Treasure Hoarders**: Best for mid-investment teams; enemies are relatively weak and forgiving.
+- **Fatui**: Requires high-investment teams; higher monster strength but faster clear potential.
+
+##### Q: What should I do if the script stops unexpectedly?
+**A**:
+- Check whether manual input interfered with the game.
+- Review BetterGI logs to find the cause of interruption.
+- Re-run the script.
+- If the problem persists, submit an issue on GitHub.
+
+##### Q: What if the script freezes on a specific step?
+**A**:
+- Check if the game is stuck on a character revive screen.
+- Restart the script and verify BetterGI status.
+- If it still fails, submit an issue.
+
+##### Q: Treasure Hoarders vs. Fatui: which should I choose?
+**A**:
+- **Beginner recommendation**: Treasure Hoarders (lower enemy HP and high error tolerance).
+- **High-investment teams**: Fatui (higher efficiency).
+- **Companionship EXP priority**: Both give the same Companionship EXP per event; choose whichever matches your team best.
+
+##### Q: How do I configure combat strategies?
+**A**:
+- Refer to the official BetterGI documentation.
+
+##### Q: Why did the Random Event fail to trigger?
+**A**:
+- Check if you have reached the daily 10-reward / 50-trigger event cap.
+- Try triggering it manually once to verify.
+
+##### Q: What if party switching fails?
+**A**:
+- Ensure your party name matches your game configuration exactly (e.g. four Chinese characters on CN client or exact name on EN client).
+
+##### Q: How can I speed up script execution?
+**A**:
+- Lower OCR timeout slightly (not too low).
+- Optimize your combat strategy to eliminate redundant pauses.
+- Keep BetterGI updated to the latest version.
+- Ensure adequate PC hardware performance and stable network connectivity.
+
+##### Q: How do I back up and restore configuration?
+**A**:
+- Settings are saved in the Task Scheduler configuration files.
+- Back up those files or copy the entire `User` folder.
+- Restore the files to the original folder after reinstalling.
+
+> 💡 For any other issues, please open an issue on GitHub.
+
+---
+
+### File Structure
+
+- `main.js`: Core script logic
+- `settings.json`: Configuration definition file
+- `assets/AutoPath/`: Pathing files directory
+  - `Treasure Hoarder-准备.json`: Preparation path (Hilichurl clearance)
+  - `Treasure Hoarder-触发点.json`: Trigger point path
+  - `Treasure Hoarder-Combat点.json`: Combat point path
+  - `愚人众-准备.json`: Fatui preparation path (Teleport Waypoint to trigger point)
+  - `愚人众-触发点.json`: Fatui trigger point path
+  - `愚人众-Combat点.json`: Fatui combat point path
+
+---
+
+### Precautions / Notes
+
+#### Usage Notice
+- **Educational / Research Only**: This script is provided solely for technical research and learning.
+- **Use at Your Own Risk**: Using automation scripts carries potential risks; please use responsibly.
+- **Moderate Usage**: Maintain healthy gaming habits and avoid excessive reliance on automation.
+
+#### Safety Recommendations
+- **Supervise Execution**: Monitor the initial run to address unexpected game states promptly.
+- **Keep Updated**: Keep BetterGI and your scripts updated to the latest versions.
+- **Community Feedback**: Report issues to help maintain and improve the script.
+
+---
+
+### Changelog
+
+| Version | Update Notes |
+|---|---|
+| **v2.0.0** | `main.js` refactor: Resolved V8 popup errors and memory leak issues; unified enemy configuration driver and main loop; explicitly enabled "Disable asynchronous combat" across all enemies; removed time window scheduling features and obsolete configuration entries. |
+| **v1.5.3** | Stability improvements: Complete resource cleanup; swimming statistics limited to Treasure Hoarders; added timeout protection to "Disable asynchronous combat" to prevent hangs; improved settings descriptions. |
+| **v1.4.2** | Added pickup mode toggle to allow disabling item pickup. |
+| **v1.3** | Added Fatui support; optimized enemy type switching. |
+| **v1.2** | Added combat trigger detection and asynchronous combat completion check. |
+| **v1.1** | Optimized Treasure Hoarders relog feature; added time-window scheduling. |
+| **v1.0** | Initial release: basic Treasure Hoarders Companionship EXP farming. |
+
+---
+
+### Contribution Guide
+Pull Requests to improve this script are welcome! Please follow these guidelines:
+
+#### Code Contributions
+- **Feature Enhancements**: New features, performance optimization, bug fixes.
+- **Documentation**: README improvements, code comments, usage guides.
+- **Testing & Verification**: Test cases, compatibility testing across resolutions.
+
+#### Submission Standards
+- Clear commit messages describing changes.
+- Detailed PR description with testing evidence.
+- Adhere to the existing code style.
+- Avoid mass auto-formatting unrelated code in the same commit.
+
+### Issue Feedback
+When filing a GitHub issue, please include:
+- Detailed bug description and reproduction steps.
+- Relevant log files, screenshots, or error messages.
+- BetterGI version and OS environment.
+- Configured script parameters.
+
+### Community Support
+- 📖 **Documentation**: Read full guides and tutorials.
+- 🐛 **Report Issues**: Submit bugs and feature requests via Issues.
+- 🤝 **Contribute**: Submit code via Pull Requests.
+
+> 💝 **Thank you to all developers and testers who contributed to this project!**  
+> 🌟 **If this script helped you, please consider giving it a star on GitHub!**

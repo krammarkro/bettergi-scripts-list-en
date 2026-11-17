@@ -1,9 +1,10 @@
-# 原神ClaymoreCharacterMiningRecommended
-## Precautions / Notes
-- Sumeru地区地形极其复杂，仅Recommended解锁了所有改变地形的解谜机关、洞穴等的高探索度玩家使用。
-- 也可人工监控跑一次，筛选后使用。
+# Genshin Impact Claymore Character Mining Recommendations
 
-## SupportsClaymoreCharacterRecommended排行榜
+## Precautions / Notes
+- The terrain in the Sumeru region is extremely complex. It is only recommended for players with high exploration progress who have unlocked all terrain-altering puzzle mechanisms, caves, etc.
+- You can also run it once under manual supervision to filter routes before automated use.
+
+## Supported Claymore Character Rankings / Recommendations
 1. Aino
 2. Noelle
 3. Mavuika
@@ -21,20 +22,20 @@
 15. Beidou
 16. Sayu
 17. Diluc
-18. Candace（技能）
-19. Razor（技能）
+18. Candace (Skill)
+19. Razor (Skill)
 20. Ningguang
-21. Zhongli（技能）
+21. Zhongli (Skill)
 
-## 实用Tips
-如果综合考虑行走+Combat的话，Dehya、Mavuika、Noelle是不That's WrongMiningCharacter人选
+## Practical Tips
+When factoring in both movement speed and combat capability, Dehya, Mavuika, and Noelle are excellent choices for mining characters.
 
-## 更新信息
-更新时间：2025-12-20
+## Update Information
+Last Updated: 2025-12-20
 
-## Author
+## Authors
 "name": "Volcano",
 "links": "https://github.com/RRRR623"
 
-"name": "芝士贝果",
+"name": "Cheese Bagel",
 "links": "https://github.com/cheese-bagel"

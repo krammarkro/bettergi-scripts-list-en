@@ -1,83 +1,83 @@
-# 🍱 Auto 补充 Buff 类药物Instructions
+# 🍱 Auto Buff Food Replenishment Instructions
 
-## ✨ 核心Features
+## ✨ Core Features
 
--   🎯 **双模式智能Switch**  
-    `坐标定位`（灵活便捷） + `名称搜索`（StableEfficient）
--   ⏲️ **独立冷却管理**  
-    为每个食物单独Settings使用间隔（秒级精度）
--   🔄 **多队列并行执行**  
-    同时运行多组食物方案，互不干扰
-
----
-
-## 🛠️ Configuration指南
-
-### 1️⃣ 星标前置，坐标定位模式（Recommended）
-
-**格式**：`行,列,间隔秒数(可选)`  
-**示例**：`"2,3; 4,5,60"`
-
-| Configuration项   | Guide / Instructions                            | 默认值 |
-| -------- | ------------------------------- | ------ |
-| `2,3`    | 第 2 行第 3 列食物              | 300 秒 |
-| `4,5,60` | 第 4 行第 5 列食物（60 秒间隔） | -      |
-
-> ✅ **优势**：执行速度最快，Stable性最佳  
-> 📌 **提示**：打开Inventory从Top-Left角Starting Up计数（第 1 行第 1 列=1,1）
+- 🎯 **Dual-Mode Intelligent Switching**  
+  `Coordinate Positioning` (fast & flexible) + `Name Search` (stable & efficient)
+- ⏲️ **Independent Cooldown Management**  
+  Set independent consumption intervals for each food item (per-second precision)
+- 🔄 **Multi-Queue Parallel Execution**  
+  Run multiple food schemes concurrently without interference
 
 ---
 
-### 2️⃣ 名称搜索模式
+## 🛠️ Configuration Guide
 
-**格式**：`食物全称,间隔秒数(可选),序号(可选)`  
-**示例**：`"Sweet Madame,120; Teyvat Fried Egg,60,2"`
+### 1️⃣ Coordinate Positioning Mode (Recommended)
 
-| Configuration项            | Guide / Instructions                           |
-| ----------------- | ------------------------------ |
-| `Sweet Madame,120`  | 使用第一个匹配项（120 秒间隔） |
-| `Teyvat Fried Egg,60,2` | 使用第二个匹配项（60 秒间隔）  |
+**Format**: `row,column,interval_seconds(optional)`  
+**Example**: `"2,3; 4,5,60"`
 
-> ⚠️ **Note**：名称必须完全一致（含符号和空格）  
-> 🔍 搜索逻辑：按Inventory顺序从左 → 右，上 → 下扫描
+| Configuration | Description | Default |
+| --- | --- | --- |
+| `2,3` | Food at Row 2, Column 3 | 300 s |
+| `4,5,60` | Food at Row 4, Column 5 (60-second interval) | - |
+
+> ✅ **Advantage**: Fastest execution speed, highest stability  
+> 📌 **Tip**: Open Inventory and count from the top-left corner (Row 1, Column 1 = `1,1`)
 
 ---
 
-## ⚠️ 关键限制
+### 2️⃣ Name Search Mode
 
-### ❗ 禁用弹窗类药物
+**Format**: `Full Food Name,interval_seconds(optional),index(optional)`  
+**Example**: `"Sweet Madame,120; Teyvat Fried Egg,60,2"`
+
+| Configuration | Description |
+| --- | --- |
+| `Sweet Madame,120` | Uses first matching item (120-second interval) |
+| `Teyvat Fried Egg,60,2` | Uses second matching item (60-second interval) |
+
+> ⚠️ **Note**: Names must match exactly (including spaces and symbols).  
+> 🔍 Search logic: Scans inventory in order from left to right, top to bottom.
+
+---
+
+## ⚠️ Key Limitations
+
+### ❗ Target Confirmation / Pop-up Foods Prohibited
 
 ```diff
-- 生命回复/复活类食物（如"Teyvat Fried Egg"）
-+ 仅Supports无确认弹窗的增益类食物（如"Mondstadt Hash Brown"）
+- HP Recovery / Revive foods (e.g., "Teyvat Fried Egg", "Sweet Madame")
++ Only supports buff foods without character-target confirmation pop-ups (e.g., "Mondstadt Hash Brown", ATK/DEF potions/dishes)
 ```
 
-> 脚本会Auto 取消弹窗操作，相关食物无法生效
+> The script automatically cancels modal dialog pop-ups, so targeted healing foods will not take effect.
 
-### ⚡ 参数规则
+### ⚡ Parameter Rules
 
-| 参数   | Guide / Instructions               | 默认值 | 范围       |
-| ------ | ------------------ | ------ | ---------- |
-| 间隔   | 使用冷却时间（秒） | 300    | ≥30        |
-| 序号   | 同名食物选择顺序   | 1      | ≥1         |
-| 分隔符 | 条目：`;` 或 `；`  | -      | 兼容中英文 |
-|        | 参数：`,` 或 `，`  |        |            |
+| Parameter | Description | Default | Range |
+| --- | --- | --- | --- |
+| Interval | Cooldown duration before re-use (seconds) | 300 | ≥ 30 |
+| Index | Selection order for items with identical names | 1 | ≥ 1 |
+| Delimiters | Item separator: `;` or `；` | - | Compatible with both English & Chinese punctuation |
+| | Parameter separator: `,` or `，` | | |
 
 ---
 
-## 🚀 最佳实践
+## 🚀 Best Practices
 
-1. **模式选择优先级**
-    ```mermaid
-    graph LR
-    A[首选坐标模式] --> B[名称模式Alternate]
-    ```
-2. **冷却时间Settings**
-    - 常规增益：300 秒
-    - 强力 BUFF：≥300 秒
-3. **多队列避坑指南**
-    - 避免Configuration同一位置的食物
-    - 同类食物间隔时间保持一致
-    - 首次使用前手动整理Inventory
+1. **Mode Priority**
+   ```mermaid
+   graph LR
+   A["Preferred: Coordinate Mode"] --> B["Fallback: Name Search Mode"]
+   ```
+2. **Cooldown Settings**
+   - Regular buffs: 300 seconds
+   - Strong buffs: ≥ 300 seconds
+3. **Multi-Queue Tips**
+   - Avoid configuring foods in the exact same slot.
+   - Keep cooldown intervals consistent for similar food items.
+   - Manually organize your inventory before the first run.
 
-> 📅 最后更新：2025.08 | ⚙️ 适用Version：v0.48+
+> 📅 Last Updated: 2025.08 | ⚙️ Applicable Version: v0.48+

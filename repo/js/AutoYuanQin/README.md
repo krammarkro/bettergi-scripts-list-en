@@ -1,166 +1,167 @@
-# 原琴 - AutoYuanQin
+# Genshin Lyre - AutoYuanQin
 
-## 📑 目录
+## 📑 Table of Contents
 
-- [免责声明](#免责声明)
-  - [非真人演奏声明](#非真人演奏声明)
-  - [禁止参赛条款](#禁止参赛条款)
-  - [反作弊机制Guide / Instructions](#反作弊机制Guide / Instructions)
-- [播放演奏脚本](#播放演奏脚本)
-- [如何新增曲谱(自制曲谱如何演奏)](#如何新增曲谱自制曲谱如何演奏)
-- [如何上传乐谱至仓库](#如何上传乐谱至仓库)
-  - [1. 由脚本Author代你上传](#1-由脚本Author代你上传)
-  - [2. 自行上传（Recommended）](#2-自行上传Recommended)
-- [MIDI制谱器](#midi制谱器)
-- [五线谱制谱器](#五线谱制谱器)
-- [简谱制谱器](#简谱制谱器)
-- [曲谱制作解答](#曲谱制作解答)
-- [曲谱文件位置](#曲谱文件位置)
-- [文件结构](#文件结构)
-  - [字段Guide / Instructions](#字段Guide / Instructions)
-  - [文本格式](#文本格式)
-  - [代码美化](#代码美化)
-- [Notes 解析规则](#notes-解析规则)
-  - [音符格式](#音符格式)
-- [Changelog](#Changelog)
+- [Disclaimer](#disclaimer)
+  - [Non-Human Performance Disclaimer](#non-human-performance-disclaimer)
+  - [Competition Prohibition Clause](#competition-prohibition-clause)
+  - [Anti-Cheat Mechanism Notice](#anti-cheat-mechanism-notice)
+- [Playing Music](#playing-music)
+- [How to Add New Scores (Playing Custom Scores)](#how-to-add-new-scores-playing-custom-scores)
+- [How to Upload Scores to Repository](#how-to-upload-scores-to-repository)
+  - [1. Upload via Script Author](#1-upload-via-script-author)
+  - [2. Self-Upload via GitHub (Recommended)](#2-self-upload-via-github-recommended)
+- [MIDI Score Converter](#midi-score-converter)
+- [Musical Staff Maker](#musical-staff-maker)
+- [Numbered Notation Maker](#numbered-notation-maker)
+- [Keyboard Notation Converter](#keyboard-notation-converter)
+- [Score Creation FAQ](#score-creation-faq)
+- [Score File Directory](#score-file-directory)
+- [File Structure](#file-structure)
+  - [Field Descriptions](#field-descriptions)
+  - [Text Formatting](#text-formatting)
+  - [Code Beautification](#code-beautification)
+- [Notes Parsing Rules](#notes-parsing-rules)
+  - [Note Syntax](#note-syntax)
+- [Changelog](#changelog)
 
 ---
 
-## 免责声明
+## Disclaimer
 
 <details>
-<summary>点击展开</summary>
+<summary>Click to expand</summary>
 
-### 非真人演奏声明
+### Non-Human Performance Disclaimer
 
-本工具通过模拟键盘输入实现Auto 演奏，并非真人实时演奏。使用者不得利用本工具冒充真人演奏者，亦不得以任何方式误导他人认为该演奏系人工完成，以免造成不良社会影响或损害他人权益。
+This tool emulates keyboard input to achieve automated instrument performance and is not real-time human playing. Users must not use this tool to impersonate human performers, nor mislead others into believing performances are played manually, to avoid negative community impact or infringing upon the rights of others.
 
-### 禁止参赛条款
+### Competition Prohibition Clause
 
-本工具严禁用于任何形式的原琴比赛、竞技活动或官方Approval的演奏评比。若使用者违反本条款参与相关赛事，一经查实，所有后果（包括但不限于取消成绩、封禁Account、承担法律责任等）均由使用者自行承担。
+This tool is strictly prohibited for use in any form of Genshin Impact musical competitions, competitive events, or official performance evaluations. If a user violates this clause by participating in such events, all consequences (including but not limited to disqualification, account suspension, and legal liabilities) will be borne solely by the user.
 
-### 反作弊机制Guide / Instructions
+### Anti-Cheat Mechanism Notice
 
-本工具内置了面向使用者的常规反作弊机制，其核心目的在于限制使用者参与任何形式的原琴比赛、竞技活动或官方Approval的演奏评比，脚本会通过不定时按下某些无关按键作为特征。
+This tool includes a built-in anti-cheat mechanism designed to prevent users from participating in any musical competitions, tournaments, or official showcases. The script periodically inputs harmless unrelated keys as a signature watermark.
 
 </details>
 
 ---
 
-## 播放演奏脚本
+## Playing Music
 
-1. 在 **调度器** 中 **新建Configuration组** 或选择已有Configuration组，将 *AutoYuanQin* 添加至该组中。
-2. 右键点击原琴脚本，选择 **修改脚本自定义Configuration**，根据Guide / Instructions填写各项参数。
-3. 若在 JS 脚本Configuration中启用了 **游戏内控制面板**（请确保游戏使用 **无边框窗口模式** 而非全屏模式），点击运行后会弹出 HTML 遮罩界面。在界面中选择乐曲后，点击 **Starting Up播放** 即可；若未启用控制面板，则选曲后直接Starting Up演奏。
-4. 使用游戏内控制面板演奏完成后，脚本 **不会Auto 结束**，您可以继续选择下一首乐曲并演奏。演奏过程中，面板会最小化至Bottom-Right角，且 **不可被鼠标指针选中**，演奏完成后Auto 还原并可正常交互。
-5. 演奏过程中按Configuration的Shortcut Keys（默认 `F8`）可暂停，再次按下可从当前位置继续；该操作只暂停脚本演奏，不会暂停游戏。若Shortcut Keys与游戏或Other软件冲突，可在游戏内Configuration面板点击Shortcut Keys输入框，然后直接按下新的单键或组合键（例如 `Ctrl+Shift+P`）。
+1. In the **Scheduler**, create a **New Configuration Group** or select an existing one, then add *AutoYuanQin* to it.
+2. Right-click the AutoYuanQin script, select **Modify JS Custom Configuration**, and configure the parameters as desired.
+3. If the **In-Game Control Panel** is enabled in JS settings (ensure the game runs in **Borderless Windowed Mode**, not Fullscreen), clicking run will bring up an HTML overlay interface. Select a song in the interface and click **Start Playing**. If the control panel is disabled, the script plays the selected song directly upon execution.
+4. When playing via the in-game control panel, the script **does not exit automatically** upon finishing a song, allowing you to select and play subsequent pieces. During playback, the panel minimizes to the bottom-right corner and **cannot be focused by the mouse pointer**. It restores automatically after playback completes.
+5. Pressing the configured shortcut key (default `F8`) pauses playback; pressing it again resumes from the current position. This pauses script execution only, not the game itself. If the shortcut clashes with other bindings, click the shortcut input box in the in-game control panel and press a new key or key combination (such as `Ctrl+Shift+P`).
 
-> **提示：**
-> - `AutoYuanQin/assets/tutorial_file` 目录下的制谱软件（`五线谱制谱器.html`、`简谱制谱器.html`）适合有一定五线谱或简谱基础的用户。这两个制谱器生成的乐谱最为精确，但需要投入较多时间和精力进行录入。
-> - 如需更Fast的方案，可使用 `AutoYuanQin/assets/tutorial_file/MIDI制谱器.html`，它能Auto 将 MIDI 文件转换为 *AutoYuanQin* 格式。该方案转换的乐谱在精准度上可能略有瑕疵，建议使用仅包含两个或更少通道的 MIDI 文件，但整体录谱耗时极少。
-> - 下文将详细Guide / Instructions标准曲谱 `.json` 文件的结构，包括各字段含义及曲谱内容的格式要求。
-> - **关于曲谱文件的放置与更新：**
-  >   - 若 **未启用** 游戏内控制面板，请将您制作的 JSON 曲谱文件放入 `AutoYuanQin/assets/score_file` 目录，运行脚本后会Auto 重置 `settings.json` 并退出。
->   - 若 **已启用** 游戏内控制面板，您可以在面板中实时更新曲谱列表，无需退出脚本。
-> - 如果您愿意慷慨地将自己的乐曲上传至仓库，我们将非常感激。
+> **Tips:**
+> - The score authoring tools located under `AutoYuanQin/assets/tutorial_file` (`五线谱制谱器.html` / Musical Staff Maker, `简谱制谱器.html` / Numbered Notation Maker) are suitable for users with musical staff or numbered notation background. They generate the most precise scores, though manual input requires time and effort.
+> - For a faster solution, use `AutoYuanQin/assets/tutorial_file/MIDI制谱器.html` (MIDI Converter) to automatically convert MIDI files into *AutoYuanQin* format. Scores converted this way may have minor timing imperfections; using MIDIs with 2 or fewer channels is recommended, but generation takes very little time.
+> - The sections below describe the `.json` score file structure, field definitions, and content formatting requirements in detail.
+> - **Placing and Updating Score Files:**
+>   - If the in-game control panel is **not enabled**, place your JSON score files into `AutoYuanQin/assets/score_file`. Running the script once will automatically update `settings.json` and exit.
+>   - If the in-game control panel **is enabled**, you can refresh the score list in real time directly from the panel without restarting the script.
+> - Contributions of custom sheet music to the repository are always welcome!
 
-**附：** 如果本地曲谱数量过多，在 `JS脚本Configuration` 的下拉菜单中选择单曲时可能产生明显卡顿，建议改用游戏内控制面板选择乐曲，该面板Supports按曲名搜索和按乐器分类筛选，操作更加流畅。
-
----
-
-## 如何新增曲谱(自制曲谱如何演奏)
-
-1. 使用电脑浏览器打开`AutoYuanQin/assets/tutorial_file`目录下的`MIDI制谱器.html`、`五线谱制谱器.html`、`简谱制谱器.html`生成曲谱JSON文件 或 手写键盘谱（键盘谱参考曲谱文件`圆号卡农`等`type`为`keyboard`的JSON曲谱文件）
-2. 确认JSON曲谱文件的`name`为曲谱名，JSON文件名与`name`保持一致
-3. 将该JSON文件移动到`AutoYuanQin/assets/score_file`目录下
-4. 在Configuration组界面运行一遍JS脚本（确认打开了原神并且Bottom-Left角Log显示更新成功）即可
-   - 为什么要运行一遍：成功运行会Auto 更新`AutoYuanQin/assets/score_file`下你新增的所有曲谱文件的格式，并Auto 更新`settings.json`确保你新增的曲谱能被脚本正常读取
+**Note:** If you have an exceptionally large library of local scores, selecting tracks in the JS settings dropdown menu may cause UI lag. In such cases, using the in-game control panel is recommended, as it supports keyword search and instrument filtering for much smoother navigation.
 
 ---
 
-## 如何上传乐谱至仓库
+## How to Add New Scores (Playing Custom Scores)
 
-### 1. 由脚本Author代你上传
-
-- 将您的 JSON 曲谱放在 `AutoYuanQin/assets/score_file` 目录下（文件名会Auto 适配），运行脚本检查无误后，将 `小星星 - GziIvkDP.json` 格式的 JSON 文件保存。
-- 完成后请联系Author（**TeyvatFishing玳师**）更新 JS 脚本。
-- 加入 BetterGI v7 群（群号：1029539994），让群主帮您更新到仓库。
-- 发送邮件至 `hijiwos@hotmail.com` 并Guide / Instructions，您的谱子将会在一段时间后更新到仓库（发送至邮箱可能导致延误）。
-
-### 2. 自行上传（Recommended）
-
-1. 首先注册一个 GitHub Account，根据 [PR 教程](https://www.bettergi.com/dev/pr.html#fork-%E5%A4%8D%E5%88%B6) 自行上传至[脚本仓库](https://github.com/babalae/bettergi-scripts-list)。
-2. 上传前请检查以下文件是否正确更改：
-  - `manifest.json`：将 `version` 的Version号最后一位 +1。
-  - `assets/score_file` 文件夹内已经放入曲谱文件并测试正常。
-  - `settings.json`：曲谱文件放入 `score_file` 文件夹后运行一遍程序，会Auto 更改 `settings.json`。
-  - `README.md`（即本文件）：在下方Changelog中添加本次更新内容，按照历史格式书写。
-3. 如果您尚未补全Author信息，请确保每首曲谱的 `author` 字段已填入您的Author名，并在 `manifest.json` 的 `authors` 列表中补全Author信息。
+1. Open `MIDI制谱器.html` (MIDI Converter), `五线谱制谱器.html` (Staff Maker), or `简谱制谱器.html` (Numbered Notation Maker) under `AutoYuanQin/assets/tutorial_file` in a browser to generate a score JSON file, or write keyboard notation by hand (refer to keyboard score files like Canon with `type: "keyboard"`).
+2. Ensure the `name` field in the JSON file matches the song name, and the JSON filename matches `name`.
+3. Move the JSON file into the `AutoYuanQin/assets/score_file` directory.
+4. Run the JS script once in the configuration group (ensure Genshin Impact is open and the bottom-left log confirms successful update).
+   - Why run once: A successful run standardizes the formatting of all newly added score files under `AutoYuanQin/assets/score_file` and updates `settings.json` so the script can read them properly.
 
 ---
 
-## MIDI制谱器
+## How to Upload Scores to Repository
 
-1. 翻谱器位于 `AutoYuanQin/assets/tutorial_file/MIDI制谱器.html`，请使用浏览器打开。
-2. 点击 **选择文件**，将您想要转换的 MIDI 文件放入，网页将Auto Starting Up转换。
-3. 完成转换后点击 **导出 Json**，将文件移至 `AutoYuanQin/assets/score_file` 目录下使用。
-4. **请不要在不了解文件结构的情况下手动修改 JSON 文件中的信息。**
+### 1. Upload via Script Author
 
----
+- Place your JSON score into `AutoYuanQin/assets/score_file` (the filename will adapt automatically). After verifying playback, save the generated JSON file (e.g. formatted as `Twinkle Star - GziIvkDP.json`).
+- Contact the author (**TeyvatFishing玳师**) to update the JS script.
+- Join BetterGI v7 Group (Group ID: 1029539994) to request the admin update the repository.
+- Alternatively, email `hijiwos@hotmail.com` with score details. Scores will be merged into the repo periodically (email submissions may experience slight delays).
 
-## 五线谱制谱器
+### 2. Self-Upload via GitHub (Recommended)
 
-1. 五线谱制谱器位于 `AutoYuanQin/assets/tutorial_file/五线谱制谱器.html`，请使用浏览器打开。
-2. 请确保您有一定的识谱能力，否则建议使用 [MIDI制谱器](#midi制谱器)。
-3. 使用步骤如下：
-  - **确定音域**（共有三种音域可选，左/中/右，每个音域为一对红蓝大写字符，共 21 个键）
-		- **选择音符**：点击Top-Left角图片中的对应大写字母或 `@`，点击多个音符实现和弦。
-		- **完善音符**：页面底部两行选择音符的具体类型，选好后点击按钮 **确定（完善音符）**，或确保鼠标焦点Nope, Not In曲谱文本框内时按下 `Enter` 键实现相同Features。
-		- **分节**：确保当前页面的音符都已完善，点击按钮 **分节**。
-		- **换行**：确保当前页面的音符都已完善，点击按钮 **换行**。
-		- **删除音符**：如果您写错了音符，请**手动**删除整个音符，并确保Top-Right角代码框的末尾是 `]、|` 或一行的开头。
-		  > 示例：`A[16]B[32]`，若您想写 `B[16]` 但不小心写成了三十二分音符，请删除整个 `B[32]`，删除后应为 `A[16]`，然后重新写入音符 `B`。
-4. 写入曲谱信息（曲名、录谱人必填，以及 BPM、拍号）。
-5. **导出曲谱**：点击按钮 **导出乐谱JSON**，曲谱文件名请确认为 `曲名.json`。
-6. **读取乐谱**：如果您中途退出，下次可点击 **读取乐谱JSON** 选择上次导出的文件继续编辑。
-
-> **附：** 按键模式默认为“按下后即刻抬起”。如需要使用“按下/抬起”模式，请确保每个音都正确抬起（如果未抬起，再次按下不会有声音），该类按键需要结合休止符来实现按下和抬起之间的时间间隔。
+1. Register a GitHub account and submit a PR to the [Script Repository](https://github.com/babalae/bettergi-scripts-list) following the [PR Tutorial](https://www.bettergi.com/dev/pr.html#fork-%E5%A4%8D%E5%88%B6).
+2. Before uploading, verify that the following files are updated properly:
+   - `manifest.json`: Increment the last digit of `version`.
+   - `assets/score_file`: Score file added and verified working in-game.
+   - `settings.json`: Run the script once after adding the score to `score_file` to update `settings.json` automatically.
+   - `README.md`: Append your update notes under the Changelog section below following historical formatting.
+3. Ensure the `author` field in each score contains your creator name, and update the `authors` list in `manifest.json`.
 
 ---
 
-## 简谱制谱器
+## MIDI Score Converter
 
-1. 简谱制谱器位于 `AutoYuanQin/assets/tutorial_file/简谱制谱器.html`，请使用浏览器打开。
-2. 请确保您有一定的识谱能力，否则建议使用 [MIDI制谱器](#midi制谱器)。
-3. 使用步骤与五线谱翻谱器类似，具体Guide / Instructions可在制谱器内查看。
-
----
-
-## 键盘谱转换器
-
-1. 键盘谱转换器位于 `AutoYuanQin/assets/tutorial_file/键盘谱转换器.html`，请使用浏览器打开。
-2. 有现成MID文件可使用MIDI制谱器，如果只有键盘谱Recommended使用该制谱器直接转换。
-3. 使用步骤在打开后的html界面中有Guide / Instructions，如果不知道BPM可通过合法性识别面板中的推测演奏时长进行调整。
-4. **请不要在不了解文件结构的情况下手动修改 JSON 文件中的信息。**
+1. The converter is located at `AutoYuanQin/assets/tutorial_file/MIDI制谱器.html`. Open it in any modern browser.
+2. Click **Select File**, select the MIDI file you wish to convert, and conversion will start automatically.
+3. Once converted, click **Export Json** and move the downloaded file to `AutoYuanQin/assets/score_file`.
+4. **Do not manually modify fields in the JSON file unless you are familiar with its data structure.**
 
 ---
 
-## 曲谱制作解答
+## Musical Staff Maker
 
-- `/assets/tutorial_file/五线谱注解.png` 包含了五线谱（高音区和低音区）对应的 3 组键盘键位（相邻的红蓝大写字母为一组，每组音域为三个八度）。
-- 如有Doubt，请参考 `/assets/tutorial_file/example.json`，该示例包含了本脚本Supports的五线谱相关的大部分音符形式。
+1. Located at `AutoYuanQin/assets/tutorial_file/五线谱制谱器.html`. Open in a browser.
+2. Musical sheet-reading knowledge is required; otherwise, using the [MIDI Converter](#midi-score-converter) is recommended.
+3. Steps:
+   - **Select Register**: Choose between 3 registers (Left / Middle / Right), each consisting of a red/blue pair of uppercase characters covering 21 keys total.
+   - **Select Notes**: Click corresponding uppercase letters or `@` on the top-left image; click multiple notes to build chords.
+   - **Complete Notes**: Select specific note durations in the bottom two rows. Once chosen, click **Confirm (Complete Note)** or press `Enter` while mouse focus is outside the score text box.
+   - **Add Barline**: When all notes in the current measure are entered, click **Add Measure**.
+   - **Line Break**: When notes on the current system are entered, click **Line Break**.
+   - **Delete Notes**: If a note is incorrect, manually delete the entire note and ensure the end of the top-right code box ends with `]`, `|`, or the beginning of a line.
+     > Example: `A[16]B[32]`. If you meant `B[16]` but typed a thirty-second note, delete the entire `B[32]` to leave `A[16]`, then re-enter `B`.
+4. Fill in metadata (Song Name and Transcriber are required, along with BPM and Time Signature).
+5. **Export Score**: Click **Export Score JSON**. Ensure filename is `SongName.json`.
+6. **Import Score**: If interrupted, click **Load Score JSON** to resume editing previously exported files.
+
+> **Note:** Keypress mode defaults to "press and immediate release". If using "press/release" sustained mode, ensure each note is released properly (unreleased keys will not sound when pressed again). This mode requires rests to control intervals between press and release.
 
 ---
 
-## 曲谱文件位置
+## Numbered Notation Maker
 
-所有曲谱文件应放置于 `AutoYuanQin/assets/score_file` Path下。
+1. Located at `AutoYuanQin/assets/tutorial_file/简谱制谱器.html`. Open in a browser.
+2. Basic numbered musical notation reading skills required; otherwise use the [MIDI Converter](#midi-score-converter).
+3. Usage is similar to the Musical Staff Maker; refer to in-tool instructions for details.
 
 ---
 
-## 文件结构
+## Keyboard Notation Converter
 
-一个标准的曲谱 `.json` 文件的基本结构如下（五线谱制谱器 / 简谱制谱器格式）：
+1. Located at `AutoYuanQin/assets/tutorial_file/键盘谱转换器.html`. Open in a browser.
+2. If you possess a MIDI file, use the MIDI converter; if you only have text keyboard notation, this converter is recommended.
+3. Follow the instructions within the HTML page. If BPM is unknown, calibrate it using estimated performance durations in the validation panel.
+4. **Do not manually modify JSON parameters without understanding the file structure.**
+
+---
+
+## Score Creation FAQ
+
+- `/assets/tutorial_file/五线谱注解.png` details the 3 sets of keyboard layouts corresponding to treble and bass clefs (adjacent red and blue letters form an octave set across 3 octaves).
+- If confused, refer to `/assets/tutorial_file/example.json`, which contains examples of most musical notation structures supported by this script.
+
+---
+
+## Score File Directory
+
+All score files must be placed under `AutoYuanQin/assets/score_file`.
+
+---
+
+## File Structure
+
+A standard `.json` score file structure (Staff Maker / Numbered Notation Maker format):
 
 ```json
 {
@@ -177,359 +178,350 @@
 }
 ```
 
-> **Note：** 以上代码中，仅双引号内的**内容**可以更改。具体的曲谱格式请参考 `/assets/tutorial_file/example.json`。
+> **Note:** In the snippet above, only the values inside double quotes should be modified. Refer to `/assets/tutorial_file/example.json` for specific score formatting.
 
-### 字段Guide / Instructions
+### Field Descriptions
 
-| 字段 | 必要性 | Guide / Instructions |
-|------|--------|------|
-| `name` | **必要** | 曲谱名称 |
-| `author` | 可选 | 录谱人（制Author） |
-| `instrument` | 可选 | 建议使用的乐器 |
-| `description` | 可选 | 曲谱描述信息 |
-| `type` | **必要** | 曲谱解析方式，合法值：`yuanqin`（默认，五线谱翻谱器格式）、`midi`（MIDI制谱器格式）、`keyboard`（网络琴谱格式） |
-| `bpm` | **必要** | 曲谱的 BPM（Beats Per Minute） |
-| `time_signature` | `yuanqin` 类型**必要** | 拍号，例如 `3/4` 表示以四分音符为一拍每小节三拍（被设为一拍的音符仅Supports 2 的幂） |
-| `composer` | 可选 | 作曲者 |
-| `arranger` | 可选 | 编曲者 |
-| `notes` | **必要** | 曲谱内容，具体格式见下文解析规则 |
+| Field | Required | Description |
+|---|---|---|
+| `name` | **Required** | Song title |
+| `author` | Optional | Transcriber / Score creator |
+| `instrument` | Optional | Recommended instrument |
+| `description` | Optional | Description notes |
+| `type` | **Required** | Parsing engine: `yuanqin` (default, staff maker format), `midi` (MIDI format), `keyboard` (text keyboard format) |
+| `bpm` | **Required** | Beats Per Minute |
+| `time_signature` | **Required** for `yuanqin` | Time signature, e.g. `3/4` (quarter note receives one beat, three beats per measure; beat units must be powers of 2) |
+| `composer` | Optional | Song composer |
+| `arranger` | Optional | Musical arranger |
+| `notes` | **Required** | Score content string; see parsing rules below |
 
-### 文本格式
+### Text Formatting
 
-- 一个完整的曲谱 `.json` 文件示例如下（仅包含几个小节）：
-- 每一小节的末尾加 `|` 和换行符。
-- 每一行的末尾加 `|` 和两个换行符。
-- 曲谱末尾不需要加 `|` 和换行符。
+- A complete `.json` score file snippet (showing a few measures):
+- End each measure with `|` followed by a newline.
+- End each system/line with `|` followed by two newlines.
+- Do not append `|` or newlines at the very end of the score.
 
-示例：
+Example:
 ```json
 {
-  "name": "示例曲谱",
-  "author": "录谱人A",
+  "name": "Sample Score",
+  "author": "Transcriber A",
   "bpm": "120",
-  "description": "预计时长: xxxxx, 五线谱网址: xxx.xxxx.xxx",
+  "description": "Estimated duration: xxxxx, sheet source: xxx.xxxx.xxx",
   "time_signature": "4/4",
-  "composer": "曲师B",
-  "arranger": "谱师C",
+  "composer": "Composer B",
+  "arranger": "Arranger C",
   "notes": "A[4](ASD)[8]Y[8-#]F[8-#](DFG)[8]R[4-*]T[8]|/n@[4](DFG)[8](CVB)[8]D[4]A[4]|/n/nA[4](ASD)[8]Y[8-#]F[8-#](DFG)[8]R[4]T[4]|/n@[4](DFG)[8](CVB)[8]D[4]A[4]"
 }
 ```
 
-### 代码美化
+### Code Beautification
 
-曲谱 JSON 文件的 `notes` 值视为一个字符串，该字符串内**仅可使用换行符**美化代码。通过这种方法，您可以使用记事本等软件从 `.json` 文件中获取带有换行的曲谱代码（`notes` 内的换行符不会被脚本读取执行，因此不用Worried额外的换行影响脚本）。
+The `notes` value in score JSON is parsed as a string where **newlines are ignored** by the engine. You can format the score with line breaks in text editors for visual clarity without affecting playback timing.
 
 ---
 
-## Notes 解析规则
+## Notes Parsing Rules
 
-`notes` 字段包含乐谱内容，**必须**使用**大写字母**。乐谱内容以字符串表示，小节之间用 `|` 隔开，单个小节的解析规则如下：
+The `notes` field contains musical data and **must use uppercase letters**. Score content is written as a string separated into measures by `|`. Measure parsing syntax:
 
 ### `A[4]`
-表示按下 A 键，A 键视为四分音符。
+Press key A, treated as a quarter note.
 <div align="center">
   <img src="assets/tutorial_file/四分音符示例.png"/>
-  <p>四分音符示例</p>
+  <p>Quarter note example</p>
 </div>
 
 ### `F[16-#]D[16-#]S[16-#]`
-表示**装饰音·倚音**。
+Represents an **ornament / appoggiatura (grace note)**.
 <div align="center">
   <img src="assets/tutorial_file/装饰音·倚音示例.png"/>
-  <p>装饰音·倚音示例</p>
+  <p>Appoggiatura example</p>
 </div>
-每个装饰音的时值固定为当前拍号标准时值（如 3/4 的“标准时值”为四分音符时值）的 1/16。上例中的 `16` Nope实际意义，但必须保留。
+The duration of each grace note is fixed at 1/16th of the standard beat note (for 3/4, standard beat is a quarter note). The `16` carries no variable mathematical weight but must be preserved.
 
 ### `Z[4-8.3]C[4-8.3]B[4-8.$]`
-表示一个**三连音**（六连音用法类似，仅需将 `3` 改为 `6`，**Other类型的连音**（如五连音）也请使用 `3` 或 `6` 来表示）。连音内Supports和弦。
+Represents a **triplet** (sextuplets use `6` instead of `3`; other tuplets such as quintuplets should also use `3` or `6`). Chords within tuplets are supported.
 <div align="center">
   <img src="assets/tutorial_file/三连音示例.png"/>
-  <p>三连音示例</p>
+  <p>Triplet example</p>
 </div>
 
-- `Z[4-8.3]`：`4` 表示该三连音总时值为四分音符，`8` 表示当前音符在乐谱上显示的时值为八分音符，`3` 表示这是一个三连音的音符。
-- `C[4-8.3]`：同上。
-- `B[4-8.$]`：`$` 表示这是当前连音的最后一个音符。
+- `Z[4-8.3]`: `4` denotes total tuplet duration equals a quarter note, `8` denotes visual notation displays an eighth note, `3` designates tuplet group.
+- `C[4-8.3]`: Same as above.
+- `B[4-8.$]`: `$` marks the final note of the tuplet group.
 
 ### `D[4-16.3]G[4-16.3]H[4-16.3]W[4-16.3]R[4-16.$]`
-表示一个**五连音**，同理也可以是 N 连音。
+Represents a **quintuplet** (and similarly for N-tuplets).
 <div align="center">
   <img src="assets/tutorial_file/五连音示例.png"/>
-  <p>五连音示例</p>
+  <p>Quintuplet example</p>
 </div>
 
 ### `(BG)[4-4.3]/(VF/)[4-8.$]`
-表示一个**三连音连音线**（与三连音用法相同，但连音线内允许出现不同类型的音符）。
+Represents a **tuplet tie/slur** (similar to standard tuplets, but allows mixing different note values under the tie).
 <div align="center">
   <img src="assets/tutorial_file/三连音连音线示例.png"/>
-  <p>三连音连音线示例</p>
+  <p>Tuplet tie example</p>
 </div>
 
-- `(BG)[4-4.3]`：第一个 `4` 表示整个三连音总时值为四分音符，第二个 `4` 表示当前音符显示时值为四分音符，`3` 表示三连音。
-- `(VF)[4-8.$]`：`4` 表示总时值为四分音符，`8` 表示八分音符，`$` 表示连音结束。
+- `(BG)[4-4.3]`: First `4` is total duration (quarter note), second `4` is note value (quarter note), `3` marks tuplet.
+- `(VF)[4-8.$]`: `4` is total duration, `8` is eighth note, `$` marks tuplet termination.
 
-### 六连音连音线示例（含休止符）
+### Sextuplet Tie with Rests Example
 ```
-@[2-8.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.$]
+@[2-8.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.3]N[2-16.3]/(AF/)[2-16.$]
 ```
-表示一个六连音连音线内包含 1 个八分休止符和 10 个十六分音符，与三连音规则相同，六连音的 `3` 同样表示连音类型。
+Represents a sextuplet tie containing 1 eighth rest and 10 sixteenth notes.
 <div align="center">
   <img src="assets/tutorial_file/六连音连音线示例.png"/>
-  <p>六连音连音线示例</p>
+  <p>Sextuplet tie example</p>
 </div>
 
 ### `@[4]`
-表示一个**休止符**。
+Represents a **rest**.
 <div align="center">
   <img src="assets/tutorial_file/四分休止符示例.png"/>
-  <p>四分休止符示例</p>
+  <p>Quarter rest example</p>
 </div>
-中括号内标明是几分休止符，例如 `[4]` 表示四分休止符。
+The number in brackets designates rest duration (`[4]` is a quarter rest).
 
 ### `(SH)[4-*]`
-表示一个**附点四分音符**。
+Represents a **dotted quarter note chord**.
 <div align="center">
   <img src="assets/tutorial_file/附点四分音符示例.png"/>
-  <p>附点四分音符示例</p>
+  <p>Dotted quarter note example</p>
 </div>
-表示按下 S 和 H 键（和弦），这个和弦视为附点四分音符。
+Presses keys S and H simultaneously as a dotted quarter note.
 
 ---
 
-## 音符格式
+## Note Syntax
 
-中括号 `[]` 内，`-` 前表示音符类型，`-` 后用于区分特殊音符：
+Inside brackets `[]`, the prefix before `-` represents base note value, while suffixes after `-` distinguish special notes:
 
-- `[4]` — 四分音符
-- `[16]` — 十六分音符
-- `[#]` — 装饰音（通常写成 `[16-#]`，其中 `16` 无实际意义）
-- `[-n.3]` — 连音（使用时必须保证连音的最后一个音标记为 `.$`）
-- `[-n.$]` — 连音结束
+- `[4]` — Quarter note
+- `[16]` — Sixteenth note
+- `[#]` — Grace note (usually written as `[16-#]`)
+- `[-n.3]` — Tuplet (last note must end with `.$`)
+- `[-n.$]` — Tuplet end
 
-例如：
-- `[16-#]` 表示十六分音符的装饰音。
-- `A[4-8.3]S[4-8.3]D[4-8.$]` 表示总时值为四分音符的三连音。
+Examples:
+- `[16-#]`: Sixteenth grace note.
+- `A[4-8.3]S[4-8.3]D[4-8.$]`: Quarter-note triplet.
 
 ---
 
 ## Changelog
 
-Changelog自 3.0 VersionStarting UpRecording，往期更新内容请查看 Git 历史Recording。
+Changelog begins from version 3.0. Refer to Git history for prior versions.
 
 <details>
-<summary>点击展开</summary>
+<summary>Click to expand</summary>
 
 - ver 3.8.4
-  1. 添加了三首单曲：《My Dearst（Aninenz）》、《敢归云间宿》、《下一个天亮》
+  1. Added 3 tracks: "My Dearest (Animenz)", "Dare Return to Cloud Abode", "Next Daybreak".
 
 - ver 3.8.3
-  1. 新增十首单曲（云闲vsv\[q:3155692818\]）：《勇气》（风物之诗琴）、《同桌的你（旋律+伴奏）》（风物之诗琴）、《外婆的澎湖湾》（风物之诗琴）、《时间煮雨》（谐律键琴）、《星光下的梦想》（风物之诗琴）、《梦中的婚礼》（谐律键琴）、《樱花草》（风物之诗琴）、《知我》（风物之诗琴）、《美人鱼（MIDI·旋律+伴奏）》（风物之诗琴）
-  2. 新增一首单曲（Aurora）：《美人鱼_Vodyanitsa》（晚风圆号）
+  1. Added 10 tracks: "Courage" (Windsong Lyre), "My Deskmate (Melody + Accompaniment)" (Windsong Lyre), "Grandma's Penghu Bay" (Windsong Lyre), "Time Boils Rain" (Harmonic Reed Pipe), "Dream Under the Stars" (Windsong Lyre), "Mariage d'Amour" (Harmonic Reed Pipe), "Cherry Blossoms Grass" (Windsong Lyre), "Know Me" (Windsong Lyre), "Mermaid (MIDI Melody + Accompaniment)" (Windsong Lyre).
+  2. Added 1 track: "Mermaid_Vodyanitsa" (Nightwind Horn).
 
 - ver 3.8.2
-  1. 新增键盘谱转换器，Supports合法性校验，可通过预览面板中的预计演奏时长预览推测BPM
+  1. Added Keyboard Notation Converter with validation and playback duration estimation for BPM calibration.
 
 - ver 3.8.1
-  1. 添加了五首单曲：《幽谷舟咏·其三》、《琴弦呀，琴弦》、《燃烧的蜡炬》、《原色（节选）》、《Odette，快陪我去堆个雪人吧》
+  1. Added 5 tracks: "Boat Song of the Deep Valley III", "Strings, O Strings", "Burning Candle", "Primary Colors (Excerpt)", "Odette, Come Build a Snowman with Me".
 
 - ver 3.8.0
-  1. Auto 演奏过程中按Shortcut Keys暂停后，可点击Bottom-Right角打开游戏内面板
-  2. 删除了部分无用UI
+  1. Clicking bottom-right opens in-game panel after pausing automated playback via shortcut.
+  2. Removed redundant UI elements.
 
 - ver 3.7.12
-  1. 添加了六首单曲：《恋ひ恋ふ縁（以恋结缘）》（谐律键琴）、《美人鱼》（谐律键琴）、《失眠》（谐律键琴）、《使一颗心免于哀伤》（谐律键琴）、《霜月Combat曲》（风物之诗琴）、《卡农》（风物之诗琴）
+  1. Added 6 tracks: "Bound by Love" (Harmonic Reed Pipe), "Mermaid" (Harmonic Reed Pipe), "Insomnia" (Harmonic Reed Pipe), "If I Could Save One Heart from Breaking" (Harmonic Reed Pipe), "Frostmoon Combat Theme" (Windsong Lyre), "Canon" (Windsong Lyre).
 
 - ver 3.7.11
-  1. 添加了九首单曲：《运动员进行曲》、《Moon Halo》、《Rubia》、《True》、《初焙的恬脆》、《风息的离别诗》、《歌唱祖国》、《晚祷的铃歌》、《夜诞的花冠（无前奏）》
+  1. Added 9 tracks: "Sports March", "Moon Halo", "Rubia", "True", "Crisp Early Roast", "Parting Poem of the Breeze", "Sing of the Motherland", "Vesper Bell Song", "Nocturnal Crown (No Prelude)".
 
 - ver 3.7.10
-  1. 添加了两首单曲：《春节序曲》（谐律键琴）、《青花瓷》（谐律键琴）
+  1. Added 2 tracks: "Spring Festival Overture" (Harmonic Reed Pipe), "Blue and White Porcelain" (Harmonic Reed Pipe).
 
 - ver 3.7.9
-  1. 添加了两首单曲《春日影》（风物之诗琴）、《樱花树下的Promise》（风物之诗琴）
-  
+  1. Added 2 tracks: "Haruhikage" (Windsong Lyre), "Promise Under the Cherry Tree" (Windsong Lyre).
+
 - ver 3.7.8
-  1. 添加了一首单曲《牢不可破的联盟》（晚风圆号）
-	
+  1. Added 1 track: "Unbreakable Union" (Nightwind Horn).
+
 - ver 3.7.7
-  1. 添加单曲四首单曲：《Always with Me》（风物之诗琴）、《China-E》（谐律键琴）、《浮光》（谐律键琴）、《芒种》（风物之诗琴）
+  1. Added 4 tracks: "Always with Me" (Windsong Lyre), "China-E" (Harmonic Reed Pipe), "Floating Light" (Harmonic Reed Pipe), "Grain in Ear" (Windsong Lyre).
 
 - ver 3.7.6
-  1. 添加十八首单曲：《Despacito》《昔涟》《将世事高枕》《Teyvat民谣》《游步欣愉》《你离开的事实》《溯Reverse》《新月的摇篮曲（其一）：伴月同眠（原谱增强版）》《希望的碎片（钢琴缩编版）》《老男孩（钢琴缩编版）》《雨爱（原琴缩编版）》《念张师（原琴缩编版）》《心做し（原琴和弦版）》《Golden Hour（原琴和弦版）》《邀欢同游（FurinaCharacter演示曲高潮版）》《诀别书（原琴和弦版）》《开往春天的地铁》《斯露莎的歌》。
-  2. 补充曲谱来源、编配方式、速度与预计时长等元数据。
+  1. Added 18 tracks: "Despacito", "Former Ripples", "Resting the World Easy", "Teyvat Folk Song", "Joyful Stroll", "The Truth That You Leave", "Reverse Flow", "New Moon Lullaby I: Sleep with the Moon", "Fragments of Hope", "Old Boy", "Rain Love", "Remembering Master Zhang", "Kokoronashi", "Golden Hour", "Inviting Joy (Furina Demo Climax)", "Farewell Letter", "Subway to Spring", "Sorush's Song".
+  2. Added metadata including score sources, arrangement type, tempo, and expected duration.
 
 - ver 3.7.5
-  1. 添加单曲六首单曲：《Cry For Me》（风物之诗琴）、《Luv Letter情书》（谐律键琴）、《鸟之诗》（谐律键琴）、《溯》（谐律键琴）、《葬花》（谐律键琴）、《花之舞》（谐律键琴）
+  1. Added 6 tracks: "Cry For Me" (Windsong Lyre), "Luv Letter" (Harmonic Reed Pipe), "Tori no Uta" (Harmonic Reed Pipe), "溯" (Harmonic Reed Pipe), "Burying Flowers" (Harmonic Reed Pipe), "Flower Dance" (Harmonic Reed Pipe).
 
 - ver 3.7.4
-  1. 新增演奏暂停Features：演奏过程中按 `F8` 可暂停或继续，不会暂停游戏。
-  2. 暂停时会临时释放当前按下的琴键，继续时恢复长音，并冻结曲谱计时以保持后续节奏。
-  3. 暂停/继续Shortcut Keys改为点击录入，Supports `Ctrl`、`Alt`、`Shift` 与Normal按键组成多键组合。
-  4. 单独的 `A`～`Z` 字母键会被Rejected!，组合键中的字母不受限制，避免曲谱演奏误触发暂停。
-  
+  1. Added playback pause feature: press `F8` during playback to pause or resume without pausing the game.
+  2. Pausing releases currently held keys; resuming restores sustained notes and freezes playback timers to preserve rhythm.
+  3. Pause/resume shortcut changed to interactive keypress recorder, supporting multi-key combinations with `Ctrl`, `Alt`, and `Shift`.
+  4. Bare `A`–`Z` letters are rejected to prevent accidental pause triggers during song playback.
+
 - ver 3.7.3
-  1. 添加单曲六首单曲：《几初的智愿》（风物之诗琴）、《如果突然想起我》（风物之诗琴）、《那天It's raining》（谐律键琴）、《手写的从前》（风物之诗琴）、《晴天》（风物之诗琴）、《The Truth That You Leave 》（谐律键琴）
+  1. Added 6 tracks: "Early Wisdom" (Windsong Lyre), "If You Suddenly Think of Me" (Windsong Lyre), "It Rained That Day" (Harmonic Reed Pipe), "Handwritten Past" (Windsong Lyre), "Sunny Day" (Windsong Lyre), "The Truth That You Leave" (Harmonic Reed Pipe).
 
 - ver 3.7.2
-  1. 改为使用notes生成8位hash
-  2. 更新README内关于添加曲谱相关的Guide / Instructions
-  3. 启用了Auto 更换乐器后使用乐器会弹出`联机合奏`界面，现在Supports出现该界面时Auto 选用`单人演奏`
-  4. 添加演奏前检查步骤，如果不处于乐器界面则不会进行演奏
-  5. 添加了一首单曲：《Teyvat民谣》（风物之诗琴，Author：Klopa）。
+  1. Switched to 8-character hash generation from notes content.
+  2. Updated README documentation regarding adding scores.
+  3. When auto-swapping instruments triggers the co-op ensemble popup, the script now automatically selects "Solo Performance".
+  4. Added pre-performance validation: skips playback if not currently on an instrument screen.
+  5. Added track: "Teyvat Folk Song" (Windsong Lyre, Author: Klopa).
 
 - ver 3.7.1
-  1. 添加了两首单曲：《Call of silence》（谐律键琴）、《轻涟-修改版》（谐律键琴）。
+  1. Added 2 tracks: "Call of Silence" (Harmonic Reed Pipe), "La Vaguelette - Modified" (Harmonic Reed Pipe).
 
 - ver 3.7.0
-
-  1. 新增7首单曲（代上传）：《lemon》（风物之诗琴）、《【原神演奏】Sparkle》（谐律键琴）、《新月的摇篮曲（其一）：伴月同眠》（风物之诗琴）、《穿越时空的思念》（风物之诗琴）、《Court of the Silver Moon (蓝花)》（风物之诗琴）、《Court of the Silver Moon》（风物之诗琴）、《Natlan Natlan》（谐律键琴）
-  2. 修复了未启用游戏内面板可能导致的Exception / Error退出
-  3. 注：`《新月的摇篮曲（其一）：伴月同眠》（Author：hu_hawa）`、`《【原神演奏】Sparkle》（Author：斐林）`和`《Natlan Natlan》（Author：樱吹雪）`由于上传的MIDI曲谱Version过时，已经使用"ver 3.4.1Version的转换器(PR#3265)"结合"ms<->tick转换"转换为当前Version适配的MIDI曲谱格式
-  4. Auto Switch乐器Features适配千星奇域
-  5. 更新曲名格式，由原先的`000X.曲名`改为`曲名-8位hash`
-  6. 在游戏内控制面板显示每首曲目的预期演奏时长(基于演奏方法计算，计算结果为最短时长，实际演奏可能会耗时更久)
-  7. 打开游戏内面板时仍会保留JS脚本Configuration内已经选择的单曲
+  1. Added 7 tracks: "Lemon" (Windsong Lyre), "Sparkle" (Harmonic Reed Pipe), "New Moon Lullaby I: Sleep with the Moon" (Windsong Lyre), "Affection Touching Across Time" (Windsong Lyre), "Court of the Silver Moon (Blue Flower)" (Windsong Lyre), "Court of the Silver Moon" (Windsong Lyre), "Natlan Natlan" (Harmonic Reed Pipe).
+  2. Fixed crash when in-game panel was disabled.
+  3. Converted legacy MIDI scores to modern format using tick conversions.
+  4. Adapted auto-instrument switching for Millennial Domains.
+  5. Updated song naming from `000X.Title` to `Title-8Hash`.
+  6. Displayed expected playback duration on the in-game control panel.
+  7. Preserved selected song settings when opening the in-game panel.
 
 - ver 3.6.2
-  1. 将游戏内控制面板的启用改为受用户控制，启用游戏内控制面板时 JS 脚本Settings内的单曲选择项不生效。
-  2. 使用游戏内控制面板演奏完成后不会结束脚本，现在Supports继续选择乐曲并演奏。乐曲演奏中面板会最小化至Bottom-Right角并不可被鼠标指针选中，演奏完成后还原并可被选中。
-  3. 添加了一个"神秘小Features": 随机节奏偏移，用来Disguised真人可能出现的微小偏移量(～o￣3￣)～（仅开发者模式可用，启用此模式并不会关闭常规反作弊）`该Features未在README内做出解释`
-  4. 更新了README中关于新Features的描述，添加目录并规整了格式
+  1. Added user control toggle for in-game control panel; song selection in JS settings is disabled while the panel is active.
+  2. The script does not terminate after playing via the in-game panel, allowing continuous song queuing. Panel minimizes to bottom-right during playback without capturing cursor focus.
+  3. Added developer feature: subtle rhythm jitter to simulate human variance.
+  4. Refactored formatting and table of contents in README.
 
 - ver 3.6.1
-  1. 添加了三首单曲：《Nod-Krai》（谐律键琴）、《永夜的悼挽》（谐律键琴）、《滨海小城》（谐律键琴）。
+  1. Added 3 tracks: "Nod-Krai" (Harmonic Reed Pipe), "Eulogy of Eternal Night" (Harmonic Reed Pipe), "Coastal Town" (Harmonic Reed Pipe).
 
 - ver 3.6.0
-  1. 添加了 HTML 遮罩界面。
-  2. JS 脚本Configuration内的单曲选择Features已移动到 HTML 遮罩界面，OtherConfiguration项不受影响。
+  1. Introduced HTML overlay interface.
+  2. Moved song selection feature from JS settings to the HTML overlay.
 
 - ver 3.5.12
-  1. 更新了两首单曲：《皎洁的笑颜》（风物之诗琴）、《飞鼠进行曲》（谐律键琴）。
+  1. Updated 2 tracks: "Bright Smile" (Windsong Lyre), "Flying Squirrel March" (Harmonic Reed Pipe).
 
 - ver 3.5.11
-  1. 更新了四首单曲：《你的名字》（谐律键琴）、《Moonglare的赞美诗》（谐律键琴）、《让风告诉你》（谐律键琴）、《打上花火》（谐律键琴）。
+  1. Updated 4 tracks: "Your Name" (Harmonic Reed Pipe), "Moonglare Hymn" (Harmonic Reed Pipe), "Let the Wind Tell You" (Harmonic Reed Pipe), "Uchiage Hanabi" (Harmonic Reed Pipe).
 
 - ver 3.5.10
-  1. 更新了三首单曲：《Hello，世界》（风物之诗琴）、《轻涟》（风物之诗琴）、《我不曾忘记》（风物之诗琴）。
+  1. Updated 3 tracks: "Hello, World" (Windsong Lyre), "La Vaguelette" (Windsong Lyre), "I Haven't Forgotten" (Windsong Lyre).
 
 - ver 3.5.9
-  1. 更新了一首单曲：《圣诞快乐，劳伦斯先生》（谐律键琴）。
+  1. Updated track: "Merry Christmas, Mr. Lawrence" (Harmonic Reed Pipe).
 
 - ver 3.5.8
-  1. 为五线谱制谱器和简谱制谱器的音符区域添加鼠标悬停效果。
+  1. Added hover effects to note sections in staff and numbered notation makers.
 
 - ver 3.5.7
-  1. 更新了一首单曲：《爱情讯息》（跃律琴）。
+  1. Updated track: "Love Message" (Harmonic Reed Pipe).
 
 - ver 3.5.6
-  1. 更新了一首单曲：《大Northeast我的家乡》（谐律键琴）。
+  1. Updated track: "My Northeast Hometown" (Harmonic Reed Pipe).
 
 - ver 3.5.5
-  1. 修复了单音演奏时每个音都会触发补偿延迟的问题。
-  2. 开发模式额外显示曲谱实际用时。
+  1. Fixed bug where compensation delay was triggered on every note in single-note playback.
+  2. Displayed actual elapsed performance duration in developer mode.
 
 - ver 3.5.4
-  1. 修复了 MIDI 谱演奏过程中因 ver 3.4.2 对相邻同音的按下/抬起对添加补偿延迟未兼容 ver 3.4.0 的新格式致使判断逻辑混乱的问题。
-  2. 修复了 MIDI 制谱器在生成 JSON 曲谱时部分相同类型按键不能正确合并的问题。
-  3. 修复了原有的固定延迟导致的整曲节奏变缓的问题（使用固定值 30ms 进行缓冲并Auto 消除缓冲影响）。
-  4. 修复了部分单曲演奏时最后一个音的时长Settings错误导致Exception / Error崩溃的问题。
+  1. Fixed logic issue where adjacent identical notes with press/release compensation failed on new MIDI formats.
+  2. Fixed MIDI converter bug where identical consecutive keystrokes were not merged properly.
+  3. Resolved rhythm slowdown caused by fixed delays (implemented 30ms buffer with auto-compensation).
+  4. Fixed crash caused by incorrect final note duration calculation.
 
 - ver 3.5.3
-  1. 五线谱制谱器/简谱制谱器添加新Features：按键按下/按键抬起。
-  2. 使用更长的固定时间间隔完全解决了吞音问题。
+  1. Added press/release functionality to staff and numbered notation makers.
+  2. Eliminated swallowed notes using extended fixed intervals.
 
 - ver 3.5.2
-  1. MIDI 制谱器新增跳音识别。
+  1. Added staccato recognition to MIDI converter.
 
 - ver 3.5.1
-  1. 新增了一首单曲：《退后》（谐律键琴）。
+  1. Added track: "Step Back" (Harmonic Reed Pipe).
 
 - ver 3.5.0
-  1. MIDI 制谱器、五线谱制谱器、简谱制谱器新增 BPM 变速标记适配。
-  2. 演奏脚本适配 BPM 变速标记。
-  3. 优化了部分逻辑。
+  1. Added dynamic BPM tempo marker support across staff, numbered notation, and MIDI converters.
+  2. Adapted playback engine to dynamic BPM shifts.
+  3. Optimized core logic.
 
 - ver 3.4.2
-  1. 优化了 MIDI 曲谱的演奏流畅性。
+  1. Enhanced playback fluency for MIDI scores.
 
 - ver 3.4.1
-  1. 更新了六首单曲：《关键词》（风物之诗琴）、《小酒窝》（风物之诗琴）、《心墙》（风物之诗琴）、《愿与愁》（风物之诗琴）、《红色高跟鞋》（跃律琴）、《麦恩莉》（风物之诗琴）。
-  2. 更新了 README.md 内上传曲谱部分的相关Guide / Instructions。
+  1. Updated 6 tracks: "Keywords", "Dimples", "Heart Wall", "Love and Sorrow", "Red High Heels", "Mainly".
+  2. Updated score upload instructions.
 
 - ver 3.4.0
-  1. 优化了 MIDI 制谱器导出的曲谱格式（导出前会重构格式，可能与页面显示的略有差异）。
-  2. 更新了本地 MIDI 曲谱的格式。
-  3. 修复了 MIDI 曲谱在演奏时可能出现的吞音 bug。
-  4. 五线谱制谱器与简谱制谱器生成的曲谱现在Supports按键长按效果。
+  1. Optimized exported score format in MIDI converter.
+  2. Standardized local MIDI score formats.
+  3. Fixed dropped notes bug in MIDI playback.
+  4. Supported sustained note holds in staff and numbered notation converters.
 
 - ver 3.3.4
-  1. 更新了十首单曲：《爱你》（谐律键琴）、《如愿》（谐律键琴）、《红色高跟鞋》（谐律键琴）、《这世界有那么多人》（谐律键琴）、《回家的路-原神五周年》（谐律键琴）、《反方向的钟》（谐律键琴）、《最伟大的作品》（谐律键琴）、《七里香》（谐律键琴）、《花海》（谐律键琴）、《Dandelion Seed的Promise(修改版)》（谐律键琴）。
+  1. Updated 10 tracks: "Love You", "As You Wish", "Red High Heels", "So Many People in This World", "Way Home - 5th Anniversary", "Reverse Clock", "Greatest Works", "Orange Jasmine", "Flower Sea", "Dandelion's Promise".
 
 - ver 3.3.3
-  1. 更新了两首单曲：《オノマトペメガネ（拟声眼镜）》（风物之诗琴）、Letter（彼方的她-Aliya）（风物之诗琴）。
+  1. Updated 2 tracks: "Onomatopoeia Glasses" (Windsong Lyre), "Letter" (Windsong Lyre).
 
 - ver 3.3.2
-  1. 现在脚本Supports在演奏前Auto Switch对应的乐器（可选）。
-  2. 更改了 MIDI 曲谱的曲谱逻辑，现在 MIDI 曲谱同样Supports通过调整 BPM 来更改播放速度。
-  3. 更新了 MIDI 制谱器，现在Supports多轨道合并（原先仅Supports双轨）。
-  4. 简化了 MIDI 的 JSON 曲谱格式。
-  5. 更新了已有曲谱的格式。
-  6. 隐藏了 MIDI 演奏的 note 信息显示。
-  7. 更新了三首单曲：《Sis Puella Magica》（老旧的诗琴）、《尘间星旅(片段)》（「余音」,风物之诗琴）、《如生之不竭 Life is Inexhaustible》（风物之诗琴）。
+  1. Added automatic instrument swapping before performance (optional).
+  2. Enabled BPM playback speed adjustment for MIDI scores.
+  3. Supported multi-channel merging in MIDI converter.
+  4. Simplified MIDI JSON format.
+  5. Updated existing score formats.
+  6. Hid note debug info during MIDI playback.
+  7. Updated 3 tracks: "Sis Puella Magica", "Starlit Journey", "Life is Inexhaustible".
 
 - ver 3.3.1
-  1. 增加了Auto 重命名Features，现在通过任何方式生成的 `.json` 文件（包括五线谱制谱器、简谱制谱器、MIDI 制谱器），在放入 `score_file` 文件夹前无Manual Required添加 `000X.` 的前缀，仅保留原始文件名即可。
+  1. Added automatic renaming: files dropped into `score_file` no longer require the `000X.` prefix.
 
 - ver 3.3.0
-  1. 更新了 MIDI 制谱器：
-		- 可自选 MIDI 通道（Supports多通道合并），并且Supports MIDI 试听Features。
-		- Auto 八度修正（可选）。
-		- Supports选择乐器，自定义曲谱元信息。
-		- Supports预览 JSON 文件和下载。
-  2. 新增了简谱制谱器（底层逻辑与五线谱制谱器相同，仅配图不同）。
+  1. Updated MIDI converter with channel selection, preview audition, octave correction, instrument choice, and JSON download.
+  2. Added Numbered Notation Maker.
 
 - ver 3.2.5
-  1. 更新了两首单曲：《可不可以》（风物之诗琴）、《唯一》（风物之诗琴）。
+  1. Updated 2 tracks: "Can We", "The Only One".
 
 - ver 3.2.4
-  1. 修复了五线谱制谱器导出曲谱Features的乐器名称错误。
-  2. 更新了一首单曲：《Admiration你》（风物之诗琴）。
+  1. Fixed instrument naming bug in staff maker export.
+  2. Updated track: "Adore You".
 
 - ver 3.2.3
-  1. 更新了五线谱制谱器，现在可以选择乐器了。
-  2. 更新了一首单曲：《DAMIDAMI》（老旧的诗琴）。
+  1. Updated staff maker with instrument selection.
+  2. Updated track: "DAMIDAMI".
 
 - ver 3.2.2
-  1. 更新了两首单曲：《大石碎胸口 ver. “一阵强劲的音乐”》（风物之诗琴）、 《ClockParadox_Drop2》（风物之诗琴）。
+  1. Updated 2 tracks: "Boulder Crushing Chest", "ClockParadox_Drop2".
 
 - ver 3.2.1
-  1. 更新了两首单曲：《Dandelion Seed的Promise》（风物之诗琴）、《枫》（风物之诗琴）。
+  1. Updated 2 tracks: "Dandelion's Promise", "Maple".
 
 - ver 3.2.0
-  1. 修复了五线谱演奏部分连音在演奏时被跳过的问题。
-  2. 添加了新曲：《Bad Apple!!》（风物之诗琴）、《我Expectant的不是雪，而是有你的冬天》（老旧的诗琴）、《Nod-Krai》（老旧的诗琴）。
+  1. Fixed bug where tuplets were skipped in staff notation playback.
+  2. Added tracks: "Bad Apple!!", "Winter With You", "Nod-Krai".
 
 - ver 3.1.2
-  1. 修复了五线谱制谱器第三个八度音高Exception / Error的问题。
-  2. 优化了五线谱制谱器的示例图片大小。
-  3. 优化了五线谱制谱器的“确定（完善音符）”按键，现在可以使用 Enter 键触发（鼠标焦点不能在曲谱文本框内）而不只是用鼠标点击。
+  1. Fixed octave pitch error in third octave on staff maker.
+  2. Adjusted sample image sizes.
+  3. Allowed `Enter` key to trigger note confirmation.
 
 - ver 3.1.1
-  1. 修复了 `music_queue` 字段的Auto 查找。
-  2. 修改了 README.md 使其更合理。
-  3. 在 `settings` 中提供了Debug选项便于查看乐谱演奏信息。
-  4. 新增了一些乐谱。
+  1. Fixed automatic lookup of `music_queue`.
+  2. Improved README documentation.
+  3. Added debug options in settings for playback diagnostics.
+  4. Added new scores.
 
 - ver 3.1.0
-  1. 新增了解析基于字符串的按键序列的函数。
-  2. 新增了执行上述函数序列化按键信息的函数。
-  3. 初步完成了以上函数与原项目代码的适配。
-  4. 制谱软件从 `assets` 中转移至脚本根Path的 `./tools` 文件夹下。
-  5. 五线谱制谱软件的文件夹名称改为 `StaffMaker`。
-  6. MIDI 制谱器从五线谱制谱器Path中移出。
-  7. 修改 `manifest.name` 为 "原琴-音乐转换·Auto 演奏"。
-  8. 修改 `settings.json`，使其更易被理解。
-  9. 增加Author。
-  10. 修改了 README.md。
+  1. Added string-based keystroke sequence parsing functions.
+  2. Added keystroke serialization execution functions.
+  3. Moved score authoring tools to `./tools` folder.
+  4. Renamed staff software directory to `StaffMaker`.
+  5. Updated manifest name to "Genshin Lyre - Music Conversion & Auto Play".
+  6. Refactored `settings.json` for clarity.
 
 </details>

@@ -1,224 +1,212 @@
-# AAA 地脉花Precautions / Notes
+# AAA Fontaine Ley Line Outcrop Notes & Instructions
 
-## 零、前言
+## 0. Preface
 
-- 本代码仅供娱乐Learning，下载请24小时内删除，禁止用于商业行为，如有BUG，非常欢迎请到测试群反馈或Q119996800。
-- Thank You平面镜和D捣蛋两位大佬的基础Route和逻辑。
+- This code is for learning and entertainment purposes only. Please delete within 24 hours of downloading. Commercial use is prohibited. If you find bugs, feedback is warmly welcomed in the test group or via QQ 119996800.
+- Thanks to Pingmianjing (平面镜) and D Daodan (D捣蛋) for their base routes and logic.
 
-## 一、省流Precautions / Notes
+## I. Summary Notes
 
 
-## 二、Configuration简介
+## II. Configuration Overview
 
-1. **《Friendship队伍》和《Combat队伍》填写**：如填写了《Friendship队伍》（用于打完地脉花领取奖励和结束地脉花领取励练点、每日），则《Combat队伍》必须填写，否则无法运行。
-   - 冷知识：Condensed Resin只算一次地脉次数，所以在All-in-One Run时可以不合树脂，打完地脉再领每日。如《Friendship队伍》和《Combat队伍》都不填，则不会Switch Party打地脉花，建议和Configuration器的ConfigurationSettings队伍一致。
+1. **"Friendship Party" and "Combat Party"**: If "Friendship Party" is set (used to claim rewards after completing Ley Line Outcrops, as well as claiming Encounter Points and daily commission rewards), "Combat Party" must also be configured, otherwise the script cannot run.
+   - Trivia: Condensed Resin only counts as one Ley Line Outcrop clear. When doing an all-in-one run, you don't necessarily have to craft Condensed Resin beforehand—you can claim daily rewards after running Ley Lines. If neither "Friendship Party" nor "Combat Party" is filled in, the script will not switch party for Ley Line Outcrops (it is recommended to match the party set in BetterGI settings).
 
-2. **如果勾选了打完后，领取每日奖励《Friendship队伍》必填**：建议无论是否需要，《Friendship队伍》和《Combat队伍》都填，都填一个队伍也行。
+2. **If "Claim Daily Commission Rewards upon completion" is checked, "Friendship Party" is required**: It is recommended to fill in both "Friendship Party" and "Combat Party" regardless of need (setting both to the same party is fine).
 
-3. **《刷取次数》**：默认为6，每条Route4~6朵花，如果不想刷太多次，可选择单Route模式，只会打一条Route内的花，数量为《刷取次数》，如果选择了《耗尽树脂模式》，Route打完也会继续Searching新的Route，直到耗尽浓缩和使用原粹树脂，不会使用小月亮，请Relaxed。
+3. **"Farming Count"**: Defaults to 6. Each route contains 4–6 blossoms. If you do not want to farm too many times, choose Single Route mode; it will only clear blossoms within one route up to the "Farming Count". If "Resin Depletion Mode" is selected, it will continue searching for new routes after clearing one until Condensed Resin and Original Resin are depleted (it will not consume Fragile Resin, so rest assured).
 
-4. **默认选“1”刷蓝色的经验书地脉之花，选“2”为刷金黄色的Mora地脉之花**。
+4. **Select "1" by default to farm blue Ley Line Blossom of Revelation (Character EXP Materials), and "2" for golden Ley Line Blossom of Wealth (Mora)**.
 
-5. **可填写需要禁用的UID**：禁止此UID刷地脉花，通过派蒙页面Top-Left角的UID进行文字识别，如有多个Account需禁用，使用“/”符号隔开，如12345678/99999999,经过测试，只要在UID数字后面为Compare干净的颜色，Nope特效动画的名片，识别了100次全正确，再多测看下。
+5. **Configurable Excluded UIDs**: Prevents specified UIDs from farming Ley Line Outcrops, detected via OCR on the UID in the top-left corner of the Paimon menu. If multiple UIDs need exclusion, separate them with a slash "/", e.g., `12345678/99999999`. Tested: as long as the background behind the UID numbers has a clean color without animated namecards, recognition accuracy is 100%.
 
-6. **直跑模式**：当打完一个地脉花后，如下一个地脉花Compare近，直接跑过去而不是重新传送。
+6. **Direct Run Mode**: After clearing one Ley Line Outcrop, if the next blossom is relatively close, runs directly instead of re-teleporting.
 
-7. **异步检测Combat**：默认打开，请把Configuration组中的“更快检测结束Combat”和“旋转Searching敌人”关掉，否则可能会出错。
+7. **Asynchronous Combat Detection**: Enabled by default. Please disable "Faster combat end detection" and "Rotate search for enemies" in the configuration group, as they may cause issues.
 
 
-## 三、更新Guide / Instructions
+## III. Changelog
 
-### v.4.5版 全Auto Fontaine地脉花 20260804
+### v4.5 Fully Automated Fontaine Ley Line Outcrops (2026-08-04)
 
-- 适配双倍点击使用按键
-- 添加防止Mavuika摩托状态鬼畜的切人
+- Adapted to double-click use key
+- Added character switching to prevent stuttering/glitching during Mavuika's motorcycle state
 
-### v.4.4版 全Auto Fontaine地脉花 20260619
+### v4.4 Fully Automated Fontaine Ley Line Outcrops (2026-06-19)
 
-- 修改树脂识别范围，提供原粹树脂识别率。
+- Adjusted resin recognition bounding box to improve Original Resin detection rate.
 
-### v.4.3版 全Auto Fontaine地脉花 20251023
+### v4.3 Fully Automated Fontaine Ley Line Outcrops (2025-10-23)
 
-- 修复Searching地脉花时，部分电脑未知BUG出现获取地图中心Exception / Error问题，添加错误后调整缩放进行重试机制。
+- Fixed an unknown bug on some PCs where getting map center threw an exception when searching for Ley Line Outcrops; added retry mechanism with zoom adjustment upon error.
 
-### v.4.2版 全Auto Fontaine地脉花 20251021
+### v4.2 Fully Automated Fontaine Ley Line Outcrops (2025-10-21)
 
-- 修复地区选择BUG。
-- 删除游泳检测判断识别，本体已经Supports游泳检测返回Combat节点。
+- Fixed region selection bug.
+- Removed swimming detection logic, as BetterGI core now supports swimming detection and returning to combat node.
 
-### v.4.1版 全Auto Fontaine地脉花 20250926
+### v4.1 Fully Automated Fontaine Ley Line Outcrops (2025-09-26)
 
-- **优化**：
-1. 删除拖动模式Searching地脉花，全部使用冒险之证的方式。
-2. USEMASK模式有些设备可能无法识别，优化图像识别相关模式。
-3. 优化Auto 拾取相关触发器的关闭，防止误触地脉花。
-4. 删除调用BGIAuto Taking MedicineFeatures（目前BUGCompare多，暂时不开放）。
+- **Optimizations**:
+1. Removed dragging mode for finding Ley Line Outcrops; all searching now uses Adventurer Handbook.
+2. USEMASK mode might fail on some devices; optimized image recognition modes.
+3. Optimized disabling auto-pickup triggers to prevent accidentally opening Ley Line Outcrops prematurely.
+4. Removed call to BetterGI auto-heal / food consumption feature (temporarily disabled due to bugs).
 
-### v.4.0版 本全Auto Fontaine地脉花 0250911
+### v4.0 Fully Automated Fontaine Ley Line Outcrops (2025-09-11)
 
-- **优化**：
-1. 优化模板匹配Condensed Resin和须臾树脂，改用Normal匹配，根据分辨率调整匹配度。
+- **Optimizations**:
+1. Optimized template matching for Condensed Resin and Transient Resin, switched to standard matching with dynamic thresholding based on resolution.
 
-### v.3.9版 本全Auto Fontaine地脉花 0250910
+### v3.9 Fully Automated Fontaine Ley Line Outcrops (2025-09-10)
 
-- **新Features**：
-1、添加Primogems购买体力Features，在设定的树脂使用完的前提下，如设定次数大于0，会继续使用Primogems购买体力领取奖励。
+- **New Features**:
+1. Added Primogem resin refill feature: when configured resin types are depleted and remaining runs > 0, Primogems can be used to replenish Original Resin and claim rewards.
 
-- **优化**：
-1. 适配6.0领取界面。
-2. 优化开书找地脉花的时序，添加确认大地图打开后才进行Searching。
-3. 优化树脂识别正确性。
+- **Optimizations**:
+1. Adapted to version 6.0 reward claiming UI.
+2. Optimized timing for opening Adventurer Handbook to search for Ley Lines; added confirmation that the world map has opened before searching.
+3. Optimized resin recognition accuracy.
 
-### v.3.8Version：20250830
+### v3.8 (2025-08-30)
 
-- **新Features**：
+- **Optimizations**:
+1. Switched to template matching for Condensed Resin detection using color mask templates; requires BetterGI version >= 0.47.1.
+2. Lowered matching threshold for 2K and 4K resolutions to improve recognition accuracy.
+3. Optimized handling for prematurely opened Ley Line Outcrops.
 
-- **优化**：
-1. 改用模板匹配进行Condensed Resin识别，使用颜色遮罩模板，全脚本要求BGIVersion提高到0.47.1。
-2. 针对2K和4K分辨率，降低匹配度要求，提高识别精度。
-2. 优化提前打开地脉花的情况处理。
+### v3.7 (2025-08-28)
 
-### v.3.7Version：20250828
+- **Optimizations**:
+1. Optimized memory release.
 
-- **新Features**：
+### v3.6 (2025-08-18)
 
-- **优化**：
-1. 优化内存释放。
+- **Optimizations**:
+1. During reward claiming, optimized error handling for automatically returning to Statue of The Seven to heal upon death or low HP.
+2. Optimized special combat locations for Route 2 and Route 6.
+3. Added swimming detection; returns combat failure upon detecting swimming status, retrying up to 2 times.
+4. Supports BetterGI native Auto Taking Medicine (v48.0+):
+   - Configure detection and consumption interval in "Real-time Triggers -> Auto Taking Medicine" (defaults recommended).
+   - Currently supports HP recovery and revival food (requires NRE / Nutrition Generator; enable "Taking Medicine Detection" in JS config, disabled by default).
+   - Buff food is currently unstable and not supported by this JS script.
+5. Optimized log output and configuration display.
 
-### v.3.6Version：20250818
+### v3.5 (2025-08-09)
 
-- **新Features**：
+- **Optimizations**:
+1. Added error correction for resin recognition.
+2. Optimized timing for asynchronous detection of prematurely opened Ley Line Outcrops.
 
-- **优化**：
-1. 领取地脉过程，优化在死亡或低血量时Auto 到Statue of The Seven回血时的Exception / Error处理。
-2. 优化Route2和Route6特殊的Combat地点。
-3. 加入游泳检测，检测到游泳状态返回CombatDefeat后，最多重试2次。
-4. 48.0Version后，可选激活BGI本体的Auto Taking Medicine。
-   -在“实时触发->Auto Taking Medicine”中Settings检测间隔，和Taking Medicine间隔。（建议默认就可以）
-   -目前只Supports回血和复活药Features（佩戴营养袋，JSConfiguration中勾选“启用Taking Medicine检测”才能启用，默认关闭）。
-   -BUff类食物目前Unstable，本JS暂不SupportsBUff类食物
-5. 优化相关LOG和Settings中的显示。
+### v3.4 (2025-08-07)
 
-### v.3.5Version：20250809
+- **Optimizations**:
+1. Optimized timing for opening Adventurer Handbook to reduce opening failures.
+2. Added return function on party switch failure to prevent getting stuck on party setup screen.
+3. If party switch fails or blossom cannot be found when claiming rewards, re-searches using map tracking.
+4. Optimized default JS settings display and order.
+5. Optimized combat location for the 2nd blossom on Route 6 to avoid swimming.
 
-- **新Features**：
+### v3.3 (2025-07-16)
 
-- **优化**：
-1. 树脂识别错误纠正处理。
-2. 异步检测错误打开地脉花优化时序。
+- **Optimizations**:
+1. Optimized logic for locating Ley Line blossom after combat, improving reward claiming success rate.
+2. Optimized error handling for combat completion and reward claiming exceptions.
+3. Fixed issue where Transient Resin could not be used.
 
-### v.3.4Version：20250807
+### v3.2 (2025-07-05)
 
-- **新Features**：
+- **New Features**:
+1. Defaults to searching Ley Line Outcrops via Adventurer Handbook, more stable than before.
+2. Added recognition of both Ley Line types on the same route to skip non-target blossoms.
+3. Added death detection to automatically recover and continue execution.
 
-- **优化**：
-1. 优化打开冒险之证的时序，减少冒险之证打开Defeat的几率。
-2. Switch PartyDefeat后添加返回函数，防止卡在Switch界面。
-3. 领奖时Switch PartyDefeat或找不到时，通过地图追踪重新Searching一次。
-4. 优化JSSettings的默认显示和顺序。
-5. 优化第六Route第二朵花Combat地点，避免游泳。
+- **Optimizations**:
+4. Optimized JS configuration display.
+5. Handled special case for the 5th blossom on Route 2 to resolve issue with combat area being too far from blossom.
+6. Set asynchronous combat as default.
+7. Optimized reward claiming speed.
 
-### v.3.3Version：20250716
+### v3.1 (2025-07-02)
 
-- **新Features**：
+- **Optimizations**:
+1. Optimized OCR region for resin recognition.
+2. Optimized log display.
+3. Fixed image recognition constructor error.
 
-- **优化**：
-1. 优化Combat完成后Searching地脉花逻辑，提高开花领奖正确率。
-2. 优化结束CombatException / Error和领奖Exception / Error的处理。
-3. 修复无法使用须臾树脂的问题。
+### v3.0 (2025-07-01)
 
-### v.3.2Version：20250705
+1. Automatically retries up to 2 times upon combat failure.
+2. Optimized display logic when Transient Resin is present and Fragile Resin is not shown.
+3. If Ley Line has already been defeated, proceeds directly to claiming rewards.
 
-- **新Features**：
-1. 新增默认使用开冒险之证Searching地脉花，比之前更Stable。
-2. 新增识别同一Route上的两种地脉花，绕过执行非目标地脉花。
-3. 新增死亡检测，死亡后Auto 恢复后继续执行。
+### v2.9 (2025-06-29)
 
-- **优化**：
-4. 优化JSConfiguration显示。
-5. 优化Route2第五朵花的特殊处理，解决开花和Combat区域太远的问题。
-6. 优化设定默认使用异步Combat。
-7. 优化领奖速度。
+1. Added resin count recognition to prevent running an extra route when resin is depleted.
 
-### v.3.1Version：20250702
+### v2.8 (2025-06-26)
 
-- **优化**：
-1. 优化树脂识别OCR区域。
-2. log显示优化。
-3. 修复图像识别构造函数错误。
+1. Reduced number of waypoints in direct run mode to prevent getting stuck.
 
-### v.3.0Version：20250701
+### v2.7 (2025-06-21)
 
-1. 优化CombatDefeatAuto 重试2次。
-2. 优化当有须臾树脂，脆弱树脂不显示的处理。
-3. 优化在地脉已经打过时，直接领取奖励。
+1. Optimized timeout settings.
 
-### v.2.9Version：20250629
+### v2.6 (2025-06-20)
 
-1. 添加树脂数量识别，防止树脂耗尽的时候多跑一次。
+1. Fixed parameter error.
+2. Optimized coordinates for approaching Ley Line blossoms and claiming rewards, removing unnecessary verification points for faster arrival and claiming.
 
-### v.2.8Version：20250626
+### v2.5 (2025-06-19)
 
-1. 减少直跑模式下的途经点数量，防止卡死。
+1. Adapted resin selection to version 5.7:
+   - Instructions: Set resin order: 1=Condensed Resin / 2=Original Resin / 3=Fragile Resin / 4=Transient Resin, separated by `/`. Enter corresponding numbers (default: `1/2`, meaning Condensed Resin first, then Original Resin; unlisted types are not used).
 
-### v.2.7Version：20250621
+### v2.4 (2025-06-13)
 
-1. 优化超时时间的设定。
+1. Handled 5th blossom on Route 2 to avoid teleporting into Emperor of Fire and Iron cave.
+2. Adjusted OCR bounding box for reward claiming and added preferred resin type selection (adapted to 3x Ley Line Overflow).
+3. Adjusted count-based execution logic to fix issue where count exceeds blossoms available on a single route.
 
-### v.2.6Version：20250620
+### v2.3 (2025-05-28)
 
-1. 修复参数错误
-2. Go to地脉花和领取奖励坐标优化，减少不必要的位置判断点，Speed Up到达和领取。
+1. Optimized Ley Line blossom search logic.
 
-### v.2.5Version：20250619
+### v2.2 (2025-05-24)
 
-1. 适配5.7Version树脂的选择使用。
-   - Guide / Instructions：设定树脂顺序,1=Condensed Resin/2=原粹树脂/3=脆弱树脂/4=须臾树脂，用`/`隔开，填写对应的树脂数字即可,默认：1/2 ，表示先使用Condensed Resin，再使用原粹树脂，不填的不使用"
+1. Added asynchronous combat end detection based on code by D Daodan and Qiu Yun.
 
-### v.2.4Version：20250613
+### v2.1 (2025-05-12)
 
-1. 特殊处理第二Route第5朵花，避免传送到Crab。
-2. 调整领取OCR范围，添加选择优先使用的树脂类型（适配3次地脉双倍）。
-3. 调整按次数执行逻辑，解决次数大于单Route打不够次数的问题。
+1. Updated UID recognition method (adapted to Genshin Impact UI changes).
 
-### v.2.3Version：20250528
+### v2.0 (2025-05-03)
 
-1. 优化Searching地脉花逻辑。
+1. Rewrote Ley Line search route method, removed fuzzy search mode.
+2. Added direct run mode: after completing a blossom, if the next blossom is close, run directly instead of re-teleporting (requires BetterGI v44.8+).
 
-### v.2.2Version：20250524
+### v1.3 (2025-04-22)
 
-1. 参考D捣蛋和秋云佬的代码，加入异步检测Combat结束。
+1. Optimized detection during final reward claim to check whether accidental interaction with Ley Line Outcrop causes task failure.
+2. Fixed issue in fuzzy mode where script continued searching when a blossom was not found.
+3. Optimized startup route under fuzzy search.
+4. Fixed software error caused by Ley Line Outcrop page detection.
 
-### v.2.1Version：20250512
+### v1.2 (2025-04-14)
 
-1. 更改UID识别方法。（适配原神UI改变）
+1. Optimized party switch timing to avoid exit due to switch failure.
+2. Fixed inaccurate recognition on Route 2 in Fast Search mode.
+3. Optimized early blossom detection timing.
+4. Special handling: Route 2 in Fontaine (West Slopes of Mont Automnequi waypoint bottom-left 5th blossom) runs directly to avoid mistakenly teleporting to underground Crab.
 
-### v.2.0Version：20250503
+### v1.1 (2025-04-10)
 
-1. 重写Searching地脉花Route方法,删除模糊Searching模式。
-2. 添加直跑模式，当打完一个地脉花后，如下一个地脉花Compare近，直接跑过去而不是重新传送。（要求BGI的44.8Version）
-
-### v.1.3Version：202500422
-
-1. 优化最后领奖时检测是否误触地脉之花导致任务Defeat的问题。
-2. 修复模糊模式下找到地脉花但Nope的情况下会继续Searching地脉花的问题。
-3. 优化模糊查找下的Starting UpRoute。
-4. 修复由于检测地脉之花页面导致的软件报错。
-
-### v.1.2Version：20250414
-
-1. 优化Switch Party时间，避免可能得Switch PartyDefeat导致退出的情况。
-2. 修复Route2在FastSearching模式下识别不准确问题。
-3. 优化提前出地脉花的检测时间。
-4. 特殊处理：1、FontaineRoute2West Slopes of Mont AutomnequiTeleport WaypointBottom-Left第五朵花特殊处理，避免错误传送到UndergroundCrab，直接跑过去。
-
-### v.1.1Version：20250410
-
-1. 修复Auto Combat不停向前走的问题。
-2. 修复第一次Combat部不SwitchCombat队伍问题。
-3. 修复Route1第三朵花文件命错误。
-4. 修复队伍未填写判断为已定义问题，改为在Settings过又删除队伍后判断未未定义。
-5. 修复树脂耗尽模式下，不打完整体Route问题，改为强制打完整体Route。
-6. 新增，如地脉花RouteNope, Not In初始位置，Fast模式是找不到的，在模糊位置可能被找到，即Route在被打过后，尝试通过无视树脂是否用完，遍历此Route查找Route剩余的地脉花，如再次找到地脉花，恢复正常判断树脂是否用完。
-7. 优化Fast查找模式下的准确性。
-8. 优化模糊模式下的搜索范围，和坐标位置。
+1. Fixed auto combat walking forward continuously.
+2. Fixed issue where the first combat did not switch to the Combat Party.
+3. Fixed filename typo for Route 1 3rd blossom.
+4. Fixed issue where empty party name was treated as defined after deleting it from settings.
+5. In Resin Depletion Mode, fixed issue where full route wasn't finished; now forcibly completes the full route.
+6. Added fallback: if Ley Line route is not at initial position, fast mode won't find it but fuzzy search might; after route has been partially cleared, iterates through remaining blossoms on route regardless of resin status; restores resin check once found.
+7. Optimized accuracy in Fast Search mode.
+8. Optimized search range and coordinates in fuzzy mode.

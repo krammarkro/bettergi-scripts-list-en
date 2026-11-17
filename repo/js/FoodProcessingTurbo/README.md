@@ -1,2 +1,5 @@
-原则上仅用于1080p分辨率，Other分辨率能够使用纯属巧合，出现问题后果自负
-当某种Ingredients原料恰好在本次Processing中耗尽时会引起Ingredients位置改变，默认状态下会在未完成Processing时尝试重试，可通过自定义Configuration禁用
+# Food Processing Turbo
+
+In principle, this script is designed exclusively for 1080p (1920x1080) resolution. Compatibility with other resolutions is purely coincidental; use at your own risk.
+
+When an ingredient is completely depleted during processing, the positions of ingredients on screen will shift. By default, the script attempts to retry if processing is incomplete; this retry behavior can be disabled in the custom configuration.

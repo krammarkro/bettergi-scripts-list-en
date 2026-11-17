@@ -1,2 +1,2 @@
-建议Settings分辨率1080p，无滤镜等会影响画面的因素，Other情况下识别错误属于正常现象
-Inventory中图纸过多可能导致Intertwined Fate蓝球被挤到下一页，无法识别
+- Recommended resolution is 1080p without filters or overlays that alter visual rendering. Recognition errors under other configurations are to be expected.
+- Having too many Furnishing Blueprints in the Inventory may push Acquaint Fates onto the next page, preventing them from being recognized.

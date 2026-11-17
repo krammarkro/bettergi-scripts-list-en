@@ -1,7 +1,6 @@
-Warning：本js会导致bgi占用内存迅速上升2G左右
-Warning：本js会导致bgi占用内存迅速上升2G左右
-Warning：本js会导致bgi占用内存迅速上升2G左右
+Warning: This JS script will cause BetterGI memory usage to rapidly increase by approximately 2 GB.  
+Warning: This JS script will cause BetterGI memory usage to rapidly increase by approximately 2 GB.  
+Warning: This JS script will cause BetterGI memory usage to rapidly increase by approximately 2 GB.  
 
-
-1.请确保所有怪物图鉴全部解锁
-2.检测到数量为 -1 代表检测Defeat
+1. Please ensure all monster Archive entries are fully unlocked in-game.  
+2. A detected quantity of `-1` indicates detection failure.

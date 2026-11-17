@@ -1,3 +1,3 @@
-务必在4点前Starting Up运行，进入游戏，然后脚本会一直等待月卡直到领取完毕  
+Must be launched and in-game before the 04:00 AM server reset. The script will wait continuously until the Blessing of the Welkin Moon rewards are claimed.
 
-应用于少数半夜运行卡4点场景，需要自己提前卡好时间，确保4点前上一个脚本结束，然后运行此脚本避免退出bgi重进
+Designed for overnight automation schedules crossing the 04:00 AM reset window. Ensure previous scripts finish before 04:00 AM, then run this script to handle the daily reset dialog without needing to restart BetterGI.

@@ -1,48 +1,48 @@
-此目录下的文件为工具脚本，与主脚本的运行无关，仅用于开发时批量处理Route信息。
+The files in this directory are utility scripts used during development for batch processing route files. They are not required for running the main script.
 
 ---
 
 ## split-routes.js
-将包含多个Teleport Waypoint（`teleport`）的Route拆分为独立子Route，方便打 tag 管理。
+Splits routes containing multiple Teleport Waypoints (`teleport`) into independent sub-routes for easier tag management.
 
 ```bash
 node split-routes.js
 ```
 
-拆分后Auto 运行 `reindex-positions.js`。
+Automatically runs `reindex-positions.js` upon completion.
 
 ## merge-routes.js
-将拆分后的子Route（`名称-01.json`、`名称-02.json`...）重新合并为父Route，tags Auto 合并去重。
+Re-merges split sub-routes (`name-01.json`, `name-02.json`...) into parent routes, automatically consolidating and deduplicating tags.
 
 ```bash
 node merge-routes.js
 ```
 
-合并后Auto 运行 `reindex-positions.js`。
+Automatically runs `reindex-positions.js` upon completion.
 
 ## reindex-positions.js
-将所有Route文件中 positions 的 `id` 按数组顺序重新赋值（1, 2, 3...），附带 BOM 清理。
+Re-indexes waypoint `id` fields in sequential numerical order (1, 2, 3...) across all route files and cleans UTF-8 BOM.
 
 ```bash
 node reindex-positions.js
 ```
 
 ## update-bgi-version.js
-批量更新Route文件中 `info.bgi_version`，补充缺失的 `info.version`，附带 BOM 清理。修改脚本中的 `newVersion` 常量后运行。
+Batch updates `info.bgi_version` in route files, supplements missing `info.version` fields, and strips BOM. Edit the `newVersion` constant before running.
 
 ```bash
 node update-bgi-version.js
 ```
 
 ## rename-tag.js
-将Route文件中匹配指定 tag 替换为新 tag（精确匹配单个元素）。修改脚本中的 `oldTag` 和 `newTag` 后运行。
+Replaces targeted tags with a new tag in route files (exact element matching). Modify `oldTag` and `newTag` in the script before running.
 
 ```bash
 node rename-tag.js
 ```
 
 ## cleanup-fields.js
-批量删除Route文件中的 `config` 和 `farming_info` 字段，附带 BOM 清理。
+Batch removes `config` and `farming_info` fields from route files and cleans BOM.
 
 ```bash
 node cleanup-fields.js

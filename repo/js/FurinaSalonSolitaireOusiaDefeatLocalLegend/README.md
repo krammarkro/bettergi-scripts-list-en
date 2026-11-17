@@ -1,13 +1,14 @@
-用于Furina海鲜挂机暗杀Local Legend
+# AFK Furina Salon Solitaire Ousia Local Legend Assassination
 
-目前已知适用Cocijo和Sappho Amidst the Waves，需加入调度器中使用
+Used for AFK assassination of Natlan Local Legends using Furina's Salon Solitaire (Ousia form / Salon Members).
 
-1、队伍1号位Furina，234号随意，Recommended双水队伍，可以Taking Medicine增伤；
+Currently confirmed to work against **Cocijo** and **Sappho Amidst the Waves**. Must be added to the task scheduler.
 
-2、按照B站一些逃课视频到达指定位置，附身一只水龙或草龙到石块上；
-
-3、确保指定位置周围NopeOther可以直接附身的龙魂，以免误操作；
-
-4、可以在附身状态下开启，也可以在Character状态下开启，循环开启前均会先附身；
-
-5、0命Furina世界等级8的情况下：Cocijo循环6-10次、Sappho Amidst the Waves循环14-18次；0命Furina世界等级9的情况下，击败Cocijo的次数约为13次，时间充裕的情况下可以按最低循环次数多尝试，避免误杀没拿到Achievements，同时欢迎大家分享配队面板和参考循环次数。
+1. **Party Setup**: Slot 1 must be Furina; slots 2-4 are flexible. Hydro Resonance is recommended, and food/potions can be used to boost damage.
+2. **Setup**: Follow cheese strategy guides to reach the designated cheese spot, and indwell (possess) a Koholasaurus (Hydro Saurian) or Yumkasaurus (Dendro Saurian) perched onto the boulder.
+3. **Clear Area**: Ensure no other Saurian spirits nearby can be inadvertently indwelled.
+4. **Starting**: Can be started either in indwelled Saurian form or regular character form; the script will ensure the character indwells before starting the summon loop.
+5. **Reference Loops**:
+   - C0 Furina at World Level 8: Cocijo requires ~6-10 loops; Sappho Amidst the Waves requires ~14-18 loops.
+   - C0 Furina at World Level 9: Defeating Cocijo takes ~13 loops.
+   - If time allows, test with the lower loop estimate first to avoid defeating the enemy without meeting achievement criteria. Feedback on team stats and loop counts is welcome!

@@ -1,77 +1,56 @@
-# Auto 寻路\+手动Combat 脚本Guide / Instructions v1\.12
+# Auto Pathfinding + Manual Combat Script Instructions v1.12
 
-**Author**：吉吉喵
+**Author**: JiJiMiao (吉吉喵)
 
-**适配Version**：BGI 0\.64\+
+**Supported Version**: BGI 0.64+
 
-**脚本定位**：半Auto 休闲刷怪脚本，主打**解放手动寻路，自由Combat拾取**。全程Auto Pathing寻怪，抵达Combat点Auto 暂停，交给玩家手动打怪、按需开宝箱、捡材料、收集神通，操作自由、Combat爽快。内置Path哈希校验、Auto CD冷却、运行RecordingFeatures，省心Stable。
+**Script Focus**: A semi-automated casual mob-farming script focused on **eliminating manual pathfinding while keeping combat and looting fully manual**. It automatically navigates along routes to find mobs and automatically pauses upon reaching combat spots, allowing the player to manually defeat enemies, open chests, collect drops, or gather Oculi freely. Includes built-in path hash verification, automatic cooldown management, and runtime logging.
 
-## 一、免责声明
+## 1. Disclaimer
 
-1\. 本脚本为玩家个人自制辅助工具，仅用于单机娱乐Learning，仅供BetterGI软件本地使用。
+1. This script is an independently developed hobby tool intended solely for single-player entertainment and study, used locally with BetterGI.
+2. The script only provides automated pathfinding assistance. All actions are initiated by the user at their own risk. The author assumes no responsibility for any account issues or related liabilities arising from its use.
+3. Commercial use, reselling, repackaging, or using this script to disrupt game balance or engage in unauthorized AFK activities is strictly prohibited.
+4. Users are responsible for any issues resulting from improper operation, path file errors, or manual mistakes.
 
-2\. 脚本仅提供Auto 化Pathing辅助，所有操作均由用户自主触发、自主承担使用风险，Author不承担任何因使用本脚本产生的Account问题及相关责任。
+## 2. Core Features
 
-3\. 禁止将本脚本用于商业化、倒卖、二次封装商用等违规行为，禁止用于破坏游戏平衡、违规挂机等场景。
+- **Auto-Pause at Combat Nodes**: Automatically detects combat points along the route and pauses execution upon arrival. After manually defeating the enemies, players can freely open chests, collect drops, and gather Oculi. Press the pause key when done to resume pathfinding to the next route waypoint.
+- **Path Hash Verification**: Generates a unique hash from path coordinates to automatically adapt when paths are modified. Renaming files does not break them, preventing corrupted or outdated paths from running.
+- **Auto Cooldown Management**: Intelligently tracks respawn cooldowns for materials and mobs, automatically skipping routes still on cooldown to prevent redundant pathfinding.
+- **Runtime Cache**: Automatically records execution timestamps for each route to provide accurate cooldown tracking.
 
-4\. 使用过程中因操作不当、Path文件Exception / Error、手动操作失误造成的问题，均由使用者自行负责。
+## 3. Settings
 
-## 二、核心Features
+### 1. Pause Key (`virtualKey`)
+Default: `VK_END` (End key). The script automatically triggers this key at combat waypoints to pause. Refer to keycode documentation if you wish to configure a custom key.
 
-- **Combat节点Auto 暂停**：Auto 识别PathCombat点位，到达Combat位置Auto 暂停脚本。玩家手动打怪结束后，可自由开宝箱、拾取材料、收集神通，操作完成按下暂停键，即可继续运行下一个Path点位。
+### 2. Skip Reload (`noReload`)
+Default: `false`. Re-adapts paths and verifies key/path configurations on each launch.  
+When enabled: Skips path conversion and directly loads cached paths for faster startup, ideal for fixed daily route farming.
 
-- **Path哈希校验**：对Path坐标生成唯一哈希值，Path改动Auto 重新适配，仅改名不失效，杜绝损坏、过期Path运行。
+## 4. Directory Structure
 
-- **Auto CD管理**：智能判断材料、怪物Path刷新冷却，Auto 跳过未冷却完成的Path，避免无效重复Pathing。
+- `pathing/`: Stores raw mob farming paths. Subfolder names should match mob names listed in `materialsCD/怪物.txt` (custom names can be added).
+- `materialsCD/`: Material respawn cooldown rules configuration.
+- `user/output_combat_convert/`: Usable paths generated automatically by the script.
+- `user/content_code_record.json`: Path hash and key cache records.
+- `pathing_record/`: Path runtime durations and cooldown tracking records.
 
-- **运行Recording缓存**：Auto 留存每条Path的运行时间数据，为CD冷却判定提供精准依据。
+## 5. Precautions & Notes
 
-## 三、脚本Settings项
+1. This script only handles pathfinding; it does **not** include auto-combat. Standing idle at combat locations may cause characters to be eliminated by enemies.
+2. If a character dies during a pause, revive manually and restart the script to continue.
+3. To skip a specific route, stop the script, delete the corresponding path file, and restart.
+4. Completed paths enter cooldown automatically and will not repeat.
+5. Supports up to 6 directory nesting levels. Routes without combat nodes (pure gathering paths) will be skipped automatically.
+6. After defeating enemies, collect chests and drops as needed, then press the pause key once to proceed to the next waypoint.
 
-### 1\. 暂停按键（virtualKey）
+## 6. Feedback
 
-默认 VK\_END（End键）。Combat点位Auto 按下该键暂停脚本，可自行查阅按键文档更换自定义按键。
+This script is currently in beta testing. Feedback and questions are welcome on the BetterGI QQ channel: `bettergiv1`.
 
-### 2\. 跳过转换（noReload）
+## 7. Changelog
 
-默认关闭：每次启动重新适配Path、适配新按键/新Path。
-
-开启：跳过Path转换，直接读取缓存Path运行，启动更快，适合长期固定Path挂机。
-
-## 四、目录Guide / Instructions
-
-- `pathing/`：放置原始刷怪Path，pathing下的文件夹名参考materialsCD\怪物.txt里面的怪物名，可增自定义名
-
-- `materialsCD/`：材料刷新冷却规则Configuration
-
-- `user/output_combat_convert/`：脚本Auto 生成的可用Path
-
-- `user/content_code_record.json`：Path哈希与按键缓存Recording
-
-- `pathing_record/`：Path运行时长、CDRecording
-
-## 五、使用Precautions / Notes
-
-1\. 本脚本仅Auto Pathing，无Auto Combat。开战点位挂机Zoned Out，Character可能被怪物击杀。
-
-2\. 暂停状态下Character死亡，手动复活后重启脚本即可继续运行。
-
-3\. 不想运行某条Path，直接中断脚本、删除对应Path文件后重启。
-
-4\. 跑完的PathAuto 进入CD冷却，不会重复运行；使用问题可截图咨询答疑。
-
-5\. 仅Supports6层以内Path文件夹层级，No Combat节点的纯采集Path会Auto 跳过。
-
-6\. Combat结束后，可按需开宝箱、拾取材料，按下一次暂停键即可继续运行下一个点位。
-
-## 六、后言
-
-本脚本目前处于测试阶段，欢迎反馈问题至 QQ 频道号：bettergiv1。
-
-## 七、Changelog
-
-**v1\.0**：实现CombatAuto 暂停、Path哈希校验、Auto CD冷却、自定义按键、运行Recording缓存全套Features
-
-**v1\.12**：修复CD计算bug
-
-*以上内容由豆包生成。*
+- **v1.0**: Implemented combat auto-pause, path hash validation, auto cooldown management, custom pause key, and runtime caching.
+- **v1.12**: Fixed cooldown calculation bugs.

@@ -1,18 +1,19 @@
-# 大招能量一键拉满
-### FeaturesGuide / Instructions
-本工具需开启Liyue远古Domain使用，Supports选择指定队伍完成全队大招能量Auto 回满操作（由空修改优化）。
+# One-Click Full Team Elemental Burst Energy
 
-### 开关Guide / Instructions
-| 开关名称 | 类型 | 默认值 | FeaturesGuide / Instructions |
-|--------|------|--------|----------|
-| Switch Party前回Statue of The Seven回血 | 复选框 | 开启 | Switch Party前Auto 回血 |
-| 开启第二次充能Combat（循环充能） | 复选框 | 关闭 | 额外执行一次充能 |
-| 充能结束后回Statue of The Seven回血 | 复选框 | 开启 | 充能完成后Auto 回血 |
-| 充能结束后传送到LiamTeleport Waypoint | 复选框 | 关闭 | 充能完成后Auto 传送到FontaineLiam位置 |
+### Feature Overview
+This tool requires having the ancient Domain in Liyue unlocked. It supports selecting a designated party to automatically refill Elemental Burst energy for the entire team (modified and optimized by Kong).
 
-### OtherConfiguration
-- **队伍名称**：输入指定队伍名称，不填则默认对当前队伍进行操作。
+### Configuration Options
+| Setting | Type | Default | Description |
+| --- | --- | --- | --- |
+| Heal at Statue of The Seven before party switch | Checkbox | Enabled | Automatically heals party at a Statue of The Seven prior to switching teams |
+| Enable second recharge battle (loop recharge) | Checkbox | Disabled | Runs an additional recharge battle cycle |
+| Heal at Statue of The Seven after recharge | Checkbox | Enabled | Automatically heals party at a Statue of The Seven after energy is refilled |
+| Teleport to Liam waypoint after recharge | Checkbox | Disabled | Teleports to the Liam local legend waypoint in Fontaine upon completion |
 
-### Author信息
-- 柒叶子：https://github.com/5117600049
-- 空：https://github.com/whd-dad
+### Other Settings
+- **Team Name**: Enter the target team name. If left blank, operates on the current active party.
+
+### Authors
+- Qi Yezi: https://github.com/5117600049
+- Kong: https://github.com/whd-dad

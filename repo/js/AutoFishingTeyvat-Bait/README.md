@@ -1,24 +1,26 @@
-脚本名称：TeyvatAuto 饵料机
+# Teyvat Auto Bait Crafter
 
-Features描述：TeyvatAuto Fishing（全流程+自选）的附属脚本，用于全Auto 获取鱼饵
+**Feature Description**: Companion script for Teyvat Auto Fishing (Full Workflow + Custom Selection), used for automated bait crafting.
 
-## 核心Features
+## Core Features
 
-~~1. Auto 收集和制作合成鱼饵所需的材料~~  
-2. Auto 合成设定的鱼饵，可通过Inventory识别达到指定数量  
-3. 可选择合成台位置  
-4. 可自行Configuration鱼饵原材料余量相关的Settings  
-~~5. 可通过NPC购买原料(可选)~~
+~~1. Automatically collect and craft materials required for bait~~  
+2. Automatically craft specified bait until reaching target quantities detected via inventory OCR  
+3. Selectable crafting bench locations  
+4. Customizable bait raw material reserve thresholds  
+~~5. Purchase raw materials from NPCs (optional)~~  
 
-## Precautions / Notes **该脚本处于测试阶段，可能出现OCR误差导致的问题**
+## Precautions
 
-1. 请确保所选的鱼饵配方已经Learning(如果勾选```OtherFeatures```中的```优化OCR(建议启用)```)  
-2. 请确保鱼饵的原材料数量充足  
-~~2. Auto 获取的原料有限，在单次原材料CD周期内，通过地图追踪来收集原料合成的饵料数量建议**小于500**~~  
-~~3. Wheat目前只能通过购买获取（暂不Supports通过Investigating点获取）~~  
-~~4. 如果选择了购买原料，需要保证对应的商人可用（确保已经进行过前置对话，可以直接进入商店）~~
+> **Note**: This script is currently in beta. Occasional OCR inaccuracies may occur.
 
-## 其它
+1. Ensure you have already learned the recipe for the selected bait (especially if `Optimize OCR (Recommended)` is enabled under `Other Features`).  
+2. Ensure you have sufficient raw materials in your inventory.  
+~~3. Automatically gathered materials are limited; within a single material respawn cooldown cycle, bait crafted via map pathing material collection should be kept under 500.~~  
+~~4. Wheat can currently only be obtained via purchase (investigation point collection is not yet supported).~~  
+~~5. If NPC material purchasing is enabled, ensure the merchant is accessible (pre-requisite dialogue completed so the shop interface opens directly).~~  
 
-脚本反馈群（Recommended）：BetterGI v7群(1029539994)
-脚本反馈邮箱：hijiwos@hotmail.com
+## Feedback & Contact
+
+- Script Feedback QQ Group (Recommended): BetterGI Group 7 (`1029539994`)
+- Script Feedback Email: `hijiwos@hotmail.com`

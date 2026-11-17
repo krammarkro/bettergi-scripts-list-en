@@ -1,165 +1,158 @@
-# 每日收获统计
+# Daily Harvest Stats
 
-只统计**采集脚本运行期间**的收获（Mora、可分解Artifact EXP经验、Primogems）：采集**前**读一次Start，采集**后**读一次End，收获 = End − Start。中间你手动花费Mora、强化Artifacts消耗Artifact EXP的部分**天然被排除**。
+Tracks only gains (Mora, Salvageable Artifact EXP, Primogems) obtained **during farming script execution**: reads a baseline **before** farming, and reads again **after** farming: Harvest = End − Start. Any manual Mora expenditures or Artifact EXP consumed during artifact enhancement are **naturally excluded**.
 
 ```
-📊 每日收获统计 [账户: default-profile]
-⏱ 起算 2026/6/19，已统计 5 个采集日 · 连续采集 5 天
+📊 Daily Harvest Stats [Account: default-profile]
+⏱ Tracking since 2026/6/19, recorded 5 farming days · 5 consecutive farming days
 ── Mora ──
-已累计 2,500,000 / 今天 480,000 / 日均 500,000
-── Artifact EXP经验 ──
-已累计 12万 / 今天 3万 / 日均 2.4万
+Total: 2,500,000 / Today: 480,000 / Daily Avg: 500,000
+── Artifact EXP ──
+Total: 120,000 / Today: 30,000 / Daily Avg: 24,000
 ── Primogems ──
-已累计 720 / 今天 40 / 日均 40
-本周 3,500,000（日均 50万）· 今天较昨天 +12.5%
+Total: 720 / Today: 40 / Daily Avg: 40
+This Week: 3,500,000 (Daily Avg: 500,000) · Today vs Yesterday: +12.5%
 ```
 
-## 一、关键：要在调度组里放**两次**
+## I. Key Requirement: Place Twice in Scheduler Group
 
-同一个脚本，在你的采集任务**前后各放一个**，并分别Settings「运行阶段」：
+The same script must be placed **before and after** your farming task group, configured with different "Execution Phase" settings:
 
 ```
-[每日收获统计 · 采集前(记Start)]  ← 记下采集Starting Up时的Mora/Artifact EXP
+[Daily Harvest Stats · Before Farming (Record Start)]  ← Records starting Mora/Artifact EXP
    ↓
-[你的锄地/采集任务...]
+[Your mob farming / gathering tasks...]
    ↓
-[每日收获统计 · 采集后(Settlement)]    ← 收获 = 现在 − Start，Put It on the Tab并报告
+[Daily Harvest Stats · After Farming (Settlement)]    ← Harvest = Current − Start, logs and reports
 ```
 
-## 进阶用法：Recording你「手动游玩」的真实收获
+## Advanced Usage: Tracking Real Gains from "Manual Play"
 
-不只Auto 采集能用——如果你想统计**自己亲自上线游玩**（开宝箱、做Daily Commissions、探索、手动锄地等）期间真正到手的奖励，同样可以用它：
+Not limited to automated farming—if you want to track rewards earned while **playing manually** (opening chests, completing Daily Commissions, world exploration, manual mob farming, etc.):
 
-1. **上线前**：单独把运行阶段设为「采集前」跑一次，记下Start；
-2. **尽情游玩**；
-3. **下线后**：再把运行阶段设为「采集后」跑一次Settlement。
+1. **Before playing**: Run the script once set to "Before Farming" to record the baseline;
+2. **Play freely**;
+3. **After logging off**: Run the script set to "After Farming" to calculate settlement.
 
-这段时间你亲手获得的Mora / Artifact EXP经验就会被如实Recording，并入累计与日均——相当于给自己的一次游玩做了一份「收获战报」。
-（同理：这期间若有花费 / 强化会冲抵收获，介意的话把Settlement放在花费操作之前，详见第四节。）
+All Mora and Artifact EXP earned during your session will be accurately recorded and added to your cumulative totals and daily averages.
+*(Note: Expenditures or enhancements during this window will offset gains; perform settlement before spending, as detailed in Section IV).*
 
-## 二、它为什么这么算
+## II. Calculation Principles
 
-- 只测「采集窗口」内的变化，所以**你手动花的钱、平时强化Artifacts消耗的Artifact EXP，都不会算进收获**。
-- **负收获不计**：采集只会让数值增加；若出现End<Start（疑似读数Exception / Error或非采集变动），该段直接跳过、不污染累计。
-- **累计** = 各采集日收获之和；**日均** = 累计 ÷ 采集天数。
-- **连续采集天数**：从最近一个采集日往前数、服务日相连的天数（断一天就归 1）。**周 / 月汇总**与**今天 vs 昨天 / 本周 vs 上周**环比同步算给你看。
-- **Primogems是「软指标」**：它和Mora走同一张Inventory「贵重物品」页，读Mora时**顺手再读一个数**，零额外成本。但它**只为兜底**——Primogems读不到 / 读数Exception / Error时按 0 计、**绝不影响**Mora与Artifact EXP的Settlement。⚠️ 固定锄地Route上宝箱Skip新，Primogems收获**常年≈0 属正常**；它更适合统计你**手动游玩**（开新宝箱、做委托、探索）那一趟的Primogems进账（见上一节「进阶用法」）。
-- 抗中断：采集若中途停了没Settlement，次日「采集前」会重新记Start，旧的半截窗口Auto 作废，不串味。
+- **Measures only the farming window**: Any manual purchases or artifact leveling outside this window do not affect stats.
+- **Negative gains ignored**: Farming only increases inventory values. If End < Start (suspected read error or non-farming expenditure), the segment is skipped to prevent corrupting totals.
+- **Totals & Averages**: Total = sum of all farming day gains; Daily Average = Total ÷ Days Farmed.
+- **Consecutive Days**: Consecutive service days counting backward from the most recent farming day (resets to 1 if a day is skipped). Weekly/monthly summaries and Day-over-Day / Week-over-Week comparisons are computed automatically.
+- **Primogems as a Soft Metric**: Read from the same "Precious Items" inventory tab alongside Mora with zero extra overhead. Provided as a best-effort metric: read errors default to 0 and **never affect** Mora or Artifact EXP calculations. ⚠️ Fixed mob farming routes rarely spawn new chests, so **Primogems ≈ 0 is normal**; this metric is intended primarily for manual exploration sessions.
+- **Interruption Resilient**: If farming terminates early without settlement, the next day's "Before Farming" run establishes a fresh baseline; incomplete prior sessions are safely discarded.
 
-## 三、Settings项
+## III. Configuration Options
 
-| 项 | Guide / Instructions |
+| Option | Description |
 |---|---|
-| 运行阶段 | 采集前(记Start) / 采集后(Settlement)——两个实例分别设 |
-| 账户标识 | 多Account区分，留空=默认账户 |
-| 统计Mora / 统计Artifact EXP经验 | 各自可单独开关（两个实例要设成一致） |
-| 清空本账户统计 | 设「是」跑一次=重新起算 |
-| 发送通知 | 结束时是否推送报告 |
+| Execution Phase | Before Farming (Record Start) / After Farming (Settlement) — set respectively on the two instances |
+| Account Profile | Identifier for multi-account setups; leave blank for default profile |
+| Track Mora / Track Artifact EXP | Independent toggle switches (must match across both instances) |
+| Clear Account Stats | Set to "Yes" and run once to reset statistics |
+| Send Notifications | Whether to send a notification report upon completion |
 
-## 四、点位与「消耗」Precautions / Notes（重要，决定测得准不准）
+## IV. Task Placement & Consumption Precautions (Crucial for Accuracy)
 
-本脚本测的是「采集前→采集后」两次读数之差。**任何在这两点之间发生的「消耗」都会让收获被少算或被判Exception / Error跳过**。务必Note：
+This script measures the difference between "Before" and "After" readings. **Any consumption occurring between these two points will reduce recorded gains or trigger error skips**. Keep in mind:
 
-### 1.「采集后(Settlement)」要放在一切“消耗”操作之前
+### 1. Place "After Farming (Settlement)" before all consumption tasks
 
-把Settlement放在下列任务**之前**，否则收获会在Settlement前就被花掉/转走：
+Place Settlement **before** the following tasks to prevent gains from being spent before calculation:
 
-- **吃掉Artifact EXP经验的**：Auto **强化Artifacts**、Auto 套用「已储存经验」、祝圣Artifact EXP等——经验进了你装备的Artifacts就离开了统计池。
-- **花掉Mora的**：Auto **购买**（商店/树脂/Artifact EXP）、**合成**、**升级天赋/武器**、Serenitea Pot洞天宝钱购买等。
+- **Artifact EXP sinks**: Auto **Artifact Enhancement**, applying stored EXP, Sanctifying Essence/Unction—once fed into equipped artifacts, EXP leaves the measurable pool.
+- **Mora sinks**: Auto **Purchasing** (shops, resin, artifact EXP), **Alchemy Crafting**, **Talent/Weapon Leveling**, Serenitea Pot Realm Depot purchases, etc.
 
-> 正确顺序：`采集前 → 采集任务 → 【每日收获统计·采集后】 → 强化/购买/合成等消耗任务`
-> 做不到就**关掉这些Auto 消耗Features**，或单独跑收获统计。
+> Correct sequence: `Before Farming → Farming Tasks → [Daily Harvest Stats · After Farming] → Enhancement/Crafting/Purchase tasks`
 
-### 2. 「Auto 分解」不影响统计
+### 2. "Auto Salvage" does not affect statistics
 
-分解只是把Artifact EXP**转换成经验瓶 / 已储存经验**——这两样本脚本都统计（总和 = 可分解Artifact EXP + 经验瓶 + 已储存经验），价值仍在池子里，分解前后总量不变，**不用管**。**真正让数值减少的是「强化Artifacts」**（把经验喂进你装备的Artifacts，离开统计池），见上一条。
+Salvaging converts artifacts into Sanctifying Unction or stored EXP. This script tracks both forms (Total = Unsalvaged Artifacts + EXP Potions + Stored EXP). Total value remains unchanged before and after salvaging. **Only actual artifact leveling consumes EXP from the pool**.
 
-### 3. 「采集前(记Start)」要紧贴你想统计的采集任务
+### 3. Place "Before Farming" immediately before farming tasks
 
-Start之**前**产出的Artifact EXP/Mora不会被算进。若想把多个产出任务都统计进去，把「采集前」放在它们**全部之前**。
+EXP/Mora generated prior to the start checkpoint will not be counted. To track multiple farming tasks, place "Before Farming" ahead of all of them.
 
-### 4. 统计窗口内别手动操作
+### 4. Avoid manual spending during the measurement window
 
-「采集前」到「采集后」之间，别手动花钱或强化Artifacts——否则会混进收获差值（净正会被低估，净负会被判Exception / Error跳过）。（单纯分解不影响，可不管）
+Do not manually spend Mora or level artifacts between "Before" and "After" runs.
 
-### 5. 锁定的Artifact EXP不计
+### 5. Locked artifacts are excluded from EXP
 
-筛选用「未锁定」，被Auto /手动锁定的Artifacts不算Artifact EXP（合理：你要留的不是Artifact EXP）。
+The filter checks "Unlocked" artifacts only; locked artifacts are not counted as salvageable EXP.
 
-## 五、其它Precautions / Notes
+## V. Other Notes
 
-- 需 **1920×1080、无影响画面的滤镜**；Mora、Primogems走Inventory「贵重物品」页（模板数字识别，同一页一并读出），Artifact EXP走InventoryArtifacts分解界面（均复用现有脚本的识别逻辑）。
-- 「采集前」「采集后」两个实例的「统计Mora/Artifact EXP」开关、账户标识要**一致**，否则Settlement项对不上。Primogems跟随「统计Mora」开关、无需单独Settings。
-- 只放了「采集后」没放「采集前」→ 提示「未找到采集Start」并跳过。
-- **想看统计**（每次Auto 刷新，二选一）：
-  - `local/harvest_report.html`：**双击用浏览器打开**，汇总卡片（Mora / Artifact EXP / Primogems + 连续天数 + 周期汇总）+ 每日趋势图（Mora / Artifact EXP / Primogems 三档Switch）+ 可排序、**可翻页**的明细表（还能Switch配色主题），最直观（Recommended小白用）；
-  - `local/harvest_report.txt`：记事本就能开的纯文本版。
-  - 运行Log/通知里也会显示。
-- `local/harvest_stats.json` 是**程序用的数据**（含 `.bak` 备份 + 回读校验），请**勿手动修改**；`saved_files` 已声明防升级丢失。
+- Requires **1920×1080 resolution without visual filters**. Mora and Primogems are read from the Precious Items tab; Artifact EXP is read from the Artifact Salvage interface.
+- Keep Account Profile and tracking toggles **identical** between the "Before" and "After" instances.
+- Running "After Farming" without a preceding "Before Farming" baseline will output "Farming start record not found" and skip.
+- **Viewing Reports** (auto-refreshed each run):
+  - `local/harvest_report.html`: Open in a web browser for visual summary cards, trend charts (Mora / Artifact EXP / Primogems), and paginated sortable tables with theme switching.
+  - `local/harvest_report.txt`: Plain text version viewable in Notepad.
+  - Summaries are also output in runtime logs and notifications.
+- `local/harvest_stats.json` contains application data (with `.bak` backup); **do not edit manually**.
 
-## 六、FAQ（FAQ）
+## VI. Frequently Asked Questions (FAQ)
 
-**Q：第一次跑只显示「已Recording采集Start」，Nope收获数字？**
-A：正常。采集前只记Start；收获要「采集后」Settlement才有。第一个完整周期跑完就出数。
+**Q: First run only shows "Farming start recorded", why no harvest numbers?**  
+A: This is normal. "Before Farming" only establishes the starting baseline; harvest numbers appear after running "After Farming (Settlement)".
 
-**Q：只跑了采集前，报告文件里怎么Nope收获？**
-A：采集前生成的报告是「Shadowy Husk」（只有累计历史、Nope今天收获）。今天的收获要采集后Settlement才会出现。
+**Q: Why does the report have no harvest numbers after only running Before Farming?**  
+A: The report generated before farming displays historical totals only. Today's harvest is computed during the post-farming settlement.
 
-**Q：在哪看统计结果？**
-A：打开 `local/harvest_report.html`（浏览器，最直观）或 `local/harvest_report.txt`（记事本）；Log/通知里也有。`harvest_stats.json` 是程序数据，别手动改。
+**Q: Where can I view statistics?**  
+A: Open `local/harvest_report.html` in your browser, or `local/harvest_report.txt` in Notepad.
 
-**Q：同一天跑了好几次采集，会重复算天数吗？**
-A：不会。同一「服务日」（凌晨 04:00 重置线）的多次采集，收获**合并到同一天累加**，采集天数不变、日均分母不变。
+**Q: If I farm multiple times on the same day, are days counted repeatedly?**  
+A: No. Multiple runs within the same service day (reset at 04:00 server time) are aggregated into that day's total without inflating the day count.
 
-**Q：半夜跑、跨天了怎么算？**
-A：重置线是 **04:00**。跨午夜但不跨 04:00 = 同一天；跨了 04:00 = 这笔记在「采集后」那天。无论怎样，**累计/日均始终正确**。
+**Q: How are late-night sessions across midnight handled?**  
+A: The daily reset occurs at **04:00**. Crossing midnight before 04:00 counts as the same service day. Crossing 04:00 logs the session under the new service day. Totals and daily averages remain accurate regardless.
 
-**Q：能重复跑「采集前」吗？**
-A：能，**以最后一次为准**（覆盖Start），不会弄脏累计。Note「最后一次采集前」要在你想统计的采集**Starting Up之前**。
+**Q: Can I re-run "Before Farming"?**  
+A: Yes. The **latest run takes precedence** (overwriting the baseline), without corrupting historical data. Ensure the final "Before" run occurs before farming starts.
 
-**Q：今天收获是负数？**
-A：统计的是采集窗口净收获。采集只会增加，**负值视为读数Exception / Error、不计入**。若常出现负数，多半是「采集后」放在了强化/购买等消耗任务之后，调整点位即可（见第四节）。
+**Q: Why was today's harvest negative?**  
+A: Net gains are calculated within the window. Negative values are treated as reading errors and skipped. If this occurs frequently, check whether "After Farming" is placed after enhancement or purchase tasks.
 
-**Q：Artifact EXP经验怎么算的？会不会把我的Artifact EXP分解掉？**
-A：**只读不动你的东西**。总值 = 已储存经验 + 未分解Artifact EXP折算（按张数 × 单价 1★420 / 2★840 / 3★1260 / 4★2520）+ 经验瓶（小×2500 / 大×10000）。全程不点「执行分解」，Artifact EXP安然无恙。
+**Q: How is Artifact EXP calculated? Does it salvage my artifacts?**  
+A: **It only reads data without modifying your items**. Total = Stored EXP + Unsalvaged Artifact conversion (1★ 420, 2★ 840, 3★ 1260, 4★ 2520) + EXP Potions (Sanctifying Unction ×2500, Sanctifying Essence ×10000). The script never clicks the confirm salvage button.
 
-**Q：不小心点了「重置/清空统计」，能找回吗？**
-A：能，但要**尽快**。重置前的上一份数据还在 `local/harvest_stats.bak.json` 里——把它复制为 `harvest_stats.json` 覆盖即可恢复。⚠️ 一旦脚本再次运行写盘，`.bak` 会被刷新，就救不回Coming。
+**Q: Can I restore data if I accidentally clicked "Reset/Clear Stats"?**  
+A: Yes, if done quickly. The previous dataset is preserved in `local/harvest_stats.bak.json`. Copy and rename it to `harvest_stats.json` to restore. Once the script runs again, the backup will be overwritten.
 
-**Q：多Account怎么用？**
-A：在「账户标识」给每个Account填一个唯一标识，各存各的统计，互不干扰（两个阶段的标识要填一致）。
+**Q: How do I configure multiple accounts?**  
+A: Enter a unique identifier in "Account Profile" for each account. Statistics will be tracked independently.
 
-**Q：更新脚本Version，之前攒的统计数据会丢吗？**
-A：不会。升级只更新Features本身，你已经攒下的累计数据（Mora / Artifact EXP / Primogems / 天数等）会原样保留，可Relaxed更新。
+**Q: Will updating the script version wipe my stats?**  
+A: No. Updates only affect code logic. Existing statistics (Mora, Artifact EXP, Primogems, day counts) are preserved safely.
 
-## 后续计划
-
-敬请Expectant后续Version更新 —— 计划加入**材料 / 采集物收集汇总**等更多统计维度（各类养成材料、特产、当地特产的收集统计），让这份「收获战报」更全面。欢迎反馈你想看到的统计项。
+## Future Plans
+Upcoming versions plan to introduce tracking for **Character Materials & Local Specialties Collection**, providing a comprehensive daily gathering report.
 
 ## Changelog
 
 ### 1.3
-
-- 修复「连坐」bug：以前某项（如Artifact EXP）出现负收获/Exception / Error时，会把整段所有指标（连正常的Mora、Primogems）一起丢弃。现改为**各指标独立**——某项Exception / Error只丢该项、单独在通知里点名，其余指标照常Recording。
-- 报告对「某天只统计到部分指标」的情况更稳：缺的项显示「—」，日均只按该指标真正测得的天数算（不会被没测那天按 0 稀释）。
+- Fixed collective error discarding bug: Previously, an error in one metric (e.g. Artifact EXP) discarded all metrics. Now, metrics are evaluated independently; errors in one metric only skip that specific item, while valid metrics are recorded normally.
+- Reports handle missing daily metrics gracefully with "—" placeholders, calculating averages only across valid measured days.
 
 ### 1.2
-
-- 修复Primogems等后加入指标的日均口径
-- 修复周/月汇总数据bug（统一按服务日分桶）
-- 趋势图新增时间范围Switch（7/30/180/全部），逐日明细取消保留上限；未统计Primogems的旧天不再被画成 0
-- 明细表新增「当天Primogems」列、数字列居中，修复「—」格子行高Exception / Error，明细/趋势图日期改按服务日显示（不再错位、重复或跳号）
-- 长期使用累计/天数改用全时计数器，不再受明细窗口影响
-- 读数更稳：Mora/Primogems连读校验（对不上就重读或放弃），识别框加宽适配千万级数值，减少偶发读错
-- 一些内部优化与代码整理，不影响使用。
+- Fixed daily average calculation for metrics added later (such as Primogems).
+- Fixed weekly/monthly summary aggregation by aligning strictly to service days.
+- Added time range toggles (7 / 30 / 180 / All days) to trend charts; removed daily detail truncation.
+- Added "Today's Primogems" column to detail table, centered numerical data, and fixed row height issues.
+- Upgraded long-term totals to persistent all-time counters independent of the detail window.
+- Improved OCR reliability with double-read validation and wider bounding boxes for 10M+ values.
 
 ### 1.1
-
-- 新增**Primogems**统计（累计 / 今天 / 日均，软指标，与Mora同页读取、读不到不影响Settlement）。
-- 新增**连续采集天数**、**周 / 月汇总**、**今天 vs 昨天 / 本周 vs 上周**环比。
-- 网页报告：每日趋势图加**Primogems**第三档Switch；明细表过长时**Auto 分页**（每页 12 天）。
-- 补充Primogems / 连续天数 / 周月汇总 / 环比的纯逻辑单元测试。
+- Added **Primogems** tracking (Total / Today / Daily Avg, soft metric read alongside Mora).
+- Added **Consecutive Farming Days**, **Weekly / Monthly Summaries**, and **DoD / WoW** comparisons.
+- HTML report: added Primogems switch to trend chart and auto-pagination (12 days per page) for detail table.
+- Added unit tests for tracking logic.
 
 ### 1.0
-
-- 首次发布：两阶段（采集前/后）统计采集窗口净收获，排除手动花费；负收获不计；跨天累计与日均；多Account；抗中断；含纯逻辑单元测试。
+- Initial release: two-phase net harvest tracking excluding manual spending; negative value filtering; cross-day accumulation; multi-account support; interruption resistance.

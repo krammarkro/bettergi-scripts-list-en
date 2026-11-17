@@ -1,229 +1,216 @@
-# 原神Auto 委托脚本
+# Genshin Impact Auto Commission Script
 
-## 项目简介
-这是一套基于 BetterGI 的Auto 化脚本，可帮助Auto 完成《原神》的Daily Commissions任务。脚本能Auto 识别委托内容、追踪任务Path，并Supports智能对话选项处理。
-目前项目正处于急需人手,有意者请加QQ群（会在地图上标点或按按钮即可）。
+## Project Overview
+This is an automated script based on BetterGI that helps you complete Daily Commissions in Genshin Impact automatically. It recognizes commission tasks, tracks navigation paths, and intelligently handles dialogue choices.
+We are currently recruiting contributors. Anyone interested is welcome to join our QQ group (even if you just help mark points or buttons on maps).
 
-## FastStarting Up
+## Quick Start
 
-### 第一步：添加脚本到调度器
-1. 订阅本脚本
-2. 在将脚本添加至调度器**不要直接运行**
+### Step 1: Add Script to Scheduler
+1. Subscribe to this script.
+2. After adding it to the scheduler, **do not run it immediately**.
 
-### 第二步：Configuration脚本Settings
-右键点击脚本，选择「修改 JS 自定义Configuration」：
-- **不要勾选「跳过委托识别」**（这是给开发者设计的Features）
-- 「Switch Party不Go toStatue of The Seven」及「完成后不去安全地点」根据个人偏好Settings
-- Settings你的Combat队伍名称（留空表示不Switch Party）
-- Settings元素采集队伍名称（队伍需要包含风、火、水元素Character和柱子对策）
+### Step 2: Configure Script Settings
+Right-click the script and select "Modify JS Custom Configuration":
+- **Do NOT check "Skip Commission Recognition"** (this is for developer debugging).
+- Configure "Do not visit Statue of The Seven when switching parties" and "Do not go to a safe spot after completion" according to your preference.
+- Set your Combat party name (leave empty to avoid party switching).
+- Set your Elemental Gathering party name (must include Anemo, Pyro, and Hydro characters, plus a pillar mechanic counter).
 
-### 第三步：Configuration调度器Settings
-- Combat超时设为40-60秒
-- 最好关闭Auto Combat-Combat后Auto 拾取掉落物，避免浪费大量时间
+### Step 3: Configure Scheduler Settings
+- Set combat timeout to 40–60 seconds.
+- It is best to disable "Auto Combat - Automatically pick up drops after combat" to avoid wasting significant time.
 ![](Configuration组Configuration参考.png)
 
+### Step 4: Run the Script
+Close the configuration window and run the script to begin automatically completing your Daily Commissions.
 
-### 第四步：运行脚本
-关闭弹窗后后直接运行即可Starting UpAuto 完成Daily Commissions。
+## Team Configuration Recommendations
 
-## 队伍Configuration建议
+### Recommended Gathering Team
+The gathering team needs to include the following elements:
+- **Anemo**: Required for specific elemental cleaning commissions.
+- **Pyro**: Required gathering element.
+- **Hydro**: Required gathering element.
+- **Pillar Counter**: Used for commissions involving 3+3 elemental totems/monuments.
 
-### 采集队伍RecommendedConfiguration
-采集队伍需要包含以下元素Character：
-- **风元素**：必备采集元素用于特殊委托
-- **火元素**：必备采集元素
-- **水元素**：必备采集元素
-- **柱子对策**：用于特殊委托打3+3柱子
+**Recommended Character Lineup**: Zhongli + Sucrose + Bennett + Barbara
 
-**RecommendedCharacter组合**：Zhongli + Sucrose + Bennett + Barbara
+### Supported Characters
+| Element / Role | Characters |
+|---|---|
+| Anemo | Sucrose, Shikanoin Heizou, Wanderer, Xianyun, Lan Yan, Kaedehara Kazuha, Faruzan, Lynette, Venti, Jean, Sayu |
+| Pyro | Yanfei, Diluc, Klee, Bennett, Xiangling, Thoma, Hu Tao, Dehya, Chevreuse, Xinyan, Lyney, Yoimiya |
+| Hydro | Barbara, Mona, Sangonomiya Kokomi, Mualani, Neuvillette, Furina, Nilou, Candace, Xingqiu, Kamisato Ayato |
+| 3+3 Pillar Counter | Zhongli, Kaedehara Kazuha, Xianyun, Neuvillette (theoretical, not yet supported), Xiangling (theoretical, not yet supported) |
 
-### Supports的Character列表
-| 元素 | Character |
-|------|------|
-| 风元素 | Sucrose、Shikanoin Heizou、Wanderer、Xianyun、Lan Yan、Kaedehara Kazuha、Faruzan、Lynette、Venti、琴、Sayu |
-| 火元素 | Yanfei、Diluc、Klee、Bennett、Xiangling、Thoma、Hu Tao、Dehya、Chevreuse、Xinyan、Lyney、Yoimiya |
-| 水元素 | Barbara、Mona、Sangonomiya Kokomi、Mualani、Neuvillette、Furina、Nilou、坎蒂斯、Xingqiu、Kamisato Ayato |
-| 3+3柱子对策 | Zhongli、Kaedehara Kazuha、奶奶、Neuvillette（理论，暂未Supports）、Xiangling（理论，暂未Supports） |
+## FAQ
 
-## FAQ解答
+### Q1: Why does opening the Adventurer Handbook trigger an error?
+Check whether BetterGI shortcuts (e.g. Stop Current Script) or third-party tools are bound to `F1`. If so, rebind them to another key. `F1` is the default game key for opening the Adventurer Handbook.
 
-### Q1: 为什么打开冒险之证脚本就出错？
-请检查BGIShortcut Keys-停止当前脚本/Other工具Shortcut Keys是否绑到F1，如果是请换一个按键，F1是打开冒险之证的Shortcut Keys。
+### Q2: Why doesn't the script attack monsters?
+- Ensure you have correctly configured your combat strategy: [Combat Strategy Documentation](https://bettergi.com/feats/task/domain.html).
+- You can also copy community presets: search for "Auto Commission" in the combat script repository; those are verified to work.
 
-### Q2: 为什么不打怪？
-- 确保已正确ConfigurationCombat策略[Combat策略编写文档](https://bettergi.com/feats/task/domain.html)
-- 直接抄我的也可以，脚本仓库-Combat脚本搜Auto 委托，里面的都包成功
+### Q3: Why can't it hit monsters on elevated towers?
+- **Are you using Furina? If not, consider adding her.**
+- Some tower monsters cannot be hit from below; set combat timeout to 40–60 seconds (adjusted for your team's build).
 
-### Q3: 为什么打不到塔上的怪？
-- **你带Furina了吗，Nope快去带呀**
-- 还有一些真打不到，请将Combat超时设为40-60秒（看个人练度）
+### Q4: Why do certain commissions fail?
+- Check the [BGI Documentation](https://bettergi.com/doc.html) first.
+- 99% of combat commission failures are due to party composition—**did you bring enough AOE damage?**
+- If issues persist, send that day's logs from `BetterGI/log/` and commission screenshots to the author for troubleshooting.
 
-### Q4: 为什么有的委托无法完成？
-- 先看BGI文档能不能解决[BGI文档](https://bettergi.com/doc.html)
-- Combat委托无法完成99%都It's You配队问题**你带AOE了吗**
-- 还有问题请将 BetterGI/log/ 目录下当天的Log和委托任务截图反馈给Author，以便排查问题。
+## Developer Guide
+Dialogue commission documentation: [AutoCommission Standard Dialogue Commission Creation Guide](https://cnb.cool/bettergi/bettergi-scripts-list/-/tree/main/repo/js/AutoCommission/对话委托制作方法.md).
 
-
-## 开发指南
-对话委托开发文档[AutoCommission 标准对话委托制作指南](https://cnb.cool/bettergi/bettergi-scripts-list/-/tree/main/repo/js/AutoCommission/对话委托制作方法.md)。
-
-
-## 反馈方法
-- 1.加QQ群1053392753反馈
-- 2.发送截图,Log给3302871403@qq.com
-- 3.BGI QQ频道@星野
+## Feedback
+1. Join QQ group: 1053392753
+2. Email screenshots and logs to: 3302871403@qq.com
+3. BetterGI QQ Channel: @星野
 
 ## Changelog
-### 当前Version：0.98.18 (2026-06-04)
-- 修复已知问题 (2026-06-04 15:10:23 UTC)
 
-### 上一Version：0.98.17 (2026-06-04)
-- **委托流程修复与补充**：
-  - *语言交流*、*诗歌交流*、*钥匙是易丢品*：补充多个地区的对话选项和流程Configuration，修正重试后地点更新逻辑，避免沿用上一次Defeat识别的委托地点。
-  - *Surprised大礼*：优化Searching乔玛丽的Path，降低走过头导致交互Defeat的概率。
-  - *西风骑士的基础知识*、*餐品订单*：优化流程中的交互与Path细节。
-  - *邪恶的扩张*：将区域名从「Brightcrown Canyon」更正为「Brightcrown Mountains」。
-- **识别与执行Stable性优化**：
-  - 优化靠近 NPC 后小概率未出现对话选项时的处理。
-  - 大地图位置识别改为投票机制，提升坐标判断Stable性。
-  - 更新 step fallback 加载逻辑，移除冗余和易误导Log。
+### Current Version: 0.98.18 (2026-06-04)
+- Fixed known issues (2026-06-04 15:10:23 UTC).
 
-### 上一Version：0.98.16 (2026-01-30)
-- **委托流程更新**：
-  - *新的风暴尚未出现*：区域从「Stormbearer Point」调整为「望风海岸」，新增Go toStormbearer Point塔楼顶部的NormalPath和 TP Path。
-  - 爬塔流程增加三次重试机会，减少偶发寻路或攀爬Defeat。
-- 删除冗余流程文件，修正执行流程中参数数量不一致的问题。
+### 0.98.17 (2026-06-04)
+- **Commission Flow Fixes & Additions**:
+  - *Language Exchange*, *Poetry Exchange*, *A Key to What?*: Added dialogue options and flow configurations for multiple regions, corrected retry location update logic to prevent reusing failed location data from previous attempts.
+  - *A Surprise Gift*: Optimized path to find Marjorie, reducing overshoot and interaction failures.
+  - *Knights of Favonius Handbook - 5th Edition*, *Food Delivery*: Polished interaction and path details.
+  - *Spreading Evil*: Corrected region name from "Brightcrown Canyon" to "Brightcrown Mountains".
+- **Recognition & Stability Improvements**:
+  - Optimized handling when dialogue options fail to appear after approaching NPCs.
+  - Switched map coordinate recognition to a voting mechanism for higher stability.
+  - Updated step fallback loading logic; eliminated redundant and misleading logs.
 
-### 上一Version：0.98.15 (2026-01-20)
-- **委托识别优化**：
-  - 新增委托名与地点名 OCR 结果校正，降低识别错误导致无法匹配流程的概率。
-  - 保存识别到的委托任务时，避免任务地点被同一天上次执行Defeat后的地点覆盖。
-- **流程与兼容性调整**：
-  - 适配 BetterGI 本体 AutoSkip 相关改动。
-  - 修正 *报答神明的方式* 的流程文件名。
-  - 清理 *艾伯特先生别再冲了*、*艾琳，未来的骑士* 的重复/误命名流程目录。
-- 修复Auto 同步Working流中Version号不同步的问题，并调整 PR 模板内容。
+### 0.98.16 (2026-01-30)
+- **Commission Flow Updates**:
+  - *A Novel Plan*: Adjusted region to Stormbearer Coast; added standard path and teleport path to the top of the tower at Stormbearer Point.
+  - Added 3 retry attempts to tower climbing flow to reduce random navigation or climbing failures.
+- Deleted redundant flow files and resolved argument mismatch issues during execution.
 
-### 上一Version：0.98.14 (2026-01-07)
-- **新增更新提示**：新增Version检查模块，启动时可提示当前脚本是否需要更新。
-- **地图与 OCR 识别优化**：
-  - 调整大地图缩放级别，修复部分委托从大地图获取坐标时报That's Wrong问题。
-  - 修复委托描述检测 step 的参数检查逻辑。
-  - 增加 OCR 全部结果的 debug Log输出，便于排查识别问题。
-  - 增高对话选项 OCR 识别范围，减少选项较多时漏识别的问题。
-- **委托流程修复**：
-  - *钥匙是易丢品*：修复Dawn Winery支线位置偏移问题。
-  - *Surprised大礼*：补充对话优先选项。
-  - *语言交流*：根据后续回退结果，修正区域分支归属，避免错误匹配。
-- **Auto 同步流程**：新增/完善同步到脚本列表仓库并创建 PR 的Working流，Supports PR 正文Showing Off提交历史。
+### 0.98.15 (2026-01-20)
+- **Recognition Optimization**:
+  - Added OCR text correction for commission and location names, reducing match failures caused by OCR misreads.
+  - Prevented recognized commission locations from being overwritten by failed attempt locations on the same day.
+- **Flow & Compatibility Adjustments**:
+  - Adapted to core BetterGI AutoSkip changes.
+  - Corrected flow filename for *A Way to Thank the Gods*.
+  - Cleaned up duplicated or misnamed flow folders for *Albert, Don't Stop!* and *Ellin, the Aspiring Knight*.
+- Fixed issue where version numbers were desynchronized in automated workflows; updated PR template.
 
-### 上一Version：0.98.12 (2025-12-24)
-- 新增 `.gitattributes`，统一仓库换行符处理。
-- 新增Auto 同步代码并创建 PR 的 GitHub Actions Working流。
-- *钥匙是易丢品*：更新Dawn Winery流程Configuration。
-- 更新 README 描述与Version相关Configuration。
+### 0.98.14 (2026-01-07)
+- **Update Prompts**: Added version check module to notify when script updates are available.
+- **Map & OCR Optimization**:
+  - Adjusted map zoom scale to fix coordinate calculation errors on certain commissions.
+  - Fixed parameter verification logic for commission description detection steps.
+  - Added full OCR debug logs for easier troubleshooting.
+  - Expanded dialogue option OCR scanning area to avoid missed choices when options are numerous.
+- **Commission Flow Fixes**:
+  - *A Key to What?*: Fixed coordinate offset in Dawn Winery branch.
+  - *A Surprise Gift*: Added dialogue priority choices.
+  - *Language Exchange*: Fixed region branch attribution based on fallback results.
+- **Automated Sync Workflow**: Added and enhanced GitHub Actions workflow for repo sync and PR generation with commit history.
 
-### 上一Version：0.98.11 (2025-12-21)
-- **委托流程修复**：
-  - *语言交流*：修正地图追踪参数和区域分支Configuration。
-  - *Surprised大礼*：补充对话优先选项。
-  - *愿鲜花气息逗留*：解除 ban 状态，恢复流程可用性。
-- **执行与对话逻辑优化**：
-  - 删除冗余参数，修正对话 icon 识别范围。
-  - 同步 BetterGI 主仓强制 dispose 相关改动。
-  - 删除关闭商店 step，并同步更新相关委托流程。
-- 更新 README、SettingsGuide / Instructions和Version号。
+### 0.98.12 (2025-12-24)
+- Added `.gitattributes` to standardize repository line endings.
+- Added GitHub Actions workflow to auto-sync code and open PRs.
+- *A Key to What?*: Updated Dawn Winery branch configuration.
+- Updated README descriptions and version configurations.
 
-### 上一Version：0.98.10 (2025-10-20)
-- **新增委托流程Supports**：
-  - 向冬日回归
-- **委托流程更新，包括**：
-  - *圆滚滚的大团骚乱*
-    - 风Character驱散Exception / Error点后Switch Party再进入Combat
-  - *说到做到*
-    - Path更新
-  - *愿鲜花气息逗留* 
-    - 流程更新，现在能正确的循着踪迹Searching包裹
-  - *父亲能做的事*
-    - Path更新，现在可以正确的抵达教堂
-  - *应急补给*
-    - Supports与行走中的NPC对话
-  - *一个男孩的去信*
-    - 修复特定条件下与杜拉夫对话Defeat的问题
-- 对话模块
-  - 在对话中选项Nope命中白名单，且Nope含退出图标与气泡图标的选项，默认点击最后一个选项。
+### 0.98.11 (2025-12-21)
+- **Commission Flow Fixes**:
+  - *Language Exchange*: Corrected pathing parameters and regional branch configuration.
+  - *A Surprise Gift*: Added priority dialogue options.
+  - *Floral Fresh*: Removed ban status and restored flow availability.
+- **Execution & Dialogue Logic Optimization**:
+  - Removed redundant parameters, corrected dialogue icon recognition bounds.
+  - Synced changes with BetterGI core forced dispose mechanics.
+  - Removed close-store step and updated related commission flows.
+- Updated README, settings guide, and version number.
 
-### 上一Version：0.98.7 (2025-09-29)
-- 大幅优化委托流程执行效率
-- 新增"把信件送给莎拉"委托Auto 化Supports
-- 完善"鸽子习惯一去不回"系列委托流程
-- 优化13个委托流程Configuration文件，提升执行精确度
-- 重构对话处理器代码逻辑，简化维护
-- 改进Combat委托追踪和对话识别机制
-- 总计修改16个文件（新增761行，删除505行）
+### 0.98.10 (2025-10-20)
+- **New Commission Support**:
+  - *Returning to Winter*
+- **Commission Flow Updates**:
+  - *Big Puck Trouble*: Anemo character dispels anomaly spot before switching parties to enter combat.
+  - *Reliable Helper*: Updated paths.
+  - *Floral Fresh*: Updated flow to correctly track parcel trails.
+  - *What a Father Can Do*: Updated path to reliably reach the cathedral.
+  - *Emergency Supplies*: Supported dialoguing with moving NPCs.
+  - *A Boy's Letter*: Fixed failure when interacting with Draff under specific conditions.
+- **Dialogue Module**:
+  - When dialogue options do not match the whitelist and contain neither exit nor speech bubble icons, the script clicks the last option by default.
 
-### 上一Version：0.98.6
-- 新增图像识别工具库（image_utils.js）
-- 新增对话处理器Features增强
-- 新增商店关闭Features（close-store.js）
-- 新增多个委托流程Supports，包括：
-  - 大量新的对话委托
-  - 多个新的寻路Path
-  - 紧急补给系列委托
-  - 各地区特殊委托优化
-- 优化常数Configuration和主要逻辑
-- 修复大量已知问题
-- 总计修改105个文件
+### 0.98.7 (2025-09-29)
+- Significantly enhanced execution efficiency of commission flows.
+- Added automated support for *Post Haste*.
+- Completed flow for the *Pigeons Go AWOL* series.
+- Optimized 13 commission config files to improve precision.
+- Refactored dialogue handler code for simpler maintenance.
+- Improved combat commission tracking and dialogue detection.
+- Modified 16 files in total (+761 lines, -505 lines).
 
-### 上一Version：0.98.5
-- 懒得统计了修改了80+个文件
+### 0.98.6
+- Added image utility library (`image_utils.js`).
+- Enhanced dialogue handler functionality.
+- Added shop closing feature (`close-store.js`).
+- Added support for numerous commissions:
+  - Many new dialogue commissions.
+  - Multiple new pathing routes.
+  - Emergency Supplies commission series.
+  - Regional special commission optimizations.
+- Optimized constants and main controller logic.
+- Fixed numerous known issues across 105 files.
 
-### 上一Version：0.98.4
-- 模块化架构完成，新增 18 个对话委托、113 条流程
+### 0.98.5
+- Modified 80+ files with general updates and bug fixes.
 
-### 旧Version：0.98.2
-- 新增 83 Character头像识别，8 个对话委托
+### 0.98.4
+- Modular architecture completed; added 18 dialogue commissions and 113 execution flows.
 
+### 0.98.2
+- Added 83 character portrait templates and 8 dialogue commissions.
 
-### 旧Version：0.97
-- 修复已知问题
-- 完成了更多对话委托
+### 0.97
+- Fixed known issues; completed additional dialogue commissions.
 
-### 旧Version：0.96
-- 优化对话委托处理逻辑
-- 优化Combat委托处理逻辑
-- 增强NPC对话选项智能识别
-- Supports自定义对话优先选项
-- 新增NPC白名单Features，提高交互精确度
-- 完善对话委托文档，增加JSON和简易格式Guide / Instructions
+### 0.96
+- Optimized dialogue commission processing logic.
+- Optimized combat commission handling.
+- Enhanced intelligent recognition of NPC dialogue options.
+- Supported custom dialogue priority options.
+- Added NPC whitelist feature to improve interaction accuracy.
+- Improved documentation for JSON and simplified formats.
 
-### 旧Version：0.95
-- 完成了对话委托Features实现
+### 0.95
+- Completed dialogue commission core implementation.
 
-### 旧Version：0.94.1
-- 修复攀High Risk险问题
-- 完成了更多对话委托
-- 修复委托不存在
+### 0.94.1
+- Fixed high-risk climbing issues.
+- Completed additional dialogue commissions.
+- Fixed missing commission bug.
 
-### 旧Version：0.94
-- 修复攀High Risk险问题
-- 新建了对话委托的文件夹
+### 0.94
+- Fixed climbing issues.
+- Created dedicated folders for dialogue commissions.
 
-### 旧Version：0.93
-- 修复已知问题
+### 0.93
+- Fixed known issues.
 
-### 旧Version：0.92
-- 修复部分Path命名错误
-- 修复第4个委托识别Defeat
+### 0.92
+- Fixed naming errors in several paths.
+- Fixed recognition failure on 4th commission.
 
-### 旧Version：0.91
-- 修改寻路Features改为两条Path都尝试一遍
-- 修复委托已完成退出错误
-- 增加输入检测
+### 0.91
+- Updated navigation to attempt both paths.
+- Fixed exit error when commissions are already complete.
+- Added input verification.
 
-### 旧Version：0.90
-- 实现基本的委托识别Features
-- Supports委托地点OCR识别
-- 基础的委托Path追踪Features
-
-
+### 0.90
+- Basic commission recognition implementation.
+- Supported OCR recognition of commission locations.
+- Implemented foundational commission path navigation.

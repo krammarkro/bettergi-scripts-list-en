@@ -1,68 +1,64 @@
-# 防休眠倒计时
+# Anti-Sleep Countdown
 
-在游戏主界面**等待 / 倒计时**，并在等待期间**防止电脑Auto 休眠、熄屏**。到点后脚本Auto 结束，由调度器接着执行下一个任务。
+**Waits / counts down** on the main game screen while **preventing the computer from entering sleep mode or turning off the display**. Once the target time is reached, the script ends automatically and the Scheduler proceeds to the next task.
 
-适合的场景：晚上挂着，等到**Version更新 / 整点 / 凌晨重置**之后再Auto Starting Up日常，又不希望电脑在漫长等待中睡过去。
+Ideal use case: Leaving your PC on overnight to wait until a **version update, the top of the hour, or the 04:00 daily reset** before starting daily routines, without your computer falling asleep during the wait.
 
-> 与仓库已有的「等待到指定时间」脚本的区别：本脚本在等待期间会**周期性轻晃镜头保持系统唤醒**，并且Supports「相对倒计时」模式与可被「停止」及时打断。
-
----
-
-## 一、FeaturesGuide / Instructions
-
-- **两种等待模式**（二选一）：
-  1. **等到指定时钟时间**（优先）：填 `HH:mm`（如 `04:00`），等到当天该时刻。若该时刻**今天已过/已到**：默认**立即结束并继续后续任务**（避免脚本启动稍晚就误等约 24 小时）；如需等到次日，请把「目标已过时是否等到明天」设为「是」。
-  2. **相对倒计时**：填分钟 + 秒（上面留空时生效）。
-- **零漂移**：始终以「目标时间戳 − 当前时间」判断，跨小时、跨天都精准，不累积误差。
-- **防休眠**：每隔设定秒数（默认 60）在主界面轻晃一次镜头——只动视角、不动Character、不开菜单，用于刷新系统空闲计时器，防止Auto 休眠 / 熄屏。
-- **可随时停止**：每秒一跳，按下「停止」可及时中断。
-- 结束时打印Log，并可选发送一条通知。
-- **可选领取月卡**：结束后可Auto 领取「空月Blessings（月卡）」奖励——每日重置后购买月卡的Account会弹出领取窗口，若不处理会卡住下一个任务。调用 BGI 官方 `genshin.blessingOfTheWelkinMoon()`，未购买月卡时安全跳过。
+> Difference from existing "Wait Until Specified Time" scripts: This script **periodically nudges the camera to keep the operating system awake**, supports a "Relative Countdown" mode, and can be stopped promptly.
 
 ---
 
-## 二、Usage
+## I. Feature Overview
 
-1. 把脚本加入**调度器Configuration组**，并排在你要执行的下一个任务**之前**。
-2. 右键脚本 → 修改自定义Configuration：
-   - 想"等到某个时间"：在**「等到指定时钟时间」**填 `04:00` 这类值即可。
-   - 想"等一段时长"：上面留空，填下面的**分钟 / 秒**。
-3. 运行Configuration组。脚本会原地等待并防止休眠，到点后Auto 结束，调度器随即执行下一个任务。
-
-### 前置条件
-
-- 运行前请**停在游戏主界面（大世界）**，Character原地不动。
-- 游戏窗口需处于激活状态，防休眠的晃镜头才有效。
+- **Two Waiting Modes** (choose one):
+  1. **Wait Until Specified Clock Time** (Priority): Enter `HH:mm` (e.g. `04:00`) to wait until that clock time today. If the time **has already arrived or passed today**, it defaults to **ending immediately and proceeding with subsequent tasks** (preventing accidental ~24-hour delays if launched slightly late). To wait for tomorrow instead, set "Wait until tomorrow if target time has passed" to "Yes".
+  2. **Relative Countdown**: Enter minutes + seconds (takes effect when the clock time above is blank).
+- **Zero Drift**: Constantly evaluated against `target_timestamp − current_timestamp`, maintaining precision across hours and day boundaries without accumulating drift.
+- **Anti-Sleep Keep-Awake**: Periodically nudges the camera at set intervals (default: 60s) on the main interface—only adjusts camera angle without moving the character or opening menus—to refresh the OS idle timer and prevent sleep/screen timeout.
+- **Interruptible Anytime**: Ticks every second; pressing "Stop" halts execution promptly.
+- **Completion Logging & Notifications**: Logs completion details and optionally sends a notification.
+- **Optional Welkin Moon Claiming**: Can automatically claim "Blessing of the Welkin Moon" rewards upon completion—preventing the post-reset daily popup from blocking the next automated task. Calls native BetterGI `genshin.blessingOfTheWelkinMoon()`, safely skipping if Welkin is not active.
 
 ---
 
-## 三、Precautions / Notes
+## II. Usage Instructions
 
-- **时间基准为本机系统时间**。国服每日 4:00 重置，请确保电脑为北京时间；其它服按电脑时间换算。
-- **防的是「系统睡眠 / 熄屏」，不是 Windows 锁屏**。若电源策略很激进（笔记本合盖、低电量强制睡眠、Settings了Auto 锁定），模拟输入可能拦不住——这种情况请到 **电源选项** 把「睡眠」设为「从不」以彻底保险。
-- 防休眠间隔应**小于系统休眠时间**（例如系统 10 分钟休眠，间隔就要 < 600 秒）。默认 60 秒可兜底绝大多数Settings。
-- 本脚本负责「卡到点」「保持唤醒」与「可选领取月卡」，**不处理登录 / 进游戏 / 过公告**。请确保等待期间游戏始终在主界面。
-- 领取月卡为可选项（默认关闭）：仅在已购买月卡、且等待End为每日重置之后时才需开启。它在倒计时结束后执行，完成并返回主界面后才结束脚本。
+1. Add the script to your **Scheduler Configuration Group**, placed **before** the task you want to run next.
+2. Right-click the script → Edit Custom Configuration:
+   - To "Wait until a clock time": Enter a time like `04:00` into **Wait Until Specified Clock Time**.
+   - To "Wait for a specific duration": Leave the clock time blank, and configure **Minutes / Seconds** below.
+3. Run the configuration group. The script will wait in place and keep the PC awake, automatically completing when the time arrives, allowing the Scheduler to run subsequent tasks.
+
+### Prerequisites
+
+- Stay on the **main game screen (open world)** before starting, with the character standing still.
+- The game window must be active/focused for camera nudges to register.
+
+---
+
+## III. Precautions / Notes
+
+- **Time is based on local system time**. The CN server daily reset occurs at 04:00 GMT+8; ensure your PC clock is accurate.
+- **Prevents system sleep and display timeout, NOT Windows Lock Screen**. If your power plan settings are very aggressive (e.g. laptop lid close, low battery forced sleep, corporate domain lockouts), simulated input may not override them. In such cases, set "Sleep" to "Never" in Windows Power Options.
+- The keep-awake interval should be **shorter than your system sleep timeout** (e.g., if sleep timeout is 10 minutes, set interval < 600s). The default 60s works for almost all setups.
+- This script handles waiting, keeping awake, and claiming Welkin Moon; **it does not handle login, launching the game, or passing announcements**. Ensure the game is already logged in on the main screen.
+- Welkin Moon claiming is optional (disabled by default): only enable if you have an active Welkin Moon subscription and the countdown ends after the daily reset.
 
 ---
 
 ## Changelog
 
 ### 1.3
-
-- 严格校验「等到指定时间」格式（正则 `HH:mm`），非法输入如 `04:00:30` 直接报错退出，不再被静默误解。
-- 「等到明天」改用 `setDate(+1)` 按日历加一天，避免夏令时(DST)Switch日的偏差。
-- 补充对应单元测试（非法格式、单数字时分）。
+- Added strict validation for "Wait Until Specified Clock Time" (`HH:mm` format); invalid inputs like `04:00:30` fail fast with an error rather than being misinterpreted silently.
+- "Wait until tomorrow" now uses `setDate(+1)` by calendar day to avoid daylight saving time (DST) transition offsets.
+- Added corresponding unit tests.
 
 ### 1.2
-
-- **修复**：「等到指定时间」时，若脚本在目标时刻当天已过/已到才启动，会被错误地推迟到次日（约 24 小时）。现默认立即结束并继续后续任务，新增「目标已过时是否等到明天」开关（默认否）。
-- 新增时间逻辑单元测试，覆盖「启动时刻 = / 晚于目标」等边界。
+- **Fix**: When launched after the target time had already passed today, the script previously postponed to the next day (~24h wait). It now defaults to completing immediately, with a toggle for "Wait until tomorrow if target time has passed" (default: No).
+- Added unit tests covering edge cases where launch time >= target time.
 
 ### 1.1
-
-- 新增可选项「结束后领取空月Blessings（月卡）」，解决每日重置后月卡领取弹窗卡住下一个任务的问题。
+- Added optional "Claim Blessing of the Welkin Moon upon completion" feature to prevent daily reset popups from stalling subsequent tasks.
 
 ### 1.0
-
-- 首次发布：Supports"等到指定时间 / 相对倒计时"两种模式、零漂移计时、周期性防休眠、可随时停止、结束通知。
+- Initial release: Supports clock time / relative countdown modes, zero-drift timer, periodic anti-sleep keep-awake, prompt stop handling, and completion notifications.

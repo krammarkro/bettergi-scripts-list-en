@@ -1,850 +1,868 @@
-# BGI全Auto 地脉花脚本使用手册
-**仅Supports BetterGI 0.63.2 及以上Version！**
-**仅Supports Bitblt 截图方式！**
-**仅Supports V4 OCR模型！**
-目前脚本仍在更新，开发阶段会有很多bug，详见下方已知问题，如果遇到Nope提到的bug请反馈给我们，非常Thank You！
-## 目录
-- [Configuration](#Configuration)
-  - [Configuration地图追踪策略和Combat策略](#Configuration地图追踪策略和Combat策略)
-  - [Statue of The Seven](#Statue of The Seven)
-- [特色介绍](#特色介绍)
-- [FAQ](#FAQ)
-  - [一运行就报错退出了](#一运行就报错退出了)
-  - [找不到地脉花/找到地脉花，未找到策略](#找不到地脉花--找到地脉花未找到策略)
-  - [走到地脉花旁边Nope开启地脉花](#走到地脉花旁边Nope开启地脉花)
-  - [Route中途跳过了一个点位](#Route中途跳过了一个点位)
-  - [跑完后大地图所有自定义的标点都没了](#跑完后大地图所有自定义的标点都没了)
-- [Changelog](#Changelog)
-- [Route](#Route)
-  - [Mondstadt](#Mondstadt)
-  - [Liyue](#Liyue)
-  - [Inazuma](#Inazuma)
-  - [Sumeru](#Sumeru)
-  - [Fontaine](#Fontaine)
-  - [Natlan](#Natlan)
-  - [Nod-Krai](#Nod-Krai)
-- [特别Thank You](#特别Thank You)
+# BetterGI Fully Automated Ley Line Outcrop Script User Manual
+
+**Supports BetterGI 0.63.2 and above only!**  
+**Supports Bitblt screenshot mode only!**  
+**Supports V4 OCR model only!**  
+
+The script is actively maintained and updated. If you encounter bugs not mentioned in Known Issues, please provide feedback to us, thank you very much!
+
+## Table of Contents
+- [Configuration](#configuration)
+  - [Configure Map Tracking and Combat Strategies](#configure-map-tracking-and-combat-strategies)
+  - [Statue of The Seven](#statue-of-the-seven)
+  - [Enable HTTP Permissions](#enable-http-permissions)
+- [Key Features](#key-features)
+- [FAQ](#faq)
+  - [Exits with an error immediately upon launch](#exits-with-an-error-immediately-upon-launch)
+  - [Cannot find Ley Line blossom / Found blossom, strategy not found](#cannot-find-ley-line-blossom--found-blossom-strategy-not-found)
+  - [Walks next to Ley Line blossom but doesn't activate it](#walks-next-to-ley-line-blossom-but-doesnt-activate-it)
+  - [Skipped a point mid-route](#skipped-a-point-mid-route)
+  - [All custom map pins disappeared after running](#all-custom-map-pins-disappeared-after-running)
+- [Changelog](#changelog)
+- [Routes](#routes)
+  - [Mondstadt](#mondstadt)
+  - [Liyue](#liyue)
+  - [Inazuma](#inazuma)
+  - [Sumeru](#sumeru)
+  - [Fontaine](#fontaine)
+  - [Natlan](#natlan)
+  - [Nod-Krai](#nod-krai)
+- [Special Thanks](#special-thanks)
+
 ## Configuration
-使用前需要对脚本以及Combat策略进行Configuration
-在调度器新建一个Configuration组，将脚本添加进来，脚本只能在Configuration组内使用
-![](assets/image/image1.png)
-![](assets/image/image2.png)
-![](assets/image/image3.png)
-![](assets/image/image4.png)
-右键脚本选择修改js脚本自定义Configuration，根据你的需要对脚本进行Configuration。
-![](assets/image/image5.png)
-### Configuration地图追踪策略和Combat策略
-点击Configuration组Settings，开启Combat策略Configuration，**关闭Auto 检测Combat结束**，Other的根据你的队伍进行Configuration。
-> 脚本不通过按L检查Combat是否结束，请务必关闭 **Auto 检测Combat结束** ，不关闭可能导致提前结束Combat!
-> 也因此无法在Combat后进行拾取，Configuration与否均不会影响。
-> Combat超时时间一定要大于或与脚本Configuration内的时间一样，太短会原地罚站！
-> 脚本强制启用Auto 拾取，开关与否均不会影响。
+Before running, you must configure the script and combat strategies.  
+In the Scheduler, create a new Configuration Group and add the script to it. This script can only be used inside a Configuration Group.  
+![](assets/image/image1.png)  
+![](assets/image/image2.png)  
+![](assets/image/image3.png)  
+![](assets/image/image4.png)  
+Right-click the script and select "Edit JS Script Custom Configuration" to configure the script according to your needs.  
+![](assets/image/image5.png)  
 
-![](assets/image/image6.png)
+### Configure Map Tracking and Combat Strategies
+Click Configuration Group Settings, enable combat strategy configuration, **disable Auto Combat End Detection**, and configure the rest according to your team setup.  
+> The script does not check if combat has ended by pressing L. Please make sure to turn off **Auto Combat End Detection**; failing to turn it off may cause premature combat termination!  
+> For the same reason, auto-looting cannot be performed after combat; whether configured or not will not affect this.  
+> Combat timeout MUST be greater than or equal to the time in the script configuration; if it is too short, the character will stand frozen!  
+> The script forcibly enables auto-pickup; whether toggled on or off will not affect this.  
+
+![](assets/image/image6.png)  
+
 ### Statue of The Seven
-在bgiSettings内，**关闭就近Statue of The Seven**，指定一个Statue of The Seven，如无特殊要求Recommended选择SumeruAvidya Forest。  
-如果您开启了All-in-One Run模式，将会跳过以节约时间。  
-> 不要开启**传送到Statue of The Seven之后是否需要移动后回血**，目前这个FeaturesBug很多！
+In BetterGI Settings, **disable Nearest Statue of The Seven**, and specify a specific Statue of The Seven (Avidya Forest in Sumeru is recommended if you have no special preference).  
+If you have All-in-One Run mode enabled, this will be skipped to save time.  
+> Do NOT enable **Move after teleporting to Statue of The Seven to heal**; this feature currently has many bugs!  
 
-![](assets/image/image7.png)
-### 开启 HTTP 权限
-脚本需要开启 HTTP 权限检查是否有更新。  
-在Configuration组内右键脚本，选择修改通用Configuration，将JS HTTP权限从**禁用**修改为**启用**。
-![](assets/image/image9.png)
-## 特色介绍
-- **全Auto 运行**：Configuration好之后，只需要点击运行，就可以全部打完，无需任何Other操作。
-- **Auto Searching地脉花**：通过大地图定位地脉花位置的方式来Searching地脉花，并执行后续的Route。
-- **Auto 开启地脉花奖励，优先使用Condensed Resin**：领取奖励时优先选择Condensed Resin，当存在双倍奖励活动（地脉移涌或星之归还）时会优先选择双倍奖励。
-- **双倍检测模式**：开启后仅在检测到双倍产出时才刷地脉，刷完后Auto 退出，适合只想用双倍活动的玩家。
-- **材料拾取**：领奖后Auto 追踪拾取怪物掉落物，搭配20树脂模式可Efficient获取怪物素材（会触发短暂Combat）。
-- **20树脂模式（怪物素材慢刷）**：每次仅消耗20体力，以效率换取更多怪物掉落素材机会，配合材料拾取效果更佳。
-- **树脂耗尽模式**：根据Settings统计当前的树脂情况，计算出需要运行的次数，运行结束后再次判断，若结束后统计到未消耗的树脂则继续执行（最多3次）
-- **树脂不足时Auto 停止**：如果领取奖励时树脂不够了，脚本会直接停止，可以Configuration是否使用须臾/脆弱。
-- **Friendship队领取奖励**：领取奖励前Switch到Friendship队，还可以领取到Friendship度。
+![](assets/image/image7.png)  
+
+### Enable HTTP Permissions
+The script requires HTTP permissions to check for updates.  
+In the Configuration Group, right-click the script, select Edit General Configuration, and change JS HTTP Permission from **Disabled** to **Enabled**.  
+![](assets/image/image9.png)  
+
+## Key Features
+- **Fully Automated Execution**: After configuration, simply click Run to clear all blossoms without manual intervention.
+- **Auto Search Ley Line Blossoms**: Locates Ley Line blossom positions via the world map and executes subsequent routes.
+- **Auto Claim Blossom Rewards (Condensed Resin prioritized)**: Prioritizes Condensed Resin when claiming rewards; when double reward events (Ley Line Overflow or Stellar Reunion) are active, double rewards are prioritized.
+- **Double Drop Detection Mode**: When enabled, only farms Ley Lines when double drops are detected and exits automatically afterward—ideal for players only wanting event bonuses.
+- **Material Pickup**: Automatically tracks and picks up enemy drops after claiming rewards. Paired with 20-resin mode, this provides efficient monster drop farming (triggers brief combat).
+- **20-Resin Mode (Slow Monster Material Farming)**: Consumes only 20 resin per run, trading time efficiency for more mob drop opportunities. Works even better with Material Pickup.
+- **Resin Depletion Mode**: Calculates required runs based on configured resin, and checks again upon completion; continues running if remaining unconsumed resin is detected (up to 3 rechecks).
+- **Auto Stop on Insufficient Resin**: If resin runs out when claiming rewards, the script stops immediately. Configurable whether to consume Transient / Fragile Resin.
+- **Claim Rewards with Companionship EXP Party**: Switches to your Friendship / Companionship party before claiming rewards to earn Companionship EXP.
+
 ## FAQ
-### 一运行就报错退出了
-根据错误提示自行排查原因
-### 找不到地脉花 / 找到地脉花，未找到策略
-脚本还未适配，请等待脚本更新。
-如果不是，请将出That's Wrong**完整游戏界面截图**反馈。
-Note：为了方便截图反馈，出现该错误时不会关闭大地图界面！也不会将关闭的自定义标记按钮打开！
-### 走到地脉花旁边Nope开启地脉花
-- 请使用bitblt截图方式，脚本只Supports这个
-- 请Switchocr引擎至v4，Other引擎脚本未进行适配
-### Route中途跳过了一个点位
-当地脉花打完后，下一个点位已经存在另一类型的地脉花，则下一朵地脉花将跳过这个点，刷新在下一个位置。
-脚本会跳过这个被占用的点位。
-![](assets/image/image8.png)
-例如这里，Mora花刷新在经验花的下一个位置上。
-### 跑完后大地图所有自定义的标点都没了
-打开大地图，点击Bottom-Left角Settings，开启自定义标记。
-脚本非正常结束运行时会出现该问题。
+### Exits with an error immediately upon launch
+Check error messages and troubleshoot accordingly.
+
+### Cannot find Ley Line blossom / Found blossom, strategy not found
+The script has not adapted this location yet, please wait for script updates.  
+If already supported, please submit full game window screenshot feedback.  
+Note: To facilitate screenshot feedback, the map will not be closed when this error occurs, nor will custom pins be re-enabled!
+
+### Walks next to Ley Line blossom but doesn't activate it
+- Use Bitblt capture mode; the script only supports this.
+- Switch OCR engine to V4; other engines are not supported.
+
+### Skipped a point mid-route
+When a Ley Line blossom is cleared, if another type of Ley Line blossom already exists at the next point, the next blossom will skip that point and spawn at the following location.  
+The script will skip this occupied spot.  
+![](assets/image/image8.png)  
+For example here, a Mora blossom spawns on the spot of the next EXP blossom.
+
+### All custom map pins disappeared after running
+Open the world map, click Settings in the bottom-left corner, and turn on Custom Pins.  
+This issue happens if the script terminates abnormally.
+
 ## Changelog
 ### 5.1
-- 新增双倍检测模式（只刷双倍产出）
-- 新增材料拾取Features（领奖后Auto 拾取掉落物）
-- 新增20树脂模式（怪物素材慢刷，配合材料拾取使用）
-- 修复Condensed Resin识别Defeat的问题
-- 修复树脂耗尽模式+刷取次数取小值的情况下，当OCR计算次数>手动Settings刷取次数时无法正确终止脚本的bug（到达手动刷取次数会继续刷,直到体力用光）
+- Added double drop detection mode (only runs during double output events)
+- Added material pickup feature (automatically picks up drops after claiming rewards)
+- Added 20-resin mode (slow mob farming paired with material pickup)
+- Fixed Condensed Resin recognition failure
+- Fixed bug where script failed to terminate when OCR calculated runs > manual run count setting under resin depletion mode
+
 ### 5.0
-- 新增SnezhnayaRoute
-- BGI最低Version要求改为0.63.2
+- Added Snezhnaya routes
+- Raised minimum BetterGI version requirement to 0.63.2
+
 ### 4.6
-- 新增月之五VersionMondstadtRoute
+- Added Mondstadt routes for Moon v5 update
+
 ### 4.5
-- 新增月之四VersionNod-KraiRoute
+- Added Nod-Krai routes for Moon v4 update
+
 ### 4.4
-- 新增树脂耗尽模式
-- 新增树脂耗尽模式下刷取次数取小值
-- 新增更新提醒
-- 新增All-in-One Run模式
-- BGI最低Version要求改为0.52.0
+- Added resin depletion mode
+- Added option to take smaller value of run counts under resin depletion mode
+- Added update notifications
+- Added All-in-One Run mode
+- Raised minimum BetterGI version requirement to 0.52.0
+
 ### 4.3
-- 适配新的奖励领取界面
-- 修复Nod-Krai识别错误及通过冒险之证Searching地脉花总会选择Nod-Krai的bug
-- 修复卡在奖励领取界面无法执行OtherConfiguration的bug
-- 优化冒险之征Searching地脉花的逻辑
-- 新增是否使用须臾树脂Configuration选项
+- Adapted to new reward claiming interface
+- Fixed Nod-Krai recognition error and bug where searching via Adventurer Handbook always selected Nod-Krai
+- Fixed bug getting stuck on reward claiming interface preventing other configurations
+- Optimized Adventurer Handbook Ley Line search logic
+- Added configuration option for whether to use Transient Resin
+
 ### 4.2
-- 新增Nod-Krai区域
+- Added Nod-Krai region
+
 ### 4.1
-- 新增通过冒险之证Searching地脉花
-- 修复部分报错
+- Added search for Ley Line blossoms via Adventurer Handbook
+- Fixed several error reports
+
 ### 4.0
-- 适配原神5.7Version更新
-- 修复打开自定义标记的bug
+- Adapted to Genshin Impact 5.7 update
+- Fixed bug enabling custom map pins
+
 ### 3.5
-- 减少部分Log输出
-- 修改部分错误提示信息
+- Reduced redundant log output
+- Updated several error messages
 
 ### 3.4
-- 重构代码结构
-- 修复部分提示错误
+- Refactored code structure
+- Fixed several prompt errors
 
 ### 3.3
-- CombatDefeatRoute重试Supports
-- 导航到地脉花优化
+- Added combat failure route retry support
+- Optimized navigation to Ley Line blossoms
 
 ### 3.2
-- 新增通知选项
+- Added notification options
 
 ### 3.1
-- 新增Liyue、Sumeru部分Route
-- 修改Searching地脉花领奖的逻辑
+- Added several Liyue and Sumeru routes
+- Adjusted Ley Line search and reward claiming logic
 
 ### 3.0
-**本次更新内容很多，详情可以到[GitHub](https://github.com/babalae/bettergi-scripts-list/pull/633)上查看**
-- 新增Route：Sal Terrae Yaoguang Shoal Yaodie Valley Tatarasuna Watatsumi Island Sulfurous Veins Tilted Branch Cliff Toyac Springs Yashiori Island Caishi Peak Flower-Feather Clan Narukami Island Seirai Island
-Inazuma与Natlan的Route已全部补全
-- 优化Combat相关逻辑，通过识别Challenge结果来判断Combat是否结束
-- **全地脉花识别**
-- 移除强制运行模式
-- 优化地脉花Searching逻辑
-- 优化地脉开启和领取奖励相关逻辑
-- 新增优先使用双倍奖励（地脉移涌和星之归还）
-### 2.1
-- 重构Searching地脉花位置的方式为获取地脉花在游戏内的坐标
-理论上会减少找不到地脉花的情况
-- 新增 领取前可Switch至Friendship队（需Configuration）
-### 2.0
-- 新增 FontaineNew Fontaine Research Institute Lumidouce Harbor
-至此，Fontaine全部Route已制作完成
-- 修复 有Condensed Resin的情况下误认为树脂已用完
-- 修复 无限重试
-### 1.0
-- 脚本发布
+- Added routes: Sal Terrae, Yaoguang Shoal, Yaodie Valley, Tatarasuna, Watatsumi Island, Sulfurous Veins, Tilted Branch Cliff, Toyac Springs, Yashiori Island, Caishi Peak, Flower-Feather Clan, Narukami Island, Seirai Island
+- Inazuma and Natlan routes are now fully completed
+- Optimized combat logic by checking challenge outcome
+- Full Ley Line blossom recognition
+- Removed Force Run mode
+- Optimized Ley Line search logic
+- Optimized blossom activation and reward claiming logic
+- Added priority for double rewards (Ley Line Overflow and Stellar Reunion)
 
-## Route
-打钩的代表已制作完成
+### 2.1
+- Refactored blossom localization to fetch in-game coordinates directly, reducing blossom search failures
+- Added option to switch to Friendship party before claiming rewards (requires configuration)
+
+### 2.0
+- Added Fontaine: New Fontaine Research Institute, Lumidouce Harbor (completing all Fontaine routes)
+- Fixed bug misidentifying resin as depleted when Condensed Resin was present
+- Fixed infinite retry loop
+
+### 1.0
+- Initial script release
+
+## Routes
+Checked items indicate completed routes.
+
 ### Mondstadt
 - [x] 1. Windrise
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Hilichurlx3<br>第二波：Hilichurlx1、Electro Hilichurl Shooterx2、Hydro Abyss Magex1
-2 | 第一波：Large Electro Slimex1、Mutant Electro Slimex1、Electro Hilichurl Shooterx1<br>第二波：Large Electro Slimex1、Mutant Electro Slimex1、Hydro Samachurlx1、Cryo Hilichurl Shooterx2
-3 | 第一波：Treasure Hoarders: Scoutx2、Treasure Hoarders: Gravediggerx1、Treasure Hoarders: Electro Potioneerx1<br>第二波：Treasure Hoarders: Marksmanx1、Treasure Hoarders: Handymanx1、Treasure Hoarders: Electro Potioneerx1、Treasure Hoarders: Crusherx1
-4 | 第一波：Wooden Shield Hilichurl Guardx3、Hilichurl Grenadierx1、Pyro Slimex2<br>第二波：Hilichurl Berserkerx4
-5 | 第一波：Large Hydro Slimex2、Cryo Whopperflowerx1<br>第二波：Electro Slimex3、Cryo Whopperflowerx1
+1 | Wave 1: Hilichurl x3<br>Wave 2: Hilichurl x1, Electro Hilichurl Shooter x2, Hydro Abyss Mage x1
+2 | Wave 1: Large Electro Slime x1, Mutant Electro Slime x1, Electro Hilichurl Shooter x1<br>Wave 2: Large Electro Slime x1, Mutant Electro Slime x1, Hydro Samachurl x1, Cryo Hilichurl Shooter x2
+3 | Wave 1: Treasure Hoarders: Scout x2, Treasure Hoarders: Gravedigger x1, Treasure Hoarders: Electro Potioneer x1<br>Wave 2: Treasure Hoarders: Marksman x1, Treasure Hoarders: Handyman x1, Treasure Hoarders: Electro Potioneer x1, Treasure Hoarders: Crusher x1
+4 | Wave 1: Wooden Shield Hilichurl Guard x3, Hilichurl Grenadier x1, Pyro Slime x2<br>Wave 2: Hilichurl Berserker x4
+5 | Wave 1: Large Hydro Slime x2, Cryo Whopperflower x1<br>Wave 2: Electro Slime x3, Cryo Whopperflower x1
 
 - [x] 2. Springvale
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Large Pyro Slimex1、Electro Slimex2<br>第二波：Pyro Whopperflowerx1、Electro Slimex3
-2 | 第一波：Large Pyro Slimex1、Pyro Slimex4<br>第二波：Pyro Whopperflowerx2
-3 | 第一波：Pyro Hilichurl Shooterx2、Anemo Samachurlx1、Large Pyro Slimex1<br>第二波：Hilichurl Grenadierx2、Anemo Samachurlx1、Large Pyro Slimex1
-4-1 | 第一波：Pyro Slimex2、Hilichurl Grenadierx2<br>第二波：Electro Hilichurl Shooterx3、Pyro Abyss Magex1
-4-2/5-1 | 第一波：Eye of the Stormx1
+1 | Wave 1: Large Pyro Slime x1, Electro Slime x2<br>Wave 2: Pyro Whopperflower x1, Electro Slime x3
+2 | Wave 1: Large Pyro Slime x1, Pyro Slime x4<br>Wave 2: Pyro Whopperflower x2
+3 | Wave 1: Pyro Hilichurl Shooter x2, Anemo Samachurl x1, Large Pyro Slime x1<br>Wave 2: Hilichurl Grenadier x2, Anemo Samachurl x1, Large Pyro Slime x1
+4-1 | Wave 1: Pyro Slime x2, Hilichurl Grenadier x2<br>Wave 2: Electro Hilichurl Shooter x3, Pyro Abyss Mage x1
+4-2/5-1 | Wave 1: Eye of the Storm x1
 
+- [x] 3. Wolvendom (Fewer feature points, chance of failure)
 
-- [x] 3. Wolvendom （特征点少，有概率Defeat）
+**Total Ley Line Blossoms: 4**
 
-**地脉花总数：4**
-
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Treasure Hoarders: Scoutx3<br>第二波：Treasure Hoarders: Handymanx2、Treasure Hoarders: Marksmanx2
-2 | 第一波：Ruin Guardx1
-3 | 第一波：Pyro Hilichurl Shooterx2、Wooden Shield Hilichurl Guardx2<br>第二波：火斧Hilichurlx1、Anemo Samachurlx1、Hilichurl Grenadierx3
-4 | 第一波：Wooden Shield Hilichurl Guardx2、Electro Hilichurl Shooterx2、Hilichurl Grenadierx2<br>第二波：Pyro Abyss Magex2
+1 | Wave 1: Treasure Hoarders: Scout x3<br>Wave 2: Treasure Hoarders: Handyman x2, Treasure Hoarders: Marksman x2
+2 | Wave 1: Ruin Guard x1
+3 | Wave 1: Pyro Hilichurl Shooter x2, Wooden Shield Hilichurl Guard x2<br>Wave 2: Blazing Axe Mitachurl x1, Anemo Samachurl x1, Hilichurl Grenadier x3
+4 | Wave 1: Wooden Shield Hilichurl Guard x2, Electro Hilichurl Shooter x2, Hilichurl Grenadier x2<br>Wave 2: Pyro Abyss Mage x2
 
 - [x] 4. Stormterror's Lair
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Treasure Hoarders: Scoutx2、Treasure Hoarders: Handymanx1、Treasure Hoarders: Marksmanx1<br>第二波：Treasure Hoarders: Scoutx2、Treasure Hoarders: Crusherx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Electro Potioneerx1
-2 | 第一波：Ruin Hunterx1
-3 | 第一波：Ruin Guardx1
-4 | 第一波：Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Anemoboxer Vanguardx1<br>第二波：Fatui Skirmisher - Pyroslinger Bracerx2、愚人众先遣队·水锤重卫士x1
+1 | Wave 1: Treasure Hoarders: Scout x2, Treasure Hoarders: Handyman x1, Treasure Hoarders: Marksman x1<br>Wave 2: Treasure Hoarders: Scout x2, Treasure Hoarders: Crusher x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Electro Potioneer x1
+2 | Wave 1: Ruin Hunter x1
+3 | Wave 1: Ruin Guard x1
+4 | Wave 1: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Anemoboxer Vanguard x1<br>Wave 2: Fatui Skirmisher - Pyroslinger Bracer x2, Fatui Skirmisher - Hydrogunner Legionnaire x1
 
 - [x] 5. Temple of the Thousand Winds
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Wooden Shield Hilichurl Guardx2、Electro Hilichurl Shooterx1、Cryo Hilichurl Shooterx1<br>第二波：Electro Hilichurl Shooterx1、Cryo Hilichurl Shooterx1、Hydro Samachurlx1、Wooden Shield Hilichurl Guardx1、Wooden Shieldwall Mitachurlx1
-2 | 第一波：Wooden Shield Hilichurl Guardx2、Hilichurl Berserkerx2<br>第二波：Hilichurl Berserkerx3、Dendro Samachurlx1
-3 | 第一波：Treasure Hoarders: Scoutx4、Treasure Hoarders: Marksmanx1<br>第二波：Treasure Hoarders: Pyro Potioneerx2、Treasure Hoarders: Pugilistx1、Treasure Hoarders: Crusherx1
-4 | 第一波：Electro Slimex2、Hilichurl Berserkerx2、Wooden Shield Hilichurl Guardx1<br>第二波：Electro Slimex2、Hilichurl Grenadierx2、Blazing Axe Mitachurlx1
-5 | 第一波：Wooden Shield Hilichurl Guardx2、Hilichurl Grenadierx2<br>第二波：Hilichurl Grenadierx2、Anemo Samachurlx1、Dendro Samachurlx1
+1 | Wave 1: Wooden Shield Hilichurl Guard x2, Electro Hilichurl Shooter x1, Cryo Hilichurl Shooter x1<br>Wave 2: Electro Hilichurl Shooter x1, Cryo Hilichurl Shooter x1, Hydro Samachurl x1, Wooden Shield Hilichurl Guard x1, Wooden Shieldwall Mitachurl x1
+2 | Wave 1: Wooden Shield Hilichurl Guard x2, Hilichurl Berserker x2<br>Wave 2: Hilichurl Berserker x3, Dendro Samachurl x1
+3 | Wave 1: Treasure Hoarders: Scout x4, Treasure Hoarders: Marksman x1<br>Wave 2: Treasure Hoarders: Pyro Potioneer x2, Treasure Hoarders: Pugilist x1, Treasure Hoarders: Crusher x1
+4 | Wave 1: Electro Slime x2, Hilichurl Berserker x2, Wooden Shield Hilichurl Guard x1<br>Wave 2: Electro Slime x2, Hilichurl Grenadier x2, Blazing Axe Mitachurl x1
+5 | Wave 1: Wooden Shield Hilichurl Guard x2, Hilichurl Grenadier x2<br>Wave 2: Hilichurl Grenadier x2, Anemo Samachurl x1, Dendro Samachurl x1
 
 - [x] 6. Stormbearer Mountains
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Large Cryo Slimex2、Large Hydro Slimex2<br>第二波：Cryo Hilichurl Shooterx2、Hydro Abyss Magex1
-2 | 第一波：Hilichurl Grenadierx2、Anemo Samachurlx2<br>第二波：Electro Hilichurl Shooterx2、Hilichurl Grenadierx1、Blazing Axe Mitachurlx1
-3 | 第一波：Pyro Whopperflowerx2<br>第二波：Electro Hilichurl Shooterx3、Pyro Abyss Magex1
-4 | 第一波：Hilichurl Berserkerx3<br>第二波：Wooden Shieldwall Mitachurlx2、Hydro Samachurlx2
+1 | Wave 1: Large Cryo Slime x2, Large Hydro Slime x2<br>Wave 2: Cryo Hilichurl Shooter x2, Hydro Abyss Mage x1
+2 | Wave 1: Hilichurl Grenadier x2, Anemo Samachurl x2<br>Wave 2: Electro Hilichurl Shooter x2, Hilichurl Grenadier x1, Blazing Axe Mitachurl x1
+3 | Wave 1: Pyro Whopperflower x2<br>Wave 2: Electro Hilichurl Shooter x3, Pyro Abyss Mage x1
+4 | Wave 1: Hilichurl Berserker x3<br>Wave 2: Wooden Shieldwall Mitachurl x2, Hydro Samachurl x2
 
 - [x] 7. Dadaupa Gorge
 
-**地脉花总数：6**
+**Total Ley Line Blossoms: 6**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Wooden Shield Hilichurl Guardx2、Hilichurl Shooterx2<br>第二波：Hydro Abyss Magex1、Cryo Hilichurl Shooterx2
-2 | 第一波：Hilichurl Fighterx3、Hilichurl Grenadierx1<br>第二波：Hilichurl Berserkerx3、Blazing Axe Mitachurlx1
-3 | 第一波：Hilichurl Fighterx2、Wooden Shield Hilichurl Guardx2、Pyro Hilichurl Shooterx1<br>第二波：Blazing Axe Mitachurlx2
-4 | 第一波：Electro Hilichurl Shooterx2、Blazing Axe Mitachurlx1<br>第二波：Pyro Hilichurl Shooterx3、Dendro Samachurlx1
-5 | 第一波：Wooden Shield Hilichurl Guardx2、Hydro Samachurlx1<br>第二波：Wooden Shield Hilichurl Guardx2、Electro Hilichurl Shooterx1、Hydro Abyss Magex1
-6 | 第一波：Large Hydro Slimex2、Cryo Whopperflowerx1<br>第二波：Electro Slimex3、Cryo Whopperflowerx1
+1 | Wave 1: Wooden Shield Hilichurl Guard x2, Hilichurl Shooter x2<br>Wave 2: Hydro Abyss Mage x1, Cryo Hilichurl Shooter x2
+2 | Wave 1: Hilichurl Fighter x3, Hilichurl Grenadier x1<br>Wave 2: Hilichurl Berserker x3, Blazing Axe Mitachurl x1
+3 | Wave 1: Hilichurl Fighter x2, Wooden Shield Hilichurl Guard x2, Pyro Hilichurl Shooter x1<br>Wave 2: Blazing Axe Mitachurl x2
+4 | Wave 1: Electro Hilichurl Shooter x2, Blazing Axe Mitachurl x1<br>Wave 2: Pyro Hilichurl Shooter x3, Dendro Samachurl x1
+5 | Wave 1: Wooden Shield Hilichurl Guard x2, Hydro Samachurl x1<br>Wave 2: Wooden Shield Hilichurl Guard x2, Electro Hilichurl Shooter x1, Hydro Abyss Mage x1
+6 | Wave 1: Large Hydro Slime x2, Cryo Whopperflower x1<br>Wave 2: Electro Slime x3, Cryo Whopperflower x1
 
 ### Liyue
 - [x] 1. Stone Gate
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Treasure Hoarders: Marksmanx2、Treasure Hoarders: Scoutx1、Treasure Hoarders: Crusherx1<br>第二波：Treasure Hoarders: Gravediggerx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Scoutx1、Treasure Hoarders: Marksmanx1
-2 | 第一波：Large Geo Slimex1、Geo Slimex3<br>第二波：Large Geo Slimex2、Geo Slimex2
-3 | 第一波：Pyro Abyss Magex1、Electro Hilichurl Shooterx2<br>第二波：火斧Hilichurl暴徒x1、Cryo Hilichurl Shooterx2、水Hilichurl萨满x1
-4 | 第一波：Wooden Shieldwall Mitachurlx2<br>第二波：Rock Shieldwall Mitachurlx2
-5 | 第一波：岩Hilichurl萨满x2、Hilichurl Grenadier投手x2<br>第二波：Rock Shield Hilichurl Guard暴徒x2
+1 | Wave 1: Treasure Hoarders: Marksman x2, Treasure Hoarders: Scout x1, Treasure Hoarders: Crusher x1<br>Wave 2: Treasure Hoarders: Gravedigger x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Scout x1, Treasure Hoarders: Marksman x1
+2 | Wave 1: Large Geo Slime x1, Geo Slime x3<br>Wave 2: Large Geo Slime x2, Geo Slime x2
+3 | Wave 1: Pyro Abyss Mage x1, Electro Hilichurl Shooter x2<br>Wave 2: Blazing Axe Mitachurl x1, Cryo Hilichurl Shooter x2, Hydro Samachurl x1
+4 | Wave 1: Wooden Shieldwall Mitachurl x2<br>Wave 2: Rock Shieldwall Mitachurl x2
+5 | Wave 1: Geo Samachurl x2, Hilichurl Grenadier x2<br>Wave 2: Rock Shieldwall Mitachurl x2
 
 - [x] 2. Sal Terrae
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Hilichurl Berserkerx2、Hilichurl Grenadierx1、草Hilichurl萨满x1<br>第二波：Electro Hilichurl Shooterx2、Pyro Abyss Magex1
-2 | 第一波：Hydro Cicinx3、Large Cryo Slimex1、Cryo Slimex1<br>第二波：雷Cicin Magex1
-3 | 第一波：岩盔Lawachurlx1
-4 | 第一波：Pyro Hilichurl Shooterx2、Hilichurl Berserkerx1、岩Hilichurl萨满x1<br>第二波：Electro Hilichurl Shooterx4、岩Hilichurl萨满x1
+1 | Wave 1: Hilichurl Berserker x2, Hilichurl Grenadier x1, Dendro Samachurl x1<br>Wave 2: Electro Hilichurl Shooter x2, Pyro Abyss Mage x1
+2 | Wave 1: Hydro Cicin x3, Large Cryo Slime x1, Cryo Slime x1<br>Wave 2: Electro Cicin Mage x1
+3 | Wave 1: Stonehide Lawachurl x1
+4 | Wave 1: Pyro Hilichurl Shooter x2, Hilichurl Berserker x1, Geo Samachurl x1<br>Wave 2: Electro Hilichurl Shooter x4, Geo Samachurl x1
 
 - [x] 3. Yaoguang Shoal
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Hydro Slimex2、Cryo Whopperflowerx1<br>第二波：Hydro Cicinx3、雷Cicin Magex1
-2 | 第一波：Ruin Guardx1
-3 | 第一波：Treasure Hoarder·拳术师x1、Treasure Hoarders: Marksmanx2、Treasure Hoarders: Pyro Potioneerx1<br>第二波：Treasure Hoarders: Scoutx1、Treasure Hoarders: Handymanx1、Treasure Hoarders: Marksmanx1、Treasure Hoarders: Seamanx1
-4 | 第一波：Cryo Hilichurl Shooterx2、Electro Hilichurl Shooterx1<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx1、水Hilichurl萨满x1
-5 | 第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
-
+1 | Wave 1: Hydro Slime x2, Cryo Whopperflower x1<br>Wave 2: Hydro Cicin x3, Electro Cicin Mage x1
+2 | Wave 1: Ruin Guard x1
+3 | Wave 1: Treasure Hoarders: Pugilist x1, Treasure Hoarders: Marksman x2, Treasure Hoarders: Pyro Potioneer x1<br>Wave 2: Treasure Hoarders: Scout x1, Treasure Hoarders: Handyman x1, Treasure Hoarders: Marksman x1, Treasure Hoarders: Seaman x1
+4 | Wave 1: Cryo Hilichurl Shooter x2, Electro Hilichurl Shooter x1<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x1, Hydro Samachurl x1
+5 | Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
 - [x] 4. Liyue Harbor
 
-**地脉花总数：7**
+**Total Ley Line Blossoms: 7**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Geovishap Hatchlingx2<br>第二波：Geovishap Hatchlingx2
-2 | 第一波：岩盔Lawachurlx1
-3 | 第一波：Fatui Skirmisher - Hydrogunner Legionnairex1、Fatui Skirmisher - Cryogunner Legionnairex1<br>第二波：Fatui Skirmisher - Anemoboxer Vanguardx1、Fatui Skirmisher - Electrohammer Vanguardx1
-4 | 第一波：Large Geo Slimex1、Geo Slimex4<br>第二波：Large Geo Slimex3
-5 | 第一波：Ruin Guardx1
-6 | 第一波：Cryo Hilichurl Shooterx2、Electro Hilichurl Shooterx1<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx1、水Hilichurl萨满x1
-7 | 第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
+1 | Wave 1: Geovishap Hatchling x2<br>Wave 2: Geovishap Hatchling x2
+2 | Wave 1: Stonehide Lawachurl x1
+3 | Wave 1: Fatui Skirmisher - Hydrogunner Legionnaire x1, Fatui Skirmisher - Cryogunner Legionnaire x1<br>Wave 2: Fatui Skirmisher - Anemoboxer Vanguard x1, Fatui Skirmisher - Electrohammer Vanguard x1
+4 | Wave 1: Large Geo Slime x1, Geo Slime x4<br>Wave 2: Large Geo Slime x3
+5 | Wave 1: Ruin Guard x1
+6 | Wave 1: Cryo Hilichurl Shooter x2, Electro Hilichurl Shooter x1<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x1, Hydro Samachurl x1
+7 | Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
 - [x] 5. Mt. Tianheng
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Ruin Hunterx1
-2 | 第一波：Large Electro Slimex1、Mutant Electro Slimex1<br>第二波：Large Cryo Slimex1、Cryo Slimex3
-3 | 第一波：Hydro Abyss Magex1、Cryo Slimex2<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx2
-分支Route1：|
-4 | 第一波：Rock Shield Hilichurl Guardx4<br>第二波：Rock Shield Hilichurl Guard暴徒x2
-分支Route2：|
-4 | 第一波：Blazing Axe Mitachurlx2<br>第二波：Rock Shieldwall Mitachurlx1、Geo Samachurlx1、Hilichurl Grenadierx2
- 
+1 | Wave 1: Ruin Hunter x1
+2 | Wave 1: Large Electro Slime x1, Mutant Electro Slime x1<br>Wave 2: Large Cryo Slime x1, Cryo Slime x3
+3 | Wave 1: Hydro Abyss Mage x1, Cryo Slime x2<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x2
+Branch Route 1: |
+4 | Wave 1: Rock Shield Hilichurl Guard x4<br>Wave 2: Rock Shieldwall Mitachurl x2
+Branch Route 2: |
+4 | Wave 1: Blazing Axe Mitachurl x2<br>Wave 2: Rock Shieldwall Mitachurl x1, Geo Samachurl x1, Hilichurl Grenadier x2
+
 - [x] 6. Mt. Aocang
 
-**地脉花总数：7/9**
+**Total Ley Line Blossoms: 7/9**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Pyro Slimex3、Pyro Whopperflowerx1<br>第二波：Cryo Slimex3、Cryo Whopperflowerx1
-2 | 第一波：Fatui Pyro Agentx1
-3 | 第一波：Electro Slimex4、Pyro Whopperflowerx1<br>第二波：Large Geo Slimex2、Pyro Whopperflowerx1
-4 | 第一波：Electro Slimex3、Hilichurl Berserkerx2、Rock Shield Hilichurl Guardx1<br>第二波：Pyro Slimex2、Hilichurl Grenadierx2、Rock Shield Hilichurl Guardx2
-分支Route1：| 
-5 | 第一波：Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Cryogunner Legionnairex1<br>第二波：Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Pyroslinger Bracerx1、Fatui Skirmisher - Geochanter Bracerx1
-6 | 第一波：岩盔Lawachurlx1
-7 | 第一波：雷Cicin Magex1、Electro Cicinx3
-分支Route2：|
-5 | 第一波：Electro Cicinx2、Fatui Pyro Agentx1
-6 | 第一波：Rock Shield Hilichurl Guardx1、Pyro Hilichurl Shooterx3<br>第二波：火斧Hilichurl暴徒x1、Hilichurl Grenadier投手x2
-7 | 第一波：Large Electro Slimex1、Electro Slimex3、Hydro Slimex2<br>第二波：Large Electro Slimex1、Mutant Electro Slimex1、Electro Slimex3、Large Hydro Slimex2
-8 | 第一波：Large Cryo Slimex2<br>第二波：Large Hydro Slimex3
-9 | 第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
+1 | Wave 1: Pyro Slime x3, Pyro Whopperflower x1<br>Wave 2: Cryo Slime x3, Cryo Whopperflower x1
+2 | Wave 1: Fatui Pyro Agent x1
+3 | Wave 1: Electro Slime x4, Pyro Whopperflower x1<br>Wave 2: Large Geo Slime x2, Pyro Whopperflower x1
+4 | Wave 1: Electro Slime x3, Hilichurl Berserker x2, Rock Shield Hilichurl Guard x1<br>Wave 2: Pyro Slime x2, Hilichurl Grenadier x2, Rock Shield Hilichurl Guard x2
+Branch Route 1: | 
+5 | Wave 1: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Cryogunner Legionnaire x1<br>Wave 2: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Pyroslinger Bracer x1, Fatui Skirmisher - Geochanter Bracer x1
+6 | Wave 1: Stonehide Lawachurl x1
+7 | Wave 1: Electro Cicin Mage x1, Electro Cicin x3
+Branch Route 2: |
+5 | Wave 1: Electro Cicin x2, Fatui Pyro Agent x1
+6 | Wave 1: Rock Shield Hilichurl Guard x1, Pyro Hilichurl Shooter x3<br>Wave 2: Blazing Axe Mitachurl x1, Hilichurl Grenadier x2
+7 | Wave 1: Large Electro Slime x1, Electro Slime x3, Hydro Slime x2<br>Wave 2: Large Electro Slime x1, Mutant Electro Slime x1, Electro Slime x3, Large Hydro Slime x2
+8 | Wave 1: Large Cryo Slime x2<br>Wave 2: Large Hydro Slime x3
+9 | Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
 - [x] 7. Dunyu Ruins
 
-**地脉花总数：7**
+**Total Ley Line Blossoms: 7**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Electro Cicinx3、Hydro Cicinx3<br>第二波：雷Cicin Magex1
-2 | 第一波：Treasure Hoarders: Electro Potioneerx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Marksmanx1、Treasure Hoarder·拳术师x1<br>第二波：Treasure Hoarder·拳术师x1、Treasure Hoarders: Handymanx1、Treasure Hoarders: Electro Potioneerx1、Treasure Hoarders: Pyro Potioneerx1
-3 | 第一波：Large Cryo Slimex2<br>第二波：Cryo Whopperflowerx1、Large Hydro Slimex2
-4 | 第一波：Pyro Abyss Magex1、Electro Hilichurl Shooterx2<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx3
-5 | 第一波：Large Cryo Slimex2<br>第二波：Large Hydro Slimex3
-6 | 第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
+1 | Wave 1: Electro Cicin x3, Hydro Cicin x3<br>Wave 2: Electro Cicin Mage x1
+2 | Wave 1: Treasure Hoarders: Electro Potioneer x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Marksman x1, Treasure Hoarders: Pugilist x1<br>Wave 2: Treasure Hoarders: Pugilist x1, Treasure Hoarders: Handyman x1, Treasure Hoarders: Electro Potioneer x1, Treasure Hoarders: Pyro Potioneer x1
+3 | Wave 1: Large Cryo Slime x2<br>Wave 2: Cryo Whopperflower x1, Large Hydro Slime x2
+4 | Wave 1: Pyro Abyss Mage x1, Electro Hilichurl Shooter x2<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x3
+5 | Wave 1: Large Cryo Slime x2<br>Wave 2: Large Hydro Slime x3
+6 | Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
-- [x] 8. Nantianmen南
+- [x] 8. Nantianmen South
 
-**地脉花总数：7**
+**Total Ley Line Blossoms: 7**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Ruin Guardx2
-2 | 第一波：岩盔Lawachurlx1
-3 | 第一波：火斧Hilichurl暴徒x2<br>第二波：Pyro Abyss Magex1、Hilichurl Berserkerx3
-4 | 第一波：Large Electro Slimex1、Electro Slimex4<br>第二波：Pyro Whopperflowerx1、Electro Slimex4
-5 | 第一波：Pyro Abyss Magex1、Electro Hilichurl Shooterx2<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx3
-6 | 第一波：Large Cryo Slimex2<br>第二波：Large Hydro Slimex3
-7 | 植物：烈焰花x4<br>第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
+1 | Wave 1: Ruin Guard x2
+2 | Wave 1: Stonehide Lawachurl x1
+3 | Wave 1: Blazing Axe Mitachurl x2<br>Wave 2: Pyro Abyss Mage x1, Hilichurl Berserker x3
+4 | Wave 1: Large Electro Slime x1, Electro Slime x4<br>Wave 2: Pyro Whopperflower x1, Electro Slime x4
+5 | Wave 1: Pyro Abyss Mage x1, Electro Hilichurl Shooter x2<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x3
+6 | Wave 1: Large Cryo Slime x2<br>Wave 2: Large Hydro Slime x3
+7 | Plants: Flaming Flower x4<br>Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
-- [x] 9. Nantianmen东
+- [x] 9. Nantianmen East
 
-**地脉花总数：2**
+**Total Ley Line Blossoms: 2**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Pyro Whopperflowerx1、Pyro Slimex3<br>第二波：Geo Slimex4<br>第三波：Large Geo Slimex1、Geo Slimex2
-2 | 第一波：Fatui Pyro Agentx1
-分支Route1：| 
-3 | 第一波：Treasure Hoarderx4<br>第二波：Treasure Hoarderx4
-分支Route2：|
-3 | 第一波：Ruin Hunterx1
-4 | 第一波：火斧Hilichurl暴徒x1、Pyro Hilichurl Shooterx2<br>第二波：Anemo Samachurlx1、Electro Hilichurl Shooterx3
+1 | Wave 1: Pyro Whopperflower x1, Pyro Slime x3<br>Wave 2: Geo Slime x4<br>Wave 3: Large Geo Slime x1, Geo Slime x2
+2 | Wave 1: Fatui Pyro Agent x1
+Branch Route 1: | 
+3 | Wave 1: Treasure Hoarder x4<br>Wave 2: Treasure Hoarder x4
+Branch Route 2: |
+3 | Wave 1: Ruin Hunter x1
+4 | Wave 1: Blazing Axe Mitachurl x1, Pyro Hilichurl Shooter x2<br>Wave 2: Anemo Samachurl x1, Electro Hilichurl Shooter x3
 
 - [x] 10. Jueyun Karst
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Rock Shield Hilichurl Guardx4、Hilichurl Grenadier投手x1<br>第二波：水Hilichurl萨满x2、Cryo Abyss Magex1
-2 | 第一波：Rock Shield Hilichurl Guardx1、Pyro Hilichurl Shooterx3<br>第二波：火斧Hilichurl暴徒x1、Hilichurl Grenadier投手x2
-3 | 第一波：Large Electro Slimex1、Electro Slimex3、Hydro Slimex2<br>第二波：Large Electro Slimex1、Mutant Electro Slimex1、Electro Slimex3、Large Hydro Slimex2
-4 | 第一波：Large Cryo Slimex2<br>第二波：Large Hydro Slimex3
-5 | 第一波：Large Pyro Slimex2、Pyro Slimex3<br>第二波：Pyro Whopperflowerx2
+1 | Wave 1: Rock Shield Hilichurl Guard x4, Hilichurl Grenadier x1<br>Wave 2: Hydro Samachurl x2, Cryo Abyss Mage x1
+2 | Wave 1: Rock Shield Hilichurl Guard x1, Pyro Hilichurl Shooter x3<br>Wave 2: Blazing Axe Mitachurl x1, Hilichurl Grenadier x2
+3 | Wave 1: Large Electro Slime x1, Electro Slime x3, Hydro Slime x2<br>Wave 2: Large Electro Slime x1, Mutant Electro Slime x1, Electro Slime x3, Large Hydro Slime x2
+4 | Wave 1: Large Cryo Slime x2<br>Wave 2: Large Hydro Slime x3
+5 | Wave 1: Large Pyro Slime x2, Pyro Slime x3<br>Wave 2: Pyro Whopperflower x2
 
 - [x] 11. Qingce Village
 
-**地脉花总数：6**
+**Total Ley Line Blossoms: 6**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Large Cryo Slimex1、Large Hydro Slimex2<br>第二波：Large Electro Slimex1、Mutant Electro Slimex1、Large Pyro Slimex1
-2 | 第一波：Treasure Hoarders: Marksmanx1、Treasure Hoarders: Handymanx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Scoutx1<br>第二波：Treasure Hoarders: Scoutx1、Treasure Hoarders: Gravediggerx1、Treasure Hoarders: Crusherx1
-3 | 第一波：Rock Shield Hilichurl Guardx1、Electro Hilichurl Shooterx1、Cryo Hilichurl Shooterx2<br>第二波：Electro Hilichurl Shooterx2、Cryo Abyss Magex1
-4 | 第一波：Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Cryogunner Legionnairex1<br>第二波：Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Pyroslinger Bracerx1、Fatui Skirmisher - Geochanter Bracerx1
-5 | 第一波：岩盔Lawachurlx1
-6 | 第一波：雷Cicin Magex1、Electro Cicinx3
+1 | Wave 1: Large Cryo Slime x1, Large Hydro Slime x2<br>Wave 2: Large Electro Slime x1, Mutant Electro Slime x1, Large Pyro Slime x1
+2 | Wave 1: Treasure Hoarders: Marksman x1, Treasure Hoarders: Handyman x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Scout x1<br>Wave 2: Treasure Hoarders: Scout x1, Treasure Hoarders: Gravedigger x1, Treasure Hoarders: Crusher x1
+3 | Wave 1: Rock Shield Hilichurl Guard x1, Electro Hilichurl Shooter x1, Cryo Hilichurl Shooter x2<br>Wave 2: Electro Hilichurl Shooter x2, Cryo Abyss Mage x1
+4 | Wave 1: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Cryogunner Legionnaire x1<br>Wave 2: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Pyroslinger Bracer x1, Fatui Skirmisher - Geochanter Bracer x1
+5 | Wave 1: Stonehide Lawachurl x1
+6 | Wave 1: Electro Cicin Mage x1, Electro Cicin x3
 
-- [ ] 12. Guyun Stone Forest（特征点少，录制困难）
+- [ ] 12. Guyun Stone Forest (Fewer feature points, difficult to record)
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Large Cryo Slimex2、Cryo Slimex3<br>第二波：Cryo Whopperflowerx2
-2 | 第一波：岩盔Lawachurlx1
-3 | 第一波：Fatui Skirmisher - Hydrogunner Legionnairex1、Fatui Skirmisher - Cryogunner Legionnairex1、Fatui Skirmisher - Anemoboxer Vanguardx1<br>第二波：Fatui Pyro Agentx1
-4 | 第一波：Hydro Abyss Magex1、Cryo Hilichurl Shooterx3<br>第二波：Cryo Abyss Magex1、Electro Hilichurl Shooterx2
+1 | Wave 1: Large Cryo Slime x2, Cryo Slime x3<br>Wave 2: Cryo Whopperflower x2
+2 | Wave 1: Stonehide Lawachurl x1
+3 | Wave 1: Fatui Skirmisher - Hydrogunner Legionnaire x1, Fatui Skirmisher - Cryogunner Legionnaire x1, Fatui Skirmisher - Anemoboxer Vanguard x1<br>Wave 2: Fatui Pyro Agent x1
+4 | Wave 1: Hydro Abyss Mage x1, Cryo Hilichurl Shooter x3<br>Wave 2: Cryo Abyss Mage x1, Electro Hilichurl Shooter x2
 
 - [x] 13. Mt. Xuanlian
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Hilichurlx3、Blazing Axe Mitachurlx1<br>第二波：Rock Shieldwall Mitachurlx2
-2 | 第一波：Electro Slimex2、Large Electro Slimex2<br>第二波：Large Hydro Slimex2
-3 | 第一波：Xuanwen Beastx2<br>第二波：Xuanwen Beastx2
-4 | 第一波：Hilichurlx2、Rock Shield Hilichurl Guardx1、Hilichurl Berserkerx1、Hilichurl Grenadierx1<br>第二波：Blazing Axe Mitachurlx2
+1 | Wave 1: Hilichurl x3, Blazing Axe Mitachurl x1<br>Wave 2: Rock Shieldwall Mitachurl x2
+2 | Wave 1: Electro Slime x2, Large Electro Slime x2<br>Wave 2: Large Hydro Slime x2
+3 | Wave 1: Xuanwen Beast x2<br>Wave 2: Xuanwen Beast x2
+4 | Wave 1: Hilichurl x2, Rock Shield Hilichurl Guard x1, Hilichurl Berserker x1, Hilichurl Grenadier x1<br>Wave 2: Blazing Axe Mitachurl x2
 
 - [x] 14. Yaodie Valley
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Ruin Guardx2<br>第二波：Ruin Hunterx1
-2 | 第一波：Xuanwen Beastx2<br>第二波：Xuanwen Beastx2
-3 | 第一波：Hilichurlx3、Blazing Axe Mitachurlx1<br>第二波：Rock Shieldwall Mitachurlx2
-4 | 第一波：Xuanwen Beastx2<br>第二波：Xuanwen Beastx2
+1 | Wave 1: Ruin Guard x2<br>Wave 2: Ruin Hunter x1
+2 | Wave 1: Xuanwen Beast x2<br>Wave 2: Xuanwen Beast x2
+3 | Wave 1: Hilichurl x3, Blazing Axe Mitachurl x1<br>Wave 2: Rock Shieldwall Mitachurl x2
+4 | Wave 1: Xuanwen Beast x2<br>Wave 2: Xuanwen Beast x2
 
 ### Inazuma
 - [x] 1. Narukami Island
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Ruin Cruiserx2<br>第二波：Ruin Destroyerx2
-2 | 第一波：Hydro Slimex5<br>第二波：Large Hydro Slimex2
-3 | 第一波：Nobushi: Kikoubanx1、Nobushi: Hitsukebanx1、Nobushi: Jintoubanx1
-4 | 第一波：Kairagi: Fiery Mightx1、Kairagi: Dancing Thunderx1
+1 | Wave 1: Ruin Cruiser x2<br>Wave 2: Ruin Destroyer x2
+2 | Wave 1: Hydro Slime x5<br>Wave 2: Large Hydro Slime x2
+3 | Wave 1: Nobushi: Kikouban x1, Nobushi: Hitsukeban x1, Nobushi: Jintouban x1
+4 | Wave 1: Kairagi: Fiery Might x1, Kairagi: Dancing Thunder x1
 
 - [x] 2. Tatarasuna
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Fatui Electro Cicin Magex1、Mirror Maidenx1<br>第二波：Fatui Cryo Cicin Magex1、Mirror Maidenx1
-2 | 第一波：Fatui Skirmisher - Geochanter Bracerx1、Fatui Skirmisher - Anemoboxer Vanguardx1<br>第二波：Fatui Pyro Agentx1、Mirror Maidenx1
-3 | 第一波：Treasure Hoarders: Hydro Potioneerx2、Treasure Hoarders: Seamanx2<br>第二波：Treasure Hoarders: Gravediggerx1、Treasure Hoarders: Crusherx1
-4 | 第一波：Ruin Scoutx1、Ruin Defenderx1<br>第二波：Ruin Destroyerx1、Ruin Cruiserx1
-5 | 第一波：Kairagi: Dancing Thunderx1、Nobushi: Jintoubanx1、Treasure Hoarders: Cryo Potioneerx1、Treasure Hoarders: Hydro Potioneerx1<br>第二波：Kairagi: Dancing Thunderx1、Treasure Hoarders: Seamanx1
+1 | Wave 1: Fatui Electro Cicin Mage x1, Mirror Maiden x1<br>Wave 2: Fatui Cryo Cicin Mage x1, Mirror Maiden x1
+2 | Wave 1: Fatui Skirmisher - Geochanter Bracer x1, Fatui Skirmisher - Anemoboxer Vanguard x1<br>Wave 2: Fatui Pyro Agent x1, Mirror Maiden x1
+3 | Wave 1: Treasure Hoarders: Hydro Potioneer x2, Treasure Hoarders: Seaman x2<br>Wave 2: Treasure Hoarders: Gravedigger x1, Treasure Hoarders: Crusher x1
+4 | Wave 1: Ruin Scout x1, Ruin Defender x1<br>Wave 2: Ruin Destroyer x1, Ruin Cruiser x1
+5 | Wave 1: Kairagi: Dancing Thunder x1, Nobushi: Jintouban x1, Treasure Hoarders: Cryo Potioneer x1, Treasure Hoarders: Hydro Potioneer x1<br>Wave 2: Kairagi: Dancing Thunder x1, Treasure Hoarders: Seaman x1
 
 - [x] 3. Yashiori Island
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Kairagi: Fiery Mightx1、Kairagi: Dancing Thunderx1
-2 | 第一波：Ruin Destroyerx3
-3 | 第一波：Nobushi: Kikoubanx1、Nobushi: Hitsukebanx1、Nobushi: Jintoubanx1<br>第二波：Nobushi: Kikoubanx1、Nobushi: Hitsukebanx1、Nobushi: Jintoubanx1
-4 | 第一波：Ruin Destroyerx3
-
+1 | Wave 1: Kairagi: Fiery Might x1, Kairagi: Dancing Thunder x1
+2 | Wave 1: Ruin Destroyer x3
+3 | Wave 1: Nobushi: Kikouban x1, Nobushi: Hitsukeban x1, Nobushi: Jintouban x1<br>Wave 2: Nobushi: Kikouban x1, Nobushi: Hitsukeban x1, Nobushi: Jintouban x1
+4 | Wave 1: Ruin Destroyer x3
 
 - [x] 4. Watatsumi Island
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Electro Samachurlx1、Electro Hilichurl Grenadierx3<br>第二波：Electro Abyss Magex2
-2 | 第一波：Anemo Specterx3、Large Anemo Slimex1<br>第二波：Hydro Specterx3、Large Hydro Slimex1
-3 | 第一波：Nobushi: Hitsukebanx1、Nobushi: Jintoubanx2<br>第二波：Kairagi: Fiery Mightx1、Kairagi: Dancing Thunderx1
-4 | 第一波：Fatui Skirmisher - Cryogunner Legionnairex1、Fatui Skirmisher - Hydrogunner Legionnairex1<br>第二波：Fatui Electro Cicin Magex1、Fatui Cryo Cicin Magex1
-5 | 第一波：Fatui Skirmisher - Cryogunner Legionnairex1、Fatui Skirmisher - Electrohammer Vanguardx1<br>第二波：Fatui Skirmisher - Anemoboxer Vanguardx1、Fatui Skirmisher - Hydrogunner Legionnairex1、Fatui Skirmisher - Geochanter Bracerx1
+1 | Wave 1: Electro Samachurl x1, Electro Hilichurl Grenadier x3<br>Wave 2: Electro Abyss Mage x2
+2 | Wave 1: Anemo Specter x3, Large Anemo Slime x1<br>Wave 2: Hydro Specter x3, Large Hydro Slime x1
+3 | Wave 1: Nobushi: Hitsukeban x1, Nobushi: Jintouban x2<br>Wave 2: Kairagi: Fiery Might x1, Kairagi: Dancing Thunder x1
+4 | Wave 1: Fatui Skirmisher - Cryogunner Legionnaire x1, Fatui Skirmisher - Hydrogunner Legionnaire x1<br>Wave 2: Fatui Electro Cicin Mage x1, Fatui Cryo Cicin Mage x1
+5 | Wave 1: Fatui Skirmisher - Cryogunner Legionnaire x1, Fatui Skirmisher - Electrohammer Vanguard x1<br>Wave 2: Fatui Skirmisher - Anemoboxer Vanguard x1, Fatui Skirmisher - Hydrogunner Legionnaire x1, Fatui Skirmisher - Geochanter Bracer x1
 
 - [x] 5. Seirai Island
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Electro Samachurlx1、Electro Hilichurl Grenadierx3<br>第二波：Electro Abyss Magex2
-2 | 第一波：Anemo Specterx3、Large Anemo Slimex1<br>第二波：Hydro Specterx3、Large Hydro Slimex1
-3 | 第一波：Nobushi: Hitsukebanx1、Nobushi: Jintoubanx2<br>第二波：Kairagi: Fiery Mightx1、Kairagi: Dancing Thunderx1
-4 | 第一波：Fatui Skirmisher - Cryogunner Legionnairex1、Fatui Skirmisher - Hydrogunner Legionnairex1<br>第二波：Fatui Electro Cicin Magex1、Fatui Cryo Cicin Magex1
-5 | 第一波：Fatui Skirmisher - Cryogunner Legionnairex1、Fatui Skirmisher - Electrohammer Vanguardx1<br>第二波：Fatui Skirmisher - Anemoboxer Vanguardx1、Fatui Skirmisher - Hydrogunner Legionnairex1、Fatui Skirmisher - Geochanter Bracerx1
-
+1 | Wave 1: Electro Samachurl x1, Electro Hilichurl Grenadier x3<br>Wave 2: Electro Abyss Mage x2
+2 | Wave 1: Anemo Specter x3, Large Anemo Slime x1<br>Wave 2: Hydro Specter x3, Large Hydro Slime x1
+3 | Wave 1: Nobushi: Hitsukeban x1, Nobushi: Jintouban x2<br>Wave 2: Kairagi: Fiery Might x1, Kairagi: Dancing Thunder x1
+4 | Wave 1: Fatui Skirmisher - Cryogunner Legionnaire x1, Fatui Skirmisher - Hydrogunner Legionnaire x1<br>Wave 2: Fatui Electro Cicin Mage x1, Fatui Cryo Cicin Mage x1
+5 | Wave 1: Fatui Skirmisher - Cryogunner Legionnaire x1, Fatui Skirmisher - Electrohammer Vanguard x1<br>Wave 2: Fatui Skirmisher - Anemoboxer Vanguard x1, Fatui Skirmisher - Hydrogunner Legionnaire x1, Fatui Skirmisher - Geochanter Bracer x1
 
 ### Sumeru
 - [x] 1. Mawtiyima Forest
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Hydro Slimex2、Whirling Cryo Fungusx2<br>第二波：Winged Cryoshroomx1
-2 | 第一波：Cryo Slimex4<br>第二波：Large Anemo Slimex2
-3 | Ruin Drake: Skywatchx1
-4 | 第一波：Eremite Crossbowx2、Eremite Linebreakerx1、Eremite Ravenbeak Halberdierx1<br>第二波：Eremite Crossbowx1、Eremite Axe Vanguardx1
-5 | 第一波：Hilichurl Berserkerx2<br>第二波：Hilichurl Berserkerx2、Dendro Samachurlx1
+1 | Wave 1: Hydro Slime x2, Whirling Cryo Fungus x2<br>Wave 2: Winged Cryoshroom x1
+2 | Wave 1: Cryo Slime x4<br>Wave 2: Large Anemo Slime x2
+3 | Ruin Drake: Skywatch x1
+4 | Wave 1: Eremite Crossbow x2, Eremite Linebreaker x1, Eremite Ravenbeak Halberdier x1<br>Wave 2: Eremite Crossbow x1, Eremite Axe Vanguard x1
+5 | Wave 1: Hilichurl Berserker x2<br>Wave 2: Hilichurl Berserker x2, Dendro Samachurl x1
 
 - [x] 2. Port Ormos
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Winged Cryoshroomx1、Whirling Cryo Fungusx2、Stretchy Anemo Fungusx1<br>第二波：Grounded Hydroshroomx2
-2 | 第一波：Winged Dendroshroomx1、Stretchy Pyro Fungusx2、Stretchy Geo Fungusx1<br>第二波：Winged Cryoshroomx2
-3 | 第一波：Winged Dendroshroomx1、Floating Hydro Fungusx2、Whirling Electro Fungusx1<br>第二波：Winged Cryoshroomx2
-4 | 第一波：Eremite Axe Vanguardx2、Eremite Linebreakerx1<br>第二波：Eremite Linebreakerx1、Eremite Sword-Dancerx1
-5 | 第一波：Eremite Crossbowx1、Eremite Sword-Dancerx1、Eremite Ravenbeak Halberdierx1<br>第二波：Eremite Crossbowx2
+1 | Wave 1: Winged Cryoshroom x1, Whirling Cryo Fungus x2, Stretchy Anemo Fungus x1<br>Wave 2: Grounded Hydroshroom x2
+2 | Wave 1: Winged Dendroshroom x1, Stretchy Pyro Fungus x2, Stretchy Geo Fungus x1<br>Wave 2: Winged Cryoshroom x2
+3 | Wave 1: Winged Dendroshroom x1, Floating Hydro Fungus x2, Whirling Electro Fungus x1<br>Wave 2: Winged Cryoshroom x2
+4 | Wave 1: Eremite Axe Vanguard x2, Eremite Linebreaker x1<br>Wave 2: Eremite Linebreaker x1, Eremite Sword-Dancer x1
+5 | Wave 1: Eremite Crossbow x1, Eremite Sword-Dancer x1, Eremite Ravenbeak Halberdier x1<br>Wave 2: Eremite Crossbow x2
 
 - [x] 3. Pardis Dhyai
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Ruin Drake: Earthguardx1<br>第二波：Ruin Drake: Skywatchx1
-2 | 第一波：Winged Cryoshroomx1、Floating Dendro Fungusx2<br>第二波：Winged Dendroshroomx1、Grounded Hydroshroomx1
-3 | 第一波：Eremite Linebreakerx1、Eremite Axe Vanguardx1、Eremite Ravenbeak Halberdierx1<br>第二波：Eremite Crossbowx2、Eremite Linebreakerx1、Eremite Sword-Dancerx1
-4 | 第一波：Stretchy Pyro Fungusx4<br>第二波：Large Pyro Slimex1、Stretchy Pyro Fungusx2、Whirling Electro Fungusx2
+1 | Wave 1: Ruin Drake: Earthguard x1<br>Wave 2: Ruin Drake: Skywatch x1
+2 | Wave 1: Winged Cryoshroom x1, Floating Dendro Fungus x2<br>Wave 2: Winged Dendroshroom x1, Grounded Hydroshroom x1
+3 | Wave 1: Eremite Linebreaker x1, Eremite Axe Vanguard x1, Eremite Ravenbeak Halberdier x1<br>Wave 2: Eremite Crossbow x2, Eremite Linebreaker x1, Eremite Sword-Dancer x1
+4 | Wave 1: Stretchy Pyro Fungus x4<br>Wave 2: Large Pyro Slime x1, Stretchy Pyro Fungus x2, Whirling Electro Fungus x2
 
 - [x] 4. Apam Woods
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Floating Hydro Fungusx3、Stretchy Anemo Fungusx1<br>第二波：Winged Cryoshroomx1
-2 | 第一波：Floating Hydro Fungusx2、Floating Dendro Fungusx2<br>第二波：Winged Dendroshroomx1
-3 | 第一波：Eremite Linebreakerx1、Eremite Crossbowx1、Eremite Ravenbeak Halberdierx1<br>第二波：Eremite Sword-Dancerx1、Eremite Axe Vanguardx1、Eremite Ravenbeak Halberdierx1
-4 | 第一波：Eremite Daythunderx1<br>第二波：Eremite Sunfrostx1
-5 | 第一波：Eremite Linebreakerx1、Eremite Crossbowx1、Eremite Axe Vanguardx1<br>第二波：Eremite Sword-Dancerx1、Eremite Ravenbeak Halberdierx1
+1 | Wave 1: Floating Hydro Fungus x3, Stretchy Anemo Fungus x1<br>Wave 2: Winged Cryoshroom x1
+2 | Wave 1: Floating Hydro Fungus x2, Floating Dendro Fungus x2<br>Wave 2: Winged Dendroshroom x1
+3 | Wave 1: Eremite Linebreaker x1, Eremite Crossbow x1, Eremite Ravenbeak Halberdier x1<br>Wave 2: Eremite Sword-Dancer x1, Eremite Axe Vanguard x1, Eremite Ravenbeak Halberdier x1
+4 | Wave 1: Eremite Daythunder x1<br>Wave 2: Eremite Sunfrost x1
+5 | Wave 1: Eremite Linebreaker x1, Eremite Crossbow x1, Eremite Axe Vanguard x1<br>Wave 2: Eremite Sword-Dancer x1, Eremite Ravenbeak Halberdier x1
 
 - [x] 5. Aaru Village
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Eremite Crossbowx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Marksmanx1<br>第二波：Eremite Ravenbeak Halberdierx1、Eremite Axe Vanguardx1、Treasure Hoarders: Marksmanx1
-2 | 第一波：Stretchy Electro Fungusx1、Whirling Electro Fungusx1、Stretchy Geo Fungusx1<br>第二波：Grounded Geoshroomx1、Stretchy Anemo Fungusx1
-3 | 第一波：Eremite Linebreakerx1、Eremite Sword-Dancerx1、Eremite Axe Vanguardx1、Eremite Crossbowx1<br>第二波：Eremite Sunfrostx1、Eremite Ravenbeak Halberdierx1
-4 | 第一波：Stretchy Pyro Fungusx1、Stretchy Geo Fungusx1、Whirling Pyro Fungusx1<br>第二波：Grounded Geoshroomx2、Stretchy Geo Fungusx1
-5 | 第一波：Eremite Desert Clearwaterx1<br>第二波：Eremite Daythunderx1、Eremite Sunfrostx1
+1 | Wave 1: Eremite Crossbow x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Marksman x1<br>Wave 2: Eremite Ravenbeak Halberdier x1, Eremite Axe Vanguard x1, Treasure Hoarders: Marksman x1
+2 | Wave 1: Stretchy Electro Fungus x1, Whirling Electro Fungus x1, Stretchy Geo Fungus x1<br>Wave 2: Grounded Geoshroom x1, Stretchy Anemo Fungus x1
+3 | Wave 1: Eremite Linebreaker x1, Eremite Sword-Dancer x1, Eremite Axe Vanguard x1, Eremite Crossbow x1<br>Wave 2: Eremite Sunfrost x1, Eremite Ravenbeak Halberdier x1
+4 | Wave 1: Stretchy Pyro Fungus x1, Stretchy Geo Fungus x1, Whirling Pyro Fungus x1<br>Wave 2: Grounded Geoshroom x2, Stretchy Geo Fungus x1
+5 | Wave 1: Eremite Desert Clearwater x1<br>Wave 2: Eremite Daythunder x1, Eremite Sunfrost x1
 
 - [x] 6. Valley of Dahri
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Whirling Pyro Fungusx2、Whirling Electro Fungusx2<br>第二波：Grounded Geoshroomx1、Whirling Pyro Fungusx2
-2 | 第一波：Eremite Ravenbeak Halberdierx2、Eremite Axe Vanguardx1<br>第二波：Eremite Sunfrostx1、Treasure Hoarders: Pyro Potioneerx1
-3 | 第一波：Eremite Sword-Dancerx1、Eremite Ravenbeak Halberdierx1、Eremite Linebreakerx1<br>第二波：Eremite Daythunderx1、Eremite Ravenbeak Halberdierx2
-4 | 第一波：Eremite Axe Vanguardx1、Eremite Ravenbeak Halberdierx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Electro Potioneerx1<br>第二波：Eremite Desert Clearwaterx1、Eremite Crossbowx2
+1 | Wave 1: Whirling Pyro Fungus x2, Whirling Electro Fungus x2<br>Wave 2: Grounded Geoshroom x1, Whirling Pyro Fungus x2
+2 | Wave 1: Eremite Ravenbeak Halberdier x2, Eremite Axe Vanguard x1<br>Wave 2: Eremite Sunfrost x1, Treasure Hoarders: Pyro Potioneer x1
+3 | Wave 1: Eremite Sword-Dancer x1, Eremite Ravenbeak Halberdier x1, Eremite Linebreaker x1<br>Wave 2: Eremite Daythunder x1, Eremite Ravenbeak Halberdier x2
+4 | Wave 1: Eremite Axe Vanguard x1, Eremite Ravenbeak Halberdier x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Electro Potioneer x1<br>Wave 2: Eremite Desert Clearwater x1, Eremite Crossbow x2
 
-- [ ] 7. The Mausoleum of King Deshret （特征点少，录制困难）
+- [ ] 7. The Mausoleum of King Deshret (Fewer feature points, difficult to record)
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Fatui Pyro Agentx1、愚人众·岩使游击兵x1、愚人众·火铳游击兵x1<br>第二波：愚人众·雷锤前锋军x1、愚人众·风拳前锋军x1
-2 | 第一波：Stretchy Geo Fungusx3、Stretchy Pyro Fungusx1<br>第二波：Grounded Geoshroomx1、Whirling Pyro Fungusx2
-3 | 第一波：Primal Construct: Repulsorx1<br>第二波：Primal Construct: Prospectorx1
-4 | 第一波：Eremite Linebreakerx1、Eremite Ravenbeak Halberdierx1、Eremite Crossbowx1、Eremite Axe Vanguardx1<br>第二波：Eremite Galehunterx1
-5 | 第一波：Eremite Stone Enchanterx1、Eremite Daythunderx1<br>第二波：Eremite Galehunterx1、Eremite Desert Clearwaterx1
+1 | Wave 1: Fatui Pyro Agent x1, Fatui Skirmisher - Geochanter Bracer x1, Fatui Skirmisher - Pyroslinger Bracer x1<br>Wave 2: Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Anemoboxer Vanguard x1
+2 | Wave 1: Stretchy Geo Fungus x3, Stretchy Pyro Fungus x1<br>Wave 2: Grounded Geoshroom x1, Whirling Pyro Fungus x2
+3 | Wave 1: Primal Construct: Repulsor x1<br>Wave 2: Primal Construct: Prospector x1
+4 | Wave 1: Eremite Linebreaker x1, Eremite Ravenbeak Halberdier x1, Eremite Crossbow x1, Eremite Axe Vanguard x1<br>Wave 2: Eremite Galehunter x1
+5 | Wave 1: Eremite Stone Enchanter x1, Eremite Daythunder x1<br>Wave 2: Eremite Galehunter x1, Eremite Desert Clearwater x1
 
 - [x] 8. Wounded Shin Valley
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Grounded Geoshroomx1、Stretchy Geo Fungusx1<br>第二波：Winged Dendroshroomx1、Floating Dendro Fungusx1
-2 | 第一波：Primal Construct: Prospectorx1<br>第二波：Primal Construct: Reshaperx1、Primal Construct: Repulsorx1
-3 | 第一波：Eremite Desert Clearwaterx1、Eremite Daythunderx1<br>第二波：Eremite Sunfrostx1、Eremite Scorching Loremasterx1
-4 | 第一波：Flying Serpentx3<br>第二波：Flying Serpentx1、Consecrated Flying Serpentx1
+1 | Wave 1: Grounded Geoshroom x1, Stretchy Geo Fungus x1<br>Wave 2: Winged Dendroshroom x1, Floating Dendro Fungus x1
+2 | Wave 1: Primal Construct: Prospector x1<br>Wave 2: Primal Construct: Reshaper x1, Primal Construct: Repulsor x1
+3 | Wave 1: Eremite Desert Clearwater x1, Eremite Daythunder x1<br>Wave 2: Eremite Sunfrost x1, Eremite Scorching Loremaster x1
+4 | Wave 1: Flying Serpent x3<br>Wave 2: Flying Serpent x1, Consecrated Flying Serpent x1
 
 - [x] 9. Steel Dunes
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Primal Construct: Repulsorx1<br>第二波：Primal Construct: Reshaperx1、Primal Construct: Prospectorx1
-2 | 第一波：Ruin Drake: Earthguard<br>第二波：Ruin Drake: Skywatch
-3 | 第一波：Grounded Geoshroomx1、Whirling Pyro Fungusx1<br>第二波：Grounded Hydroshroomx1、Floating Anemo Fungusx1、Floating Dendro Fungusx1
-4 | 第一波：Eremite Galehunterx1<br>第二波：Eremite Sunfrostx1、Eremite Floral Ring-Dancerx1
+1 | Wave 1: Primal Construct: Repulsor x1<br>Wave 2: Primal Construct: Reshaper x1, Primal Construct: Prospector x1
+2 | Wave 1: Ruin Drake: Earthguard<br>Wave 2: Ruin Drake: Skywatch
+3 | Wave 1: Grounded Geoshroom x1, Whirling Pyro Fungus x1<br>Wave 2: Grounded Hydroshroom x1, Floating Anemo Fungus x1, Floating Dendro Fungus x1
+4 | Wave 1: Eremite Galehunter x1<br>Wave 2: Eremite Sunfrost x1, Eremite Floral Ring-Dancer x1
 
 - [x] 10. Tunigi Hollow
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | Consecrated Scorpionx1
-2 | Eremite Scorching Loremasterx1
-3 | 第一波：Anemo Hilichurl Roguex1、Pyro Hilichurl Shooterx2、Hydro Samachurlx1<br>第二波：Hydro Hilichurl Roguex1、Blazing Axe Mitachurlx1
-4 | Consecrated Red Vulturex1
-
-
+1 | Consecrated Scorpion x1
+2 | Eremite Scorching Loremaster x1
+3 | Wave 1: Anemo Hilichurl Rogue x1, Pyro Hilichurl Shooter x2, Hydro Samachurl x1<br>Wave 2: Hydro Hilichurl Rogue x1, Blazing Axe Mitachurl x1
+4 | Consecrated Red Vulture x1
 
 ### Fontaine
-- [x] 1. ‍West Slopes of Mont Automnequi
+- [x] 1. West Slopes of Mont Automnequi
 
-**地脉花总数：5**
+**Total Ley Line Blossoms: 5**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：机关•侦察Recording型（荒）x4<br>第二波：Suppression Specialist Mek（荒）x2
-2 | 第一波：机关•地质勘探型（荒）x2、机关•灵活采集型（荒）x2<br>第二波：Assault Specialist Mek（荒）x2
-3 | 第一波：Treasure Hoarder•杂工x1、Treasure Hoarder•海上男儿x1、Treasure Hoarder•斥候x2<br>第二波：Treasure Hoarder•火之药剂师x2、Treasure Hoarder•雷之药剂师x1
-4 | 第一波：Sternshield Crabx1、Armored Crabx3<br>第二波：Sternshield Crabx2
-5 | 第一波：Tainted Water-Splitting Phantasmx2<br>第二波：Tainted Water-Splitting Phantasmx1、Tainted Water-Spouting Phantasmx2
+1 | Wave 1: Recon Log Mek (Ousia) x4<br>Wave 2: Suppression Specialist Mek (Ousia) x2
+2 | Wave 1: Geological Survey Mek (Ousia) x2, Nimble Harvester Mek (Ousia) x2<br>Wave 2: Assault Specialist Mek (Ousia) x2
+3 | Wave 1: Treasure Hoarders: Handyman x1, Treasure Hoarders: Seaman x1, Treasure Hoarders: Scout x2<br>Wave 2: Treasure Hoarders: Pyro Potioneer x2, Treasure Hoarders: Electro Potioneer x1
+4 | Wave 1: Sternshield Crab x1, Armored Crab x3<br>Wave 2: Sternshield Crab x2
+5 | Wave 1: Tainted Water-Splitting Phantasm x2<br>Wave 2: Tainted Water-Splitting Phantasm x1, Tainted Water-Spouting Phantasm x2
 
-- [x] 2. ‍芒索斯山东麓
+- [x] 2. Eastern Slopes of Mont Esus
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：侦察Recording型·荒x1，压制特化型·荒（火）x1<br>第二波：侦察Recording型·荒x1，歼灭特化型·荒（水）x1
-2 | 第一波：风拳x1，霜役人x1<br>第二波：火枪x1，Wind Operativex1
-3 | 第一波：算力增幅器·芒x1，建造特化型·芒（火）x1<br>第二波：算力增幅器·芒x1，攻坚特化型·芒（火）x1
-4 | 第一波：火枪x1，雷莹x1<br>第二波：Wind Operativex1，霜役人x1
+1 | Wave 1: Recon Log Mek (Ousia) x1, Suppression Specialist Mek (Ousia - Pyro) x1<br>Wave 2: Recon Log Mek (Ousia) x1, Annihilation Specialist Mek (Ousia - Hydro) x1
+2 | Wave 1: Fatui Skirmisher - Anemoboxer Vanguard x1, Frost Operative x1<br>Wave 2: Fatui Skirmisher - Pyroslinger Bracer x1, Wind Operative x1
+3 | Wave 1: Arithmetic Enhancer Mek (Pneuma) x1, Construction Specialist Mek (Pneuma - Pyro) x1<br>Wave 2: Arithmetic Enhancer Mek (Pneuma) x1, Assault Specialist Mek (Pneuma - Pyro) x1
+4 | Wave 1: Fatui Skirmisher - Pyroslinger Bracer x1, Electro Cicin Mage x1<br>Wave 2: Wind Operative x1, Frost Operative x1
 
-- [x] 3. ‍New Fontaine Research Institute
+- [x] 3. New Fontaine Research Institute
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：灵活采集型·荒x2，压制特化型·荒（火）x1<br>第二波：攻坚特化型·荒（雷）x1
-2 | 第一波：地质勘探型·芒x2，歼灭特化型·芒（雷）x1<br>第二波：歼灭特化型·芒（雷）x1
-3 | 第一波：歼灭特化型·芒（雷）x1，压制特化型·芒（草）x1<br>第二波：歼灭特化型·芒（雷）x1
-4 | 第一波：算力增幅型·荒x1，侦察Recording型·荒x2<br>第二波：建造特化型·荒（冰）x1，灵活采集型·荒x1
+1 | Wave 1: Nimble Harvester Mek (Ousia) x2, Suppression Specialist Mek (Ousia - Pyro) x1<br>Wave 2: Assault Specialist Mek (Ousia - Electro) x1
+2 | Wave 1: Geological Survey Mek (Pneuma) x2, Annihilation Specialist Mek (Pneuma - Electro) x1<br>Wave 2: Annihilation Specialist Mek (Pneuma - Electro) x1
+3 | Wave 1: Annihilation Specialist Mek (Pneuma - Electro) x1, Suppression Specialist Mek (Pneuma - Dendro) x1<br>Wave 2: Annihilation Specialist Mek (Pneuma - Electro) x1
+4 | Wave 1: Arithmetic Enhancer Mek (Ousia) x1, Recon Log Mek (Ousia) x2<br>Wave 2: Construction Specialist Mek (Ousia - Cryo) x1, Nimble Harvester Mek (Ousia) x1
 
-- [x] 4. ‍Lumidouce Harbor
+- [x] 4. Lumidouce Harbor
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Tainted Water-Splitting Phantasmx2<br>第二波：Tainted Water-Splitting Phantasmx2
-2 | 第一波：Tainted Water-Spouting Phantasmx2<br>第二波：Tainted Water-Spouting Phantasmx2
-3 | 第一波：Armored Crabx5<br>第二波：Sternshield Crabx2
-4 | 第一波：Cherubic Sea Harex2<br>第二波： Cherubic Sea Harex2
+1 | Wave 1: Tainted Water-Splitting Phantasm x2<br>Wave 2: Tainted Water-Splitting Phantasm x2
+2 | Wave 1: Tainted Water-Spouting Phantasm x2<br>Wave 2: Tainted Water-Spouting Phantasm x2
+3 | Wave 1: Armored Crab x5<br>Wave 2: Sternshield Crab x2
+4 | Wave 1: Cherubic Sea Hare x2<br>Wave 2: Cherubic Sea Hare x2
 
-- [x] 5. ‍East Slopes of Mont Automnequi
+- [x] 5. East Slopes of Mont Automnequi
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Wind Operativex1，霜役人x1<br>第二波：Wind Operativex1，霜役人x1
-2 | 第一波：侦察Recording型·芒x3<br>第二波：灵活采集型·芒x2
-3 | 第一波：地质勘探型·芒x2<br>第二波：歼灭特化型·芒（雷）x2
-4 | 第一波：灵活采集型·荒x2<br>第二波：攻坚特化型·荒（雷）x2
+1 | Wave 1: Wind Operative x1, Frost Operative x1<br>Wave 2: Wind Operative x1, Frost Operative x1
+2 | Wave 1: Recon Log Mek (Pneuma) x3<br>Wave 2: Nimble Harvester Mek (Pneuma) x2
+3 | Wave 1: Geological Survey Mek (Pneuma) x2<br>Wave 2: Annihilation Specialist Mek (Pneuma - Electro) x2
+4 | Wave 1: Nimble Harvester Mek (Ousia) x2<br>Wave 2: Assault Specialist Mek (Ousia - Electro) x2
 
-- [x] 6. ‍Elynas
+- [x] 6. Elynas
 
-**地脉花总数：6**
+**Total Ley Line Blossoms: 6**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Blazing Axe Mitachurlx1、Hilichurl Fighterx2<br>第二波：Anemo Hilichurl Roguex1、Electro Samachurlx1、
-2 | 第一波：机关•地质勘探型x2<br>第二波：Construction Specialist Mekx1、机关•灵活采集型x1
-3 | 第一波：Sternshield Crabx1、Armored Crab（红）x2、Armored Crab（绿）x1<br>第二波：Sternshield Crabx2
-4 | 第一波：Tainted Water-Splitting Phantasmx2<br>第二波：Tainted Water-Splitting Phantasmx2
-5 | 第一波：Treasure Hoarder•海上男儿x1、Treasure Hoarder•斥候x2、Treasure Hoarder•雷之药剂师x1<br>第二波：Treasure Hoarder•掘墓者x1、Treasure Hoarder•海上男儿x1
-6 | 第一波：Assault Specialist Mekx1、机关•侦察Recording型x1<br>第二波：Annihilation Specialist Mekx1、机关•侦察Recording型x1
+1 | Wave 1: Blazing Axe Mitachurl x1, Hilichurl Fighter x2<br>Wave 2: Anemo Hilichurl Rogue x1, Electro Samachurl x1
+2 | Wave 1: Geological Survey Mek x2<br>Wave 2: Construction Specialist Mek x1, Nimble Harvester Mek x1
+3 | Wave 1: Sternshield Crab x1, Armored Crab (Red) x2, Armored Crab (Green) x1<br>Wave 2: Sternshield Crab x2
+4 | Wave 1: Tainted Water-Splitting Phantasm x2<br>Wave 2: Tainted Water-Splitting Phantasm x2
+5 | Wave 1: Treasure Hoarders: Seaman x1, Treasure Hoarders: Scout x2, Treasure Hoarders: Electro Potioneer x1<br>Wave 2: Treasure Hoarders: Gravedigger x1, Treasure Hoarders: Seaman x1
+6 | Wave 1: Assault Specialist Mek x1, Recon Log Mek x1<br>Wave 2: Annihilation Specialist Mek x1, Recon Log Mek x1
 
 ### Natlan
 - [x] 1. Huitztli Hill
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Forged Sand Interrogatorx1、Forged Sand Shieldbreakerx3、Tepetlisaur Whelpx1<br>第二波：Tepetlisaurus Warrior: Shard Strikerx1、Tepetlisaurus Warrior: Rockbreaker Bladex1
-2 | 第一波：Treasure Hoarders: Scoutx1、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Hydro Potioneerx1<br>第二波：Treasure Hoarders: Scoutx3、Treasure Hoarders: Pyro Potioneerx1、Treasure Hoarders: Hydro Potioneerx1
-3 | 第一波：Yumkasaur Whelpx2、疾讯勇士·引索客x1、疾讯勇士·荡风斥候x1<br>第二波：Yumkasaurus Warrior: Whirling Leavesx2
-4 | 第一波：Forged Sand Interrogatorx3、Forged Sand Shieldbreakerx1、Forged Sand Javelineerx1<br>第二波：Tepetlisaurus Warrior: Shard Strikerx1、Tepetlisaurus Warrior: Rockbreaker Bladex1
-
+1 | Wave 1: Forged Sand Interrogator x1, Forged Sand Shieldbreaker x3, Tepetlisaur Whelp x1<br>Wave 2: Tepetlisaurus Warrior: Shard Striker x1, Tepetlisaurus Warrior: Rockbreaker Blade x1
+2 | Wave 1: Treasure Hoarders: Scout x1, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Hydro Potioneer x1<br>Wave 2: Treasure Hoarders: Scout x3, Treasure Hoarders: Pyro Potioneer x1, Treasure Hoarders: Hydro Potioneer x1
+3 | Wave 1: Yumkasaur Whelp x2, Swiftstride Warrior: Line-Rider x1, Swiftstride Warrior: Wind-Roving Scout x1<br>Wave 2: Yumkasaurus Warrior: Whirling Leaves x2
+4 | Wave 1: Forged Sand Interrogator x3, Forged Sand Shieldbreaker x1, Forged Sand Javelineer x1<br>Wave 2: Tepetlisaurus Warrior: Shard Striker x1, Tepetlisaurus Warrior: Rockbreaker Blade x1
 
 - [x] 2. Sulfurous Veins
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Yumkasaur Whelpx1、疾讯勇士·荡风斥候x1、疾讯勇士·重刃讯使x1、Yumkasaurus Warrior: Flowing Skyfirex1<br>第二波：疾讯勇士·引索客x1、Yumkasaurus Warrior: Whirling Leavesx1
-2 | 第一波：疾讯勇士·引索客x3、Yumkasaur Whelpx2<br>第二波：Yumkasaurus Warrior: Flowing Skyfirex1、Yumkasaurus Warrior: Whirling Leavesx1
-3 | 第一波：Fatui Skirmisher - Pyroslinger Bracerx1、Fatui Skirmisher - Electrohammer Vanguardx1<br>第二波：Fatui Skirmisher - Pyroslinger Bracerx1、Fatui Skirmisher - Electrohammer Vanguardx1、Fatui Skirmisher - Cryogunner Legionnairex1
-4 | 第一波：Yumkasaur Whelpx2、疾讯勇士·引索客x1、疾讯勇士·荡风斥候x1<br>第二波：Yumkasaurus Warrior: Whirling Leavesx1、Yumkasaurus Warrior: Flowing Skyfirex1
+1 | Wave 1: Yumkasaur Whelp x1, Swiftstride Warrior: Wind-Roving Scout x1, Swiftstride Warrior: Heavy-Blade Messenger x1, Yumkasaurus Warrior: Flowing Skyfire x1<br>Wave 2: Swiftstride Warrior: Line-Rider x1, Yumkasaurus Warrior: Whirling Leaves x1
+2 | Wave 1: Swiftstride Warrior: Line-Rider x3, Yumkasaur Whelp x2<br>Wave 2: Yumkasaurus Warrior: Flowing Skyfire x1, Yumkasaurus Warrior: Whirling Leaves x1
+3 | Wave 1: Fatui Skirmisher - Pyroslinger Bracer x1, Fatui Skirmisher - Electrohammer Vanguard x1<br>Wave 2: Fatui Skirmisher - Pyroslinger Bracer x1, Fatui Skirmisher - Electrohammer Vanguard x1, Fatui Skirmisher - Cryogunner Legionnaire x1
+4 | Wave 1: Yumkasaur Whelp x2, Swiftstride Warrior: Line-Rider x1, Swiftstride Warrior: Wind-Roving Scout x1<br>Wave 2: Yumkasaurus Warrior: Whirling Leaves x1, Yumkasaurus Warrior: Flowing Skyfire x1
 
 - [x] 3. Caishi Peak
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Eroding Avatar of Lavax2<br>第二波：Eroding Avatar of Lavax2
-2 | 第一波：Tepetlisaur Whelpx1、Tepetlisaurusx1、Forged Sand Javelineerx1<br>第二波：Tepetlisaurusx2、Forged Sand Shieldbreakerx1、Forged Sand Interrogatorx1
-3 | 第一波：Yumkasaur Whelpx1、Yumkasaurusx1、Yumkasaurus Warrior: Flowing Skyfirex1<br>第二波：Yumkasaur Whelpx1、Yumkasaurusx2、疾讯勇士·引索客x1
-4 | 第一波：Tepetlisaur Whelpx2、Forged Sand Javelineerx1、Tepetlisaurus Warrior: Rockbreaker Bladex1<br>第二波：Tepetlisaur Whelpx3、Tepetlisaurusx2、Tepetlisaurus Warrior: Shard Strikerx1
+1 | Wave 1: Eroding Avatar of Lava x2<br>Wave 2: Eroding Avatar of Lava x2
+2 | Wave 1: Tepetlisaur Whelp x1, Tepetlisaurus x1, Forged Sand Javelineer x1<br>Wave 2: Tepetlisaurus x2, Forged Sand Shieldbreaker x1, Forged Sand Interrogator x1
+3 | Wave 1: Yumkasaur Whelp x1, Yumkasaurus x1, Yumkasaurus Warrior: Flowing Skyfire x1<br>Wave 2: Yumkasaur Whelp x1, Yumkasaurus x2, Swiftstride Warrior: Line-Rider x1
+4 | Wave 1: Tepetlisaur Whelp x2, Forged Sand Javelineer x1, Tepetlisaurus Warrior: Rockbreaker Blade x1<br>Wave 2: Tepetlisaur Whelp x3, Tepetlisaurus x2, Tepetlisaurus Warrior: Shard Striker x1
 
 - [x] 4. Toyac Springs
 
-**地脉花总数：2**
+**Total Ley Line Blossoms: 2**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Koholasaur Whelpx3、Flowing Blade Skirmisherx2<br>第二波：Koholasaurus Warrior: Waveshuttlerx1、Koholasaurus Warrior: Reefsplitterx1
-2 | 第一波：Flowing Blade Skirmisherx1、Flowing Blade Grease-Sawx1、Flowing Blade Harpoon-Throwerx2<br>第二波：Koholasaurus Warrior: Waveshuttlerx1、Koholasaurus Warrior: Reefsplitterx1
+1 | Wave 1: Koholasaur Whelp x3, Flowing Blade Skirmisher x2<br>Wave 2: Koholasaurus Warrior: Waveshuttler x1, Koholasaurus Warrior: Reefsplitter x1
+2 | Wave 1: Flowing Blade Skirmisher x1, Flowing Blade Grease-Saw x1, Flowing Blade Harpoon-Thrower x2<br>Wave 2: Koholasaurus Warrior: Waveshuttler x1, Koholasaurus Warrior: Reefsplitter x1
 
 - [x] 5. Atocpan
 
-**地脉花总数：2**
+**Total Ley Line Blossoms: 2**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Tatankasaur Whelpx4、Ferocious Warrior: Human Ramx1<br>第二波：Tatankasaur Whelpx2、Tatankasaurusx2、Ferocious Warrior: Grapplerx1
-2 | Furnace Shell Mountain Weaselx1
-3 | 第一波：Tatankasaur Whelpx3、Tatankasaurusx1、Ferocious Warrior: Human Ramx1<br>第二波：Tatankasaur Whelpx3、Tatankasaurusx2
+1 | Wave 1: Tatankasaur Whelp x4, Ferocious Warrior: Human Ram x1<br>Wave 2: Tatankasaur Whelp x2, Tatankasaurus x2, Ferocious Warrior: Grappler x1
+2 | Furnace Shell Mountain Weasel x1
+3 | Wave 1: Tatankasaur Whelp x3, Tatankasaurus x1, Ferocious Warrior: Human Ram x1<br>Wave 2: Tatankasaur Whelp x3, Tatankasaurus x2
 
 - [x] 6. Stadium of the Sacred Flame
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Secret Source Automaton: Hunter-Seekerx1<br>第二波：Secret Source Automaton: Hunter-Seekerx1
-2 | 第一波：Yumkasaur Whelpx1、Yumkasaurusx1、疾讯勇士·重刃讯使x1、Yumkasaurus Warrior: Whirling Leavesx1<br>第二波：Yumkasaur Whelpx2、Yumkasaurusx1、疾讯勇士·重刃讯使x1
-3 | 第一波：Yumkasaur Whelpx2、疾讯勇士·引索客x1、Yumkasaurus Warrior: Flowing Skyfirex1<br>第二波：Yumkasaur Whelpx2、Yumkasaurusx1、Yumkasaurus Warrior: Whirling Leavesx1
-4 | 第一波：Yumkasaur Whelpx2、Yumkasaurusx1、Yumkasaurus Warrior: Whirling Leavesx1<br>第二波：Yumkasaur Whelpx1、Yumkasaurusx2、Yumkasaurus Warrior: Whirling Leavesx1
+1 | Wave 1: Secret Source Automaton: Hunter-Seeker x1<br>Wave 2: Secret Source Automaton: Hunter-Seeker x1
+2 | Wave 1: Yumkasaur Whelp x1, Yumkasaurus x1, Swiftstride Warrior: Heavy-Blade Messenger x1, Yumkasaurus Warrior: Whirling Leaves x1<br>Wave 2: Yumkasaur Whelp x2, Yumkasaurus x1, Swiftstride Warrior: Heavy-Blade Messenger x1
+3 | Wave 1: Yumkasaur Whelp x2, Swiftstride Warrior: Line-Rider x1, Yumkasaurus Warrior: Flowing Skyfire x1<br>Wave 2: Yumkasaur Whelp x2, Yumkasaurus x1, Yumkasaurus Warrior: Whirling Leaves x1
+4 | Wave 1: Yumkasaur Whelp x2, Yumkasaurus x1, Yumkasaurus Warrior: Whirling Leaves x1<br>Wave 2: Yumkasaur Whelp x1, Yumkasaurus x2, Yumkasaurus Warrior: Whirling Leaves x1
 
 - [x] 7. Masters of the Night-Wind
 
-**地脉花总数：3**
+**Total Ley Line Blossoms: 3**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Spiritspeaker Warrior: Contemplatorx1、Spiritspeaker Warrior: Determinatorx1、Iktomisaurus Chickx1<br>第二波：Spiritspeaker Warrior: Contemplatorx1、Spiritspeaker Warrior: Determinatorx1、Iktomisaurus Chickx1、Iktomisaurus Warrior: Cryocrystal Cannonx1
-2 | 第一波：Spiritspeaker Warrior: Contemplatorx1、Spiritspeaker Warrior: Psychokineticx1、Iktomisaurus Chickx1<br>第二波：Spiritspeaker Warrior: Contemplatorx3、Iktomisaurus Warrior: Cryocrystal Cannonx1
-3 | 第一波：Secret Source Automaton: Hunter-Seekerx1
+1 | Wave 1: Spiritspeaker Warrior: Contemplator x1, Spiritspeaker Warrior: Determinator x1, Iktomisaurus Chick x1<br>Wave 2: Spiritspeaker Warrior: Contemplator x1, Spiritspeaker Warrior: Determinator x1, Iktomisaurus Chick x1, Iktomisaurus Warrior: Cryocrystal Cannon x1
+2 | Wave 1: Spiritspeaker Warrior: Contemplator x1, Spiritspeaker Warrior: Psychokinetic x1, Iktomisaurus Chick x1<br>Wave 2: Spiritspeaker Warrior: Contemplator x3, Iktomisaurus Warrior: Cryocrystal Cannon x1
+3 | Wave 1: Secret Source Automaton: Hunter-Seeker x1
 
 - [x] 8. Flower-Feather Clan
 
-**地脉花总数：3**
+**Total Ley Line Blossoms: 3**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：焚然·Wayob Manifestationx1
-2 | 第一波：Qucusaurus Chickx2、Winged Warrior: Feathershedderx1、Winged Warrior: Skysoarerx1<br>第二波：Qucusaurus Chickx1、Winged Warrior: Skysoarerx1、Winged Warrior: Skymasterx1、Qucusaurus Warrior: Heartstar Hammerx1
-3 | 第一波：Qucusaurus Chickx1、Winged Warrior: Skymasterx1、Qucusaurus Warrior: Blazing Skyx1<br>第二波：Qucusaurus Chickx1、Winged Warrior: Skymasterx1、Winged Warrior: Feathershedderx1、Winged Warrior: Skysoarerx1、Qucusaurus Warrior: Blazing Skyx1
+1 | Wave 1: Blazing Wayob Manifestation x1
+2 | Wave 1: Qucusaurus Chick x2, Winged Warrior: Feathershedder x1, Winged Warrior: Skysoarer x1<br>Wave 2: Qucusaurus Chick x1, Winged Warrior: Skysoarer x1, Winged Warrior: Skymaster x1, Qucusaurus Warrior: Heartstar Hammer x1
+3 | Wave 1: Qucusaurus Chick x1, Winged Warrior: Skymaster x1, Qucusaurus Warrior: Blazing Sky x1<br>Wave 2: Qucusaurus Chick x1, Winged Warrior: Skymaster x1, Winged Warrior: Feathershedder x1, Winged Warrior: Skysoarer x1, Qucusaurus Warrior: Blazing Sky x1
 
 - [x] 9. Tilted Branch Cliff
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Koholasaur Whelpx3、Koholasaurusx1、Flowing Blade Skirmisherx1<br>第二波：Koholasaur Whelpx1、Koholasaurusx2、Flowing Blade Skirmisherx1
-2 | 第一波：Qucusaurus Chickx3、Qucusaurusx1、Winged Warrior: Skymasterx1<br>第二波：Qucusaurus Chickx2、Qucusaurusx2、Winged Warrior: Skymasterx1
-3 | 第一波：Koholasaur Whelpx3、Koholasaurusx1、Flowing Blade Grease-Sawx1<br>第二波：Koholasaur Whelpx2、Koholasaurusx2、Flowing Blade Skirmisherx1
-4 | 第一波：深邃拟态·Tepetlisaurusx1、深邃拟态·Yumkasaurusx1、深邃拟态·Koholasaurusx1<br>第二波：深邃拟态·Tepetlisaurusx1、深邃拟态·Yumkasaurusx1、深邃拟态·Koholasaurusx1
+1 | Wave 1: Koholasaur Whelp x3, Koholasaurus x1, Flowing Blade Skirmisher x1<br>Wave 2: Koholasaur Whelp x1, Koholasaurus x2, Flowing Blade Skirmisher x1
+2 | Wave 1: Qucusaurus Chick x3, Qucusaurus x1, Winged Warrior: Skymaster x1<br>Wave 2: Qucusaurus Chick x2, Qucusaurus x2, Winged Warrior: Skymaster x1
+3 | Wave 1: Koholasaur Whelp x3, Koholasaurus x1, Flowing Blade Grease-Saw x1<br>Wave 2: Koholasaur Whelp x2, Koholasaurus x2, Flowing Blade Skirmisher x1
+4 | Wave 1: Mimetic Tepetlisaurus x1, Mimetic Yumkasaurus x1, Mimetic Koholasaurus x1<br>Wave 2: Mimetic Tepetlisaurus x1, Mimetic Yumkasaurus x1, Mimetic Koholasaurus x1
 
 - [x] 10. Toyac Springs
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Koholasaur Whelpx3、Koholasaurusx1、Koholasaurus Warrior: Reefsplitterx1<br>第二波：Koholasaur Whelpx2、Koholasaurusx2、Koholasaurus Warrior: Waveshuttlerx1
-2 | 第一波：Flow-Inverted Wayob Manifestation<br>第二波：Flow-Inverted Wayob Manifestation
-3 | 第一波：Koholasaur Whelpx3、Koholasaurusx1、Flowing Blade Harpoon-Throwerx1、Flowing Blade Skirmisherx1<br>第二波：Koholasaurusx2、Flowing Blade Harpoon-Throwerx1、Koholasaurus Warrior: Reefsplitterx1
-4 | 第一波：Koholasaur Whelpx3、Koholasaurusx1、Koholasaurus Warrior: Waveshuttlerx1<br>第二波：Koholasaur Whelpx2、Koholasaurusx1、Flowing Blade Harpoon-Throwerx1、Flowing Blade Skirmisherx1
+1 | Wave 1: Koholasaur Whelp x3, Koholasaurus x1, Koholasaurus Warrior: Reefsplitter x1<br>Wave 2: Koholasaur Whelp x2, Koholasaurus x2, Koholasaurus Warrior: Waveshuttler x1
+2 | Wave 1: Flow-Inverted Wayob Manifestation<br>Wave 2: Flow-Inverted Wayob Manifestation
+3 | Wave 1: Koholasaur Whelp x3, Koholasaurus x1, Flowing Blade Harpoon-Thrower x1, Flowing Blade Skirmisher x1<br>Wave 2: Koholasaurus x2, Flowing Blade Harpoon-Thrower x1, Koholasaurus Warrior: Reefsplitter x1
+4 | Wave 1: Koholasaur Whelp x3, Koholasaurus x1, Koholasaurus Warrior: Waveshuttler x1<br>Wave 2: Koholasaur Whelp x2, Koholasaurus x1, Flowing Blade Harpoon-Thrower x1, Flowing Blade Skirmisher x1
 
-- [x] 11. 呼呼丘
+- [x] 11. Huhu Hill
 
-**地脉花总数：3**
+**Total Ley Line Blossoms: 3**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Tatankasaurus×2、Tatankasaur Whelpx1、Flowing Blade Harpoon-Throwerx1<br>第二波：Tatankasaurus×2、Tatankasaur Whelpx1、Tatankasaurus Warrior: Skybreaker×1
-2 | 第一波：Foliar-Swift Wayob Manifestation<br>第二波：Foliar-Swift Wayob Manifestation
-3 | 第一波：Qucusaurus Chickx3、Qucusaurusx1、Winged Warrior: Skymasterx1<br>第二波：Qucusaurus Chickx1、Qucusaurusx2、Winged Warrior: Feathershedderx1、Winged Warrior: Skysoarerx1
+1 | Wave 1: Tatankasaurus x2, Tatankasaur Whelp x1, Flowing Blade Harpoon-Thrower x1<br>Wave 2: Tatankasaurus x2, Tatankasaur Whelp x1, Tatankasaurus Warrior: Skybreaker x1
+2 | Wave 1: Foliar-Swift Wayob Manifestation<br>Wave 2: Foliar-Swift Wayob Manifestation
+3 | Wave 1: Qucusaurus Chick x3, Qucusaurus x1, Winged Warrior: Skymaster x1<br>Wave 2: Qucusaurus Chick x1, Qucusaurus x2, Winged Warrior: Feathershedder x1, Winged Warrior: Skysoarer x1
 
 - [x] 12. Wavey Bay
 
-**地脉花总数：3**
+**Total Ley Line Blossoms: 3**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：幼瞑视龙x1、瞑视龙x2、Spiritspeaker Warrior: Contemplatorx1<br>第二波：幼瞑视龙x2、瞑视龙x2、Spiritspeaker Warrior: Contemplatorx1
-2 | 第一波：Tepetlisaur Whelpx1、Tepetlisaurusx1、Forged Sand Interrogatorx1、Forged Sand Javelineerx1<br>第二波：：Tepetlisaur Whelpx1、Tepetlisaurusx2、Tepetlisaurus Warrior: Shard Strikerx1
-3 | 第一波：Secret Source Automaton: Hunter-Seekerx1<br>第二波：Secret Source Automaton: Hunter-Seekerx1
+1 | Wave 1: Iktomisaur Chick x1, Iktomisaurus x2, Spiritspeaker Warrior: Contemplator x1<br>Wave 2: Iktomisaur Chick x2, Iktomisaurus x2, Spiritspeaker Warrior: Contemplator x1
+2 | Wave 1: Tepetlisaur Whelp x1, Tepetlisaurus x1, Forged Sand Interrogator x1, Forged Sand Javelineer x1<br>Wave 2: Tepetlisaur Whelp x1, Tepetlisaurus x2, Tepetlisaurus Warrior: Shard Striker x1
+3 | Wave 1: Secret Source Automaton: Hunter-Seeker x1<br>Wave 2: Secret Source Automaton: Hunter-Seeker x1
 
 ### Nod-Krai
-- [x] 1. ‍Mossbone Wastes
+- [x] 1. Mossbone Wastes
 
-**地脉花总数：2**
+**Total Ley Line Blossoms: 2**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：<br>第二波：
-2 | 第一波：<br>第二波：
+1 | Wave 1: <br>Wave 2: 
+2 | Wave 1: <br>Wave 2: 
 
-- [x] 2. ‍蓝泊湖
+- [x] 2. Lake Azure
 
-**地脉花总数：2**
+**Total Ley Line Blossoms: 2**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：<br>第二波：
-2 | 第一波：<br>第二波：
+1 | Wave 1: <br>Wave 2: 
+2 | Wave 1: <br>Wave 2: 
 
-- [x] 3. ‍Hiisi Island
+- [x] 3. Hiisi Island
 
-**地脉花总数：4**
+**Total Ley Line Blossoms: 4**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Gleaming Charge: Frostnight Scion×1<br>第二波：Gleaming Charge: Frostnight Scion×1
-2 | 第一波：Oprichniki Vanguard×2、愚人众特辖队·愈疗师×1、Close Combat Scout Landcruiser×1<br>第二波：???×1、Oprichniki Vanguard×2、Force Recon Scout Landcruiser×1
-3 | 第一波：Wilderness Exile×3<br>第二波：Wilderness Exile×2、Wilderness Hunter×1
-4 | 第一波：Oprichniki Grenadier×2、Oprichniki Vanguard×1、愚人众特辖队·愈疗师×1<br>第二波：???×2、Oprichniki Hailstorm Cannoneer×1、Force Recon Storm Landcruiser×1
+1 | Wave 1: Gleaming Charge: Frostnight Scion x1<br>Wave 2: Gleaming Charge: Frostnight Scion x1
+2 | Wave 1: Oprichniki Vanguard x2, Oprichniki Healer x1, Close Combat Scout Landcruiser x1<br>Wave 2: ??? x1, Oprichniki Vanguard x2, Force Recon Scout Landcruiser x1
+3 | Wave 1: Wilderness Exile x3<br>Wave 2: Wilderness Exile x2, Wilderness Hunter x1
+4 | Wave 1: Oprichniki Grenadier x2, Oprichniki Vanguard x1, Oprichniki Healer x1<br>Wave 2: ??? x2, Oprichniki Hailstorm Cannoneer x1, Force Recon Storm Landcruiser x1
 
-- [x] 4. ‍Kuuvahki Experimental Design Bureau
+- [x] 4. Kuuvahki Experimental Design Bureau
 
-**地脉花总数：3**
+**Total Ley Line Blossoms: 3**
 
-顺序 | 怪物
+Order | Enemies
 --- | ---
-1 | 第一波：Oprichniki Line Trooper×2、Close Combat Scout Landcruiser×2<br>第二波：Close Combat Scout Landcruiser×1、Oprichniki Support Trooper×1、Oprichniki Hailstorm Cannoneer×1
-2 | 第一波：Oprichniki Support Trooper×1、Close Combat Storm Landcruiser×1、Force Recon Storm Landcruiser×1<br>第二波：Oprichniki Line Trooper×1、Force Recon Storm Landcruiser×1、Oprichniki Fireblade Shock Trooper×1
-3 | 第一波：Radiant Bladehorn×1<br>第二波：Radiant Bladehorn×1
+1 | Wave 1: Oprichniki Line Trooper x2, Close Combat Scout Landcruiser x2<br>Wave 2: Close Combat Scout Landcruiser x1, Oprichniki Support Trooper x1, Oprichniki Hailstorm Cannoneer x1
+2 | Wave 1: Oprichniki Support Trooper x1, Close Combat Storm Landcruiser x1, Force Recon Storm Landcruiser x1<br>Wave 2: Oprichniki Line Trooper x1, Force Recon Storm Landcruiser x1, Oprichniki Fireblade Shock Trooper x1
+3 | Wave 1: Radiant Bladehorn x1<br>Wave 2: Radiant Bladehorn x1
 
-## 特别Thank You
-- Thank You 平面镜 制作的Fontaine地脉花脚本，~~抄了很多代码，~~以及FontaineRoute！
-- Thank You 秋云 在脚本制作期间提供了很多Features实现的思路，开放了很多非常方便的方法，并修改优化了大量代码，这个脚本说是他写的也不为过！
-- Thank You 起个名字好难的喵 协助脚本的开发，帮大忙了！
-- Thank You v7群群友 在正式发布前对脚本进行测试！~~虽然没Roger That几个反馈~~
-- Thank You 测试群群友 Help制作了部分Route，提供用于制作Route的Account以及对脚本的测试！~~合格黑奴~~
-- Thank You 辉鸭蛋 制作的BetterGI！
+## Special Thanks
+- Thanks to Pingmianjing (平面镜) for creating the Fontaine Ley Line Outcrop script and Fontaine routes!
+- Thanks to Qiu Yun (秋云) for providing many implementation ideas, convenient APIs, and code optimizations.
+- Thanks to 起个名字好难的喵 for assisting script development.
+- Thanks to V7 group members for testing before release.
+- Thanks to test group members for helping record routes, providing accounts, and testing.
+- Thanks to Huiyadanli (辉鸭蛋) for creating BetterGI!

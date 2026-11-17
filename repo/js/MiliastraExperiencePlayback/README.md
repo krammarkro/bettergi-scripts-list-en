@@ -1,65 +1,65 @@
-# 🌌 千星奇域·经验刷取(回放通关版)
+# 🌌 Miliastra Wonderland · EXP Farming (Playback Clear Edition)
 
 ### 🌟 Feature Overview
 
-- 🎥 依据用户预先录制的多个通关流程，随机选取一个执行通关。
-- 📅 每周：Auto 重复通关指定的奇域关卡，Auto 追踪每周经验获取进度，达到上限后将Auto 跳过。
-- 🧺 Supports删除关卡存档后重新Challenge（默认关闭），提升刷取效率（该特性不确定后续是否会被和谐）。
-- 📆 每日：通关若干不同奇域关卡任务（默认关闭），且通关后领取奖励。
-- 🏞️ 执行结束后Auto 返回Teyvat大陆，避免影响OtherAuto 化流程。
+- 🎥 Randomly selects and executes a stage completion script based on multiple user-recorded replays.
+- 📅 Weekly: Automatically and repeatedly clears designated Wonderland stages, tracks weekly EXP progression, and skips automatically upon hitting the weekly cap.
+- 🧺 Supports deleting stage save files to re-challenge (disabled by default), increasing farming efficiency (subject to potential future game patches).
+- 📆 Daily: Clears specified daily Wonderland stage quests (disabled by default) and claims stage rewards upon completion.
+- 🏞️ Automatically returns to the continent of Teyvat after completion to prevent blocking subsequent automation routines.
 
-## 📋 使用必读
+## 📋 Must Read Before Use
 
-- 不要在禁止联机的区域或Domain（例如Court of the Silver Moon、Flamefeather Valley、White Birch Snowgrave等）运行此脚本，否则将无法进入千星奇域，导致无法运行。
-- 每次通关获得 **20** 点基础经验值，根据Achievements完成数量的不同，每个Achievements可额外获得 **50** 点经验值，删除关卡存档后可重复获得Achievements。
-- 如果开启 `删除关卡存档` Features， **建议提前清理无用存档** ，保持存档列表简洁，减少翻页时间和误差、提升查找效率。同时修改 `每次通关获取的经验值`（例如内置的通关流程是获得5个Achievements，因此修改为270），缩短任务运行时间。
-- 若内置的通关流程失效，请使用程序的 **[录制回放]** Features，发挥主观能动性，自行录制 **进入关卡后的通关流程**。
-- 录制完成后，打开录制回放所在目录，将录制的脚本拷贝到本脚本目录下的 `assets/playbacks` 文件夹中（建议重命名录制好的回放文件）。
-- 右键编辑脚本Configuration，根据你所录制的流程调整相关Settings（包括奇域关卡、通关回放文件池、每次通关获取的经验值等）。
-- 建议选择人气较高、不易下架（通关时长不是特别短的，**可参考关卡描述里的平均游玩时长**）、流程简单的单人游玩关卡进行录制（例如石头模拟器、Wishes模拟器、风景打卡地图等）。
-- ~~人有多大胆，地有多大产~~。**建议适当延长录制时的通关时间**，以降低关卡下架风险和自身运行风险。
-- 领取每日奖励不会领取含有部件礼箱类型的奖励，不会帮你做选择（例如纪游只会领取经验奖励，不会领取等级奖励）。
+- Do **NOT** run this script in co-op-restricted areas or special instances (e.g., Court of the Silver Moon, Flamefeather Valley, White Birch Snowgrave), otherwise you cannot enter Miliastra Wonderland.
+- Each completion awards **20** base EXP. Depending on achievements completed, each achievement awards an additional **50** EXP. Deleting stage saves allows achievements to be earned repeatedly.
+- If enabling `deleteStageSave`, **it is strongly recommended to clear out unused stage saves beforehand** to keep the list short, minimizing scroll times and recognition errors. Also adjust `expPerAttempt` accordingly (e.g., set to 270 if your replay unlocks 5 achievements) to reduce total runtime.
+- If built-in replays become outdated or broken, use BetterGI's built-in **[Record & Playback]** tool to record your own clear routine after entering the stage.
+- After recording, copy the recorded script into the `assets/playbacks` directory under this script folder (renaming files for clarity is recommended).
+- Right-click to configure script settings (including stage ID/keyword, replay file pool, EXP per attempt, etc.).
+- Choose popular, simple single-player stages with low risk of being taken down (refer to the average clear time in the stage description; e.g., stone simulators, wish simulators, scenic sightseeing maps).
+- **It is recommended to slightly extend recorded clear durations** to reduce the risk of stages being delisted.
+- Daily reward collection will not claim chests with elective reward options (e.g., in Chronicles of the Realms, it claims EXP rewards but skips choice-based milestone rewards).
 
-### 📖 Usage
+### 📖 Usage Instructions
 
-- 将本脚本添加至您的Configuration组中。
-- 右键点击脚本自定义Configuration项。
-- Configuration好计划通关的关卡信息、通关回放文件等。
-- 点击运行按钮。
+1. Add this script to your Configuration Group.
+2. Right-click the script to edit custom settings.
+3. Configure the planned stage room info, replay files, and options.
+4. Click run.
 
-### 🛠️ 脚本Configuration
+### 🛠️ Script Configuration
 
-| Configuration项                 | 描述                             | 备注                                                               | 默认值                                                           |
-| ---------------------- | -------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| weeklyEnabled          | 执行每周通关任务                 |                                                                    | true                                                             |
-| room                   | 奇域关卡关键词或关卡GUID         |                                                                    | 20031486040                                                      |
-| playbacks              | 通关回放文件池                   | 逗号分隔，随机抽取，自行录制拷贝到assets/playbacks                 | 美景音乐播放器Settlement.json                                          |
-| expPerAttempt          | 每次通关获取的经验值             | 如果勾选删除关卡存档，每个Achievements加额外50经验值                       | 20                                                               |
-| deleteStageSave        | 删除关卡存档                     | 可重复达成Achievements，获取更多经验值                                     | false                                                            |
-| deleteStageSaveKeyword | 删除关卡存档关键字               | 关卡存档视图中的[关卡]列                                           | 音乐播放                                                         |
-| expWeeklyLimit         | 每周可获取的经验值上限           |                                                                    | 4000                                                             |
-| force                  | 忽略本周经验值已达上限           |                                                                    | false                                                            |
-| thisAttempts           | 指定通关次数                     | 0表示Auto 判断                                                      | 0                                                                |
-| dailyEnabled           | 执行每日通关任务                 |                                                                    | false                                                            |
-| dailyRooms             | 每日奇域关卡关键词或关卡GUID     | 逗号分隔                                                           | 24429042323,28644538672,45694132064                              |
-| dailyPlaybacks         | 每日通关回放文件随机池           | 同一关卡逗号分隔，不同关卡分号分隔，自行录制拷贝到assets/playbacks | 通关回放1.json,通关回放2.json;30秒按1通关.json;轰鸣木桩Settlement.json |
-| dailyRewards           | 领取每日奖励                     | 尝试进行领取Chronicle EXP、日活奖励，某些活动不是常驻的                 | ["Chronicles of the Realms", "绮衣珍赏", "奇趣盛邀", "星境彩馈"]                 |
-| dailyLimit             | 每日单个关卡通关上限             |                                                                    | 1                                                                |
-| dailyForce             | 忽略每日单个关卡通关上限         |                                                                    | false                                                            |
-| closeStageDialog       | 执行通关回放前关闭游戏Guide / Instructions对话框 | 如果打算录制手工关闭对话框的操作，则禁用                           | true                                                             |
-| goToTeyvat             | 完成后返回Teyvat大陆             |                                                                    | true                                                             |
+| Option | Description | Notes | Default |
+| --- | --- | --- | --- |
+| `weeklyEnabled` | Execute weekly stage clear tasks | | `true` |
+| `room` | Wonderland stage keyword or stage GUID | | `20031486040` |
+| `playbacks` | Replay file pool for stage clears | Comma-separated, randomly chosen; copy custom replays to `assets/playbacks` | `美景音乐播放器Settlement.json` |
+| `expPerAttempt` | EXP gained per attempt | If deleting saves is enabled, add 50 EXP per achievement completed | `20` |
+| `deleteStageSave` | Delete stage save file | Allows re-achieving milestones for extra EXP | `false` |
+| `deleteStageSaveKeyword` | Stage save deletion keyword | Matches the [Stage] column in the stage save list | `音乐播放` |
+| `expWeeklyLimit` | Weekly EXP cap | | `4000` |
+| `force` | Force execution even if weekly cap is reached | | `false` |
+| `thisAttempts` | Specific number of clear attempts | 0 for automatic calculation | `0` |
+| `dailyEnabled` | Execute daily stage clear tasks | | `false` |
+| `dailyRooms` | Daily stage keywords or stage GUIDs | Comma-separated | `24429042323,28644538672,45694132064` |
+| `dailyPlaybacks` | Random pool of daily replay files | Semicolon separates different stages; commas separate variations for the same stage | `通关回放1.json,通关回放2.json;30秒按1通关.json;轰鸣木桩Settlement.json` |
+| `dailyRewards` | Claim daily rewards | Attempts to claim Chronicle EXP and daily activity rewards | `["Chronicles of the Realms", "绮衣珍赏", "奇趣盛邀", "星境彩馈"]` |
+| `dailyLimit` | Daily clear limit per individual stage | | `1` |
+| `dailyForce` | Force run ignoring daily stage limits | | `false` |
+| `closeStageDialog` | Close guide dialog before executing replay | Disable if your replay handles manual dialog closing | `true` |
+| `goToTeyvat` | Return to Teyvat upon task completion | | `true` |
 
-### ❗ Precautions / Notes
+### ❗ Precautions
 
-- 请确保游戏窗口分辨率比例为 `16:9`，游戏内调整分辨率后需要重启程序。
-- 脚本运行期间，请保持较为良好的网络环境。
-- 建议提前Settings好Shortcut Keys，便于在需要时Fast暂停或终止脚本。
+- Ensure the game aspect ratio is `16:9`. Restart BetterGI if resolution is changed in-game.
+- Maintain a stable network connection while running the script.
+- Configure emergency stop hotkeys in advance to pause or terminate the script when necessary.
 
-### 🗂️ 历史Version
+### 🗂️ Version History
 
-- [历史Version](https://github.com/breadgrocery/miliastra-experience-playback/tree/main/versions)
+- [Version History](https://github.com/breadgrocery/miliastra-experience-playback/tree/main/versions)
 - [Changelog](https://github.com/breadgrocery/miliastra-experience-playback/blob/main/CHANGELOG.md)
 
-## 🐛 问题反馈
+## 🐛 Feedback & Issues
 
 [breadgrocery](https://github.com/breadgrocery/miliastra-experience-playback)

@@ -1,176 +1,160 @@
-# AAA Artifact EXP批发
+# AAA Artifact EXP Bulk Supply
 
-## 琪零、Features及部分原理Guide / Instructions
-1. 根据时间Auto 选择卡时间和Route，方案具体参考下列Guide / Instructions：
-- 两条NormalRoute全富点98交替执行
-- 达到预期激活时间后（比昨天晚1分钟）先去激活以固定刷新时间，如果NormalRoute执行完成仍然未达到目标时间，则启用AlternateCleanupRoute（昨天跑**AlternateCleanupRoute**时第二天可直接跑收益更高的**优先CleanupRoute**），Snezhnaya玻璃罐只在Cleanup额外A中会被激活。
-- 激活完成后继续跑剩余的NormalRoute（激活时不会拾取，原理见[Investigating点机制](#Investigating点机制与刷新cd)。**如果你什么都没看就直接问为什么不捡**，那我将视其为狗叫并对你进行狠狠的进攻！）
-- 最后按顺序跑Cleanup和额外Route
-2. Supports多样化的分解Artifact EXPConfiguration，具体参考自定义Configuration和下面的Guide / Instructions
-3. Supports断点续跑，中断后一天之内重跑将会Auto 跳过已运行的Route，执行应该执行的Route，但是仍然不建议在激活Route期间（约3分钟）中断
-4. Auto 识别运行Defeat的Route并在Log中进行Warning，建议尽快手动Go to开图
+## 0. Features and Operating Principles
 
-## 芽一、Usage及Configuration
+1. Automatically manages timing and selects routes based on the current schedule:
+- Alternates between two 98-spot rich regular routes daily.
+- Once the target activation time is reached (1 minute later than yesterday by default), it activates points first to lock in their respawn timers. If the regular route completes before reaching the target time, it switches to the Alternate Cleanup Route (running the **Alternate Cleanup Route** enables running the higher-yield **Priority Cleanup Route** the following day). Snezhnaya glass jars are only activated during Cleanup Extra A.
+- After activation completes, it continues collecting the remaining regular route (investigation spots are NOT collected during activation; see [Investigation Spot Mechanics and Respawn Cooldown](#investigation-spot-mechanics-and-respawn-cooldown)).
+- Finally, it runs the Cleanup and Extra routes in sequence.
+2. Supports various artifact salvaging configurations (see Custom Configuration and instructions below).
+3. Supports resume from breakpoint: rerunning within the same day automatically skips finished routes and proceeds with remaining ones (interrupting during the ~3-minute activation phase is not recommended).
+4. Automatically detects failed routes and logs warnings, recommending manual exploration/teleport point unlocking.
 
-1. 将脚本添加至调度器。
-2. 右键点击脚本以修改 JS 自定义Configuration。
-- **请输入Artifact EXP队伍名称**：改成自己捡Artifact EXP的队伍名字。建议使用迪西雅或e启动奶妈作为行走位，如果需要Configuration生存位，建议与行走位相同。建议携带：迪西雅（耐肘王，提供移速加成），Kaedehara Kazuha（Route中有ConfigurationKaedehara Kazuha吸取Artifact EXP，可提高拾取率）。
-- **请输入清怪队伍名称**：改成自己的Combat队，清理Artifact EXPRoute上的Common Mobs，不填则跳过清怪Route，**需要自行匹配Combat策略。**
-- **最短时间间隔**：比昨天延后（默认1分钟）Starting Up卡Cleanup点和额外点。
-- **最大额外等待时间**：98个点拾取完后，可以选择干等N分钟来卡更多次的超限点，当Auto 延时累计超过(30+最大额外等待时间)分钟Auto 重置激活和额外A（每日Auto 延时+1分钟默认），重置时Skip激活和额外A。
-- **强制CleanupRoute交替执行**：默认不开，用于一些用户想收集Other的Investigating材料，比如茶叶等。替换掉（替补CleanupRoute）内的文件，可以一天CleanupArtifact EXP，一天Cleanup茶叶。
-- **SnezhnayaRoute激活Configuration**：默认关闭，启用后执行Route激活操作不拾取Artifact EXP，开启时定时激活Route方便后续跑罐罐联机。
-- **Snezhnaya额外CleanupRoute**：默认关闭，启用后执行Snezhnaya额外Route拾取Artifact EXP，给只想捡自己世界的玩家开启，联机互刷玩家不要开启。
-- **Artifact EXP分解模式**：默认不分解，可选分解成（经验瓶/Mora）。
-- **账户名称**：**单Account无需更改。** 多Account使用时建多个Configuration组，一个Account使用一个Configuration组，填入游戏Account名称（自己取名），就可以按各自名称分别Recording运行信息。
-- **Furina**：Artifact EXP队SupportsAuto 使用白芙作为生存位（汐姐姐逼的，非必要不要用，会慢很多），当你Artifact EXP队伍中一定要含有Furina时勾选，将确保Artifact EXPRoute时Furina为白芙状态，清怪和脚本结束时切回黑芙。
+## 1. Usage and Configuration
 
-## 二、FastStarting Up
+1. Add the script to the BetterGI Scheduler.
+2. Right-click the script to edit JS Custom Configuration:
+- **Artifact EXP Team Name**: Enter the team name used for collecting artifacts. Dehya or an E-skill healer is recommended as the active runner. Recommended characters: Dehya (high resistance, daytime movement speed bonus), Kaedehara Kazuha (some routes use Kazuha's skill to gather artifacts, improving pickup success rate).
+- **Mob Clearing Team Name**: Enter your combat team name to clear regular mobs along artifact routes. Leave empty to skip mob clearing. **Requires a matching combat script.**
+- **Minimum Time Interval**: Delay offset compared to yesterday (default 1 minute) before starting activation for cleanup and extra spots.
+- **Max Extra Wait Time**: After collecting 98 spots, choose to wait up to N minutes to time extra over-cap spots. When total auto-delay exceeds `(30 + max extra wait time)` minutes, activation and Extra A reset automatically (daily auto-delay increases by 1 min by default); during reset, activation and Extra A are skipped.
+- **Force Alternate Cleanup Routes**: Disabled by default. For users who want to collect other investigation materials (such as tea leaves) on alternate days by replacing files in the backup cleanup route.
+- **Snezhnaya Route Activation Configuration**: Disabled by default. Activates Snezhnaya routes without picking up artifacts, locking in timers for future co-op jar farming.
+- **Snezhnaya Extra Cleanup Route**: Disabled by default. Picks up artifacts along the Snezhnaya extra route for solo players. Do not enable if sharing/cross-farming in co-op.
+- **Artifact EXP Salvage Mode**: Retain by default. Options include salvaging into EXP bottles (Sanctifying Unction) or Mora.
+- **Account Name**: **No change needed for single accounts.** For multi-account setups, create separate configuration groups per account and enter the in-game account name to track records independently.
+- **Furina**: Supports automatically switching Furina to Pneuma (healer) form as a survivability option during artifact runs. Ensures Furina stays in Pneuma form during artifact collection and switches back to Ousia for combat and script termination.
 
-首次使用建议先采用以下最小Configuration：
+## 2. Quick Start
 
-- Artifact EXP队伍名称：填写 BetterGI 中实际使用的队伍名称
-- 清怪队伍名称：不需要清怪时留空
-- 最短时间间隔：`1`
-- 最大额外等待时间：`0`
-- CleanupRoute：不勾选“联机Cleanup模式”
-- 急速模式：不勾选
-- Artifact EXP分解模式：`保留`
-- 拾取模式：`模板匹配拾取`
+For first-time users, the following minimal configuration is recommended:
 
-RecommendedConfiguration：
+- Artifact EXP Team Name: The exact team name configured in BetterGI
+- Mob Clearing Team Name: Leave blank if mob clearing is not needed
+- Minimum Time Interval: `1`
+- Max Extra Wait Time: `0`
+- Cleanup Route: Uncheck "Co-op Cleanup Mode"
+- High-Speed Mode: Uncheck
+- Artifact EXP Salvage Mode: `Keep` (Retain)
+- Pickup Mode: `Template Matching Pickup`
 
-| 模式 | 适用场景 | 关键Configuration |
+Recommended Presets:
+
+| Mode | Scenario | Key Configuration |
 |---|---|---|
-| Stable模式 | 首次使用、电脑性能一般 | 急速模式关闭；分解模式为保留；拾取模式为模板匹配拾取；最大额外等待为0 |
-| 急速模式 | 只追求较短运行时间，可接受收益下降 | 开启急速模式；不执行激活和准备Route；使用高铁Route |
-| 联机模式 | 为联机Cleanup准备Investigating点 | 开启联机Cleanup模式；填写 `autoOnline`；按需Configuration清怪队伍；建议使用 bgi 原版拾取 |
+| Stable Mode | First-time use, average PC performance | High-Speed Mode OFF; Salvage Mode: Keep; Pickup Mode: Template Matching; Max Extra Wait: 0 |
+| High-Speed Mode | Focus on short runtime, acceptable yield drop | High-Speed Mode ON; skip activation and preparation routes; use express routes |
+| Co-op Mode | Prepare investigation spots for co-op farming | Co-op Cleanup Mode ON; enter `autoOnline`; configure mob clearing team as needed; use BetterGI native pickup |
 
-### 运行前提
+### Prerequisites
 
-- 使用Supports本脚本 API 的 BetterGI Version；当前Route元数据要求 `bgi_version 0.45.0`，并确保地图追踪Features正常。
-- 游戏画面使用 `1920×1080` 分辨率；脚本中的识别区域和点击坐标按此分辨率Configuration。
-- 游戏按键保持默认Settings，尤其是Investigating/拾取使用的 `F` 键。
-- Artifact EXP队伍名称必须与 BetterGI Configuration中的名称完全一致。
-- 填写清怪队伍时，必须为该队伍Configuration对应的Combat策略；留空则跳过清怪Route。
-- 使用 `bgi原版拾取` 时，需要在 BetterGI 中启用并正确Configuration `AutoPick`。
-- 使用Furina选项时，Artifact EXP队伍必须包含Furina；否则不要勾选。
-- 使用联机模式和 `autoOnline` 时，需要配合Supports对应命令格式的外部工具。
+- Use a BetterGI version that supports this script's API. Current route metadata requires `bgi_version 0.45.0` with functional pathing/map tracking.
+- Game resolution must be set to `1920×1080`; recognition areas and click coordinates are configured for this resolution.
+- Keep in-game keybindings at default, especially the Interact/Pick Up key `F`.
+- The Artifact EXP Team Name must match the team name in BetterGI configuration exactly.
+- If a Mob Clearing Team is specified, an appropriate combat strategy must be configured for that team; leave blank to skip mob clearing.
+- When using `BetterGI Native Pickup`, ensure `AutoPick` is enabled and properly configured in BetterGI.
+- When enabling the Furina option, Furina must be present in the artifact team.
+- Using Co-op mode and `autoOnline` requires an external tool that supports the corresponding command format.
 
-### Configuration格式限制
+### Configuration Format Constraints
 
-- 账户名称用于生成Recording文件，不能包含 `\\ / : * ? " < > |`，不能以空格开头或结尾，不能使用 Windows 保留设备名，长度不能超过 255 个字符。
-- 最短时间间隔和最大额外等待时间填写非负整数，单位为分钟。
-- `TMthreshold` 填写 0 到 1 之间的小数；误捡时调高，漏捡时调低。
-- `findFInterval` 单位为毫秒，脚本会将其限制在 16 到 200 毫秒之间。
-- `autoOnline` 格式为 `游戏名称-UID-目标房间`，名称和房间名中不要使用短横线 `-`。
-- 只有在开启联机Cleanup模式时才填写 `autoOnline`；Normal模式留空即可。
+- Account Name is used to generate record files: cannot contain `\ / : * ? " < > |`, cannot start or end with a space, cannot use Windows reserved device names, and must not exceed 255 characters.
+- Minimum Time Interval and Max Extra Wait Time must be non-negative integers (in minutes).
+- `TMthreshold`: Decimal between 0 and 1. Increase if false pickups occur; decrease if items are missed.
+- `findFInterval`: In milliseconds, clamped between 16 and 200 ms.
+- `autoOnline`: Format is `GameName-UID-TargetRoom`; do not use hyphens `-` within the name or room.
+- Only fill in `autoOnline` when Co-op Cleanup Mode is enabled; leave empty for normal mode.
 
-## 三、运行原理
+## 3. How It Works
 
-### Investigating点类型收益
+### Investigation Spot Yields
 
-| 类型 | 等效1星Artifacts | 平均经验值 | 平均Mora | 计算公式 |
+| Type | Equivalent 1★ Artifacts | Average EXP | Average Mora | Formula |
 |---|---|---|---|---|
-| 穷点 | 1.35个        | 567 EXP    | 0        | 65%出1星(420EXP)+35%出2星(840EXP)  |
-| 富点 | 1.5个         | 630 EXP    | 200      | 50%出1个1星(420EXP)/2个1星(840EXP) |
+| Common Spot | 1.35 | 567 EXP | 0 Mora | 65% chance of 1★ (420 EXP) + 35% chance of 2★ (840 EXP) |
+| Rich Spot | 1.5 | 630 EXP | 200 Mora | 50% chance of 1× 1★ (420 EXP) / 50% chance of 2× 1★ (840 EXP) |
 
+### Investigation Spot Mechanics and Respawn Cooldown
 
-### Investigating点机制与刷新CD
+#### Misconception
 
-#### 误区
+❌ *Common Misconception*: Many players assume the **24-hour cooldown** begins when pressing `F` to investigate.
 
-❌ *错误认知*：很多人误以为Investigating点的 **24小时CD** 是从 **按FInvestigating** 时Starting Up计算的。
+#### Actual Mechanics
 
-#### 实际机制
+✅ **Core Principle**:
+- **The game engine only loads map assets within a fixed radius centered on the player. Investigation spots are activated and start their glowing visual effect at this moment (spots on active cooldown will not activate). The cooldown countdown begins as soon as the spot data enters memory.**
+- **The daily limit of 100 interactive investigation spots resets at 04:00 AM server time. Once 100 spots are investigated, entering unloaded areas will no longer activate new investigation spots.** Within the currently loaded area, already activated spots do not disappear and can still be investigated.
 
-✅ **核心原理**：
-- **游戏程序只会加载以玩家为圆心，固定半径内地图资源，Investigating点也在此时被激活，产生发光特效（CD倒计时未结束不会被激活）即数据出现在内存中时CD倒计时Auto Starting Up。**
-- **每天4点刷新可互动的Investigating点上限100个，Investigating满上限后，进入未加载区域，Investigating点将不再被激活。** 在最后范围内，已经激活的Investigating点不会消失，可以继续Investigating。
+#### Important Characteristics
 
-#### 重要特性
+- **Independent of whether you investigate/collect them**! Even if not picked up or if you log off, the CD continues ticking down. Example: If you pass through an area at 10:00 AM, triggering the 24-hour CD spot to glow, and leave, then return at 3:00 PM to pick it up, tomorrow this spot's CD will end at 10:00 AM and can be collected again.
+- **Multiple loadings on the same day do not reset the timer**: Loading an investigation spot again before its CD expires (whether collected or not) will not reset the countdown.
 
-- **与是否Investigating/拾取无关**！即使不Investigating或下线，CD仍会继续倒计时。例：今天你10点路过某区域，24小时CD的Investigating点Starting Up发光随后离开，15点再回来拾取Investigating点。明天此Investigating点会在10点CD倒计时结束，可以再次拾取。
-- **单日多次加载无效**：若在CD未结束前重复加载Investigating点（无论拾取与否），都不会重置计时。
+### Route Configuration and Yields
 
+#### Main Route Parameters
 
-### RouteConfiguration与收益
-
-#### 主要Route参数
-
-| Route名称 | Investigating点 | 富点数量 | 穷点数量 | 总经验值 | 总Mora | 运行时间 | 98上限点富% |
+| Route Name | Investigation Spots | Rich Spots | Common Spots | Total EXP | Total Mora | Runtime | 98-Cap Rich % |
 |---|---|---|---|---|---|---|---|
-| 富ARoute  | 162    | 105      | 57       | 99,099   | 22,600 | 69分钟   | 98/98 (100%)  |
-| 富BRoute  | 135    | 105      | 30       | 83,790   | 21,000 | 53分钟   | 98/98 (100%)  |
-| ABE A线  | 137    | 33       | 104      | 77,742   | 6,600  | 41分钟   | 27/98 (27.5%) |
-| ABE B线  | 138    | 34       | 104      | 77,868   | 6,800  | 43分钟   | 33/98 (33.6%) |
-| Snezhnaya额外  | 34    | 34      | 0       | 20400   | 5100 | 6分钟   | 34/34 (100%)  |
+| Rich Route A | 162 | 105 | 57 | 99,099 | 22,600 | 69 min | 98/98 (100%) |
+| Rich Route B | 135 | 105 | 30 | 83,790 | 21,000 | 53 min | 98/98 (100%) |
+| ABE Route A | 137 | 33 | 104 | 77,742 | 6,600 | 41 min | 27/98 (27.5%) |
+| ABE Route B | 138 | 34 | 104 | 77,868 | 6,800 | 43 min | 33/98 (33.6%) |
+| Snezhnaya Extra | 34 | 34 | 0 | 20,400 | 5,100 | 6 min | 34/34 (100%) |
 
-※SnezhnayaRoute只会和Cleanup额外A一起执行，请尽量使用**定时启动**来Stable激活时间以跑Cleanup额外Route。
-`富B富点%提升中`
-#### 经验值计算公式
+*Note: Snezhnaya routes only run alongside Cleanup Extra A. Please use a scheduled start time to stabilize activation timing for cleanup extra routes.*
 
-`总经验 = (富点数×1.5 + 穷点数×1.35) × 420`
+#### EXP Formula
 
-Path详情：[金山文档 - Path详情](https://www.kdocs.cn/wo/sl/v13uXscL)
+`Total EXP = (Rich Spots × 1.5 + Common Spots × 1.35) × 420`
 
-## 四、Path结构
+Detailed Route Documentation: [Kingsoft Docs - Route Details](https://www.kdocs.cn/wo/sl/v13uXscL)
 
-- **激活**：提前加载触发CD倒计时，后续可自由安排时间拾取，避免"现用现触发"的等待问题，无需WorriedCD同步问题。
-- **准备**：少数点位需要提前转变为发光点，不拾取Investigating点！部分优质富点有Common Mobs镇守，清除以后才按Path顺序拾取，此时不拾取Investigating点！
-- **NormalA**：至多98个Investigating点，这部分每天交叉跑，不再需要卡时间。
-- **NormalB**：至多98个Investigating点，这部分每天交叉跑，不再需要卡时间。
-- **Cleanup**：附近区域超出100以外的Investigating点。
-- **额外**：不受满上限影响消失，又叫超限点，额外Route会受到激活时间影响，当Auto 延时累计超过(**30+最大额外等待时间**)分钟Auto 重置激活（每日Auto 延时+1分钟）。
-- **SnezhnayaCleanup额外A**：玻璃罐独立200上限，是特殊的超限点，需要联机跑6个世界才能打满，现每世界34个。
+## 4. Route Structure
 
-### 运行时间线
+- **Activation**: Pre-loads spots to trigger cooldown timers early, allowing flexible collection timing later without worrying about cooldown desync.
+- **Preparation**: A few spots need to be triggered into glowing spots beforehand without collecting them. Certain high-value rich spots are guarded by common mobs; these are cleared first before running the collection sequence.
+- **Regular A**: Up to 98 investigation spots, alternated daily without needing timing delays.
+- **Regular B**: Up to 98 investigation spots, alternated daily without needing timing delays.
+- **Cleanup**: Investigation spots located in the immediate vicinity beyond the 100-spot limit.
+- **Extra**: Spots that do not disappear upon reaching the daily cap (over-cap spots). Extra routes are affected by activation timing; when total auto-delay exceeds `(30 + max extra wait time)` minutes, activation resets automatically (+1 min auto-delay daily).
+- **Snezhnaya Cleanup Extra A**: Glass jars with an independent 200 cap; special over-cap spots that require visiting 6 co-op worlds to max out (currently 34 per world).
+
+### Execution Timeline
 
 ```text
-上一次激活时间
+Previous Activation Time
         │
-        ├─ NormalRoute前半段（拾取，同时运行至目标时间）
+        ├─ First half of Regular Route (Collecting, running until target time)
         │
-        ├─ 到达目标激活时间：激活 / 准备 / 清怪（不拾取）
+        ├─ Target Activation Time reached: Activation / Preparation / Mob Clearing (No pickup)
         │
-        ├─ NormalRoute后半段（拾取）
+        ├─ Second half of Regular Route (Collecting)
         │
-        └─ CleanupRoute + 额外Route（拾取）
+        └─ Cleanup Route + Extra Route (Collecting)
 ```
 
-NormalRoute本身就是等待目标激活时间的一部分操作，不会先单独空等 24 小时；到达目标时间后才执行激活、准备和清怪操作。
+The regular route itself serves as part of the wait time for the target activation time; there is no idle waiting for 24 hours. Once the target time is reached, activation, preparation, and mob clearing are executed.
 
-## 五、队伍Configuration建议
+## 5. Team Configuration Recommendations
 
-- **根据自己CPUConfiguration选择合适的移速**：电脑性能较差以至于收益远不如及格线时，降低队伍移速（使用较矮小的体型，不使用双风，Lost Prayer to the Sacred Winds，迪西雅天赋等）。
-- **行走位**：优先Dehya；或Barbara等 E启动奶。
-- **The BellDehya**：耐肘王/白天6-18点移速+10%（js自定义Configuration可选调时间到白天，全程100%吃满天赋）。
-- **Kaedehara Kazuha**：建议携带，Path内配有E吸Artifact EXP策略（不带不影响运行），琴可作为备选项，不要同时携带琴和Kaedehara Kazuha。
-- **双风BUFF**：移速+10%，体力消耗-15%。
+- **Adjust movement speed according to CPU performance**: If PC performance causes pathing drift or lower yields, reduce team movement speed (use shorter character models, omit Anemo Resonance, Lost Prayer to the Sacred Winds, Dehya's passive, etc.).
+- **Active Runner**: Dehya preferred, or an E-skill healer like Barbara.
+- **Dehya + The Bell**: High survivability + 10% movement speed bonus between 06:00 and 18:00 (optional JS setting to set time to day automatically).
+- **Kaedehara Kazuha**: Recommended; the path has built-in E-skill vacuuming logic (runs fine without him). Jean can serve as an alternative; do not run both Jean and Kazuha simultaneously.
+- **Anemo Resonance**: +10% Movement SPD, -15% Stamina Consumption.
 
-## 六、OtherFAQ
+## 6. Other FAQ
 
-- **为什么不捡东西了**：检查自己的分辨率是否为1080p（更高或更低都不保证能正常运行），检查是否修改过按键。
-- **为什么比预期少了很多**：
-  1. 可能运行了OtherRoute等误触了Investigating点。
-  2. 首次运行建议比前一天运行任何OtherArtifact EXP更晚，否则可能存在部分点位未刷新。
-  3. 电脑性能较差，容易跑偏/跑过头，建议降低画质等，并关闭不必要的Other程序。
-- **这个js好慢，不像abe四十分钟就跑完了**：那就用abe。
-- **想要捡Artifact EXP的时候也能捡Other东西**：去锄地All-in-One Runjs中获取相关物品图片放在本js的assets/targetItems中。
-- **出现报错**：如果还在动就不用管他，可能是正常的
-- **想要测Author怎么办** ：来q群1109232869测测莫酱（有Other问题也建议加群反馈），Alternate群1022240522
-
-- **茶包版小广告**：茶包版bgi有独有的联机锄地逻辑，如果感兴趣也可以加上面群了解。
-- **问题反馈**：不接受github渠道的问题反馈，只接受通过qq渠道反馈
-- **莫酱全家桶（部分）**：
-  - 日常使用
-  - 锄地All-in-One Run：一站式解决Auto 化锄地，Supports只拾取Artifact EXP
-  - AAAArtifact EXP批发：Auto 卡时间拿Artifact EXP，收益最大化
-  - AAAArtifact EXP联机团购：联机获取更多Artifact EXP收益
-  - Gathering CD Management：管理采集Route并Auto 优化
-  - 锁定四星Instructor：锁定四星Instructor，Supports筛选只要初始3和只要带充能
-  - 只要大瓶：尽可能将Artifact EXP分解成大瓶，起个好看的作用
-  - 妙妙小工具
-  - 性能测试：测测你的电脑性能
-  - Food Processing Turbo Version：与Gathering CD Management中相同的Food Processing
-  - 更多妙妙小工具可以加群获取
+- **Why is it no longer picking up items?** Check if resolution is `1920×1080` and verify that keybindings have not been altered.
+- **Why are yields much lower than expected?**
+  1. Other routes may have been run earlier, accidentally consuming investigation spots.
+  2. For the very first run, it is recommended to start later than any previous artifact runs to ensure spots have refreshed.
+  3. Lower PC performance can cause pathing drift or overshooting; consider lowering graphics settings and closing background apps.
+- **The script is too slow compared to ABE (40 mins)?** You can use ABE instead.
+- **Can I pick up other items during artifact runs?** You can extract item images from the "All-in-One Mob Farming" JS and place them into `assets/targetItems` of this script.
+- **An error occurred in the log:** If the character is still moving and functioning, it may be non-critical and can be ignored.
+- **Feedback & Community**: QQ group 1109232869 (alternate group 1022240522).

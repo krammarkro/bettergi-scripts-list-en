@@ -1,132 +1,147 @@
-# 全Auto 周一（AutoMonday）
+# Auto Monday (AutoMonday)
 
-一站式执行《原神》中的多项每周、每月任务，包括参量质变仪、EscoffierFood / Dishes、Battle Pass Weekly、四方八方之网、投资券和星尘兑换。
+One-stop execution for various weekly and monthly tasks in Genshin Impact, including the Parametric Transformer, Escoffier Food Device, Battle Pass Weeklies, Omni-Ubiquity Net, Investment Coupons, and Stardust Exchange.
 
 ## Features
 
-- 参量质变仪：选择投入材料，并使用Electro Crystal或法器Character充能
-- EscoffierFood / Dishes机关：独立启用、独立选择充能方式
-- Battle Pass Weekly：Cooking、锻造、Boss击败和DomainChallenge
-- 纪行满级检测：达到 50 级后，可按任务分别跳过Battle Pass Weekly
-- 每周购买四方八方之网
-- 每周提交投资券
-- 每月使用星尘兑换Intertwined Fate、蓝球
-- 多账户冷却Recording；任务Defeat后继续执行后续任务
+- **Parametric Transformer**: Select fuel materials and charge using Electro Crystals or Catalyst characters.
+- **Escoffier Food Device**: Independently enabled with independent charging method selection.
+- **Battle Pass Weeklies**: Cooking, Forging, Boss defeats, and Domain Challenges.
+- **Max BP Level Detection**: Once BP reaches Level 50, individual Battle Pass weekly tasks can be skipped automatically.
+- **Weekly Omni-Ubiquity Net Purchase**.
+- **Weekly Investment Coupon Submission**.
+- **Monthly Paimon's Bargains Stardust Exchange**: Intertwined Fate and Acquaint Fate.
+- **Multi-Account Cooldown Tracking**: Continues executing remaining tasks even if an individual task fails.
 
 ## Usage
 
-1. 将本脚本添加到调度器。
-2. 右键脚本，打开 JS 自定义Configuration。
-3. 按需启用任务并填写相关Configuration。
-4. 阅读本Guide / Instructions及Precautions / Notes后，勾选“我已认真阅读 README”。
-5. 从游戏主界面启动脚本。
+1. Add this script to the Scheduler.
+2. Right-click the script and open JS Custom Configuration.
+3. Enable desired tasks and configure corresponding settings.
+4. After carefully reading this guide and precautions, check "I have carefully read the README".
+5. Start the script from the game's main interface.
 
-建议首次运行时只启用一个任务，确认Path、队伍和Combat策略均可正常使用后，再逐步启用Other任务。
+*It is recommended to enable only one task on your first run to verify that paths, teams, and combat strategies work as expected before enabling others.*
 
-## ConfigurationGuide / Instructions
+## Configuration Guide
 
-| Configuration | 何时需要 | Guide / Instructions |
+| Setting | When Required | Description |
 | --- | --- | --- |
-| 账户名称 | 多账户使用时 | 用于区分各账户的冷却Recording；单账户可留空 |
-| 质变仪任务 | 按需 | 可选择材料与充能方式 |
-| 质变仪队伍 | 选择“法器Character充能”时 | 填写包含充能Character的队伍名称 |
-| Escoffier任务 | 按需 | 与质变仪任务互相独立，分别Recording冷却时间 |
-| Escoffier队伍 | 启用Escoffier任务时 | 必须是包含Escoffier的队伍 |
-| 纪行满级跳过项 | 按需 | 可分别跳过Cooking、锻造、Boss和Domain任务 |
-| Cooking任务 | 按需 | 填写菜品名称和制作数量 |
-| 锻造任务 | 按需 | 可选择Crystal Chunk、Amethyst Lump或Condessence Crystal |
-| Combat队伍 | 启用Boss或Domain任务时 | 需同时Configuration对应的Auto Combat策略 |
-| 四方八方之网、投资券 | 按需 | 首次使用前请确保对应区域已解锁 |
-| Intertwined Fate、蓝球兑换 | 按需 | 每月各自独立执行 |
+| Account Name | Multi-account usage | Distinguishes cooldown records per account; single-account users may leave blank |
+| Parametric Transformer Task | As needed | Select materials and charging method |
+| Transformer Team | When using Catalyst charging | Enter team name containing the charging character |
+| Escoffier Task | As needed | Operates independently from Transformer with its own cooldown tracking |
+| Escoffier Team | When enabling Escoffier task | Must be a team containing Escoffier |
+| Max BP Level Skip Options | As needed | Selectively skip Cooking, Forging, Boss, and Domain tasks when BP is maxed (Lv. 50) |
+| Cooking Task | As needed | Specify dish name and quantity to cook |
+| Forging Task | As needed | Choose between Crystal Chunk, Amethyst Lump, or Condessence Crystal |
+| Combat Team | When enabling Boss or Domain tasks | Must configure corresponding auto-combat strategy |
+| Omni-Ubiquity Net / Coupons | As needed | Ensure target regions and NPCs are unlocked before first use |
+| Intertwined & Acquaint Fate Exchange | As needed | Executes once per month independently |
 
-## 重要Precautions / Notes
+## Important Precautions
 
-1. Cooking任务所选菜品必须已解锁“Auto Cooking”，并准备足够材料。
-2. 锻造任务固定执行 20 次，请提前准备足够矿石。
-3. Electro Crystal充能速度较快，但可能受附近怪物或水晶采集状态影响；法器Character充能较Stable但速度较慢，目前仅SupportsBarbara。
-4. Escoffier和参量质变仪是两个独立任务，队伍、充能方式与冷却Recording互不影响。参量质变仪完成后按 **6 天 22 小时**Recording下次执行时间。
-5. 质变材料默认使用Mint。若需使用Configuration列表之外的材料，可替换 `assets` 中对应的识别图片；替换前后材料须位于Inventory同一分类，文件名保持不变。
-6. 只要启用任一“纪行满级时跳过”选项，脚本就会在任务Starting Up前检查一次纪行等级。检测Defeat时会继续执行任务，避免误跳过。
-7. Boss任务使用Pyro Regisvine、Cryo Regisvine场景；Domain任务使用太山府中的牛头人与讨债人场景。请提前Configuration可用的Combat策略。
-8. 四方八方之网和投资券任务需要提前解锁相关地图或任务。投资券相关Achievements完成后，请关闭对应选项。
-9. 脚本会将任务冷却Recording保存在本地 `record` 目录中。更新脚本时请保留该目录。
-10. 部分Weekly一周只能实际测试一次，若遇到问题，请附上Log和复现步骤反馈。
+1. The dish chosen for the Cooking task must have "Auto-Cook" unlocked, with sufficient ingredients in your inventory.
+2. The Forging task crafts 20 times; please prepare enough ore in advance.
+3. Electro Crystal charging is fast, but may be affected by nearby enemies or mined crystal states. Catalyst character charging is slower but more consistent (currently supports Barbara).
+4. Escoffier and the Parametric Transformer are two independent tasks with separate team settings, charging methods, and cooldowns. The Parametric Transformer records its next available execution time as **6 days and 22 hours** upon completion.
+5. Mint is used as the default Transformer fuel. To use materials outside the configuration list, replace the corresponding template image in `assets/`; replacement items must belong to the same inventory category with identical filenames.
+6. If any "Skip when BP is maxed" option is enabled, the script checks your Battle Pass level before starting weekly tasks. If detection fails, tasks continue as normal to avoid accidental skips.
+7. Boss tasks target the Pyro Regisvine and Cryo Regisvine arenas; Domain tasks target Taishan Mansion (Mitachurl & Fatui Pyro Agent). Please configure compatible combat strategies in advance.
+8. Omni-Ubiquity Net and Investment Coupon tasks require prerequisite maps or quests to be unlocked. Disable coupon tasks once the related achievements are completed.
+9. Cooldown records are saved locally in the `record/` directory. Preserve this directory when updating the script.
+10. Some weekly tasks can only be tested in-game once per week. If you encounter issues, please attach execution logs and reproduction steps.
 
-## 免责声明
+## Disclaimer
 
-- 本项目仅供Learning与交流，请勿用于商业用途或违反游戏条款的行为。
-- 脚本按“现状”提供，不承诺兼容性、安全性或Features完整性。使用者需自行承担Account、数据和设备风险。
-- Configuration及运行Recording仅保存在本地；请勿在公共设备或不可信环境中使用。
-- 严禁恶意篡改或将本项目用于非法用途。若游戏运营商提出要求，开发者保留停止维护的权利。
+- This project is for educational and communication purposes only. Do not use for commercial purposes or in violation of game terms of service.
+- The script is provided "as is" without warranty of compatibility, security, or feature completeness. Users assume all account, data, and hardware risks.
+- Configurations and run records are stored locally only; do not run on shared or untrusted machines.
+- Malicious tampering or illegal usage is strictly prohibited. The developer reserves the right to terminate maintenance at the request of the game operator.
 
-使用本脚本即表示您已阅读并同意上述Guide / Instructions。
+Using this script signifies that you have read and agreed to the above terms.
 
 ---
 
 ## Changelog
-### 1.4.5（2026.08.13）
-1. 修复EscoffierElectro CrystalPath中寻路成功时会多一次寻路，导致Escoffier任务Defeat的bug
-### 1.4.4（2026.07.28）
-1. 优化Settings界面
-2. 补充EscoffierElectro CrystalPath
-3. 勾选满级纪行跳过后，任务cd为每周一四点刷新
-### 1.4.3（2026.07.25）
-1. 分离质变仪与Escoffier任务，现为两个独立任务
-2. 移除Crystalfly诱捕装置任务
-3. 增加纪行等级满级判断，可分别选择纪行满级时跳过Cooking、锻造、Boss和Domain任务
-### 1.4.2（2026.06.15）
-1. 修改任务「质变仪&Escoffier」的冷却时间为6天22小时
-### 1.4.1（2026.06.01）
-1. 在任务「质变仪&Escoffier」的“法器Character充能”中，增加传送完成后的等待时间，避免因Inventory打开Defeat导致的任务Defeat
-### 1.4（2026.01.26）
-1. 添加了每月兑换Intertwined Fate蓝球的Features
-2. 修复了一些bug
-### 1.3.8（2026.01.19）
-1. 修改了Settings界面丑的批爆的分隔符
-### 1.3.7（2026.01.14）
-1. 修复了部分bug以及描述不合理的地方
-### 1.3.6（2025.12.09）
-1. 规范识别范围，避免直接使用genshin.width
-### 1.3.5（2025.11.05）
-1. 修复了Auto DomainChallengeFeatures启动Defeat原地Combat直到超时的bug
-2. 修复了Debug信息无法显示的bug（实际上是忘记写了，Ehe~）
-3. 修改了主函数部分，将原本的笨蛋写法改为了更直观更优雅的写法
-### 1.3.4（2025.11.04）
-1. 针对资源释放重构了文字识别代码
-2. 优化了部分代码，添加了Debug信息
-3. 修复了购买四方网偶尔会Defeat的bug
-### 1.3.3（2025.10.27）
-1. 修复了部分设备在某些任务运行结束后未能及时回到主页面导致后续任务无法正常执行的bug
-2. 修复了偶尔会被Electro Crystal摸到的bug
-3. 修改了多不合理、不安全的地方
-### 1.3.2（2025.10.24）
-1. 修改了账户名的获取逻辑：删除了原有的ocr获取uid，改为手动输入的方式（历史Recording会受到影响，但避免了后续出现bug的可能性）
-### 1.3.1（2025.10.09）
-1. 完善了法器Character充能模式的相关逻辑
-2. 修复了部分描述不符的地方
-3. 优化了部分不合逻辑的地方
-### 1.3（2025.10.08）
-1. 修复了record文件更新后丢失的问题
-2. 修复了偶现的质变仪无法使用的问题
-3. 添加了质变仪和Escoffier的法器Character充能Features，Electro Crystal被开采后也不用Worried了！
-### 1.2.1（2025.10.07）
-1. 修复了投资券Features偶现的无法使用的bug
-2. 修复了质变仪Features偶现的无法使用的bug
-3. 修改了运行逻辑，某处任务执行Defeat不再影响后续任务的执行
-4. 优化了部分Features
-### 1.2（2025.10.06）
-1. 添加了Auto Battle Pass Weekly-DomainChallenge的Features
-2. 添加了Auto Battle Pass Weekly-每周做菜的Features
-3. 添加了Auto Battle Pass Weekly-每周锻造的Features
-4. 添加了Auto Battle Pass Weekly-BossChallenge的Features
-5. 添加了Auto 购买四方八方之网的Features
-6. 添加了Auto 购买（提交）投资券的Features
-### 1.1（2025.09.24）
-1. 修复了Escoffier在做菜过程中偶现的被电死的bug（做菜做到一半人没了？别Worried，后续不会再有这种情况了！！！）
-2. 完善了拦截Inventory过期物品的Features，不用每次打开Inventory之后再重复点击了！
-### 1.0（2025.09.20）
-1. 酱酱！“全Auto 周一（AutoMonday） V1.0”闪亮Debut！
-   1. 你还在为每周的Escoffier做菜而痛苦吗？你每周的质变仪又忘记用了吗？
-   2. 什么？你说脚本名字的Inspiration？因为AAA已经排不上号了，Author灵机一动，选择了反方向的AAA，至于Monday……是因为这些东西在周一刷新，所以是Monday！
-2. 实现的Features 
-   1. 将茶包大佬的两个脚本集成在了一起，Escoffier和质变仪可以一起收取了！同时对脚本逻辑进行了改动，采用Electro Crystal代替法器Character平A充能，速度更快了！
+
+### 1.4.5 (2026.08.13)
+1. Fixed a bug where successful pathfinding in the Escoffier Electro Crystal route triggered an extra navigation cycle, causing the task to fail.
+
+### 1.4.4 (2026.07.28)
+1. Optimized settings UI.
+2. Added supplemental Escoffier Electro Crystal path.
+3. When max BP skip is checked, task cooldown resets at 04:00 every Monday.
+
+### 1.4.3 (2026.07.25)
+1. Separated Parametric Transformer and Escoffier into independent tasks.
+2. Removed Crystalfly Trap task.
+3. Added BP max level check to selectively skip Cooking, Forging, Boss, and Domain tasks.
+
+### 1.4.2 (2026.06.15)
+1. Adjusted Transformer & Escoffier cooldown to 6 days and 22 hours.
+
+### 1.4.1 (2026.06.01)
+1. Added post-teleport delay for Catalyst charging mode in Transformer & Escoffier task to prevent failures caused by slow inventory loading.
+
+### 1.4 (2026.01.26)
+1. Added monthly Intertwined Fate and Acquaint Fate Stardust exchange.
+2. Fixed various bugs.
+
+### 1.3.8 (2026.01.19)
+1. Redesigned dividers in the settings interface.
+
+### 1.3.7 (2026.01.14)
+1. Fixed minor bugs and clarified descriptions.
+
+### 1.3.6 (2025.12.09)
+1. Standardized recognition regions, avoiding direct reliance on `genshin.width`.
+
+### 1.3.5 (2025.11.05)
+1. Fixed a bug where failed Domain startup caused the script to fight in place until timeout.
+2. Fixed an issue where debug info failed to display.
+3. Refactored main routine for improved clarity and structure.
+
+### 1.3.4 (2025.11.04)
+1. Refactored OCR text recognition for proper resource disposal.
+2. Code optimizations and added debug logging.
+3. Fixed occasional failure when purchasing Omni-Ubiquity Nets.
+
+### 1.3.3 (2025.10.27)
+1. Fixed an issue where certain devices failed to return to the main interface promptly, blocking subsequent tasks.
+2. Fixed an issue where characters occasionally took damage from Electro Crystals.
+3. Cleaned up multiple logic edge cases.
+
+### 1.3.2 (2025.10.24)
+1. Changed account identification from OCR UID detection to manual text entry (prevents edge-case bugs, though resets legacy records).
+
+### 1.3.1 (2025.10.09)
+1. Improved Catalyst charging logic.
+2. Fixed mismatched descriptions.
+3. General logic improvements.
+
+### 1.3 (2025.10.08)
+1. Fixed record files being lost on update.
+2. Fixed occasional issue preventing Transformer deployment.
+3. Added Catalyst normal attack charging mode for Transformer and Escoffier as an alternative to mined Electro Crystals.
+
+### 1.2.1 (2025.10.07)
+1. Fixed occasional bugs in Investment Coupon and Transformer tasks.
+2. Task failures no longer abort subsequent scheduled tasks.
+3. General feature optimizations.
+
+### 1.2 (2025.10.06)
+1. Added Auto BP Weekly - Domain Challenge.
+2. Added Auto BP Weekly - Weekly Cooking.
+3. Added Auto BP Weekly - Weekly Forging.
+4. Added Auto BP Weekly - Boss Challenge.
+5. Added Auto Omni-Ubiquity Net purchase.
+6. Added Auto Investment Coupon submission.
+
+### 1.1 (2025.09.24)
+1. Fixed issue where Escoffier could be electrocuted during cooking.
+2. Added popup dismissal for expired inventory items.
+
+### 1.0 (2025.09.20)
+1. Initial release of AutoMonday V1.0!
+2. Integrated Escoffier and Parametric Transformer into a single workflow using Electro Crystals for fast charging.

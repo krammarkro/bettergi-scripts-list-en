@@ -1,26 +1,26 @@
-# 装备或卸下跟随宠物
+# Equip or Unequip Companion Pet
 
 ## Instructions
 
-### 装备跟随宠物
+### Equip Companion Pet
 
-1. 修改自定义Configuration中模式为：`装备`
-2. 修改自定义Configuration中宠物名称
-3. 执行脚本即可
+1. Set the mode to `Equip` in the custom configuration.
+2. Enter the pet name in the custom configuration.
+3. Run the script.
 
-### 卸下跟随宠物
+### Unequip Companion Pet
 
-1. 修改自定义Configuration中模式为：`卸下`
-2. 执行脚本即可
+1. Set the mode to `Unequip` in the custom configuration.
+2. Run the script.
 
-## Precautions / Notes
+## Important Notes
 
-+ 请在原神分辨率为 1920x1080 下使用该脚本。
-+ 未Supports的宠物（Author未拥有(lll￢ω￢)），待有缘人补充。
-   + 迷你仙灵·薄红
-   + 迷你仙灵·露草
-   + 嫣朵拉
+- Please use this script at 1920×1080 game resolution.
+- Currently unsupported companion pets (author does not own them (lll￢ω￢)); contributions welcome:
+  - Mini Seelie: Rosé
+  - Mini Seelie: Dayflower
+  - Endora
 
-## 问题反馈
+## Feedback
 
 [GitHub issues](https://github.com/ftnfurina/bettergi-js-repo/issues)

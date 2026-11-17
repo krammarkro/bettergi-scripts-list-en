@@ -1,153 +1,163 @@
-# Auto 剧情加载器 - Instructions
-## 项目宗旨
-Auto 剧情加载器是加载流程文件的工具。
+# Auto Story Loader - Instructions
 
-> **重要声明**：
-> 1. 本项目**不会将任何会影响到本体的任务流程脚本上传至脚本仓库**
-> 2. **禁止任何人用于商业用途**，禁止在任何场合Showing Off或宣传Auto 任务效果
-> 3. **不提倡**上传任何任务流程脚本到公开平台
-> 4. 工具仅提供技术框架，**不包含任何Auto 游戏剧情内容**
-> 5. 请勿在任何官方平台（米游社、B站、微博等）讨论本工具
-> 6. 严禁在官方直播、Dynamic或社区提及本工具相关内容
-> 7. 本文档的最终解释权归星野所有
+## Project Purpose
+Auto Story Loader is a utility for executing quest and story workflow files.
 
-**免责声明**：
-1. **使用风险**：
-   - 本脚本为开源Learning项目，仅为游戏委托开发提供技术Supports，禁止用于商业用途或违反游戏条款的行为。
-2. **责任限制**：
-   - 本脚本按“现状”提供，不承诺兼容性、安全性或Features完整性。
-   - 用户应自行承担使用风险，并严格遵守《原神》用户协议。因使用本脚本导致的损失，开发者概不负责。
+> **Important Notices**:
+> 1. This project **does not upload any quest scripts that affect the base game to the script repository**.
+> 2. **Commercial use is strictly prohibited**. Showing off or promoting automated quest capabilities in public venues is strictly prohibited.
+> 3. Uploading any quest workflow scripts to public platforms is **discouraged**.
+> 4. This tool provides only a technical framework and **does not contain any automated game story content**.
+> 5. Do not discuss this tool on any official platforms (HoYoLAB, Bilibili, Weibo, etc.).
+> 6. Strictly refrain from mentioning anything related to this tool in official livestreams, posts, or community channels.
+> 7. The final right of interpretation of this document belongs to Hoshino (星野).
 
-使用即表示您已阅读并同意上述条款。
+**Disclaimer**:
+1. **Usage Risk**:
+   - This script is an open-source educational project providing technical support for commission development only. Commercial use or actions violating game terms of service are prohibited.
+2. **Limitation of Liability**:
+   - This script is provided "as is", without warranties regarding compatibility, safety, or feature completeness.
+   - Users bear all risks associated with use and must strictly adhere to the Genshin Impact Terms of Service. Developers assume no liability for any losses resulting from the use of this script.
+
+Using this tool implies that you have read and agreed to the above terms.
+
 ---
-## Usage及Configuration
-1. 将任务脚本解压至 `process/` 目录
-2. 将脚本添加至调度器
-3. 右键点击脚本以修改 JS 自定义Configuration
-4. 在Settings中选择“刷新剧情列表”
-5. 工具将扫描所有可用剧情脚本
-6. 从更新后的列表中选择要执行的剧情
+
+## Usage and Configuration
+1. Unpack quest scripts into the `process/` directory.
+2. Add the script to the Scheduler.
+3. Right-click the script to edit JS Custom Configuration.
+4. Select "Refresh Quest List" in the settings.
+5. The tool will scan all available quest scripts.
+6. Select the quest you wish to execute from the updated list.
+
 ---
-### 社区公约
-> “我们理解大家对工具的热情，但脚本属于敏感领域。请务必：
-> - Nope, Not In任何官方平台讨论技术细节
-> - Nope, Not In直播、视频中Showing Off工具效果
-> - 不与官方产生任何形式冲突
+
+### Community Guidelines
+> "We understand everyone's enthusiasm for tools, but scripting is a sensitive domain. Please ensure you:
+> - Do not discuss technical details on any official platforms
+> - Do not showcase or boast about tool effects in livestreams or videos
+> - Do not provoke conflicts with official channels in any way
 > 
-> 保持低调才能让工具持续可用！”
+> Keeping a low profile is essential to keeping the tool accessible!"
 
-### 开发者社区
-所有未公开的**Auto 主线、Auto Teleport Waypoint、Auto 神瞳**等完整脚本文件，均通过为社区做出贡献来获取。让我们一起建设，共同分享。
-**加入我们：**
-- **开发者群**：请先加入下方的BadGI交流群，在群内即可获取开发者群号。
-- **BadGI交流群**：
-    - BadGI v1：`1031111214`
-    - BadGI v2：`1058240958`
-    - BadGI v3：`1061761684`
+### Developer Community
+Unpublished scripts such as **Auto Archon Quests, Auto Teleport Waypoints, and Auto Oculi** are obtained by contributing to the community. Let's build and share together.
+**Join Us:**
+- **Developer Group**: Please join one of the BadGI community groups below first; the developer group number can be obtained inside.
+- **BadGI Community Groups**:
+    - BadGI v1: `1031111214`
+    - BadGI v2: `1058240958`
+    - BadGI v3: `1061761684`
 
 ---
 
-#### **我们正在招募以下四类伙伴：**
+#### **We are currently recruiting the following four roles:**
 
-**1. 剪辑与运营达人**
-- **要求**：掌握Account运营、视频剪辑、AI配音等技能。
-- **Working**：负责社区内容的可视化制作与推广。
+**1. Video Editors & Social Media Operators**
+- **Requirements**: Proficiency in social media account management, video editing, AI voice generation, etc.
+- **Tasks**: Responsible for visual production and promotion of community content.
 
-**2. 编程开发高手**
-- **要求**：欢迎以下方向的开发者：
-    - **C#** 高手：修改与优化 BadGI 本体。
-    - **JavaScript** 高手：迭代和开发Auto 化脚本。
-    - **Python** 高手：对 AutoBGI进行Python重构，打造 `8*7*24` 全年无休的Auto 体力规划系统。
-    - **前端** 高手：优化和修改相关网页。
-- **我们也欢迎**：精通多种语言的全栈（AI）大神，或充满热情、愿意从零学起的初学者，我们提供指导。
+**2. Software Developers**
+- **Requirements**: Developers in the following areas are welcome:
+    - **C#** Specialists: Modifying and optimizing the BadGI core.
+    - **JavaScript** Specialists: Iterating on and developing automation scripts.
+    - **Python** Specialists: Refactoring AutoBGI in Python to build an uninterrupted `24/7` automated resin scheduling system.
+    - **Frontend** Specialists: Optimizing and designing related web interfaces.
+- **We also welcome**: Full-stack / AI developers proficient in multiple languages, or passionate beginners willing to learn from scratch (guidance provided).
 
-**3. 社区运营与审核专员**
-- **要求**：擅长文档编写、数据整理与沟通，细心负责。
-- **Working**：如果你对编程和剪辑不感兴趣，这里非常适合你。负责新人审核、任务分配、脚本数据统计、教程文档的撰写与整理，是维持社区运转的核心力量。
+**3. Community Management & Review Specialists**
+- **Requirements**: Skilled in documentation, data organization, and communication; detail-oriented and responsible.
+- **Tasks**: If you are not into programming or video editing, this role is a great fit. Responsible for onboarding reviews, task distribution, script statistics, tutorial documentation writing and maintenance—the core pillar maintaining community operations.
 
-**4. Auto 剧情脚本贡献者**
-- **我啥都不会，但就想用Auto 剧情脚本，怎么办？**
-- **解决方案**：我们专门为此开发了一款Auto 录制软件。您只需在游戏内做任务时开启录制，即可Auto 生成脚本文件。
-- **Working与回报**：我们相信社区的力量源于共享。您只需贡献微薄之力——**上传您完成的任务录制文件**，即可换取社区内**海量的Auto 任务脚本**（包括未公开的Auto 主线、Auto Teleport Waypoint、Auto 神瞳等）。
+**4. Quest Script Contributors**
+- *"I have no technical skills, but I want to use automated quest scripts. What can I do?"*
+- **Solution**: We specially developed an automatic recorder software for this purpose. Simply start recording while playing quests in-game, and script files will be automatically generated.
+- **Tasks & Rewards**: Community strength comes from sharing. By making a small contribution—**uploading your recorded quest files**—you gain access to **a massive library of automated quest scripts** in the community (including unpublished Auto Archon Quests, Auto Waypoints, Auto Oculi, etc.).
 
-> **再次强调**：
-> - **禁止任何人用于商业用途**，禁止在任何场合Showing Off或宣传Auto 任务效果
-> - **不要将任何非委托任务流程脚本上传至脚本仓库**
+> **Reiterating**:
+> - **Commercial use is strictly forbidden**; boasting or promoting automation in public is prohibited.
+> - **Do not upload non-commission quest scripts to the script repository.**
 
-**让我们共同维护良好的社区环境！让大家都 BetterGI 用！**
+**Let's protect a healthy community environment together! So that everyone gets a BetterGI to use!**
+
 ---
-## 全新框架开发指南
-### 用法速览
-- **放置位置**：仍使用原来的 `process/.../.../process.json`
-- **文件内容**：可以直接写多行文本（无需 JSON）。冒号可用中文或英文
-- **元数据（可选）**：开头写
-  - `Author：xxx`
-  - `描述：xxx`
-- **任务块头**：以“任务描述字符串：”起一块，例如 `与纳西达对话：`
-  - 匹配规则：OCR 获得的任务描述将做清洗（去特殊字符、大小写不敏感），用相似度≥0.90 的最佳匹配来选择块。相同描述的多个块按出现顺序执行（会记执行计数，下次匹配到会执行下一块）
-  - 默认块（未匹配/超时13秒时执行）：块头可写 `默认：`、`无任务描述字符串：`、`default：`、`超时：` 等之一
-- **指令行**：指令名与参数之间至少一个空格；`#` 与 `//` 为注释
-  - `地图追踪 相对Path.json`
-  - `键鼠脚本 相对Path.json`
-  - `对话 NPC名`（简单格式下会Auto 开启 AutoSkip，交互→对话后等待回主界面）
-  - `交互 目标名`（Alt+点击，不等待对话）
-  - `等待返回主界面`
-  - `追踪图标 图标类型`（Bigmap/Question/默认Task）
-  - `按键 键值`（例如 F，在只有一个选项的时候可以用来充当交互，最好写两个以防万一）
-  - `等待 毫秒`（默认5000毫秒）
-  - `任务完成`（立即退出整个流程）
-  - `暂停 提示`（脚本会自己暂停自己，交由用户处理无法处理的事，提示非必填，在Log窗口输出）
-  - `Combat`（在原地开启一次Combat，直接写进地图追踪文件里也可）
-  - `Auto 拾取 开启/关闭` (开启关闭Auto 拾取,默认开启)
-- **兼容旧格式**：
-  - `F 纳西达` 等价 `对话 纳西达`
-  - `xxx.json` 等价 `地图追踪 xxx.json`
-### 示例新结构（可断点续跑，带重试机制）
-```
-Author：星野
-描述：示例流程
 
-与特纳对话：
-父亲能做的事-Dawn Winery-1.json
-F 特纳
+## New Framework Development Guide
+### Quick Reference
+- **File Location**: Still uses `process/.../.../process.json`
+- **File Content**: Direct multi-line plain text can be written (no strict JSON required). Both Chinese and English colons are supported.
+- **Metadata (Optional)**: Put at the beginning:
+  - `Author: xxx`
+  - `Description: xxx`
+- **Quest Block Header**: Start a block with `"Quest Description String:"`, for example `Talk to Nahida:`
+  - Matching Rules: OCR-recognized quest descriptions are cleaned (special characters removed, case-insensitive), matching blocks with similarity >= 0.90. Multiple blocks with identical descriptions are executed sequentially (an execution counter tracks which block runs next).
+  - Default block (executed on no match or 13-second timeout): Block headers can be `Default:`, `No Quest Description:`, `default:`, `Timeout:`, etc.
+- **Command Lines**: At least one space between command and parameter; `#` and `//` are comments:
+  - `Pathing relative/path.json`
+  - `KeyMouse relative/path.json`
+  - `Dialogue NPC_Name` (automatically enables AutoSkip, interacts, and waits for return to main screen)
+  - `Interact Target_Name` (Alt+Click without waiting for dialogue)
+  - `Wait For Main Screen`
+  - `Track Icon Icon_Type` (Bigmap / Question / Default Task)
+  - `Key Key_Name` (e.g. `F`; when there is only one option, can act as interaction; writing twice is recommended for safety)
+  - `Wait Milliseconds` (default: 5000ms)
+  - `Quest Complete` (exits the workflow immediately)
+  - `Pause Prompt_Text` (pauses script execution to let the user handle tricky situations; prompt text is optional and logged to console)
+  - `Fight` (triggers combat at current position; can also be placed directly inside pathing files)
+  - `Auto Loot On/Off` (toggles auto-pickup; on by default)
+- **Legacy Format Compatibility**:
+  - `F Nahida` is equivalent to `Dialogue Nahida`
+  - `xxx.json` is equivalent to `Pathing xxx.json`
 
-找吉丽安娜配药:
-父亲能做的事-Dawn Winery-2.json
-F 吉丽安娜
+### Example: New Structure (Supports resuming from checkpoints, with retry mechanisms)
+```
+Author: Hoshino
+Description: Example Workflow
 
-向特纳回报:
-父亲能做的事-Dawn Winery-3.json
-F 特纳
-任务完成
+Talk to Tunner:
+What a Father Can Do-Dawn Winery-1.json
+F Tunner
 
-默认：
-父亲能做的事-Dawn Winery-1.json
-Auto 拾取 开启
-F 特纳
+Ask Jilliana to concoct medicine:
+What a Father Can Do-Dawn Winery-2.json
+F Jilliana
+
+Report back to Tunner:
+What a Father Can Do-Dawn Winery-3.json
+F Tunner
+Quest Complete
+
+Default:
+What a Father Can Do-Dawn Winery-1.json
+Auto Loot On
+F Tunner
 ```
-- 重复任务描述的块按上下顺序依次执行；第一次匹配到执行第一个，再次匹配到执行第二个，以此类推
-- 未检测到任务描述时，会每秒检测一次，13 秒仍未匹配则执行默认块（若存在）
-### 示例旧结构（可直接作为 `process.json` 文本内容）
+- Blocks with repeated quest descriptions execute from top to bottom sequentially.
+- When no quest description is detected, checks once per second; runs the default block if no match after 13 seconds.
+
+### Example: Legacy Structure (Can be used directly as `process.json` text)
 ```
-皮皮潘1接取对话.json
+Pippin1_Accept_Dialogue.json
 F
-皮皮潘2暂停手动.json
-暂停
-皮皮潘3对话.json
+Pippin2_Pause_Manual.json
+Pause
+Pippin3_Dialogue.json
 F
-皮皮潘4暂停手动.json
-暂停
-皮皮潘5对话.json
+Pippin4_Pause_Manual.json
+Pause
+Pippin5_Dialogue.json
 F
-皮皮潘6暂停手动.json
-键鼠脚本 键鼠脚本.json//地图追踪和键鼠脚本可以一起使用啦
-暂停
-皮皮潘7对话2分钟.json
+Pippin6_Pause_Manual.json
+KeyMouse keymouse_script.json // Pathing and keymouse scripts can be used together!
+Pause
+Pippin7_Dialogue_2min.json
 F
 ```
-### 其它Guide / Instructions
-- “对话”指令会尝试优先 Alt+点击包含 NPC 名称的文本区域触发交互，然后执行 AutoSkip Auto 跳过剧情并等待返回主界面
-- “交互”指令只做 Alt+点击，不等待对话
-- “追踪图标”Supports Bigmap/Question/默认 Task 图标
-- 原 JSON 数组流程保持兼容
-> 完成后把 `process.json` 及所有子流程文件打包发给审核即可。祝制作顺利！
+
+### Other Notes
+- The "Dialogue" command prioritizes Alt+Clicking the text area containing the NPC name to trigger interaction, then runs AutoSkip to skip story dialogue and waits until returning to the main screen.
+- The "Interact" command only performs Alt+Click without waiting for dialogue.
+- "Track Icon" supports Bigmap / Question / default Task icons.
+- Original JSON array workflows remain fully backward-compatible.
+> Once completed, package `process.json` and all sub-workflow files and submit them for review. Happy scripting!

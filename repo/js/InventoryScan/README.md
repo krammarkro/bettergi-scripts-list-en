@@ -1,94 +1,66 @@
-# Inventory扫描
+# Inventory Scan
 
-扫描原神Inventory里各页签的物品，认出每种东西有多少个，写一份文字报告并留一份历史Recording；
-填了关注材料的话，还会把这些物品的数量一起推一条通知。
+Scans items across inventory tabs in Genshin Impact, detects the quantity of each item, writes a text summary report, and maintains historical records. When tracked materials are configured, their quantities are also sent via system notifications.
 
-物品靠图标模板比对认出来，数量先按数字模板比对、读不出再走 OCR 兜底。
-这也是它对分辨率挑剔的原因：所有取样坐标都是按 1920×1080 定的。
+Items are identified by icon template matching; quantities are read using numerical template matching with OCR fallback. Because sampling coordinates are calibrated precisely for a 1920×1080 display, correct resolution is critical.
 
-## 运行前
+## Prerequisites
 
-- 游戏分辨率必须是 1920×1080。不是这个分辨率时坐标会整体错位，结果基本不能看。
+- Game resolution must be set to **1920×1080**. At other resolutions, coordinate misalignment will corrupt scanning accuracy.
 
-## 怎么用
+## How to Use
 
-将本脚本添加进Configuration组，默认Settings即可全量扫描。
-也可以按自己的情况改下面的Settings。跑完看 `record/` 里的文件，
-Log和通知里也会带一句统计（各页认出多少种）。
+Add this script to a configuration group. Default settings will perform a full scan. Results are saved in the `record/` directory; brief statistics (number of item types identified per tab) are printed to the log and notification.
 
-## Settings项
+## Settings
 
-- **`账户名称`**：账户名称，用来给不同游戏Account分开存Recording，
-  结果会写进 `record/<账户名>/`。默认「默认账户」，单Account不用改。
-- **`关注材料`**：想单独看数量的材料名，多个用中文逗号分开
-  （英文逗号、顿号、分号、换行也行）。命中的物品会发通知，不填就只发统计行。
-- **`扫描范围`**：扫描范围，六项，默认全勾。取消勾选就不扫对应项。
-- **`绝版Food / Dishes`**：绝版Food / Dishes清单，勾选你确实拥有的。
-  取消勾选会把这个Food / Dishes从识别名单里剔除，但是如果三种品质中你有任意一种就要勾选。
-  默认全勾，详见「FAQ」。
-- **`Debug`**：默认关。打开后会在 `record/<账户名>/` 下多建一个
-  `scan-<时间戳>/` 目录，存每屏截图和逐格识别明细。只在排查识别错误时开，
-  会明显增加磁盘占用和少量耗时。
+- **Account Name**: Distinguishes records for different game accounts. Results are written to `record/<AccountName>/`. Default: `默认账户` (Default Account).
+- **Tracked Materials**: Names of specific materials you want to monitor, separated by commas (supports Chinese/English commas, semicolons, or newlines). Matched items are pushed via notification.
+- **Scan Scope**: Six selectable tabs (all enabled by default). Uncheck tabs you do not wish to scan.
+- **Discontinued Food**: Checklist of limited/event dishes. Check only dishes you actually possess. Unchecking removes them from recognition templates. (Default: all checked; see FAQ).
+- **Debug**: Disabled by default. When enabled, creates a `scan-<timestamp>/` directory under `record/<AccountName>/` containing screenshots and cell-by-cell recognition details. Use only for troubleshooting as it increases disk usage and runtime.
 
-## 扫描范围
+## Scan Scope
 
-| 名字 | 对应Inventory页签 | 统计方式 |
+| Name | Inventory Tab | Method |
 | --- | --- | --- |
-| 养成道具 | 养成道具 | 整页按模板逐个识别 |
-| 食物 | 食物 | 整页按模板逐个识别 |
-| 材料 | 材料 | 整页按模板逐个识别 |
-| 锻造矿 | 武器 | 只数固定名单 |
-| Artifact EXP经验 | Artifacts | 只数固定名单 |
-| Wishes资源&Mora | 贵重道具 | 只数固定名单 |
+| Character Development Items | Character Development Items | Full page cell-by-cell matching |
+| Food | Food | Full page cell-by-cell matching |
+| Materials | Materials | Full page cell-by-cell matching |
+| Forging Ore | Weapons | Fixed target list (Enhancement Ores) |
+| Artifact EXP | Artifacts | Fixed target list (Sanctifying Essence, Sanctifying Unction) |
+| Wish Resources & Mora | Precious Items | Fixed target list |
 
-前三个页签按模板库逐格统计，名单里没扫到的物品也会列成 `×0`，方便看出少了什么。
-后三个页签不扫整页，只按一份固定名单找几样东西：武器页找三种精锻用矿，
-Artifacts页找祝圣精华、祝圣油膏，贵重道具页找Masterless Starglitter／星尘、Intertwined Fate、Acquaint Fate、
-Primogems和Mora。所以「Wishes资源&Mora」只报这几项属于正常，不是漏扫。
+The first three tabs scan all items cell-by-cell against template libraries; items in the database with 0 quantity are displayed as `×0`. The last three tabs do not scan entire pages, but search for specific assets: Enhancement Ores on the Weapons tab; Sanctifying Essence/Unction on the Artifacts tab; and Masterless Starglitter, Masterless Stardust, Intertwined Fate, Acquaint Fate, Primogems, and Mora on the Precious Items tab.
 
-## 结果放在哪
+## Result Files
 
-`record/` 由脚本自己创建，不用手动建，按账户分目录：
+Output files are created under `record/<AccountName>/`:
 
 ```
-record/<账户名>/
-├── 扫描结果.txt            本次报告，每次覆盖
-├── 扫描结果历史Recording.txt    每次一段，最多留最近 30 次
-└── scan-<时间戳>/          只在 debug 开启时生成
-    ├── pages/              每屏截图，如 材料_p000.png
-    └── records.json        逐格识别明细，每行一条 JSON
+record/<AccountName>/
+├── Scan Results.txt                Latest scan report (overwritten each run)
+├── Scan Results History.txt        Historical records (retains up to 30 runs)
+└── scan-<timestamp>/               Generated only when debug is enabled
+    ├── pages/                      Page screenshots (e.g. Materials_p000.png)
+    └── records.json                Cell recognition details (one JSON per line)
 ```
 
-`扫描结果.txt` 里有时间、耗时、各页统计和逐项数量（数量没读出来显示 `?`），
-另有【问题】段放未识别格子、拖拽Defeat等Exception / Error。
-历史Recording是纯文本分段，段头形如
-`===== 第 3 次 · 2026-11-14 22:00:01 · 耗时 41.2s =====`，最新一次排在最前面。
+`Scan Results.txt` records timestamp, elapsed time, tab stats, item counts (unreadable quantities display as `?`), and an [Issues] section highlighting unrecognized cells or scroll errors.
 
 ## FAQ
 
-### 某种物品没被识别出来
+### An item was not recognized
+Check the `[Issues]` section in `Scan Results.txt`: unrecognized cells are listed with their adjacent items. Common causes:
+- New items added in a recent game version not yet present in the template library.
+- Resolution mismatch (not 1920×1080).
+- Quantity reading failed (shown as `?`).
+- Discontinued food settings misconfigured.
 
-先看 `扫描结果.txt` 的【问题】段：未识别的格子会列出来，并写明它前后是什么物品，
-方便你对照Inventory找位置。常见原因：
+If you believe there is a script issue, enable `Debug`, run a scan, and send the timestamped debug folder along with the report to the author in BetterGI community groups.
 
-- 模板库还没收录这个物品（新Version新增的东西）。报告会提示
-  「可能是模板库尚未包含它们，请更新脚本或等待Author更新」。
-- 分辨率不是 1920×1080，坐标整体错位。先看Log有Nope报错。
-- 数量数字没读出来。该项数量显示 `?`，不会写为 0。
-- 绝版Food / Dishes的勾选不对，见下一条。
+### How to handle Discontinued Food
+Check only the event/discontinued dishes you actually own. Unchecking removes them from template evaluation, speeding up scans.
 
-如果确实觉得脚本有问题，请打开 `debug` 重跑一次，
-并将最新时间 `debug` 文件夹附带两份结果文件打包发送给Author。
-Author在BGI官方V8、V14群，可以来这两个群撅Author
-
-### 绝版Food / Dishes怎么处理
-
-在「绝版Food / Dishes」里只勾你确实拥有的那几样。取消勾选就是告诉脚本「我Nope」，
-脚本会把它从识别名单里剔掉。默认是全勾的；如果你其实一样都Nope，保持全勾只会多花一点时间，
-把Nope的都取消更快。
-
-### `debug` 开关怎么用
-
-平时关着。遇到「明明有却没扫到」「数量不对」「报告里冒出未识别」时打开，
-重跑一次，然后看 `record/<账户名>/scan-<时间戳>/`：`pages/` 是每屏截图，
-`records.json` 每行一条 JSON，记着该格的候选、分数和数量。
+### When to use Debug Mode
+Keep it disabled during normal use. Enable it when troubleshooting missing items, incorrect counts, or false unrecognized cells.

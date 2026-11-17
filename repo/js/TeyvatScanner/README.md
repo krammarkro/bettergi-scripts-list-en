@@ -1,24 +1,25 @@
-# Teyvat扫描仪
+# Teyvat Scanner
 
 ## Instructions
-在启用本工具之前，请确保完成以下准备Working：
-1. **装备寻宝罗盘**：确保已经装备寻宝罗盘，并启用Auto Switch不同国家的罗盘。
-2. **准备配队**：准备一个含有Traveler的配队，并为该配队Configuration对应的Combat策略。
-3. **宝藏Recording存储**：宝藏Recording将被存储到 `js` 文件夹下的 `records` 文件夹中。
 
-## 自定义ConfigurationGuide / Instructions
+Before enabling this tool, ensure you have completed the following preparations:
+1. **Equip Treasure Compass**: Ensure a Treasure Compass is equipped, and enable automatic switching for regional compasses across different nations.
+2. **Prepare Party Lineup**: Prepare a party containing the Traveler, and configure an appropriate combat strategy for that party.
+3. **Treasure Record Storage**: Treasure records will be stored in the `records` directory inside the `js` folder.
 
-### 操作模式
-在Configuration文件中，你可以选择以下两种操作模式之一：
-- **寻宝模式**：工具将Auto Searching宝藏。
-- **导航至宝藏**：工具将Auto 导航至宝藏位置，并在到达宝藏位置后等待10秒。你可以使用Shortcut Keys暂停脚本，并在该位置找齐所有宝箱后继续运行。
+## Custom Configuration Guide
 
-### 终止运行时间段
-你可以指定一个时间段，在该时间段内工具将Auto 终止运行。这有助于在特定的时间（如凌晨四点后）Switch到Other任务。
+### Operating Modes
+In the configuration file, you can choose between two operating modes:
+- **Treasure Hunting Mode**: Automatically scans and searches for treasures.
+- **Navigate to Treasure**: Automatically navigates to detected treasure locations and waits for 10 seconds upon arrival. You can use hotkeys to pause the script, collect all chests in the area, and resume execution.
+
+### Stop Time Window
+You can specify a time window during which the tool automatically terminates execution. This is useful for transitioning to other scheduled tasks at specific times (e.g. after the 4:00 AM daily reset).
 
 ## Precautions / Notes
-- 确保在使用前仔细检查自定义Configuration。
-- 如果在使用过程中遇到任何问题，请及时查看Log文件以获取更多信息。
+- Make sure to review custom configuration options carefully before running.
+- If you encounter any issues during execution, check log files for more information.
 
-## 一些遗漏点位
-- Mondstadt：Starsnatch CliffRight Side无人岛
+## Known Omitted Locations
+- Mondstadt: The nameless island off the east coast of Starsnatch Cliff.

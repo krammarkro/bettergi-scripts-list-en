@@ -1,90 +1,87 @@
-# 「牌圣」(Duel Saint of TCG)
+# Duel Saint of TCG (DSTCG)
 
-基于 BetterGI 的Genius Invokation TCGAuto 对战脚本。对局中任意阶段（初始手牌、重投骰子、我方/敌方回合）都可以启动，脚本会Auto 接管出牌、SwitchCharacter、释放技能、元素调和、重投骰子与结束回合，并把每一步决策Recording到 `logs/` 目录，可用于训练本地模型。
+An automated Genius Invokation TCG duel script based on BetterGI. It can be started at any phase of a duel (initial hand selection, dice reroll, action phase, or end phase). The script automatically manages card play, character switching, skill execution, elemental tuning, dice rerolling, and ending turns, logging every decision step to `logs/` for training local models.
 
-## Features一览
+## Feature Overview
 
-- **任意阶段启动**：Auto 识别当前界面（初始手牌、重投骰子、行动阶段、结束阶段）并接管对局，不需要从开局运行；结束阶段只等待Auto Settlement，不会做无效点击。结束回合前会先关闭Left Side的Character/技能/手牌详情面板（它会盖住Bottom-Left角的结束回合按钮），点完按钮后校验行动权，没结束会重点一次；连续约三分钟（20 次决策）牌局毫无变化会Auto 退出并保存现场截图，避免整局卡死。
-- **Auto 对战**：识别双方Character、血量、出战位、充能、元素附着、骰子与手牌，Auto 选择并执行动作。
-- **行动牌**：Auto 打出事件牌、Support牌、场地牌与装备牌；装备/Artifacts牌会Auto 选中Character并点击确认。同一Character同槽位只装一件，已装备时改给OtherCharacter，所有Character都占用就跳过，避免顶替掉原来的牌。Support区满 4 张后，只有明显更好的Support牌才会顶替场上最差的一张，否则跳过；需要手动选召唤物目标的牌（如「送你一程」）脚本还不会点目标，会直接跳过而不是白交一次行动。
-- **结束阶段Settlement**：召唤物与我方/敌方Support牌、场地牌的“结束阶段”效果都会解析成伤害与治疗，计入阵亡风险评估、结束回合的打分和对局轨迹，避免把最后一颗骰子用在即将被召唤物打死的Character身上。已打出的牌会额外读取卡面徽标：Top-Right角的剩余次数/持续回合/倒计时，Bottom-Left角的元素图标与当前数值（伤害或治疗），徽标数值优先于卡面文本，像黑色幻影这类按攻击力DynamicSettlement的伤害也能读到实际值；徽标数字读空时会分区域重试，元素颜色只作未知牌的兜底判断。卡牌库里Nope的牌会点开Left Side详情面板读描述，同样能取到结束阶段伤害/治疗/元素。Settlement伤害还会按元素计入元素反应加成，让模型区分“1 点物理”与“2 点蒸发”。
-- **Exception / Error状态感知**：冻结等会让Character无法行动的Exception / Error状态会被识别（`DISABLING_STATES`），出战Character被冻结时不放技能、优先换人；状态词表按卡牌库预留了Knockout/石化/束缚，补上模板即可生效。
-- **元素反应与主攻手**：读取敌方出战Character的附着元素，技能按元素反应收益加权，蒸发/融化/超载等 +2 反应额外优先，冻结、感电/超导/扩散的溅射价值也计入打分；同时评估后排Character的技能与元素爆发潜力，值得时先Switch主攻Character再输出，冻结的出战Character不会硬放技能。我方出战身上的附着会被敌方技能打出反应，血量偏低或手里骰子不多时，换到干净Character躲开 +2 反应或水/冰冻结会额外加分。
-- **骰子利用**：骰子不跨回合保留，模型想提前结束回合但手里还有 2 颗以上骰子、且存在专家评分明显为正的出牌或攻击动作时，会改走该动作，Log `mode` 追加 `+usedice`；换人本身就要交出行动权、不算用掉骰子，不参与这个兜底；Nope划算动作时仍正常结束，避免为了花骰子做亏动作。
-- **Dynamic费用与增益**：手牌费用按卡面数字读取实际值（已包含减费），并Recording本回合“少花费/费用-”“元素爆发减能”“SwitchCharacter减费”等效果；只Recording脚本自己打出的牌与技能文本，装备加成按Character和槽位归属，同槽换装会覆盖旧加成，条件触发的效果不会被当成常驻加成。
-- **防守与骰子预留**：按敌方出战Character可达的最高伤害（含元素爆发充能与元素反应）加上敌方结束阶段伤害估算我方出战Character的阵亡风险；有风险时优先换到能扛过本轮Threats的Pink of HealthCharacter、提前打出治疗/护盾牌，并预留换人所需骰子——不把最后一颗骰子交给打He Never Dies人的技能或Normal牌，避免骰子用光后被对手连续行动击杀。Nope阵亡压力时不会换到比出战更残且Nope技能收益的Character，有伤害可打时也不会用换人白送一次Combat行动。
-- **低胜率放弃**：估算胜率低于阈值（默认 10%）且落后人头、或血量差达到 35% 时，Auto 走“Top-Right角Settings → 放弃对局 → 确认”放弃本局；识别抖动不会误触发。
-- **元素调和**：骰子不足时Auto 烧掉价值最低的手牌；先单击选中再拖到Right Side骰子区（与出牌顺序一致），某张牌拖动Defeat会Auto 换下一张，高价值手牌会保留，宁可放弃技能。调和后会按画面重新核对骰子，骰子仍然不足且Nope可调和手牌时不会强行释放技能。
-- **Auto 重投**：保留万能骰与出战Character对应元素骰。
-- **本地模型**：由本地训练的动作评分模型选择操作，输入包含阵亡风险、换人收益、结束阶段Settlement与手牌价值；旧版模型会按特征名Auto 对齐后继续使用，模型文件缺失或格式不兼容时回退内置策略。
-- **对局Recording**：可选把每步决策写入 `logs/duel_*.log`（JSONL），包含局面、候选动作、实际选择、打分与胜负结果；可用于导入 Python 后台增量训练模型，也可以自行解析做复盘，不影响正常使用。
+- **Start at Any Phase**: Automatically detects the current screen (initial hand, dice reroll, action phase, end phase) and assumes control without needing to run from the opening screen. In the end phase, it waits for settlement without making unnecessary clicks. Before ending a turn, it closes the character/skill/hand details panel on the left (which obstructs the End Round button), and verifies initiative afterwards. If the board remains unchanged for approximately 3 minutes (20 consecutive decisions), it exits automatically and saves a screenshot to avoid hanging.
+- **Automated Duels**: Recognizes both players' characters, HP, active slot, Energy, elemental attachments, dice, and hand cards, automatically selecting and executing actions.
+- **Action Cards**: Automatically plays Event, Support, Location, and Equipment cards. Equipment and Artifact cards automatically target the active character and confirm. Only one item is equipped per character per slot; if already equipped, it targets other characters, or skips if all are occupied. When the Support zone is full (4 cards), only significantly superior Support cards will replace the weakest card on the field. Cards requiring manual target selection for summons (e.g. "Send Off") are skipped rather than wasting an action.
+- **End Phase Settlement**: Calculates damage and healing from summons, friendly/enemy Support cards, and Location cards at the "End Phase", factoring them into mortality risk assessments, end-turn evaluations, and decision scoring to prevent wasting final dice on characters about to be eliminated by summons. Played cards read badge overlays (remaining uses, duration, countdown, elemental icons, and values). Dynamic effects like Shadowy Husks are read accurately from values rather than static card text.
+- **Disabling State Awareness**: Statuses preventing action (such as Frozen) are recognized (`DISABLING_STATES`). When an active character is frozen, skills are avoided and switching is prioritized.
+- **Elemental Reactions & DPS Optimization**: Reads enemy elemental attachments and weights skills by reaction value (+2 for Vaporize/Melt/Overloaded, plus AoE damage from Frozen, Electro-Charged, Superconduct, and Swirl). Evaluates off-field character Burst potential, switching to damage dealers when advantageous. Switches away from low-HP characters threatened by elemental reactions.
+- **Dice Utilization**: Dice do not carry over between rounds. If the model considers ending the round while 2+ dice remain and positive-value card plays or attacks exist, it executes those actions (logged with mode `+usedice`).
+- **Dynamic Costs & Buffs**: Reads actual card costs from card values (including cost reductions) and tracks round-specific discounts (Energy cost reductions, switch discounts, etc.).
+- **Defensive Play & Dice Reservation**: Assesses lethal risks to the active character based on enemy burst capacity, elemental reactions, and end-phase damage. Prioritizes switching to healthy tanks, playing healing/shield cards, and reserving dice needed for character swaps.
+- **Low Win-Rate Surrender**: When estimated win rate drops below a threshold (default 10%) while trailing in characters, or when HP deficit reaches 35%, automatically surrenders via Top-Right Settings → Concede Match → Confirm.
+- **Elemental Tuning**: When dice are insufficient, automatically discards the lowest-value hand cards to convert dice, preserving high-value cards.
+- **Automatic Reroll**: Preserves Omni dice and dice matching the active character's element.
+- **Local Model**: Driven by a locally trained action evaluation model, falling back to built-in expert heuristics if the model file is missing or incompatible.
+- **Match Logging**: Optionally writes decision trajectories to `logs/duel_*.log` (JSONL), recording board states, candidate actions, chosen moves, scores, and outcomes for training or match replays.
 
 ## Instructions
 
-1. 游戏窗口需为 16:9 比例，Recommended 1920×1080 窗口模式。
-2. 在 BetterGI 中启动本脚本，然后进入Genius Invokation TCG对局；任意界面均可。
-3. 对局结束后脚本Auto 退出，可在 BetterGI 中再次启动；每次出牌/调和前都会先确认是否已进入Settlement界面，不会在“对局Victory/Defeat”界面上继续操作。
-4. 首次使用建议先打一局低风险对局，确认识别与点击正常。
+1. Game window must be 16:9, recommended 1920×1080 windowed mode.
+2. Start this script in BetterGI, then enter a Genius Invokation TCG match at any screen.
+3. The script terminates automatically when the match concludes and can be restarted from BetterGI.
+4. For initial runs, testing on low-risk AI matches is recommended to verify recognition and input accuracy.
 
-### 对局轨迹与训练
+### Match Trajectories & Training
 
-开启 `writeTrace` 后，每局会写入 `logs/duel_YYYYMMDD.log`（JSONL，一行一条Recording）。文件包含每一步的局面、候选动作、脚本最终选择、专家/模型打分，以及开局阵容与对局结果，可以直接用 `开发/` 里的 Python 管理后台导入数据集，增量训练动作评分模型；也可以自行解析做复盘分析。轨迹只保存在本地，不会上传。同样的局面和选择连续重复（点击被面板挡住、操作Nope生效）时只Recording第一条，`result` 里的 `skipped_steps` 是本次过滤掉的重复决策数。
+Enabling `writeTrace` records matches into `logs/duel_YYYYMMDD.log` (JSONL, one line per step). The file contains board state, candidate actions, selected action, expert/model scores, initial lineup, and match outcome. This can be imported directly via the Python management tools in `开发/` to incrementally train scoring models. Trajectories are stored locally and never uploaded.
 
-`logs/` 已在 `manifest.json` 的 `saved_files` 中声明，更新脚本时会随用户数据一起备份和恢复。
+The `logs/` directory is declared in `manifest.json` under `saved_files` and persists across script updates.
 
-### 脚本Settings
+### Script Settings
 
-| Settings项 | Guide / Instructions | 默认 |
-| --- | --- | --- |
-| `useModel` | 启用本地模型；关闭时使用内置专家策略 | 开启 |
-| `modelFile` | 模型文件Path（相对脚本目录） | `assets/model/policy.json` |
-| `actionDelayMs` | 每次键鼠操作后的额外延时；电脑较慢时可适当调大 | 200 |
-| `handCountMode` | 手牌数量识别方式：Auto  / 数字识别 / 模板匹配 / 关闭 | Auto  |
-| `useActionCards` | 识别并打出行动牌；关闭后手牌仅用于元素调和 | 开启 |
-| `scanZones` | 识别双方Support区与召唤物区 | 开启 |
-| `zoneClickFallback` | 区域卡低置信度时点击查看详情 | 开启 |
-| `characterStateScan` | 点击双方出战Character读取详情面板的「Character状态/阵营出战状态」 | 开启 |
-| `writeTrace` | 是否把对局轨迹写入 `logs/duel_*.log`，可用于训练 | 开启 |
-| `detailLog` | 输出DebugLog | 关闭 |
-| `autoSurrender` | 胜率过低时Auto 放弃对局 | 开启 |
-| `surrenderThreshold` | 放弃对局的胜率阈值（%）：0/5/10/15/20/25/30 | 10 |
+| Setting | Description | Default |
+|---|---|---|
+| `useModel` | Enable local machine learning model; uses built-in expert heuristics when disabled | Enabled |
+| `modelFile` | Model file path (relative to script root) | `assets/model/policy.json` |
+| `actionDelayMs` | Delay after keyboard/mouse actions; increase on slower PCs | 200 |
+| `handCountMode` | Hand count detection mode: Auto / Digit Recognition / Template Matching / Off | Auto |
+| `useActionCards` | Recognize and play action cards; when disabled, hand cards are only used for tuning | Enabled |
+| `scanZones` | Recognize Support and Summons zones for both sides | Enabled |
+| `zoneClickFallback` | Click cards in zones for details when confidence is low | Enabled |
+| `characterStateScan` | Click active characters to read states and faction status from details panel | Enabled |
+| `writeTrace` | Write match trajectories to `logs/duel_*.log` for model training | Enabled |
+| `detailLog` | Output verbose debug logs | Disabled |
+| `autoSurrender` | Automatically surrender when estimated win rate is excessively low | Enabled |
+| `surrenderThreshold` | Win rate surrender threshold (%): 0/5/10/15/20/25/30 | 10 |
 
 ## FAQ
 
-- **手牌显示“未知”**：悬停识别Nope读到卡名。未知牌不会主动打出，但会按中等价值参与调和排序，不影响对局继续。
-- **装备/ArtifactsNope装上**：脚本会Auto 等待并点击下方“确认”按钮；若连续Defeat，会在本局跳过该牌。
-- **某张牌打不出去**：脚本会先校验手牌数量，Defeat会重试；连续Defeat 4 次后本局不再尝试打出行动牌。
-- **卡在某个界面**：先手动结束回合或关闭弹出面板，脚本会Auto 恢复；超过 3 分钟无法识别对局状态、或连续约三分钟（20 次决策）牌局Nope任何变化，都会Auto 退出（后者会保存 `debug_no_progress_*.png` 现场截图）。
-- **Support牌/召唤物显示未知**：新卡可能还Nope对应原画模板，不影响出牌与技能决策；召唤区还会退回“点击读卡名”的兜底方式。
-- **点击没反应**：在Settings里把 `actionDelayMs` 调大（如 300~500）后重试。
+- **Hand Card Shows "Unknown"**: Hover OCR did not recognize the card name. Unknown cards will not be played proactively, but participate in elemental tuning at median valuation without interrupting play.
+- **Equipment/Artifact Not Equipped**: The script automatically clicks the "Confirm" button; if it fails repeatedly, it skips the card for the rest of the match.
+- **Unable to Play Certain Cards**: Hand card count is verified prior to play with retries; after 4 consecutive failures, playing action cards is suspended for that match.
+- **Stuck on a Screen**: Manually end the turn or close popups to resume. The script exits automatically if the board is unreadable or unchanged for 3 minutes (saving `debug_no_progress_*.png`).
+- **Support / Summons Show Unknown**: New cards lacking templates will fallback to reading card details on click.
+- **Clicks Do Not Register**: Increase `actionDelayMs` in settings (e.g. to 300~500 ms).
 
-## 目录结构
+## Directory Structure
 
 ```
 DSTCG/
-├── main.js               # 脚本主体
-├── manifest.json         # BetterGI 清单
-├── settings.json         # Settings界面
-├── assets/               # 卡牌库、模型、识别模板
-├── logs/                 # 对局轨迹与Debug截图（可用于训练）
-└── 开发/                  # 开发者工具（Normal用户无需使用）
+├── main.js               # Main script
+├── manifest.json         # BetterGI manifest
+├── settings.json         # Settings UI
+├── assets/               # Card database, models, recognition templates
+├── logs/                 # Match trajectories and debug screenshots
+└── 开发/                 # Developer tools (not needed for normal use)
 ```
 
-## 已知限制
+## Known Limitations
 
-- 仅适配 16:9 的 PC 客户端 UI，Other比例或云游戏画面需要重新标定坐标与模板。
-- 手牌名称依赖悬停 OCR；悬停区域或详情面板布局变化时会识别为“未知牌”。
-- 需要二次选择目标的事件牌（挑选、随机选牌、交换手牌、弃牌等）会被Auto 跳过。
-- Support牌与召唤物都依赖原画模板匹配，尚未收录模板的新牌可能识别不到。模板按 1920×1080 局内实测单档生成（Support区 99×109、召唤区 70×83），换成Other窗口尺寸需要重新生成模板。
-- Character阵亡动画、手牌遮挡等情况下可能出现短暂误读，脚本每一步都会重新读取牌桌状态。
-- 卡面费用数字模板目前只收录 0/1/2/3/5，未收录的费用（如 4、6）会沿用卡牌库Static费用；减费牌读取到卡面数字时以卡面为准。
-- 增益只根据脚本自己打出的牌/技能文本推断，敌方施加且界面无法识别的负面状态（冻结除外）不会计入；带“触发后/如果/每回合”等条件的装备/Support效果不会被当成常驻加成。
-- 每回合最多主动打出 2 张高价值行动牌，并为后续技能与换人预留骰子；能斩杀时不会出牌。
+- Calibrated for 16:9 PC client UI; other aspect ratios or cloud gaming require recalibration.
+- Hand card names depend on hover OCR; layout shifts may cause cards to register as "Unknown".
+- Event cards requiring secondary target selection (discovery, random selection, hand exchange, discarding) are skipped.
+- Support cards and summons rely on template matching (calibrated at 1920×1080).
+- Card cost templates currently include 0/1/2/3/5; unrecorded costs (4, 6) default to static database costs.
 
-## 开发者文档
+## Developer Documentation
 
-后台管理、数据集导入、模型训练、模板制作与资源包生成等开发内容见 [开发/README.md](开发/README.md)。管理后台只用于开发维护，不启动后台也能正常使用脚本；资源更新页生成的是独立资源包，不会直接修改脚本正在使用的 `assets/`。
+For backend administration, dataset import, model training, template creation, and asset pack generation, see [开发/README.md](开发/README.md).
 
 ## Author
 
-TeyvatFishing玳师 · 反馈邮箱：hijiwos@hotmail.com
+TeyvatFishing玳师 · Feedback Email: hijiwos@hotmail.com

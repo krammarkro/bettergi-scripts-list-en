@@ -1,35 +1,32 @@
-## 一、Features概述
+## 1. Feature Overview
 
-### 1. 初始化Recording
+### 1. Initialization Record
+- Establishes the baseline inventory for restorative food / medicine.
+- Typically executed on first use or after major inventory adjustments.
+- Saves current inventory counts to `history`.
 
-- 用于建立药品库存的“基准值”
-- 通常在第一次使用或库存发生大幅变化时执行
-- 会将当前库存写入【history】
+### 2. Record + Consumption Calculation
+- Requires a preexisting initialization record to run.
+- Automatically retrieves the most recent initialization baseline.
+- Calculates consumption of current inventory relative to the baseline.
+- Saves inventory counts to `history`.
+- Saves consumption results to `consumption`.
 
-### 2. Recording + 消耗计算
+### 3. Record-Only (Snapshot) Mode
+- Does not affect baseline initialization or consumption calculations.
+- Simply records current inventory upon each execution.
+- Useful for long-term archiving or manual tracking.
+- Outputs to `snapshot`.
 
-- 在存在初始化Recording的前提下运行
-- Auto 查找最近一次初始化Recording
-- 计算当前库存相对于初始化时的消耗量
-- Recording结果写入【history】
-- 消耗结果写入【consumption】
+## 2. Output File Description
 
-### 3. 纯Recording模式
+- Each mode outputs separate files formatted as: `YYYYMMDDHHmmss-Mode-Name-Quantity`. HP recovery dishes and revival dishes are recorded on separate lines.
 
-- 不参与初始化与消耗计算
-- 每次运行仅Recording当前库存
-- 用于长期留档或手动分析
-- 输出至【snapshot】
+## 3. Instructions
 
-## 二、输出文件Guide / Instructions
+- **Record-Only Mode**: Runs and records inventory on demand.
+- **Consumption Comparison Mode**: Compares the standard record against the last initialization baseline to determine consumption; if no baseline exists, it automatically creates an initialization record.
 
-- 三个模式分别输出三个文件，格式为：年月日时分秒-模式-名称-数量，回血和复活药分行Recording。
+## 4. Version & Environment Requirements
 
-## 三、Instructions
-
-- 纯Recording模式：运行一次Recording一次，自行操作Recording。
-- 消耗对比模式：NormalRecording减去上次初始化Recording，得出消耗量，如果Nope初始化，则Auto 转化为初始化数据。
-
-## 四、Version与环境
-- BGI ≥ v0.54
-
+- BetterGI >= v0.54

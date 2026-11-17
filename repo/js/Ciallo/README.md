@@ -1,2 +1,1 @@
-啥Features也不实现，纯骚扰好友玩
-
+Does not implement any actual features; purely for playfully spamming friends.

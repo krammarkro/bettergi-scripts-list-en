@@ -1,109 +1,109 @@
-# [我不是牌神]Raiden ShogunColleiKeqing
+# [Not a TCG God] Raiden Shogun - Collei - Keqing
 
-Raiden Shogun、Collei、Keqing的Genius Invokation TCG PVE 全Auto 牌手，Supports新手版与完全版牌组。Raiden Shogun首发，结合普攻、战技积攒充能，以「奥义·梦想真说」为队友补能，并利用战技召唤物的元素爆发增伤；Collei用战技和「猫猫秘宝」提供草元素配合，衔接雷草激化与Keqing的战技、附魔普攻及「天街巡游」对后台的穿透伤害。Supports「飞叶迴斜」的草元素追击、「抵天雷罚」的强化附魔，以及「雷楔」返场释放战技并获得附魔。
+A fully automated Genius Invokation TCG PvE player for the Raiden Shogun, Collei, and Keqing deck, supporting both beginner and complete decklists. Raiden Shogun leads, building energy with Normal Attacks and Elemental Skills, replenishing team energy with "Secret Art: Musou Shinsetsu", and using skill summons to increase team Elemental Burst damage; Collei applies Dendro with her skill and "Sprout" passive, enabling Quicken reactions alongside Keqing's "Stellar Restoration", Electro-infused Normal Attacks, and "Starward Sword" piercing standby damage. Supports "Floral Sidestep" Dendro follow-ups, "Thundering Penance" enhanced infusion, and "Lightning Stiletto" swap-in skill casts with infusion.
 
-Auto 处理起手换牌、选人、重投、出牌、切人和结束回合，根据手牌、充能与骰子颜色安排技能及切人后的行动资源。用「交织之雷」补雷骰、「最好的伙伴！」转换万能骰、「一掷乾坤」重投杂色骰，结合「强能之雷」「星天之兆」「白垩之术」补能，并用「换班时间」「No problem!！」配合切人。需要调和时按当前需求选择可舍弃手牌，补足后续技能的元素骰；雷草祝佑会根据存活Character与充能情况选择「碎霆」或「锐核」，利用激化领域下的元素爆发或战技减费。
+Automatically handles opening mulligan, character selection, rerolling dice, card playing, character switching, and ending turns, intelligently allocating skill and switching resources according to hand cards, energy, and dice elements. Generates Electro dice with "Elemental Resonance: Woven Thunder", converts Omni dice with "The Bestest Companion!", and rerolls off-color dice with "Toss-Up". Supplements energy with "Elemental Resonance: High Voltage", "Starsigns", and "Calx's Arts", while coordinating character switches using "When the Crane Returned", "Shift of the Needle", and "Leave It to Me!". Performs Elemental Tuning when needed using expendable cards to secure required elemental dice. Adapts to "Thunder and Plant Boon" by selecting between "Cracking Thunder" and "Sharp Core" based on surviving characters and energy levels, taking advantage of Quicken field burst or skill cost reductions.
 
-装备与Food / Dishes结合后续行动选择：以「The Exile头冠」配合元素爆发为后台补能，根据击倒机会选择「Gambler的耳环」回收万能骰，也Supports给对应Character装备基础武器。按血量选择「Lotus Flower Crisp」减伤、「Mondstadt Hash Brown」「Sweet Madame」治疗，结合「Northern Smoked Chicken」「Minty Meat Rolls」为普攻减费，并可用「赦免宣告」治疗受伤Character。Character阵亡后，根据存活Character的血量、充能、冻结状态和可用骰子安排接力，Happy条件时使用「本大爷还Nope输！」补充万能骰与充能。
+Selects equipment and food based on subsequent actions: equips "The Exile's Circlet" to battery standby characters with Bursts, equips "Gambler's Earrings" upon KO opportunities to recover Omni dice, and equips basic weapons on appropriate characters. Chooses "Lotus Flower Crisp" for damage reduction, "Mondstadt Hash Brown" and "Sweet Madame" for healing, "Northern Smoked Chicken" and "Minty Meat Rolls" to reduce Normal Attack costs, and "Verdict of Absolution" to heal injured units. Upon character knockout, smoothly passes the baton based on remaining HP, energy, frozen status, and available dice, using "I Haven't Lost Yet!" when requirements are met to gain Omni dice and energy.
 
-Author：巨鲸也是咸鱼。Version：1.4.2。
+**Author**: Giant Whale Is Also a Salted Fish (巨鲸也是咸鱼). **Version**: 1.4.2.
 
-运行Log保存在 `logs/`，循环保留最近 10 次启动的Recording（`run-slot-01.log` 至 `run-slot-10.log`）。需要长期留存时请提前另存；再次启动会覆盖最旧的一份，文件内的 `start` 时间标明实际开局时间。
+Execution logs are stored in `logs/`, cyclically preserving the last 10 launches (`run-slot-01.log` through `run-slot-10.log`). Manually archive logs if you need long-term records; new runs overwrite the oldest log file, with each log's `start` timestamp indicating the actual match start time.
 
-Supports上述三种分辨率，Auto 采用对应界面布局。请在开局前Settings好分辨率，整局保持不变；Switch分辨率后先重启 BetterGI 捕获器，再启动牌手。
+Supports all three resolutions listed below with automatic UI layout adaptation. Please configure your resolution before starting and keep it consistent throughout the game; restart the BetterGI capture engine if you switch resolutions before launching the player.
 
-## Usage
+## Usage Instructions
 
-1. 使用 BetterGI **0.66.0 或更新Version**，游戏语言设为**简体中文**，实际游戏客户区使用 **1920×1080、2560×1440 或 2560×1600**。
-2. 按下方任意一套牌表配牌。Character从左到右必须是 **Raiden Shogun → Collei → Keqing**，开局由脚本选择Raiden Shogun出战。
-3. 订阅并导入脚本，在 BetterGI 调度器中添加本脚本，启动后即全Auto 打牌。
-4. 手动进入对局，停在**初始手牌、首次选择出战Character、首次掷骰**中的任意页面，启动脚本。先选人或先掷骰的对局都可以使用。
+1. Use BetterGI **version 0.66.0 or newer**, set game display language to **Simplified Chinese**, and set client window resolution to **1920×1080, 2560×1440, or 2560×1600**.
+2. Assemble your deck using either decklist below. Characters from left to right must be **Raiden Shogun → Collei → Keqing**; the script automatically selects Raiden Shogun as the active character.
+3. Subscribe to and import the script into the BetterGI scheduler, then launch it for fully automated play.
+4. Manually start a duel, pause at any of the following initial screens: **Initial Mulligan, First Character Selection, or First Dice Roll**, and start the script. Works regardless of whether character selection or rolling occurs first.
 
-如果已经刚进入行动页，仍可启动：先把“行动页启动”设为 **“确认新开局未行动”**，并确保双方都还Nope出牌、放技能、切人或调和。中途已经行动过的对局不Supports重新接管。
+If you have just transitioned into the Action Phase, you can still start: configure "Action Phase Start" to **"Confirm New Game Unacted"**, and ensure neither side has played cards, cast skills, switched characters, or performed elemental tuning yet. Mid-game takeovers after actions have occurred are not supported.
 
-初始手牌默认“全部保留”，抽到什么就根据当局资源使用；也可选择“优先装备与启动牌”，检视起手后按组合置换，同名装备只留一张。单局时限默认 15 分钟，较长的对局可以改为 20 分钟。需要中止时使用 BetterGI 的停止按钮或停止热键。脚本只Auto 打当前一局，下一局仍Manual Required进入后再启动。
+Initial hand handling defaults to "Keep All", playing according to current match resources; you can also choose "Prioritize Equipment & Setup Cards" to mulligan specifically for key cards while keeping at most one copy of duplicate equipment. Default match timeout is 15 minutes (can be adjusted to 20 minutes for longer matches). Use BetterGI's stop button or stop hotkey to abort. The script plays one match per run; manually enter the next match before launching again.
 
-## 更多Auto 牌手与更新订阅
+## More Automated TCG Players & Subscriptions
 
-Admiration这套打法，也欢迎试试Author维护的 **伊嘉早、月绽放、莫早卢**。四套牌手集中在 [「我不是牌神」Auto 牌手仓库](https://github.com/sxy8161-debug/bettergi-tcg-scripts-release)，可按Admiration的牌组独立订阅；各套Instructions、牌表与分享码见仓库首页。欢迎反馈使用体验，也欢迎点个 Star Supports。
+If you enjoy this deck strategy, check out the author's other automated players: **Iansan-Gaming-Sayu (伊嘉早), Moon-Bloom (月绽放), and Mona-Sayu-Diluc (莫早卢)**. All four players are maintained in the [「Not a TCG God」Auto TCG Repository](https://github.com/sxy8161-debug/bettergi-tcg-scripts-release) and can be subscribed to independently. Decklists, instructions, and sharing codes are available on the repository homepage. Feedback and GitHub Stars are greatly appreciated!
 
-在 BetterGI 中订阅Author仓库：
+To subscribe to the author's repository in BetterGI:
 
-1. 打开 **脚本仓库**，在 **Git一键更新** 页将更新渠道Switch为 **自定义**。
-2. 在仓库地址中填写下方地址，点击 **更新仓库**：
+1. Open **Script Repository**, and on the **Git One-Click Update** page, set Update Channel to **Custom**.
+2. Enter the repository URL below into the repository address field and click **Update Repository**:
 
    ```text
    https://github.com/sxy8161-debug/bettergi-tcg-scripts-release
    ```
 
-3. 更新完成后点击 **打开仓库**，找到需要的Auto 牌手并订阅；后续用 **一键更新订阅** 获取更新。
+3. Once updated, click **Open Repository**, find the desired automated TCG player, and click subscribe; subsequently use **One-Click Update Subscriptions** to fetch updates.
 
-这里填写的是发布仓库地址，不是源码仓库，也不需要填写 `repo.json` 或分支Path。Switch渠道会更换当前使用的脚本仓库来源；不想Switch时，可从 [最新 Release](https://github.com/sxy8161-debug/bettergi-tcg-scripts-release/releases/latest) 下载对应牌手的 ZIP，将其中的脚本文件解压到 BetterGI 的 `User/JsScript/<脚本目录>/`，确保 `manifest.json` 位于该目录根部。
+*Note: The URL above is the release repository, not the source code repo, and does not require a `repo.json` or branch path. If you prefer not to switch channels, download the ZIP from [Latest Releases](https://github.com/sxy8161-debug/bettergi-tcg-scripts-release/releases/latest) and extract it to BetterGI's `User/JsScript/<ScriptFolder>/`, ensuring `manifest.json` is at the root of that folder.*
 
-[查看源码与反馈问题](https://github.com/sxy8161-debug/bettergi-tcg-scripts)
+[Source Code & Issue Tracker](https://github.com/sxy8161-debug/bettergi-tcg-scripts)
 
-## 新手版牌组
+## Beginner Decklist
 
-使用 15 种行动牌，每种放入 2 张，共 30 张。Character牌仍为Raiden Shogun、Collei、Keqing。
+Uses 15 Action Card varieties, 2 copies of each, for a total of 30 cards. Character cards remain Raiden Shogun, Collei, Keqing.
 
-| 行动牌 | 数量 |
+| Action Card | Quantity |
 | --- | ---: |
-| 元素共鸣：交织之雷 | 2 |
-| 元素共鸣：强能之雷 | 2 |
-| 换班时间 | 2 |
-| No problem!！ | 2 |
-| 最好的伙伴！ | 2 |
-| 运筹帷幄 | 2 |
-| 星天之兆 | 2 |
-| 白垩之术 | 2 |
+| Elemental Resonance: Woven Thunder | 2 |
+| Elemental Resonance: High Voltage | 2 |
+| Shift of the Needle | 2 |
+| Leave It to Me! | 2 |
+| The Bestest Companion! | 2 |
+| Strategize | 2 |
+| Starsigns | 2 |
+| Calx's Arts | 2 |
 | Lotus Flower Crisp | 2 |
 | Mondstadt Hash Brown | 2 |
 | Sweet Madame | 2 |
 | Northern Smoked Chicken | 2 |
 | Minty Meat Rolls | 2 |
-| Gambler的耳环 | 2 |
-| 飞叶迴斜 | 2 |
-| **合计** | **30** |
+| Gambler's Earrings | 2 |
+| Floral Sidestep | 2 |
+| **Total** | **30** |
 
-## 完全版牌组
+## Complete Decklist
 
-使用 19 种行动牌，共 30 张。加入雷草祝佑、赦免宣告、The Exile头冠等牌；有条件后可以从新手版逐步换成这一套。
+Uses 19 Action Card varieties for a total of 30 cards. Integrates Thunder and Plant Boon, Verdict of Absolution, The Exile's Circlet, etc.; upgrade to this list as your collection grows.
 
-牌组分享码（完全版）：
+Deck Sharing Code (Complete):
 
 ```text
 AhAA8i8PASDA81gPBjCw9JcPCUBw9ZkPCVCR9qMPJWDA+OUPDpFQC+YQDrFgDPEQD+AA
 ```
 
-在游戏的牌组编辑界面导入分享码，即可按下方牌表配牌。
+Import this code in the in-game Deck Editor to automatically build the deck below.
 
-| 行动牌 | 数量 |
+| Action Card | Quantity |
 | --- | ---: |
-| 元素幻变：雷草祝佑 | 1 |
-| 赦免宣告 | 1 |
-| 元素共鸣：交织之雷 | 2 |
-| 元素共鸣：强能之雷 | 2 |
-| 换班时间 | 2 |
-| No problem!！ | 2 |
-| 最好的伙伴！ | 2 |
-| 一掷乾坤 | 2 |
-| 运筹帷幄 | 2 |
-| 星天之兆 | 1 |
-| 白垩之术 | 1 |
-| 本大爷还Nope输！ | 2 |
-| The Exile头冠 | 2 |
-| Gambler的耳环 | 2 |
+| Elemental Transformation: Thunder and Plant Boon | 1 |
+| Verdict of Absolution | 1 |
+| Elemental Resonance: Woven Thunder | 2 |
+| Elemental Resonance: High Voltage | 2 |
+| Shift of the Needle | 2 |
+| Leave It to Me! | 2 |
+| The Bestest Companion! | 2 |
+| Toss-Up | 2 |
+| Strategize | 2 |
+| Starsigns | 1 |
+| Calx's Arts | 1 |
+| I Haven't Lost Yet! | 2 |
+| The Exile's Circlet | 2 |
+| Gambler's Earrings | 2 |
 | Lotus Flower Crisp | 2 |
 | Northern Smoked Chicken | 1 |
 | Mondstadt Hash Brown | 1 |
-| 飞叶迴斜 | 1 |
-| 抵天雷罚 | 1 |
-| **合计** | **30** |
+| Floral Sidestep | 1 |
+| Thundering Penance | 1 |
+| **Total** | **30** |
 
-## 缺牌与换牌
+## Missing Cards & Card Substitutions
 
-两套牌组使用**同一个脚本**，不需要Switch牌组模式，也不要求先集齐完全版。缺牌时先用已有牌填满 30 张，之后逐步替换即可；未Supports的牌不会主动打出，识别到后可以用作元素调和。
+Both deck variants use the **exact same script**; no mode switching is required, and completing the full deck first is not mandatory. If you are missing cards, fill the remaining slots with available cards to reach 30; unsupported cards will not be played actively and will be utilized for Elemental Tuning.
 
-雷楔由Keqing战技生成；碎霆、锐核由雷草祝佑产生，**不需要额外加入牌组**，选牌及后续使用由脚本处理。
+Lightning Stiletto is generated by Keqing's Elemental Skill; Cracking Thunder and Sharp Core are generated by Thunder and Plant Boon—**do not attempt to add these tokens to your main deck**, as the script manages them automatically during play.
 
-如果遇到停止，请查看 BetterGI Log及脚本目录的 `logs/`；分享Log和截图前请检查个人信息。素材来源与署名见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+If a run halts unexpectedly, inspect BetterGI logs and `logs/` in the script directory. Attribution information can be found in [ATTRIBUTION.md](ATTRIBUTION.md).

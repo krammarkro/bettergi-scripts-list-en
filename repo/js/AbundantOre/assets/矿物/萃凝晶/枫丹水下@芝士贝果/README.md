@@ -1,8 +1,8 @@
-# Guide / Instructions
+# Instructions
 
-- 不限制配队移动速度（游泳速度），可以用Neuvillette+Dehya+双风提High Efficiency
-- 建议行走位用血量较高的Character，RecommendedThe BellDehya，避免Mining过程中被打回Statue of The Seven回血失去Crab技能，导致后续不能Mining
-- ABCE-开头的Route假设已经习得Crab技能，不按顺序运行或者中途暂停出水面将导致Character失去Crab技能，运行或恢复运行前请确保CharacterLearning了Crab技能
-- A00Route用来Learning大Fontaine湖的Crab技能，E00Route用来LearningSea of Bygone Eras的Crab技能。二者不互通
-- D-开头的Route不受上述条件限制，可独立运行
-- 如果遇到生存位Character如Zhongli、Citlali等Auto 开盾导致Crab炸矿技能进入CD的问题，请在Configuration组Settings中修改地图追踪行走Configuration
+- Team movement speed (swimming speed) is not restricted; you can use Neuvillette + Dehya + Anemo Resonance to improve efficiency.
+- It is recommended to use a character with high HP as the active runner, preferably Dehya equipped with "The Bell", to avoid taking damage during mining and getting teleported back to the Statue of The Seven to heal, which causes you to lose the Crab ability and prevents further mining.
+- Routes starting with `ABCE-` assume that the Xenochromatic Armored Crab ability has already been acquired. Running them out of order or surfacing midway will cause the character to lose the Crab ability. Before running or resuming, please ensure the character has absorbed the Crab ability.
+- Route `A00` is used to learn the Crab ability in the Great Fontaine Lake, and route `E00` is used to learn the Crab ability in the Sea of Bygone Eras. The two are not interchangeable.
+- Routes starting with `D-` are not subject to the above restrictions and can be run independently.
+- If you encounter an issue where survival characters like Zhongli or Citlali automatically activate shields, causing the Crab blast-mining skill to go on cooldown, please modify the pathing walk configuration in the Configuration Group Settings.

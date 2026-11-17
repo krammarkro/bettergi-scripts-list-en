@@ -1,9 +1,15 @@
-UnderwaterRoute整体效率较慢，怪均较高，仅当Common Mobs权重较高时才会入选
-UnderwaterRoute需要单独分组Configuration，使用单独的配队和Combat策略
-建议Combat超时时间60秒以上，关闭旋转找怪，Combat策略如下（以Dehya为例，可换为Other抗揍的Character）
+Underwater routes are generally slower in overall efficiency with higher average monster health, and are only selected when common mob weights are high.
+Underwater routes require a separate configuration group, utilizing dedicated party compositions and combat strategies.
+It is recommended to set combat timeout to 60 seconds or more and disable monster rotation search. Example combat strategy below (using Dehya as an example; can be replaced with other durable characters):
+
+```text
 Dehya attack,wait(0.1),keypress(e),attack,wait(0.6),attack,wait(0.7),attack
-队伍中NopeFurina时需要延长等待时间
+```
+
+When Furina is not in the party, extended wait times are required:
+
+```text
 Dehya attack,wait(0.1),keypress(e),attack,wait(0.8),attack,wait(0.9),attack
+```
 
-确Approval以使用时，将该部分Route复制到pathing文件夹下任意位置
-
+Once verified and ready to use, copy this part of the routes to any location under the `pathing` folder.

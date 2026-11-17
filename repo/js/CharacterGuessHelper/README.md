@@ -1,28 +1,28 @@
-# 千星奇域-猜Character辅助
+# Miliastra Wonderland - Character Guessing Helper
 
 ## Instructions
 
-- 脚本需要在奇域内启动。
-- 退出奇域后记得关闭脚本。
-- 自定义Settings中有OtherFeatures，可根据需要进行开关。
-- 3.0VersionStarting Up携带完整台词数据。
+- Start this script while inside Miliastra Wonderland.
+- Remember to stop the script after exiting Wonderland.
+- Additional features are available in the Custom Settings to toggle as needed.
+- Starting from version 3.0, full character voice line data is included.
 
-## 数据维护
+## Data Maintenance
 
-- 在线表格：https://docs.qq.com/sheet/DVlF4V1RhRXlQakZk
-- 每类台词只占一列，单元格内一行一条台词。
-- 导出 CSV 时使用文件名 `千星奇域-猜Character辅助-Working表1.csv`。
-- 导出 CSV 后运行：
+- Online Spreadsheet: https://docs.qq.com/sheet/DVlF4V1RhRXlQakZk
+- Each category of voice lines occupies only a single column, with one voice line per line within each cell.
+- When exporting to CSV, use the file name `千星奇域-猜Character辅助-Working表1.csv`.
+- After exporting the CSV, execute:
 
 ```bash
 node csv_to_json.js
 ```
 
-## 数据结构
+## Data Structure
 
-CSV/Excel 使用紧凑列，例如 `元素战技台词`、`元素爆发台词`、`入队语音`。同一类里的多条内容放在同一个单元格内，每行一条。
+The CSV/Excel file uses compact columns, such as `Elemental Skill Voice Lines`, `Elemental Burst Voice Lines`, and `Join Party Voice Lines`. Multiple lines belonging to the same category are placed in the same cell, separated by newlines.
 
-生成 `data.json` 时会Auto 归并为数组结构：
+When generating `data.json`, it is automatically aggregated into an array structure:
 
 ```json
 {
@@ -35,6 +35,6 @@ CSV/Excel 使用紧凑列，例如 `元素战技台词`、`元素爆发台词`�
     "元素战技": ["靠你咯。", "兔兔伯爵，出击！"]
   },
   "命之座": ["一箭双丘丘!"],
-  "天赋": ["Marksmanship"]
+  "天赋": ["百发百中"]
 }
 ```

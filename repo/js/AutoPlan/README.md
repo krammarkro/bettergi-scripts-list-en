@@ -1,250 +1,110 @@
-# AutoPlanAuto 体力计划
+# AutoPlan - Automated Resin Schedule
 
-**Auto 体力计划JS**  
-本脚本通过调用 **BetterGI** 本体Auto Domain实现体力计划
+**Auto Resin Schedule JS**  
+This script schedules and executes resin spending by calling **BetterGI**'s built-in Auto Domain, Auto Ley Line, Auto Stygian Onslaught, and Auto Boss features.
 
-## FeaturesGuide / Instructions
+## Features Overview
 
-本脚本为 BetterGI 的Auto DomainFeatures提供**计划/排期**能力，让你能：
+This script brings scheduling and queuing capabilities to BetterGI's automated combat modules, enabling you to:
 
-- 为不同队伍Configuration不同的Domain刷取目标
-- Settings刷取轮次
-- 限制只在特定星期几执行（例如周日限定本、Weekly Boss）
-- Settings执行优先级（数字越大越先跑）
-- Supports三种Configuration来源（输入 / UID专属 / bgi_tools远程）
-- Auto 检测幽境开启状态
+- Configure different farming targets for different party setups
+- Specify farming round counts
+- Restrict runs to specific days of the week (e.g., Sunday material domains, Weekly Bosses)
+- Set execution priorities (higher numbers execute first)
+- Support three configuration sources: Manual text input / UID-specific profile / `bgi_tools` remote API
+- Automatically check Stygian Onslaught availability status  
   ![check](assets/md/check.jpg)
-- Recording执行体力计划
+- Record resin plan execution history  
   ![record](assets/md/record.jpg)
-## Configuration项Guide / Instructions
 
-脚本通过以下界面Configuration项进行Settings（对应 settings.json）：
+## Configuration Options
 
-| Configuration项                                        | 类型             | Guide / Instructions                                                                                                          | 示例值                                      |
-|--------------------------------------------|----------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| **key**                                    | input-text     | Version密钥（必填，仔细看本文档）                                                                                             | xxxx                                     |
-| **auto_load**                              | multi-checkbox | 加载模式（可多选）<br>・输入加载：使用下方 run_config 字段<br>・UID加载：读取 config/run_config.json（每个UID独立）<br>・bgi_tools加载：从远程API拉取 | 默认：["输入加载","UID加载"]                      |
-| **auto_check**                             | multi-checkbox | 检查（可多选）<br>・"幽境检查"=>检查幽境是否开启,"Artifacts空间检查"=>检查ArtifactsInventory空间                                                           | 默认：["幽境检查","Artifacts空间检查"]                    |
-| **holy_relic_threshold**                   | input-text  | Artifacts空间检查Settings剩余阈值 如:2300/2400剩余阈值100,2409/2400剩余阈值9                                                             |                 |
-| **run_config**                             | input-text     | Auto Domain计划Configuration（当选择“输入加载”时生效）<br>格式见下方“计划Configuration语法”                                                                     | 速刷\|苍白的遗荣\|3\|1-3\|0,6\|9<br>（多条用英文逗号分隔） |
-| **loop_plan**                              | checkbox       | 启用循环体力计划                                                                                                    |                                          |
-| **retry_count**                            | select         | 复活重试次数                                                                                                      |                                          |
-| **bgi_tools_http_pull_json_config**        | input-text     | bgi_tools 拉取Configuration的 API 地址（当选择 bgi_tools加载 时生效）                                                                 | https://example.com/api/pull             |
-| **bgi_tools_open_push**                    | checkbox       | 是否在脚本结束时推送当前全部Configuration给 bgi_tools（用于同步/备份）                                                                        | 勾选 = 开启推送                                |
-| **bgi_tools_http_push_all_json_config**    | input-text     | bgi_tools 推送Domain常量的 API 地址（当开启推送时使用）                                                                          | https://example.com/api/push-all         |
-| **bgi_tools_http_push_all_country_config** | input-text     | bgi_tools 推送国家常量的 API 地址（当开启推送时使用）                                                                          | https://example.com/api/push-all         |
-| **bgi_tools_http_push_all_boss_config**    | input-text     | bgi_tools 推送Boss常量的 API 地址（当开启推送时使用）                                                                        | https://example.com/api/push-all         |
-| **bgi_tools_token**                        | input-text     | bgi_tools授权token 语法:tokenName=tokenValue                                                                    | tokenName=tokenValue                     |
+Configure settings in the script settings UI (corresponding to `settings.json`):
 
-### 计划Configuration语法（run_config 字段）
+| Option | Type | Description | Example |
+|---|---|---|---|
+| **key** | input-text | Version key (required; see version table below) | `xxxx` |
+| **auto_load** | multi-checkbox | Configuration load sources (multiple selection):<br>・Input: uses the `run_config` field below<br>・UID: reads `config/run_config.json` (per UID)<br>・bgi_tools: fetches from remote API | Default: `["输入加载", "UID加载"]` |
+| **auto_check** | multi-checkbox | Checks to perform:<br>・"幽境检查": Check Stygian Onslaught status<br>・"Artifacts空间检查": Check Artifact Inventory free space | Default: `["幽境检查", "Artifacts空间检查"]` |
+| **holy_relic_threshold** | input-text | Remaining free artifact slots threshold (e.g. 100 free slots remaining at 2300/2400) | `100` |
+| **run_config** | input-text | Domain schedule configuration string (used when "Input" source is active; see syntax below) | `Domain\|0,6\|9\|\|FastClear\|Pale Flame\|3\|1` |
+| **loop_plan** | checkbox | Enable continuous resin plan looping | `false` |
+| **retry_count** | select | Max revival retries upon party wipe | `3` |
+| **bgi_tools_http_pull_json_config** | input-text | API endpoint to pull configuration from `bgi_tools` | `https://example.com/api/pull` |
+| **bgi_tools_open_push** | checkbox | Push current configuration back to `bgi_tools` on completion (for sync/backup) | Checked = Enabled |
+| **bgi_tools_http_push_all_json_config** | input-text | API endpoint to push domain constants | `https://example.com/api/push-all` |
+| **bgi_tools_http_push_all_country_config** | input-text | API endpoint to push nation constants | `https://example.com/api/push-all` |
+| **bgi_tools_http_push_all_boss_config** | input-text | API endpoint to push boss constants | `https://example.com/api/push-all` |
+| **bgi_tools_token** | input-text | Authorization token for `bgi_tools` (syntax: `tokenName=tokenValue`) | `tokenName=tokenValue` |
 
-```
-队伍名称|Domain名称/刷取物品名称|刷几轮|限时/周日(1-3和本体的一致)|周几执行(0-6)不填默认执行|树脂使用顺序|执行顺序(越大越先执行)
-```
-
-- 多条计划用 **英文半角逗号 ,** 分隔
-- 字段之间用 **英文半角竖线 |** 分隔
-- **必须** 填写：Domain名称/物品名称
-- Other字段可省略（留空即可，但竖线不能省）
-
-**字段详解**
-
-| 位置 |     字段      |  是否必填  |                              Guide / Instructions                              |           示例            |
-|:--:|:-----------:|:------:|:------------------------------------------------------------:|:-----------------------:|
-| 1  |     类型      | **必填** |                        Domain/地脉/幽境/Boss                         |        Domain/地脉/幽境/Boss         |
-| 2  |  周几执行(0-6)  |   可选   |            0=周日,1=周一,...,6=周六；可多选按`/`分割，不填=每天都可执行            |          0/3,3          |
-| 3  |    执行顺序     |   可选   |                    数字越大越优先执行（同时间点先跑优先级高的）                    |        9 / 5 / 1        |
-| 4  |    Recording执行     |   可选   |                           启用随便填个值                            |                |
-|    |             |        |                     ***`Domain类型后几位参数Guide / Instructions`***                      
-| 5  |    队伍名称     |   可选   |                  BetterGI 中已保存的队伍名称（用于Switch Party）                  |      速刷 / 雷国 / 国家队      |
-| 6  | Domain名称/刷取物品名称 | **必填** |                   与 BetterGI Auto Domain识别的名称保持一致                   | 苍白的遗荣 / Crimson Witch of Flames / Vermillion Hereafter |
-| 7  |     刷几轮     |   可选   |                     整数，执行几轮（每轮 = 1次完整Domain）                     |       3 / 5 / 10        |
-| 8  |    限时/周日    |   可选   |                          和本体的1-3一致                           |        1 / 2 / 3        |
-| 9  |   树脂使用顺序    |   可选   |            原粹树脂,Condensed Resin,须臾树脂,脆弱树脂`/`分割，不填=默认执行 原粹树脂             |     原粹树脂/Condensed Resin,须臾树脂      |
-|    |             |        |                     ***`地脉类型后几位参数Guide / Instructions`***                      
-| 5  |    队伍名称     |   可选   |                  BetterGI 中已保存的队伍名称（用于Switch Party）                  |      速刷 / 雷国 / 国家队      |
-| 6  |     国家      | **必填** |                         识别国家（用于Switch国家）                         |         Natlan ...          |
-| 7  |     刷几轮     | **必填** |                             刷几轮                              |            1            |
-| 8  |    地脉类型     | **必填** |                          启示之花/藏金之花                           |       启示之花 / 藏金之花       |
-| 9  |     Friendship队     |   可选   |                                                              |                         |
-| 10 |   使用脆弱树脂    |   可选   |                           启用随便填个值                            |
-| 11 |   使用须臾树脂    |   可选   |                           启用随便填个值                            |
-| 12 |   合成Condensed Resin    |   可选   |                           启用随便填个值                            |
-| 13 |    Combat超时     |   可选   |                          可选，默认 120                           |
-|    |             |        |                     ***`幽境类型后几位参数Guide / Instructions`***                      
-| 5  |   指定刷取战场    |   可选   |                    (1-3)不填使用BetterGI默认的Configuration                    |            1            |
-| 6  |    队伍名称     |   可选   |         BetterGI 中已保存的队伍名称（用于Switch Party）不填使用BetterGI默认的Configuration          |      速刷 / 雷国 / 国家队      |
-| 7  | 是否指定使用自定义树脂 |   可选   |                  启用随便填个值 不填使用BetterGI默认的Configuration                   |                         |
-| 8  |   自定义树脂顺序   |   可选   |         原粹树脂,Condensed Resin,须臾树脂,脆弱树脂`/`分割  不填使用BetterGI默认的Configuration          |   原粹树脂 / Condensed Resin / 须臾树脂    |
-| 9  |   自定义树脂次数   |   可选   |            和自定义树脂顺序对应   `/`分割   不填使用BetterGI默认的Configuration            |        1 / 2 / 3        |
-|    |             |        |                    ***`Boss类型后几位参数Guide / Instructions`***                     
-| 5  |   Boss 名称   |必填|       需要在 BetterGI Auto 讨伐界面中选择的 Boss 名称，大小写和标点必须与游戏内完全一致       |Electro Hypostasis、Cryo Regisvine
-| 6  |    策略名称     |可选 |                BetterGI 中预设的Combat策略名称，留空则使用默认策略                 |速杀、国家队
-| 7  |   Combat策略Path    |可选 |             自定义Combat脚本Path，JS 可直接Settings该Path来覆盖策略名称。Normal用户可留空             |D:\scripts\boss1.txt
-| 8  |    队伍名称     |可选 |                   执行讨伐前需要Switch到的队伍名称，留空保持当前队伍                   |雷国、永冻队
-| 9  |   是否指定次数    |可选 | true 或 false，不填默认视为 false（即未指定次数，刷至体力耗尽）。Note：若指定次数，必须同时填写第10项 |true
-| 10 |    讨伐次数     |可选 |                  当第9项为 true 时必填，成功领取奖励的目标次数                  |5
-| 11 |   使用须臾树脂    |可选 |             指定次数模式下，原粹树脂不足时是否允许使用须臾树脂。true/false             |false
-| 12 |   使用脆弱树脂    |可选 |             指定次数模式下，原粹树脂不足时是否允许使用脆弱树脂。true/false             |false
-| 13 |   复活重试次数    |可选 |                Character死亡后Auto 回Statue of The Seven恢复并重试的最大次数/脚本全局 取最大值                |3
-| 14 |   每轮返回Statue of The Seven    |可选 |            true 表示每打完一轮先返回Statue of The Seven再重新Go to Boss。true/false            |false
-| 15 |    奖励识别     |可选 |            是否启用奖励名称识别（通过 OCR 校验奖励是否正确）。true/false            |false
-**Configuration示例**
+### Schedule Configuration Syntax (`run_config` field)
 
 ```text
-Domain|0/3|9||速刷|苍白的遗荣|3|1,          # 优先级最高，周日,周三刷3轮遗荣
-Domain||5||国家队|Crimson Witch of Flames|5||,       # 优先级次之，每天刷5轮魔女
-Domain|0|2||雷国|无想之刃狭间|2|2|Condensed Resin/原粹树脂,          # 只在周日刷，优先使用Condensed Resin后使用原粹树脂，优先级较低
-地脉||1|1||Mondstadt|1|启示之花|||||120, #优先级较低 刷1轮Mondstadt经验书
-幽境||1||||, #幽境 默认本体Configuration
-幽境||1||1|队伍|1|Condensed Resin/原粹树脂|1/1, #幽境 默认自定义树脂Configuration Switch到 队伍 运行->Condensed Resin 1次->原粹树脂 1次
-
-Boss|0/3|8||Electro Hypostasis|速杀||雷国|true|3|false|false|2|true|false,   # 周日和周三执行，优先级8，速刷Electro Hypostasis3次，每轮返回Statue of The Seven，不识别奖励
-Boss||5||Cryo Regisvine|||国家队|true|1|true|false|1||,          # 每天执行，优先级5，打1次Cryo Regisvine，允许用须臾树脂
-Boss||3||Pyro Regisvine||||false||||||                            # 最简单Configuration：每日Auto 讨伐Pyro Regisvine直至体力耗尽（不指定次数，不Switch Party，Other默认）
+Type|Days(0-6)|Priority|Record|Team|TargetName|Rounds|SundaySelection|ResinOrder
 ```
 
-（Note：最后一条也可以不带逗号）
+- Separate multiple plan rules with standard commas `,`.
+- Separate individual parameters within a rule with vertical pipes `|`.
+- **Required**: Target/Item Name.
+- Other fields can be omitted (leave empty, but preserve the `|` delimiters).
 
-### 计划Configuration语法（config/run_config.json Configuration）
+**Field Details**
 
-```json
-[
-  [
-    "uid",
-    [
-      {
-        // 顺序值
-        "order": 1,
-        // 执行日期
-        "days": [
-          0
-        ],
-        // 类型Supports。  Domain、地脉、幽境、Boss
-        "runType": "Domain",
-        //Recording
-        "record": true,
-        // Domain信息对象,
-        "autoFight": {
-          //树脂开启和使用顺序
-          "physical": [
-            {
-              "order": 0,
-              "name": "原粹树脂",
-              "open": true
-            },
-            {
-              "order": 1,
-              "name": "Condensed Resin",
-              "open": false
-            },
-            {
-              "order": 2,
-              "name": "须臾树脂",
-              "open": false
-            },
-            {
-              "order": 3,
-              "name": "脆弱树脂",
-              "open": false
-            }
-          ],
-          //Domain名称
-          "domainName": undefined,
-          //队伍名称
-          "partyName": undefined,
-          //周日|限时选择的值
-          "sundaySelectedValue": undefined,
-          //Domain轮数
-          "domainRoundNum": undefined
-        },
-        //地脉信息对象
-        "autoLeyLineOutcrop": {
-          //刷几轮
-          "count": 0,
-          //国家
-          "country": "",
-          //地脉类型  启示之花/藏金之花
-          "leyLineOutcropType": "启示之花",
-          //Friendship队伍名称
-          "friendshipTeam": "",
-          //队伍名称
-          "team": "",
-          //Combat超时
-          "timeout": 120,
-          //合成Condensed Resin
-          "isGoToSynthesizer": false,
-          //使用脆弱树脂
-          "useFragileResin": false,
-          //使用须臾树脂
-          "useTransientResin": false
-        },
-        //危战信息对象
-        "autoStygianOnslaught": {
-          //自定义树脂
-          "physical": [
-            {
-              "order": 0,
-              "name": "原粹树脂",
-              "open": true,
-              "count": 0
-            },
-            {
-              "order": 1,
-              "name": "Condensed Resin",
-              "open": false,
-              "count": 0
-            },
-            {
-              "order": 2,
-              "name": "须臾树脂",
-              "open": false,
-              "count": 0
-            },
-            {
-              "order": 3,
-              "name": "脆弱树脂",
-              "open": false,
-              "count": 0
-            }
-          ],
-          // 是否指定使用自定义树脂
-          "specifyResinUse": false,
-          //指定刷取战场 1-3
-          "bossNum": undefined,
-          //队伍名称
-          "fightTeamName": ""
-        },
-        // 讨伐信息对象 (Boss)
-        "autoBoss": {
-          // 需要讨伐的 Boss 名称，必填（与 BetterGI 内名称一致）
-          "bossName": "",
-          // Combat策略名称（可选，留空则使用默认策略）
-          "strategyName": "",
-          // 自定义Combat脚本Path（JS 可直接Settings，Normal用户可留空）
-          "combatStrategyPath": "",
-          // 讨伐前Switch的队伍名称（可选，留空保持当前队伍）
-          "teamName": "",
-          // 是否指定讨伐次数，true/false，默认 false
-          "specifyRunCount": false,
-          // 指定模式下的目标讨伐次数（specifyRunCount 为 true 时有效）
-          "runCount": 1,
-          // 次数不够时是否使用须臾树脂补充，true/false
-          "useTransientResin": false,
-          // 次数不够时是否使用脆弱树脂补充，true/false
-          "useFragileResin": false,
-          // 死亡后回Statue of The Seven重试的最大次数
-          "rviveRetryCount": 3,
-          // 是否每轮结束后返回Statue of The Seven再重新Go to Boss
-          "returnToStatueAfterEachRound": false,
-          // 是否启用奖励名称 OCR 识别
-          "rewardRecognitionEnabled": false
-        }
-      }
-    ]
-  ]
-]
+| Index | Field | Required | Description | Example |
+|:--:|:-----------:|:------:|:------------------------------------------------------------:|:-----------------------:|
+| 1 | Type | **Required** | `Domain` / `LeyLine` / `StygianOnslaught` / `Boss` (`秘境`/`地脉`/`幽境`/`Boss`) | `Domain` |
+| 2 | Days of Week | Optional | `0`=Sun, `1`=Mon, ..., `6`=Sat; slash-delimited `/`; empty = run any day | `0/3` |
+| 3 | Priority | Optional | Higher numbers execute first | `9` / `5` / `1` |
+| 4 | Record Run | Optional | Fill any value to track execution history | `1` |
+| | | | ***Domain Type Parameters*** | |
+| 5 | Team Name | Optional | Saved team name in BetterGI (used to switch teams) | `FastClear` |
+| 6 | Domain / Item Name | **Required** | Exact name recognized by BetterGI Auto Domain | `Pale Flame` / `Crimson Witch of Flames` |
+| 7 | Rounds | Optional | Number of runs (1 round = 1 complete domain clear) | `3` / `5` |
+| 8 | Sunday / Limited | Optional | Matches BetterGI 1-3 selection values | `1` / `2` / `3` |
+| 9 | Resin Priority | Optional | `Original Resin`, `Condensed Resin`, `Transient Resin`, `Fragile Resin` separated by `/` | `Condensed Resin/Original Resin` |
+| | | | ***Ley Line Outcrop Type Parameters*** | |
+| 5 | Team Name | Optional | Saved team name in BetterGI | `FastClear` |
+| 6 | Nation | **Required** | Recognized nation (for switching regions) | `Natlan`, `Fontaine` |
+| 7 | Rounds | **Required** | Number of Ley Line rounds to clear | `1` |
+| 8 | Ley Line Type | **Required** | `Blossom of Revelation` / `Blossom of Wealth` (`启示之花` / `藏金之花`) | `Blossom of Revelation` |
+| 9 | Companionship Team | Optional | Friendship team name | |
+| 10 | Use Fragile Resin | Optional | Any value enables | |
+| 11 | Use Transient Resin | Optional | Any value enables | |
+| 12 | Craft Condensed Resin | Optional | Any value enables | |
+| 13 | Combat Timeout | Optional | In seconds, default: 120 | `120` |
+| | | | ***Stygian Onslaught Type Parameters*** | |
+| 5 | Battlefield Index | Optional | (1-3) Leave empty to use BetterGI default configuration | `1` |
+| 6 | Team Name | Optional | Saved team name in BetterGI | `National` |
+| 7 | Use Custom Resin | Optional | Any value enables | |
+| 8 | Custom Resin Order | Optional | Separated by `/` (Original Resin / Condensed Resin / Transient Resin / Fragile Resin) | `Original Resin/Condensed Resin` |
+| 9 | Custom Resin Count | Optional | Separated by `/` corresponding to resin types | `1/1` |
+| | | | ***Boss Type Parameters*** | |
+| 5 | Boss Name | **Required** | Exact Boss name in BetterGI Auto Boss interface | `Electro Hypostasis` |
+| 6 | Strategy Name | Optional | Combat strategy preset in BetterGI | `FastKill` |
+| 7 | Combat Script Path | Optional | Custom combat script path overriding strategy name | `D:\scripts\boss1.txt` |
+| 8 | Team Name | Optional | Team to switch to before challenging the Boss | `RaidenNational` |
+| 9 | Specify Run Count | Optional | `true` or `false` (default: false, runs until resin exhausted). If true, item 10 is required. | `true` |
+| 10 | Run Count | Optional | Target clears when item 9 is `true` | `3` |
+| 11 | Use Transient Resin | Optional | Allow Transient Resin when Original Resin is insufficient (`true`/`false`) | `false` |
+| 12 | Use Fragile Resin | Optional | Allow Fragile Resin when Original Resin is insufficient (`true`/`false`) | `false` |
+| 13 | Revive Retry Count | Optional | Maximum retries to return to Statue of The Seven and retry on party wipe | `3` |
+| 14 | Return to Statue Each Round | Optional | Return to Statue to heal after each clear before navigating back (`true`/`false`) | `false` |
+| 15 | Reward OCR Recognition | Optional | Enable OCR to verify correct reward claim (`true`/`false`) | `false` |
+
+**Configuration Examples**
+
+```text
+Domain|0/3|9||FastClear|Pale Flame|3|1,          # Highest priority: Run Pale Flame 3 times on Sun/Wed
+Domain||5||National|Crimson Witch of Flames|5||,  # Medium priority: Run Crimson Witch 5 times daily
+Domain|0|2||RaidenNat|Momiji-Dyed Court|2|2|Condensed Resin/Original Resin, # Sunday only: Use Condensed then Original Resin
+LeyLine||1|1||Mondstadt|1|Blossom of Revelation|||||120, # Low priority: 1 round of Mondstadt EXP Ley Line
+StygianOnslaught||1||||,                         # Stygian Onslaught: default BetterGI configuration
+Boss|0/3|8||Electro Hypostasis|FastKill||RaidenNat|true|3|false|false|2|true|false, # Sun/Wed: 3 clears of Electro Hypostasis
+Boss||5||Cryo Regisvine|||National|true|1|true|false|1||, # Daily: 1 clear of Cryo Regisvine, allow Transient Resin
+Boss||3||Pyro Regisvine||||false||||||           # Simple setup: Farm Pyro Regisvine until resin runs out
 ```
+
+### JSON Profile Syntax (`config/run_config.json`)
 
 ```json
 [
@@ -253,38 +113,20 @@ Boss||3||Pyro Regisvine||||false||||||                            # 最简单Con
     [
       {
         "order": 1,
-        "days": [
-          0
-        ],
+        "days": [0],
         "record": false,
         "runType": "Domain",
         "autoFight": {
           "physical": [
-            {
-              "order": 0,
-              "name": "原粹树脂",
-              "open": true
-            },
-            {
-              "order": 1,
-              "name": "Condensed Resin",
-              "open": false
-            },
-            {
-              "order": 2,
-              "name": "须臾树脂",
-              "open": false
-            },
-            {
-              "order": 3,
-              "name": "脆弱树脂",
-              "open": false
-            }
+            { "order": 0, "name": "原粹树脂", "open": true },
+            { "order": 1, "name": "Condensed Resin", "open": false },
+            { "order": 2, "name": "须臾树脂", "open": false },
+            { "order": 3, "name": "脆弱树脂", "open": false }
           ],
-          "domainName": "",
-          "partyName": "",
+          "domainName": "Pale Flame",
+          "partyName": "FastClear",
           "sundaySelectedValue": 1,
-          "domainRoundNum": 1
+          "domainRoundNum": 3
         }
       },
       {
@@ -311,9 +153,9 @@ Boss||3||Pyro Regisvine||||false||||||                            # 最简单Con
         "runType": "Boss",
         "autoBoss": {
           "bossName": "Electro Hypostasis",
-          "strategyName": "速杀",
+          "strategyName": "FastKill",
           "combatStrategyPath": "",
-          "teamName": "雷国",
+          "teamName": "RaidenNat",
           "specifyRunCount": true,
           "runCount": 3,
           "useTransientResin": false,
@@ -328,101 +170,56 @@ Boss||3||Pyro Regisvine||||false||||||                            # 最简单Con
 ]
 ```
 
-### 如果你不想研究语法 请部署[bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools)(点击Go to部署) v0.0.4以上Version(建议使用v0.0.8+)
+### Visual Web Configuration Tool
 
-***`话不多说直接上图:`***
+If you prefer a visual web interface over editing text syntaxes, you can deploy [bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools) (v0.0.8+ recommended):
 
 ![login](assets/md/bgi-tools-login.jpg)
 ![init](assets/md/bgi-tools-config-ui-init.jpg)
-![init-api](assets/md/bgi-tools-config-ui-init-api.jpg)
 ![config](assets/md/bgi-tools-config-ui.jpg)
-![config-01](assets/md/bgi-tools-config-ui-01.jpg)
-![config-02](assets/md/bgi-tools-config-ui-02.jpg)
 
-## 使用建议
+## Recommendations
 
-1. 第一次使用建议只勾选「输入加载」，把计划写在 `run_config` 里测试
-2. 熟练后可改为「UID加载」，把Configuration保存为 `config/run_config.json`（每个Account独立）
-3. 如果你有自己的云端Configuration服务，可使用「bgi_tools加载」 + 推送Features实现多端同步
-4. 确保 BetterGI 的**Auto Domain**Features已正常可用（Zhongli识别、Combat策略等）
+1. For initial setup, check only "Input" source and test rules in `run_config`.
+2. For advanced multi-account setups, switch to "UID" source and maintain profiles in `config/run_config.json`.
+3. If hosting a personal cloud configuration service, use "bgi_tools" source with push synchronization.
+4. Ensure BetterGI native **Auto Domain** functions correctly (Zhongli recognition, combat scripts, etc.) before scheduling.
 
 ## FAQ
 
-- 计划Nope执行？  
-  → 检查密钥是否正确、是否勾选了对应的加载模式、Domain名称是否与 BetterGI 完全一致
+- **Plan does not execute?**  
+  → Verify version key, ensure the matching load source is checked, and verify domain/boss names match BetterGI exactly.
+- **Day-of-week restrictions not working?**  
+  → Confirm system time is correct and day numbers are 0-6 (0 = Sunday).
 
-- 周几限制不生效？  
-  → 确认 BetterGI 系统时间正确，且格式为 0-6（0=周日）
+## Version Key Table
 
-欢迎提交 issue 或 PR 改进脚本～
-祝刷本愉快！
+| Version | Key | `bettergi-scripts-tools` Version |
+|:---:|:---:|:---:|
+| 0.0.1 - 0.0.7 | `oiJbmjU2R0NniiwiZxh` | 0.0.4+ - 0.0.6+ |
+| 0.0.8 - 0.0.12 | `yHlw8FHjTJAPEtpp9O+` | 0.1.3+ - 0.1.6+ |
+| 0.1.3 - 0.1.5 | `2Cbayi1S2I41BlTXb/XAmw==` | 0.1.8+ - 0.1.9+ |
 
-## Version对应表
-
-|  Version   |         密钥          | bettergi-scripts-tools对应Version |
-|:-----:|:-------------------:|:--------------------------:|
-| 0.0.1 | oiJbmjU2R0NniiwiZxh |           0.0.4+           |
-| 0.0.2 | oiJbmjU2R0NniiwiZxh |           0.0.5+           |
-| 0.0.3 | oiJbmjU2R0NniiwiZxh |           0.0.6+           |
-| 0.0.4 | oiJbmjU2R0NniiwiZxh |           0.0.6+           |
-| 0.0.5 | oiJbmjU2R0NniiwiZxh |           0.0.6+           |
-| 0.0.6 | oiJbmjU2R0NniiwiZxh |           0.0.6+           |
-| 0.0.7 | oiJbmjU2R0NniiwiZxh |           0.0.6+           |
-| 0.0.8 | yHlw8FHjTJAPEtpp9O+ |           0.1.3+           |
-| 0.0.9 | yHlw8FHjTJAPEtpp9O+ |           0.1.3+           |
-| 0.1.0 | yHlw8FHjTJAPEtpp9O+ |           0.1.4+           |
-| 0.1.1 | yHlw8FHjTJAPEtpp9O+ |           0.1.5+           |
-| 0.1.2 | yHlw8FHjTJAPEtpp9O+ |           0.1.6+           |
-| 0.1.3 | 2Cbayi1S2I41BlTXb/XAmw== |           0.1.8+           |
-| 0.1.4 | 2Cbayi1S2I41BlTXb/XAmw== |           0.1.9+           |
-| 0.1.5 | 2Cbayi1S2I41BlTXb/XAmw== |           0.1.9+           |
 ---
-## Version历史（简要）
-### 0.1.5 2026.11.12
-- 修复HTTP请求Exception / Error时缺少错误提示的问题
-### 0.1.4 2026.09.06
-- 适配bgi本体API改动
-- 修复OCR识别问题
-### 0.1.3 2026.08.22
-- 修复幽境检查Features
-- 更新JSON格式
-### 0.1.2 2026.07.30
-- 分离幽境检查Features
-- 新增ArtifactsInventory剩余空间阈值检查
-- ![holy-relic-threshold](assets/md/holy-relic-threshold.jpg)
-- BossConfiguration加自定义Combat超时
-### 0.1.1 2026.06.30
-- Boss常量推送和培养计划Supports。
-### 0.1.0 2026.06.27
-- SupportsBossConfiguration
-### 0.0.9 2026.06.12
-- 修复bug
-### 0.0.8 2026.05.29
-- 新增执行RecordingFeatures(Supports多次执行计划时单个Configuration只执行一次)
-- ![record](assets/md/record.jpg)
-### 0.0.7 2026.05.27
-- 重构Configuration模块：使用新的 UID 获取方法 `genshin.uid()` 替代 OCR 识别
-- 移除对 `ocrUid`、`getDayOfWeek`、`parseInteger`、`pullJsonConfig` 和 `findStygianOnslaught` 的导入
-- 添加对 `toMainUi` 的导入，在初始化时调用确保回到主界面
-- 更新最低 BetterGI Version要求从 0.58.0 到 0.61.0
-- 删除 utils/uid.js 文件中的 `ocrUid` 函数实现
-- 优化 UID 获取逻辑，提升Stable性和准确性
-### 0.0.6 2026.04.23
- - 限制单例模式Configuration
-### 0.0.5 2026.04.11
-- 调整幽境危战 查找结果判断条件，增加名称不存在的情况处理
-- 默认滚动页面次数为4
-### 0.0.4 2026.03.25
-- 修复识别Exception / Error
-### 0.0.3 2026.03.13
-- 健全体力识别(双重识别兜底)
-### 0.0.2 2026.03.07
-- 新增幽境Supports
-### 0.0.1 2026.01.30
-- 基本Features完成
-- Supports三种Configuration加载方式
-- Supports bgi_tools http 拉取/推送Configuration
-- Supports按队伍、Domain、轮次、周几、优先级执行计划
 
-**Author**：云端客 (Kirito520Asuna)
+## Changelog Summary
 
+### 0.1.5 (2026-11-12)
+- Fixed missing error prompts when HTTP requests encounter exceptions.
+
+### 0.1.4 (2026-09-06)
+- Adapted to BetterGI core API updates; fixed OCR recognition issues.
+
+### 0.1.3 (2026-08-22)
+- Fixed Stygian Onslaught check; updated JSON format.
+
+### 0.1.2 (2026-07-30)
+- Separated Stygian Onslaught checks; added Artifact inventory capacity threshold check; added custom boss combat timeout.
+
+### 0.1.0 - 0.1.1 (2026-06)
+- Added Auto Boss scheduling and constant synchronization with `bgi_tools`.
+
+### 0.0.7 - 0.0.9 (2026-04 - 2026-05)
+- Replaced OCR UID with `genshin.uid()` native API; raised minimum BetterGI version to 0.61.0.
+
+**Author**: Kirito520Asuna (云端客)

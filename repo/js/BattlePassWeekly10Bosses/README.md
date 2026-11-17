@@ -1,4 +1,3 @@
-请Settings较长的Combat超时时间，否则超时后判定为Combat结束
-请在Auto Combat界面Settings关闭Combat结束拾取物品和Kaedehara Kazuha拾取，关闭更快的检查结束
-请Settings行走位为Zhongli（或Other成男成女Character），且配队中无OtherSpeed Upbuff
-
+- Please set a sufficiently long Combat Timeout; otherwise, reaching timeout will be evaluated as combat completed.
+- In the Auto Combat settings interface, please disable "Pick up drops when combat ends" and "Kaedehara Kazuha pickup", and disable "Faster Combat Finish Check".
+- Please set the movement/active character to Zhongli (or another adult male / adult female character model), ensuring no movement speed buffs are active in your party.

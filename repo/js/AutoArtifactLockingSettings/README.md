@@ -1,76 +1,74 @@
-# 🔒 Auto ConfigurationArtifacts锁定方案
+# 🔒 Auto Configure Artifact Locking Plans
 
-## ✨ 脚本简介
+## ✨ Script Introduction
 
-本脚本用于**Auto ConfigurationArtifacts锁定方案**。
+This script is used to **automatically configure artifact locking plans**.
 
-锁定方案来源于 哔哩哔哩 @酸儒书生 的 [这期视频](https://www.bilibili.com/video/BV13YHQzMEAT)，脚本会Auto 识别游戏界面并完成所有Configuration操作，省去手动逐个Settings的繁琐过程。
+The locking plans originate from Bilibili creator @酸儒书生's [video guide](https://www.bilibili.com/video/BV13YHQzMEAT). The script automatically recognizes the game UI and configures all settings, saving you from the tedious process of manual setup.
 
-## 🚀 Features特性
+## 🚀 Features
 
-- 🎯 **Auto 识别套装** - 通过 OCR Auto 识别当前界面的Artifacts套装
-- ⚙️ **批量Configuration方案** - Supports一次性Configuration多个套装的锁定方案
-- 🔄 **覆盖已有方案** - 可选择是否覆盖已存在的锁定方案
-- ⏱️ **延迟系数调节** - Supports自定义延迟系数，适配不同性能设备
+- 🎯 **Automatic Set Recognition** - Automatically detects artifact sets on the current interface using OCR
+- ⚙️ **Batch Configuration** - Supports configuring lock plans for multiple artifact sets at once
+- 🔄 **Overwrite Existing Plans** - Option to overwrite already existing lock plans
+- ⏱️ **Adjustable Delay Factor** - Supports custom delay multipliers to adapt to varying device performance
 
-## 📖 使用步骤
+## 📖 Instructions
 
-### 1️⃣ 前置要求
+### 1️⃣ Prerequisites
 
-- 游戏分辨率Settings为 **16:9** (2560x1440 或 1920x1080)
-
-- 游戏语言Settings为**简体中文**
-
-- Artifacts「锁定辅助」页面的「通用锁定方案」勾选上1、3、4项，如图所示
+- Game resolution must be set to **16:9** (2560x1440 or 1920x1080)
+- Game language set to **Simplified Chinese**
+- In the Artifacts "Lock Assistance" screen, check options 1, 3, and 4 under "General Lock Plan", as shown in the picture:
 
   ![global-lock](assets/global-lock.jpg)
 
-### 2️⃣ Configuration选项
+### 2️⃣ Configuration Options
 
-在 「调度器」 中打开脚本Settings，Configuration以下选项：
+Open the script settings in the Scheduler and configure the following options:
 
-| 选项 | Guide / Instructions |
+| Option | Description |
 |:---|:---|
-| 覆盖已有方案 | 勾选后会删除已有方案并重新Configuration |
-| 延迟系数 | 默认 1.2，运行Unstable时可调高至 1.4 或更高 |
-| 需要Configuration的Artifacts套装 | 勾选需要Configuration的套装，Supports全选 |
+| Overwrite existing plans | When checked, deletes existing plans and reconfigures them |
+| Delay factor | Default 1.2; increase to 1.4 or higher if running unstably |
+| Artifact sets to configure | Check the sets you wish to configure; supports "Select All" |
 
-### 3️⃣ 运行脚本
+### 3️⃣ Running the Script
 
-1. 在「调度器」中运行此脚本
-2. 等待脚本Auto 完成所有Configuration
+1. Run this script in the Scheduler
+2. Wait for the script to automatically complete all configurations
 
-> 运行期间请勿操作鼠标键盘，脚本会Auto 控制游戏界面
+> Do not move your mouse or press keyboard keys while the script is running, as it will automatically control the game interface.
 
-## 🛠️ Supports的套装
+## 🛠️ Supported Sets
 
-脚本目前Supports 1.0~7.1（炉火，血红） 的Artifacts。
+Currently supports artifact sets from versions 1.0 through 7.1 (Heart of the Furnace, Scarlet Proof).
 
-## 💬 问题反馈流程
+## 💬 Issue Feedback
 
-1. 找到Log文件，Path为 BetterGI 安装目录的 `log` 目录下，Log文件名为 `better-genshin-impact年月日.log`
-2. 屏幕Bottom-Left角的错误Log截个图
-3. https://github.com/babalae/bettergi-scripts-list/issues 创建一个 issue，**上传截图和Log**，并 @bling-yshs
+1. Locate the log file located in the `log` folder of your BetterGI installation directory, named `better-genshin-impact<YYYYMMDD>.log`.
+2. Take a screenshot of the error log in the bottom-left corner of the screen.
+3. Open an issue at https://github.com/babalae/bettergi-scripts-list/issues, **upload the screenshot and log**, and tag @bling-yshs.
 
 ## Changelog
 
 - 1.0.4 (2026-11-17)
-  - 更新追加属性数量 1、2、3、4 条选项的点击坐标，适配新版界面布局
+  - Updated click coordinates for 1, 2, 3, and 4 minor affixes to adapt to the new interface layout.
 
 - 1.0.3 (2026-10-02)
-  - 新增 `Heart of the Furnace` 与 `Scarlet Proof` 套装
+  - Added `Heart of the Furnace` and `Scarlet Proof` sets.
 
 - 1.0.2 (2026-07-10)
-  - 新增 `Celestial Gift` 与 `Disenchantment in Deep Shadow` 套装，删除 `$any.plans[any].index` 参数
+  - Added `Celestial Gift` and `Disenchantment in Deep Shadow` sets, removed `$any.plans[any].index` parameter.
 
 - 1.0.1 (2026-03-10)
-  - 清理 `Artifacts锁定方案信息.json` 里的重复数据，脚本内容Nope实际修改
+  - Cleaned up duplicate entries in `Artifacts锁定方案信息.json`; no functional script changes.
 
-## 🙏 致谢
+## 🙏 Acknowledgements
 
-- 锁定方案来源：[@酸儒书生](https://space.bilibili.com/10411008)
+- Locking plans courtesy of: [@酸儒书生](https://space.bilibili.com/10411008)
 
-## 👥 Author
+## 👥 Authors
 
 - [bling-yshs](https://github.com/bling-yshs)
 - [Bedrockx](https://github.com/Bedrockx)

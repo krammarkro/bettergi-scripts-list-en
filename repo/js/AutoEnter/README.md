@@ -1,2 +1,1 @@
-进入特定uid世界或Auto 批准特定用户进入，填写的名字和放在targets文件夹中的截图都会被视为白名单用户放行，使用前务必将世界权限Settings为确认后加入
-
+Enters the world of a specific UID or automatically approves specific users to enter your world. Configured names and screenshots placed in the `targets` folder are both treated as whitelisted users and allowed in. Before use, make sure your Co-Op world permissions are set to "Join After Approval".

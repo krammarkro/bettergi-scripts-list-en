@@ -1,45 +1,48 @@
-# 千星奇域-绮衣珍赏 脚本FeaturesGuide / Instructions
+# Thousand Stars Realm - Starfield Raiment Collection
 
-主要Features：全Auto 完成`千星奇域-绮衣珍赏`并领取奖励，Supports自定义额外刷取，脚本结束后Auto 返回Teyvat
+**Core Feature**: Fully automated completion of "Thousand Stars Realm - Starfield Raiment Collection" with automatic reward claiming, support for custom extra farming runs, and automatic return to Teyvat upon completion.
 
-基于 **OCR · 模板匹配** 
+Powered by **OCR & Template Matching**.
 
-## 使用的千星奇域关卡
+## Supported Stages
 
-本JS采用当前绮衣珍赏指定奇域《轰鸣木桩:DPS伤害测试》(GUID: 45694132064) 与 《千星木桩·总伤秒伤dps》(GUID: 24339714898)
+By default, this script uses the designated Starfield Raiment challenge stages:
+- "Roaring Target Dummy: DPS Test" (`GUID: 45694132064`)
+- "Thousand Star Dummy: Total & Burst DPS" (`GUID: 24339714898`)
 
-也可以使用自定义关卡，在脚本Configuration内启用 自定义奇域 并在下方guid栏按格式填入两个奇域的guid
+You can also use custom stages by enabling "Custom Realm" in the configuration and providing custom stage GUIDs.
 
-## 关于奇域
+## About Custom Realms
 
-本JS选用绮衣珍赏指定奇域，若当前奇域已Nope, Not In名单内，按照以下步骤自行更改
+If current stages change or are delisted, configure custom stages as follows:
 
-1. 使用默认2分钟等待模板（确保奇域进入后在Top-Left角有退出图标，见下图）
+### 1. Using the Default 2-Minute Wait Template
+Ensure the stage displays an Exit icon in the top-left corner upon entry (see image below):
 
 <div align="center">
  <img src="assets/Exit.png"/>
- <p>奇域内Top-Left角退出图标</p>
+ <p>In-stage Top-Left Exit Icon</p>
 </div>
 
-   - 在`JS脚本自定义Configuration`内勾选`自定义奇域-使用2分钟等待模板（自行在下方输入guid）`
-   - 在`关卡GUID`内输入奇域的GUID（若有多个则使用`,`隔开）
+- In **JS Script Custom Configuration**, check `Custom Realm - Use 2-minute wait template (Enter GUID below)`.
+- Enter the stage GUID in the `Stage GUID` field (separate multiple GUIDs with commas `,`).
 
-2. 使用更灵活的自定义动作模板  
-   - 在`JS脚本自定义Configuration`内**取消勾选**`自定义奇域-使用2分钟等待模板（自行在下方输入guid）`
-   - 在`关卡GUID`内输入奇域的GUID（若有多个则使用`,`隔开）
-   - 打开JS脚本文件夹下`assets/archive.json`，按照已有的格式编写自定义动作
-   
-   archive.json文件内容示例：
-   ```json
-   {
-     "45694132064": "sleep(41000)|keyDown(D)|sleep(700)|keyUp(D)|keyPress(F)",
-     "24339714898": "sleep(61000)|keyPress(Escape)|sleep(1000)|click(978,601)|sleep(1000)"
-   }
-   ```
-   各个指令之间使用`|`分隔，可用的指令如下：  
-   `sleep(1000)`:  括号内为ms  
-   `keyDown(A)`:  括号内为按键，可用按键参考[虚拟键代码表](https://www.bettergi.com/feats/append/keycodes.html)  
-   `keyUp(A)`:  括号内为按键  
-   `keyPress(A)`:  括号内为按键  
-   `click(x,y)`:  括号内为坐标，x为横轴，y为纵轴，使用部分截屏软件或者PS均可得到此坐标  
+### 2. Using Flexible Custom Action Sequences
+- In **JS Script Custom Configuration**, **uncheck** `Custom Realm - Use 2-minute wait template`.
+- Enter stage GUIDs in `Stage GUID` (comma-separated).
+- Open `assets/archive.json` in the script directory and write custom action routines matching existing syntax.
 
+Sample `archive.json`:
+```json
+{
+  "45694132064": "sleep(41000)|keyDown(D)|sleep(700)|keyUp(D)|keyPress(F)",
+  "24339714898": "sleep(61000)|keyPress(Escape)|sleep(1000)|click(978,601)|sleep(1000)"
+}
+```
+
+Commands are separated by `|`:
+- `sleep(1000)`: Wait duration in milliseconds.
+- `keyDown(A)`: Key press down (refer to virtual key code reference).
+- `keyUp(A)`: Key release.
+- `keyPress(A)`: Key tap.
+- `click(x,y)`: Mouse click coordinates (screen coordinates at 1920×1080).

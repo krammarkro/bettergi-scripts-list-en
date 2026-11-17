@@ -1,6 +1,7 @@
-从多方面评价电脑运行bgi与原神的性能
+# Computer Benchmark
 
-结果仅作为参考，只能在一定程度上反映当前环境下bgi的运行状态
+Evaluates computer performance across multiple metrics while running BetterGI and Genshin Impact.
 
-建议启动bgi后不要执行Other任务就进行测试(如果截图评分低于50，可能bgi没睡醒，建议稍等后再测一次)
+Results are for reference only and reflect the operational performance of BetterGI under your current system environment.
 
+It is recommended to run this test immediately upon launching BetterGI without executing other tasks. (If the screenshot benchmark score is below 50, BetterGI may still be initializing; wait a moment and retest.)

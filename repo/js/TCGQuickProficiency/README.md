@@ -1,49 +1,37 @@
-你是否也曾为了收集卡牌特效，周旋于各个智障NPC牌局中？
+Have you ever spent hours playing against sluggish NPCs just to collect character card dynamic holographic skins?
 
-你是否也曾看着拖拖拉拉的打牌动画而感慨生命的浪费？
+Have you ever watched drawn-out card animations and lamented the waste of time?
 
-Coming，它Coming，它在BetterGI的加持下向Let's Scoot!Coming！
+Here it is, powered by BetterGI, rolling right up to you!
 
 ## Instructions
 
-此脚本利用联机对局Fast提升卡牌的Friendship度。需要你有两个游戏Account，其中待提升熟练度的号以下称为**大号**，用来在对局中投降的号以下称为**小号**。
+This script leverages Co-Op card duels to rapidly level up Genius Invokation TCG Character Card Proficiency. You need two game accounts: the account gaining proficiency (referred to below as the **Main Account**), and the account surrendering in matches (referred to below as the **Alt Account**).
 
-[点击此链接查看使用效果视频](https://github.com/babalae/bettergi-scripts-list/pull/1282)（如果你能打开网页的话）
+[Click here to view a video demonstration](https://github.com/babalae/bettergi-scripts-list/pull/1282)
 
-**Note: 通过投降来刷熟练度，会产生连续的对局Recording。如果你Worried重复投降会带来Account风险，请不要使用。**
+**Note: Farming proficiency via surrendering generates consecutive match records. If you are concerned about account risks from repeated surrenders, please do not use this script.**
 
-> 在运行脚本前，最好确保你已在Better GI的`Shortcut Keys`Settings中Settings了用于`停止当前脚本`的Shortcut Keys
+> Before running, ensure you have set a hotkey in BetterGI's `Hotkeys` settings for `Stop Current Script`.
 
-1. 用小号申请加入大号的世界，进入双人联机模式。
-
-2. **可选**：如果你有两台电脑，那可以在登录了小号的电脑上运行此脚本，运行模式选择`作为辅助Account：Fast投降`。
-
-   如果你只有一台电脑，则需要用手机或者平板等设备登录小号，每次Roger That大号的打牌You're Invited时手动点击同意，并在进入牌局后Fast投降。
-
-3. 在登录了大号的电脑上运行此脚本，首次运行建议先选择`扫描当前Account卡牌熟练度`模式，扫描的数据将用于为后续刷熟练度的Character规划提供建议。
-
-4. 在登录了大号的电脑上，以`作为主Account：速刷熟练度`模式运行脚本。
-
-5. 当前牌组的熟练度刷满后，脚本会给出下一组Character的建议。手动将待刷熟练度的卡牌拖放到当前牌组后，直接再次运行脚本即可（脚本会对几个关键界面进行识别，并Auto 计算需要执行的动作，避免不必要的传送和重复）
+1. Have your Alt Account apply to join your Main Account's world in 2-player Co-Op mode.
+2. **Optional**: If you have two computers, run this script on the PC logged into your Alt Account with the mode `As Helper Account: Fast Surrender`.  
+   If you have only one PC, log into the Alt Account on a mobile device or tablet, manually accept duel invites from the Main Account, and forfeit quickly once the match begins.
+3. On the PC logged into your Main Account, run this script. For the first run, selecting `Scan Current Account Card Proficiency` mode is recommended. Scanned data will be used to suggest characters for upcoming farming sessions.
+4. On the PC logged into your Main Account, run the script in `As Main Account: Fast Proficiency Farming` mode.
+5. Once proficiency for the current deck is maxed out, the script suggests the next set of characters. Manually drag-and-drop the unmaxed cards into your active deck, then simply re-run the script (it detects key game screens and automatically calculates necessary actions, avoiding redundant teleports or prompts).
 
 ## FAQ
 
-- **如果只有一台电脑怎么办？**
+- **What if I only have one computer?**  
+  Genshin Impact does not allow running multiple client instances on a single physical PC, even across separate Windows user accounts.  
+  In this case, manually operate surrenders on your Alt Account (see [Instructions](#instructions)). Since the host account requires more complex dialogue and interaction steps, using the script to automate the Main Account is recommended.  
+  Alternatively, you can partner with other players in community groups who also want to farm proficiency, taking turns forfeiting for each other. [View Community Info](https://bettergi.com/community.html).
 
-  原神不允许在同一台物理设备上多开，即使多个WindowsAccount也不行（曾经有短暂的时间段开放了多开，但是很快又关闭了并直到现在）。
+- **Can I run one standard client and one Cloud Genshin client simultaneously on one PC?**  
+  BetterGI does not launch a second instance when an active instance is detected. Attempts to run dual BetterGI instances across separate Windows user accounts also encounter screen-capture conflicts.  
+  Therefore, this is currently not viable (if you find a workable solution, feedback on [GitHub](https://github.com/babalae/bettergi-scripts-list/issues) is welcome; feel free to mention `@Patrick-Ze`).
 
-  这种情况只能手动操作小号投降（见前面的[Instructions](#Instructions)）。由于发起You're Invited的Character（大号）操作会更复杂，建议用脚本来发起You're Invited。
-
-  或者你也可以在QQ群或者QQ频道找同样想刷熟练度的玩家，互相挂投降模式协助对方。[查看QQ群和QQ频道信息](https://bettergi.com/community.html)。
-
-- **只有一台电脑，能不能运行一个原神，运行一个云原神？**
-
-  Better GI在检测到已经有运行中的实例时不会再启动第二份，但并不像原神那样针对同一台物理设备。我也尝试过通过创建多个WindowsAccount，以双开Better GI，但是后启动的截图器会报错，可能是无法同时运行多个截图器。
-
-  因此目前来看也是不行的（如果你找到了解决方法，欢迎[来Github反馈 😊](https://github.com/babalae/bettergi-scripts-list/issues)，最好@一下我 `@Patrick-Ze`）
-
-- **能不能在当前队伍Character的熟练度刷满后，Auto Switch熟练度未满的Character？**
-
-  Genius Invokation TCG的牌组编辑界面不显示卡牌名，下方的卡牌槽不随详情页Switch卡牌而滚动，换卡必须拖拽到目标位置。要实现Auto SwitchCharacter，必须图像识别所有Character卡牌，过于离谱了。因此目前不Supports此Features。
-
-  考虑到原神大概率也不会改进Genius Invokation TCG的UI和UX，未来也不会Supports此Features。
+- **Can it automatically swap in unmaxed characters once current characters reach max proficiency?**  
+  The Genius Invokation TCG deck builder interface does not display card names as text, and bottom deck slots do not scroll with card detail pages. Swapping cards requires manual dragging and dropping. Supporting automated swapping would require comprehensive template matching across every character card in the game.  
+  Consequently, this feature is not supported and is not planned for future development.

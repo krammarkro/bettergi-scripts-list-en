@@ -1,167 +1,170 @@
-# 活动期限/Weekly Boss通知器
+# Event Duration & Trounce Domain Notifier
 
-## 本次识别结果 JSON
+## Recognition Result JSON
 
-正常运行脚本即可在脚本根目录生成 `recognition-result.json`（完整Path：`C:\Users\oldwang\Downloads\BetterGI\User\JsScript\ActivitySwitchNotice\recognition-result.json`），固定文件名、每次运行覆盖，不追加历史。`manifest.saved_files` 已声明此文件跨脚本更新保留，下次运行仍会覆盖。
+Running the script normally generates `recognition-result.json` in the script root directory (full path: `<BetterGI_Directory>\User\JsScript\ActivitySwitchNotice\recognition-result.json`). The filename is fixed and gets overwritten on each run without appending history. It is declared in `manifest.saved_files` to persist across script updates, and will be overwritten on the next execution.
 
-- 顶层字段：`schemaVersion`、`runId`、`startedAt`、`updatedAt`、`finishedAt`、`status`、`stage`、`error`、`sections`。时间为 UTC ISO 字符串；`runId` 使用本次Starting Up时间。
-- `status` 为 `running` / `completed` / `failed`。`completed` 仅表示原业务流程正常结束，不表示所有数据识别成功或通知送达；读取时应核对本次时间及各项状态。
-- 每个 `sections` 项有 `status`、`data`、`reason`；状态包括 `pending`（待执行）、`running`、`observed`（已观测）、`unknown`、`skipped`、`failed`、`not_run`（流程提前退出）。`null` 表示未知，不能作为零使用。
+- Top-level fields: `schemaVersion`, `runId`, `startedAt`, `updatedAt`, `finishedAt`, `status`, `stage`, `error`, `sections`. Timestamps are UTC ISO strings; `runId` uses the startup time of the current run.
+- `status` can be `running` / `completed` / `failed`. `completed` only indicates that the original routine finished normally; it does not guarantee that all data was recognized successfully or that notifications were delivered. Verify the timestamps and section statuses when reading.
+- Each `sections` item contains `status`, `data`, and `reason`. Statuses include `pending`, `running`, `observed`, `unknown`, `skipped`, `failed`, and `not_run` (flow exited early). `null` indicates unknown data and must not be treated as zero.
 
-| 项目 | data 字段 |
+| Item | data Fields |
 | --- | --- |
-| `mapMission` | `requested` 选择的关键词、`matches` 匹配文本列表（`ok`、`text`）；空列表不证明Nope任务 |
-| `holyRelics` | `text`、`count` 当前数量、`total` 容量、`remaining` 剩余空间、`threshold` 提醒阈值 |
-| `dailyCommission` | `daily` 委托奖励和 `physical` 原粹树脂消耗；各含 `use`、`total`，无效非有限数值写为 `null` |
-| `longTermTrainingPoints` | `pointNumber` 点数、`expireTime` 从 OCR 提取的过期数字、`expireTimeText` 过期原文；缺测为 `null`，过期数字沿用原识别逻辑，不是时间戳 |
-| `campaignArea` | `text`、`count` 本周消耗减半剩余次数、`total`；非提醒日为 `skipped` |
-| `activity` | `uid`、`names` 扫描到的名称、`details` 详情数组（`name`、可选 `common`、`text`、`hours`、`desc`）、`complete: null`（完整性未确认）；受原有筛选及分页逻辑限制 |
+| `mapMission` | `requested` (selected keywords), `matches` (matched text list: `ok`, `text`); an empty list does not prove no tasks exist. |
+| `holyRelics` | `text`, `count` (current count), `total` (capacity), `remaining` (available space), `threshold` (alert threshold). |
+| `dailyCommission` | `daily` (commission rewards) and `physical` (Original Resin consumption); each includes `use`, `total`; non-finite values are written as `null`. |
+| `longTermTrainingPoints` | `pointNumber` (points), `expireTime` (expiration number extracted via OCR), `expireTimeText` (raw expiration text); missing values are `null`; expiration number follows original OCR logic and is not a timestamp. |
+| `campaignArea` | `text`, `count` (remaining half-cost resin attempts this week), `total`; marked as `skipped` on non-reminder days. |
+| `activity` | `uid`, `names` (scanned names), `details` array (`name`, optional `common`, `text`, `hours`, `desc`), `complete: null` (completeness unconfirmed); subject to original filtering and pagination logic. |
 
-写入时机：初始化/游戏操作前先清空旧数据并写入 `running`；阶段Starting Up、取得识别数据（通知前）及跳过时覆盖；流程结束写入 `completed`，Exception / Error写入 `failed` 和错误原因。未执行项保留 `null`，不混入上次数据；已经保存的本次数据可在后续通知Defeat时保留。活动在扫描结束、通知前保存汇总，扫描中途Defeat时该项Nope完整结果。
+Write timing: Old data is cleared and set to `running` upon initialization/before in-game actions; overwritten when stages start, recognition data is acquired (before notifying), or when skipped; set to `completed` upon completion, or `failed` with error reason on error. Unexecuted items remain `null` and do not mix with previous run data. Saved data from the current run is preserved if subsequent notification fails. Events are saved in summary after scanning finishes and before notification; if scanning fails halfway, that item has no complete result.
 
-写文件使用 `await file.writeText(path, JSON字符串, false)` 并检查返回值。首次写入Defeat会立即终止；后续写入Defeat会中止流程并尝试保存Defeat状态。如磁盘不可写、宿主强制停止或进程退出，可能无法落盘/Cleanup，文件可能仍是旧文件、`running` 或不完整 JSON；请结合运行Log、时间和 `runId` 判断，不能仅凭文件存在认定本次成功。此接口不提供原子写入保证。
+File writing uses `await file.writeText(path, jsonString, false)` and checks the return value. Failure on initial write terminates immediately; subsequent write failure aborts the flow and attempts to save the failed state. If the disk is unwritable, host forcefully terminates, or the process exits, writing or cleanup may fail, leaving the file as an older version, in `running` state, or as incomplete JSON. Determine execution status from run logs, timestamps, and `runId`, rather than solely by file existence. Atomic writes are not guaranteed.
 
+## Project Overview
 
-## 项目概述
-
-这是一个用于《原神》游戏的Auto 化脚本工具，主要Features是Auto 检测游戏内活动的剩余时间，并在活动即将结束时/每周指定日期Auto 提醒征讨领域减半剩余次数发送通知提醒玩家。
+This is an automation script for Genshin Impact designed to automatically detect the remaining duration of in-game events and send reminders when events are about to end, as well as notify players of remaining half-cost Trounce Domain attempts on designated days of the week.
 
 ---
 
-## Features特性
+## Features
 
-- ✅ Auto 返回游戏主界面并打开活动页面
-- ✅ OCR识别活动列表和剩余时间
-- ✅ Auto 滚动浏览所有活动页面
-- ✅ 智能解析剩余时间（Supports"22天14小时"等格式）
-- ✅ 可Configuration的通知阈值（默认8760小时内结束的活动）
-- ✅ Supports指定特定活动进行监控
-- ✅ Supports活动黑名单过滤Features（0.0.5Version,新增Supports为黑名单活动Settings特定条件，只有Happy条件时才过滤,注：特定条件为空默认Nope条件）
-- ✅ 防重复检测机制
-- ✅ Exception / Error处理和错误恢复
-- ✅ Auto 提醒征讨领域减半剩余次数（`0.1.1`Version起Supports多选提醒日）
-- ✅ Daily Commissions奖励 / 原粹树脂 / 长期训练点提醒（`0.0.7`/`0.1.9`Version）
-- ✅ 地图识别任务提醒（`0.0.8`Version）
-- ✅ Artifacts剩余空间检测提醒（`0.1.5`Version）
-- ✅ 新活动通知-存储活动名称列表进行历史对比（`0.1.0`Version）
-- ✅ Supports独立通知Features（`0.0.4`Version新增 因BGI不SupportsWebSocket,需搭配bettergi-scripts-tools+开启JS HTTP
-  权限使用）[Go tobettergi-scripts-tools部署](https://github.com/Kirito520Asuna/bettergi-scripts-tools)
-## 核心思维导图
-### 整体架构流程图
+- ✅ Automatically returns to the game's main UI and opens the Events menu
+- ✅ OCR recognition of event lists and remaining duration
+- ✅ Automatically scrolls through all event pages
+- ✅ Intelligent time parsing (supports formats like "22 days 14 hours")
+- ✅ Configurable notification threshold (default: events ending within 8760 hours)
+- ✅ Supports monitoring specific events
+- ✅ Event blacklist filtering (v0.0.5 added conditional blacklist: filter only when conditions are met; empty condition means no condition)
+- ✅ Anti-duplicate detection mechanism
+- ✅ Exception handling and error recovery
+- ✅ Automatic reminders for remaining weekly Trounce Domain half-cost claims (multi-day selection supported since v0.1.1)
+- ✅ Daily Commission rewards / Original Resin / Long-Term Encounter Points reminders (v0.0.7 / v0.1.9)
+- ✅ Map recognition mission reminders (v0.0.8)
+- ✅ Artifact inventory space check and alert (v0.1.5)
+- ✅ New event alerts with historical comparison (v0.1.0)
+- ✅ Supports standalone notifications (v0.0.4 added; requires bettergi-scripts-tools and JS HTTP permissions enabled as BGI does not natively support WebSockets) [Deploy bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools)
+
+## Core Flowcharts
+
+### Overall Architecture Flowchart
 ```mermaid
 graph TD
-    A[主程序入口 main.js] --> B[初始化 init]
-    B --> C[加载工具模块]
+    A[Main Entry main.js] --> B[Initialize init]
+    B --> C[Load Utility Modules]
     C --> D[tool.js, ws.js, notice.js, campaignArea.js, activity.js, mapMission.js, HolyRelics.js]
-    D --> E[读取 manifest.json]
-    E --> F[检查是否返回主界面]
+    D --> E[Read manifest.json]
+    E --> F[Check Whether to Return to Main UI]
     F --> G[toMainUi]
-    G --> H[执行主Features main]
-    H --> I[地图识别任务检查]
-    I --> J[Artifacts剩余空间检查]
-    J --> K[Daily Commissions检查]
-    K --> L[征讨领域检查]
-    L --> M[活动页面扫描]
-    M --> N[返回主界面]
-    N --> O[程序结束]
-
+    G --> H[Execute Main Routine main]
+    H --> I[Map Mission Check]
+    I --> J[Artifact Inventory Space Check]
+    J --> K[Daily Commission Check]
+    K --> L[Trounce Domain Check]
+    L --> M[Event Page Scan]
+    M --> N[Return to Main UI]
+    N --> O[End Program]
 ```
-### 活动扫描核心流程
+
+### Event Scanning Core Flow
 ```mermaid
 graph TD
-    A[activityMain函数] --> B[初始化Configuration]
-    B --> C[打开活动页面 F5]
-    C --> D[滚动到页面顶部]
-    D --> E[Starting Up逐页扫描]
-    E --> F[OCR识别活动列表]
-    F --> G{是否有活动?}
-    G -->|否| H[结束扫描]
-    G -->|是| I[遍历当前页活动]
-    I --> J[白名单过滤]
-    J --> K{是否在白名单?}
-    K -->|是| L[继续处理]
-    K -->|否| M[根据关系模式判断]
+    A[activityMain Function] --> B[Initialize Configuration]
+    B --> C[Open Events Menu F5]
+    C --> D[Scroll to Top of Page]
+    D --> E[Start Page-by-Page Scan]
+    E --> F[OCR Recognize Event List]
+    F --> G{Any Events?}
+    G -->|No| H[End Scan]
+    G -->|Yes| I[Iterate Current Page Events]
+    I --> J[Whitelist Filter]
+    J --> K{In Whitelist?}
+    K -->|Yes| L[Continue Processing]
+    K -->|No| M[Evaluate Relationship Mode]
     M --> N{relationship=true?}
-    N -->|是| O[跳过]
-    N -->|否| L[继续处理]
-    L --> P[黑名单过滤]
-    P --> Q{是否在黑名单?}
-    Q -->|是| R[条件检测]
-    Q -->|否| S[点击活动]
-    R --> T{条件Happy?}
-    T -->|是| U[跳过]
-    T -->|否| S[点击活动]
-    S --> V[OCR识别剩余时间]
-    V --> W[解析时间转小时]
-    W --> X[应用阈值过滤]
-    X --> Y[存储活动信息]
-    Y --> Z[向下滚动一页]
+    N -->|Yes| O[Skip]
+    N -->|No| L[Continue Processing]
+    L --> P[Blacklist Filter]
+    P --> Q{In Blacklist?}
+    Q -->|Yes| R[Condition Check]
+    Q -->|No| S[Click Event]
+    R --> T{Condition Met?}
+    T -->|Yes| U[Skip]
+    T -->|No| S[Click Event]
+    S --> V[OCR Recognize Time Remaining]
+    V --> W[Parse Time to Hours]
+    W --> X[Apply Threshold Filter]
+    X --> Y[Store Event Info]
+    Y --> Z[Scroll Down One Page]
     Z --> E
-    H --> AA[过滤符合条件活动]
-    AA --> BB[按剩余时间排序]
-    BB --> CC[发送通知]
-    CC --> DD[流程结束]
+    H --> AA[Filter Matching Events]
+    AA --> BB[Sort by Time Remaining]
+    BB --> CC[Send Notification]
+    CC --> DD[End Flow]
 ```
-### 征讨领域提醒流程
-```mermaid
-graph TD
-    A[campaignAreaMain函数] --> B[获取当前星期]
-    B --> C{是否为提醒日?}
-    C -->|否| D[结束函数]
-    C -->|是| E[打开冒险之书 F1]
-    E --> F[点击Domain坐标]
-    F --> G[点击征讨领域坐标]
-    G --> H[OCR识别周次数]
-    H --> I{剩余次数>0?}
-    I -->|否| J[结束函数]
-    I -->|是| K[发送通知]
-    K --> L[流程结束]
 
-```
-### 通知发送机制
+### Trounce Domain Reminder Flow
 ```mermaid
 graph TD
-    A[sendNotice函数] --> B[检查通知类型Configuration]
-    B --> C[获取通知模式]
-    C --> D{BGI通知?}
-    D -->|是| E[notification.send]
-    C --> F{独立通知?}
-    F -->|是| G[wsUtil.sendText]
-    C --> H{两者都发送?}
-    H -->|是| E
-    H -->|是| G
-    E --> I[发送完成]
+    A[campaignAreaMain Function] --> B[Get Current Day of Week]
+    B --> C{Is Reminder Day?}
+    C -->|No| D[Exit Function]
+    C -->|Yes| E[Open Adventurer Handbook F1]
+    E --> F[Click Domains Tab]
+    F --> G[Click Trounce Domains]
+    G --> H[OCR Recognize Weekly Attempts]
+    H --> I{Remaining Attempts > 0?}
+    I -->|No| J[Exit Function]
+    I -->|Yes| K[Send Notification]
+    K --> L[End Flow]
+```
+
+### Notification Mechanism
+```mermaid
+graph TD
+    A[sendNotice Function] --> B[Check Notification Configuration]
+    B --> C[Get Notification Mode]
+    C --> D{BGI Notification?}
+    D -->|Yes| E[notification.send]
+    C --> F{Standalone Notification?}
+    F -->|Yes| G[wsUtil.sendText]
+    C --> H{Send Both?}
+    H -->|Yes| E
+    H -->|Yes| G
+    E --> I[Sending Complete]
     G --> I
-    I --> J[流程结束]
+    I --> J[End Flow]
 ```
-### Configuration解析流程
+
+### Configuration Parsing Flow
 ```mermaid
 graph TD
-    A[Configuration初始化] --> B[parseWhiteActivity]
+    A[Configuration Initialization] --> B[parseWhiteActivity]
     A --> C[parseBlackActivity]
-    B --> D[白名单列表解析]
-    C --> E[黑名单条件解析]
-    D --> F[建立whiteActivityNameList]
-    E --> G[建立blackActivityMap]
-    F --> H[Settingsrelationship逻辑]
+    B --> D[Whitelist Parsing]
+    C --> E[Blacklist Condition Parsing]
+    D --> F[Build whiteActivityNameList]
+    E --> G[Build blackActivityMap]
+    F --> H[Configure Relationship Logic]
     G --> H
-    H --> I[Configuration完成]
+    H --> I[Configuration Complete]
 ```
-### 核心组件依赖关系
+
+### Core Component Dependencies
 ```mermaid
 graph LR
-    subgraph "工具模块"
-        A[activity.js - 活动处理]
-        B[notice.js - 通知发送]
-        C[campaignArea.js - 征讨领域/Daily Commissions]
-        D[ws.js - WebSocket通信]
-        E[tool.js - 通用工具/Record/主界面]
-        F[mapMission.js - 地图任务识别]
-        G[HolyRelics.js - Artifacts空间检查]
+    subgraph "Utility Modules"
+        A[activity.js - Event Processing]
+        B[notice.js - Notification Delivery]
+        C[campaignArea.js - Trounce Domain / Daily Commissions]
+        D[ws.js - WebSocket Communication]
+        E[tool.js - General Utils / Records / Main UI Check]
+        F[mapMission.js - Map Mission Recognition]
+        G[HolyRelics.js - Artifact Space Check]
     end
     
-    subgraph "主控模块"
-        H[main.js - 主入口]
+    subgraph "Control Modules"
+        H[main.js - Main Entry]
         I[settings.json - Configuration]
     end
     
@@ -184,245 +187,246 @@ graph LR
     I -.-> D
     I -.-> F
     I -.-> G
-
 ```
-### 逻辑流程
+
+### Logic Sequence
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Config as Configuration初始化
-    participant Parser as 解析器
-    participant ActivityMgr as 活动管理
-    participant OCRSvc as OCR 服务
-    participant Filter as 过滤决策
-    participant Notification as 通知服务
+    participant Config as Configuration Init
+    participant Parser as Parser
+    participant ActivityMgr as Event Manager
+    participant OCRSvc as OCR Service
+    participant Filter as Filter Decision
+    participant Notification as Notification Service
 
-    Config->>Parser: 读取 settings.whiteActivityNameList
+    Config->>Parser: Read settings.whiteActivityNameList
     Parser->>Parser: parseWhiteActivity(text)
-    Parser-->>Config: 返回 whiteActivityNameList
+    Parser-->>Config: Return whiteActivityNameList
     
-    Config->>Parser: 读取 settings.blackActivity
+    Config->>Parser: Read settings.blackActivity
     Parser->>Parser: parseBlackActivity(text, excludeList)
-    Parser-->>Config: 返回 blackActivityMap
+    Parser-->>Config: Return blackActivityMap
 
-    Note over ActivityMgr: 遍历所有候选活动
-    loop 每个候选活动
-        Note over ActivityMgr: 检查白名单匹配
-        alt 白名单不为空
-            ActivityMgr->>ActivityMgr: 检查活动名是否包含白名单关键词
-            alt 包含关键词
-                ActivityMgr-->>ActivityMgr: 标记为白名单活动
-            else 不包含关键词
-                alt relationship为false（或关系）
-                    ActivityMgr-->>ActivityMgr: 继续处理
-                else relationship为true（与关系）
-                    ActivityMgr-->>ActivityMgr: 跳过该活动
+    Note over ActivityMgr: Iterate through candidate events
+    loop Each candidate event
+        Note over ActivityMgr: Check whitelist matching
+        alt Whitelist is not empty
+            ActivityMgr->>ActivityMgr: Check if event name contains whitelist keywords
+            alt Contains keyword
+                ActivityMgr-->>ActivityMgr: Mark as whitelisted event
+            else Does not contain keyword
+                alt relationship is false (OR logic)
+                    ActivityMgr-->>ActivityMgr: Continue processing
+                else relationship is true (AND logic)
+                    ActivityMgr-->>ActivityMgr: Skip event
                 end
             end
         end
         
-        Note over ActivityMgr: 检查黑名单匹配    
-        alt 黑名单不为空
-            ActivityMgr->>Filter: 是否匹配黑名单？
-            Filter->>Parser: getMapByKey(blackActivityMap, 活动名, reverseMatch=true)
-            Parser-->>Filter: 返回条件列表
-            Filter->>OCRSvc: 用 OCR 校验条件（如剩余时间、文本等）
-            OCRSvc-->>Filter: 返回条件Happy情况
-            alt 任一条件Happy
-                Filter-->>ActivityMgr: 跳过该活动
-            else 所有条件均不Happy
-                Filter-->>ActivityMgr: 保留该活动
+        Note over ActivityMgr: Check blacklist matching    
+        alt Blacklist is not empty
+            ActivityMgr->>Filter: Matches blacklist?
+            Filter->>Parser: getMapByKey(blackActivityMap, eventName, reverseMatch=true)
+            Parser-->>Filter: Return condition list
+            Filter->>OCRSvc: Check conditions with OCR (remaining time, text, etc.)
+            OCRSvc-->>Filter: Return condition satisfaction result
+            alt Any condition met
+                Filter-->>ActivityMgr: Skip event
+            else No conditions met
+                Filter-->>ActivityMgr: Retain event
             end
-        else 匹配但无条件
-            Filter-->>ActivityMgr: 直接跳过该活动
-        else 未匹配黑名单
-            Filter-->>ActivityMgr: 保留该活动
+        else Matches with no condition
+            Filter-->>ActivityMgr: Skip event directly
+        else Not matched in blacklist
+            Filter-->>ActivityMgr: Retain event
         end
     end
 
-    Note over ActivityMgr: 活动筛选完成后
-    ActivityMgr->>ActivityMgr: 根据whiteActivityNameList和relationship进行二次筛选
-    alt relationship为true（与关系）
-        ActivityMgr->>ActivityMgr: 同时Happy剩余时间阈值和白名单条件
-    else relationship为false（或关系）
-        ActivityMgr->>ActivityMgr: Happy剩余时间阈值或白名单任一条件
+    Note over ActivityMgr: After event filtering completes
+    ActivityMgr->>ActivityMgr: Secondary filter with whiteActivityNameList and relationship
+    alt relationship is true (AND logic)
+        ActivityMgr->>ActivityMgr: Must satisfy both remaining time threshold and whitelist condition
+    else relationship is false (OR logic)
+        ActivityMgr->>ActivityMgr: Satisfies either remaining time threshold or whitelist condition
     end
-    ActivityMgr->>ActivityMgr: 检查剩余时间阈值
-    ActivityMgr->>Notification: 发送符合条件的活动通知
-    Notification-->> ActivityMgr: 通知发送完成
+    ActivityMgr->>ActivityMgr: Check remaining time threshold
+    ActivityMgr->>Notification: Send matching event notifications
+    Notification-->>ActivityMgr: Notification delivery complete
 ```
----
-
-## 用户使用指南
-
-### FastStarting Up
-
-#### 1. 安装与Configuration
-
-- 确保游戏分辨率为 **1920×1080**（Recommended分辨率）
-- 将脚本导入到 BetterGI 脚本管理器中
-- 在脚本Settings界面进行个性化Configuration
-
-#### 2. 基础Settings
-
-在 [settings.json]() 中可以Configuration以下参数：
-
-| Settings项                          | Guide / Instructions                                                       |                     默认值                     |
-|:-----------------------------|:---------------------------------------------------------|:--------------------------------------------|
-| `debug`                      | 启用开发者模式（框选识别区域辅助Debug）                                    |                   false                    |
-| `toMainUi`                   | 执行前是否Auto 返回游戏主界面                                          |                    true                    |
-| `noticeType`                 | 通知模式（BGI通知/独立通知/独立通知和BGI通知）                           |                  BGI通知                    |
-| `newActivityNotice`          | 启用新活动通知（存储活动名称列表-历史对比）                                |                    true                    |
-| `mapMissionKeys`             | 地图识别任务提醒（多选）                                           |      伴月纪闻任务,探索派遣奖励,Daily Commissions奖励            |
-| `relationship`               | 剩余时间与白名单启用`和`关系（默认`或`关系）                              |                   false                    |
-| `whiteActivityNameList`      | 白名单活动名称（用\|分隔）                                          |                 空（监控所有活动）                |
-| `blackActivity`              | 黑名单活动名称（用\|分隔）- Supports条件语法：活动名-条件1,条件2                     |                空（无黑名单活动）                |
-| `notifyHoursThreshold`       | 通知剩余时间阈值（小时）                                            |                8760（365天）                 |
-| `activityKey`                | 打开活动页面的Shortcut Keys                                              |                     F5                     |
-| `campaignAreaReminderDays`   | Weekly Boss提醒日（多选）                                               |                  周六,周日                   |
-| `campaignAreaKey`            | 打开冒险之证的Shortcut Keys                                              |                     F1                     |
-| `openBagKey`                 | 打开Inventory的Shortcut Keys                                                |                     B                      |
-| `checkHolyRelic`             | 启用Artifacts空间提醒                                               |                   false                    |
-| `holyRelicsDiffCountThreshold` | Artifacts剩余空间阈值                                              |                    400                     |
-| `wsNoticeType`               | 独立通知Configuration方式（自定义通知/bgi-tools通知）                            |                  自定义通知                   |
-| `http_api_access_ws_proxy`   | bgi-tools获取授权wsproxy api地址                                | http://127.0.0.1:8081/bgi/ws-proxy/access  |
-| `bgi_tools_token`            | bgi_tools授权token 语法:tokenName=tokenValue                    |               Authorization=                |
-| `ws_proxy_url`               | WebSocket代理URL（独立通知Configuration）                                   | http://127.0.0.1:8081/bgi/ws-proxy/message/send |
-| `ws_url`                     | WebSocket客户端 URL（独立通知Configuration）                                 |            ws://127.0.0.1:8080/            |
-| `ws_token`                   | WebSocket客户端 token（独立通知Configuration）                               |                     空                     |
-| `action`                     | 发送类型（私聊/群聊）（独立通知Configuration）                                    |                     私聊                    |
-| `send_id`                    | 发送ID（群号或QQ号，对应发送类型）（独立通知Configuration）                            |                     空                     |
-| `at_list`                    | @某人列表使用,隔开（QQ号）（独立通知Configuration）                                |                     空                     |
-
-> 注：`toTopCount`、`scrollPageCount` 已不再在Settings界面开放（代码内部使用默认值 10 / 4）。
 
 ---
 
-### 使用流程
+## User Guide
 
-#### Auto 模式（Recommended）
+### Quick Start
 
-1. 启动脚本后，程序会Auto ：
-    - 检测当前是否在游戏主界面
-    - 如未在主界面，Auto 返回主界面
-    - 按设定的Shortcut Keys打开活动页面
-    - Starting Up扫描所有活动
+#### 1. Installation & Configuration
 
-#### 手动模式
+- Ensure game resolution is **1920×1080** (recommended resolution).
+- Import the script into BetterGI Script Manager.
+- Configure preferences in the script settings panel.
 
-1. 关闭 `toMainUi` 选项
-2. 确保游戏处于主界面状态
-3. 启动脚本Starting Up扫描
+#### 2. Basic Settings
+
+The following parameters can be configured in [settings.json]():
+
+| Setting | Description | Default |
+|:---|:---|:---|
+| `debug` | Enable developer mode (highlights recognition boxes for debugging) | false |
+| `toMainUi` | Automatically return to game main UI before execution | true |
+| `noticeType` | Notification mode (BGI Notification / Standalone / Both) | BGI Notification |
+| `newActivityNotice` | Enable new event notifications (records event names for historical comparison) | true |
+| `mapMissionKeys` | Map recognition mission reminders (multi-select) | Battle Pass Missions, Expedition Rewards, Daily Commission Rewards |
+| `relationship` | Use `AND` logic between remaining time and whitelist (default is `OR` logic) | false |
+| `whiteActivityNameList` | Whitelisted event names (separated by `\|`) | Empty (monitors all events) |
+| `blackActivity` | Blacklisted event names (separated by `\|`) - Supports condition syntax: `EventName-condition1,condition2` | Empty (no blacklist) |
+| `notifyHoursThreshold` | Notification time remaining threshold (hours) | 8760 (365 days) |
+| `activityKey` | Shortcut key to open Events menu | F5 |
+| `campaignAreaReminderDays` | Trounce Domain reminder days (multi-select) | Saturday, Sunday |
+| `campaignAreaKey` | Shortcut key to open Adventurer Handbook | F1 |
+| `openBagKey` | Shortcut key to open Inventory | B |
+| `checkHolyRelic` | Enable Artifact inventory space reminder | false |
+| `holyRelicsDiffCountThreshold` | Artifact inventory remaining space threshold | 400 |
+| `wsNoticeType` | Standalone notification mode (Custom Notification / bgi-tools Notification) | Custom Notification |
+| `http_api_access_ws_proxy` | bgi-tools authorized wsproxy API endpoint | http://127.0.0.1:8081/bgi/ws-proxy/access |
+| `bgi_tools_token` | bgi-tools authorization token, syntax: `tokenName=tokenValue` | Authorization= |
+| `ws_proxy_url` | WebSocket proxy URL (standalone notification) | http://127.0.0.1:8081/bgi/ws-proxy/message/send |
+| `ws_url` | WebSocket client URL (standalone notification) | ws://127.0.0.1:8080/ |
+| `ws_token` | WebSocket client token (standalone notification) | Empty |
+| `action` | Message delivery target (Private Message / Group Chat) | Private Message |
+| `send_id` | Recipient ID (Group or QQ number depending on action) | Empty |
+| `at_list` | List of user IDs to @ mention, comma-separated | Empty |
+
+> Note: `toTopCount` and `scrollPageCount` are no longer exposed in the settings interface (internal defaults are 10 and 4).
 
 ---
 
-### Features详解
+### Execution Modes
 
-#### 活动筛选
+#### Automatic Mode (Recommended)
 
-- **全部活动监控**：`whiteActivityNameList` 保持空值，监控所有有剩余时间的活动
-- **指定活动监控**：填写活动关键词，如 `海灯节\|盛典`，只监控包含这些关键词的活动
-- **黑名单过滤**：blackActivity 可以Settings不想接收提醒的活动名称，多个活动用|分隔
-- **条件黑名单过滤**：Supports条件语法 活动名-条件1,条件2，只有当活动Happy指定条件时才过滤
+1. Upon starting the script, it will automatically:
+   - Check if the game is currently on the main screen.
+   - Return to the main screen if not already there.
+   - Open the Events menu using the configured shortcut key.
+   - Begin scanning all events.
 
-##### 使用示例
+#### Manual Mode
+
+1. Turn off the `toMainUi` option.
+2. Ensure the game is already on the main screen.
+3. Start the script to begin scanning.
+
+---
+
+### Feature Details
+
+#### Event Filtering
+
+- **Monitor All Events**: Leave `whiteActivityNameList` empty to monitor all events with remaining duration.
+- **Monitor Specific Events**: Enter keywords such as `Lantern Rite|Flagship`, to only monitor events matching those keywords.
+- **Blacklist Filtering**: `blackActivity` allows you to specify event names to ignore, separated by `|`.
+- **Conditional Blacklist**: Supports condition syntax `EventName-condition1,condition2`. An event is only filtered out when the specified conditions are met.
+
+##### Example Syntax
 ```text
-Normal黑名单: "活动A|活动B"
-条件黑名单: "活动A-已完成|活动B-条件1,条件2"
-混合使用: "活动A|活动C-已完成,已领取"
+Standard Blacklist: "Event A|Event B"
+Conditional Blacklist: "Event A-Completed|Event B-condition1,condition2"
+Mixed Usage: "Event A|Event C-Completed,Claimed"
 ```
 
-#### 时间通知机制
+#### Time Notification Mechanism
 
-- 默认监控所有活动（`notifyHoursThreshold`=8760小时）
-- 可Settings阈值，如Settings为24，则只通知剩余时间≤24小时的活动
-- 即将结束(24小时内)的活动会在通知中标记 `<即将结束>`
+- Monitors all events by default (`notifyHoursThreshold` = 8760 hours).
+- You can set a lower threshold, such as 24, to only receive alerts for events ending within 24 hours.
+- Events ending within 24 hours are tagged with `<Ending Soon>` in notifications.
 
-#### 逻辑关系Configuration
+#### Logical Relationship Configuration
 
-- **`relationship` 为 `false`**（默认）：Happy"剩余时间阈值"或"白名单活动"任一条件即发送通知
-- **`relationship` 为 `true`**：必须同时Happy"剩余时间阈值"和"白名单活动"两个条件才发送通知
+- **`relationship` = `false`** (default): Sends notification if either the "time threshold" OR the "whitelisted event" condition is met.
+- **`relationship` = `true`**: Sends notification only if BOTH the "time threshold" AND the "whitelisted event" conditions are met.
 
-#### 智能防重复
+#### Smart Anti-Duplication
 
-- Auto 识别已扫描过的活动页面
-- 防止因页面滚动不准确造成的重复识别
-- Auto 判断是否已滚动到页面底部
+- Automatically detects already scanned event pages.
+- Prevents redundant scans caused by imperfect page scrolling.
+- Automatically determines when the bottom of the page has been reached.
 
 ---
 
-### 独立通知Configuration（0.0.4Version新增，0.1.2VersionSupportsbgi-tools授权）
+### Standalone Notification Setup (Added v0.0.4, bgi-tools auth in v0.1.2)
 
-#### Configuration项Guide / Instructions
+#### Configuration Options
 
 - **`noticeType`**:
-    - `BGI通知`: 使用 BetterGI 内置通知
-    - `独立通知`: 通过 WebSocket 发送通知
-    - `独立通知和BGI通知`: 同时使用两种方式
+  - `BGI Notification`: Uses BetterGI's built-in notifications.
+  - `Standalone Notification`: Sends notifications via WebSocket.
+  - `Both`: Sends via both built-in notifications and WebSocket.
 
-- **`wsNoticeType`（独立通知Configuration方式，0.1.2Version新增）**:
-    - `自定义通知`: 手动填写下方 WebSocket 相关参数
-    - `bgi-tools通知`: 从 bettergi-scripts-tools 拉取授权 wsproxy 信息（需Configuration `http_api_access_ws_proxy` 与 `bgi_tools_token`）
+- **`wsNoticeType` (Standalone notification configuration method, added v0.1.2)**:
+  - `Custom Notification`: Manually enter WebSocket parameters below.
+  - `bgi-tools Notification`: Pulls authorized wsproxy configuration from bettergi-scripts-tools (requires configuring `http_api_access_ws_proxy` and `bgi_tools_token`).
 
-- **bgi-tools 授权Configuration（0.1.2Version新增）**:
-    - `http_api_access_ws_proxy`: 获取授权 wsproxy 的 api 地址，默认为 `http://127.0.0.1:8081/bgi/ws-proxy/access`
-    - `bgi_tools_token`: 授权 token，语法 `tokenName=tokenValue`（如 `Authorization=xxx`）
+- **bgi-tools Authorization Settings (added v0.1.2)**:
+  - `http_api_access_ws_proxy`: API endpoint to get authorized wsproxy, defaults to `http://127.0.0.1:8081/bgi/ws-proxy/access`.
+  - `bgi_tools_token`: Authorization token syntax: `tokenName=tokenValue` (e.g. `Authorization=xxx`).
 
-- **WebSocket Configuration（自定义通知）**:
-    - `ws_proxy_url`: WebSocket 代理 URL，默认为 `http://127.0.0.1:8081/bgi/ws-proxy/message/send`
-    - `ws_url`: WebSocket 客户端 URL，默认为 `ws://127.0.0.1:8080/`
-    - `ws_token`: WebSocket 客户端认证令牌（可选）
+- **WebSocket Configuration (Custom Notification)**:
+  - `ws_proxy_url`: WebSocket proxy URL, defaults to `http://127.0.0.1:8081/bgi/ws-proxy/message/send`.
+  - `ws_url`: WebSocket client URL, defaults to `ws://127.0.0.1:8080/`.
+  - `ws_token`: Optional WebSocket client authentication token.
 
-- **发送Configuration**:
-    - `action`: 发送类型，可选 `私聊` 或 `群聊`
-    - `send_id`: 根据 `action` 类型填写群号或 QQ 号
-    - `at_list`: @ 某人列表，使用逗号分隔多个 QQ 号
+- **Delivery Configuration**:
+  - `action`: Delivery target, `Private Message` or `Group Chat`.
+  - `send_id`: Target group or QQ number according to `action`.
+  - `at_list`: Comma-separated list of user IDs to mention.
 
-#### 使用要求
+#### Requirements
 
-1. **开启权限**: 需要开启 JS HTTP 权限才能使用独立通知Features
-2. **Configuration服务**: 需要搭建相应的 WebSocket 服务和代理服务器（或部署 bettergi-scripts-tools）
-3. **网络连接**: 确保能够连接到Configuration的 WebSocket 服务器
+1. **Permissions**: Enable JS HTTP permissions to use standalone notifications.
+2. **Server Setup**: Set up a WebSocket service / proxy server (or deploy bettergi-scripts-tools).
+3. **Network Connection**: Ensure network access to the configured WebSocket server.
 
-#### Configuration示例
+#### Configuration Examples
 
-自定义通知：
-
+Custom Notification:
 ```json
 {
-  "noticeType": "独立通知",
-  "wsNoticeType": "自定义通知",
+  "noticeType": "Standalone Notification",
+  "wsNoticeType": "Custom Notification",
   "ws_proxy_url": "http://127.0.0.1:8081/bgi/ws-proxy/message/send",
   "ws_url": "ws://127.0.0.1:8080/",
-  "action": "群聊",
+  "action": "Group Chat",
   "send_id": "123456789",
   "at_list": "987654321,111222333"
 }
 ```
 
-bgi-tools通知：
-
+bgi-tools Notification:
 ```json
 {
-  "noticeType": "独立通知",
-  "wsNoticeType": "bgi-tools通知",
+  "noticeType": "Standalone Notification",
+  "wsNoticeType": "bgi-tools Notification",
   "http_api_access_ws_proxy": "http://127.0.0.1:8081/bgi/ws-proxy/access",
   "bgi_tools_token": "Authorization=xxx",
-  "action": "群聊",
+  "action": "Group Chat",
   "send_id": "123456789"
 }
 ```
 
-### 部署 [bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools)
+### Deploying [bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools)
 
-#### 1.windows exe 直接运行
-Go to [release](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) 下载 带windows的zip包解压运行.exe文件即可
-#### 2.java
-Go to [release](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) 下载 jar包
+#### 1. Windows Executable
+Go to [Releases](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases), download the Windows zip package, extract it, and run the `.exe` file.
+
+#### 2. Java JAR
+Download the jar file from [Releases](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases):
 ```shell
 java -jar xxxx.jar
 ```
-#### 3.部署docker
+
+#### 3. Docker Deployment
 ```shell
 docker pull ghcr.io/kirito520asuna/bettergi-scripts-tools:latest
 docker run -d -p 8081:8081 -v /path/to/application-prod.yml:/app/application-prod.yml --name bettergi-scripts-tools ghcr.io/kirito520asuna/bettergi-scripts-tools:latest
@@ -430,297 +434,271 @@ docker run -d -p 8081:8081 -v /path/to/application-prod.yml:/app/application-pro
 
 ---
 
-### Precautions / Notes
+### Important Notes
 
-#### 使用环境要求
+#### Operating Environment
+- ✅ Game resolution set to 1920×1080 (optimal compatibility).
+- ✅ Game must be running in the foreground.
+- ✅ The Events menu must open correctly with the configured shortcut key.
 
-- ✅ 游戏分辨率为 1920×1080（最佳兼容性）
-- ✅ 游戏处于前台运行状态
-- ✅ 活动页面可通过Settings的Shortcut Keys正常打开
-
-#### 运行期间Precautions / Notes
-
-- 🚫 运行期间请勿手动操作鼠标
-- 🚫 避免Switch窗口或最小化游戏
-- ⚠️ 如遇Exception / Error可重新启动脚本
+#### During Execution
+- 🚫 Do not manually move or click the mouse while the script is running.
+- 🚫 Avoid switching windows or minimizing the game.
+- ⚠️ If an error occurs, simply restart the script.
 
 ---
 
-### 高级Configuration
+### Advanced Configuration
 
-#### 自定义Shortcut Keys
+#### Custom Shortcut Keys
+- If your Events menu is not opened with `F5`, change `activityKey` to your key.
+- If your Adventurer Handbook is not opened with `F1`, change `campaignAreaKey` to your key.
 
-如活动页面不是F5打开，可在 `activityKey` 中修改为对应按键。  
-如冒险之书页面不是F1打开，可在 `campaignAreaKey` 中修改为对应按键。
-
-#### 时间阈值Settings
-
-根据个人需求Settings `notifyHoursThreshold`：
-
-- 24：只关注24小时内结束的活动
-- 168：关注一周内结束的活动
-- 720：关注一个月内结束的活动
-
-#### 独立通知Configuration
-
-如果需要使用独立通知Features（如发送到QQ群聊），需要：
-
-1. 开启JS HTTP权限
-2. ConfigurationWebSocket相关参数
-3. Settings发送类型和ID
+#### Notification Thresholds
+Adjust `notifyHoursThreshold` based on personal preference:
+- 24: Only track events ending within 24 hours.
+- 168: Track events ending within a week.
+- 720: Track events ending within a month.
 
 ---
 
-### 输出示例
+### Sample Output
 
-通知消息格式如下：
-
-```
-原神活动剩余时间提醒:
-> 海灯节庆典 剩余时间：3天14小时<还剩 86 小时>
-> 风花节活动 剩余时间：1天5小时<还剩 29 小时><即将结束>
+Notification message format:
+```text
+Genshin Impact Event Duration Reminder:
+> Lantern Rite Festival Time Remaining: 3 days 14 hours <86 hours left>
+> Windblume Festival Time Remaining: 1 day 5 hours <29 hours left> <Ending Soon>
 ```
 
 ---
 
-## 文件结构
+## File Structure
 
 ```
 ActivitySwitchNotice/
 ├── utils/
-│   ├── activity.js     # 核心活动处理逻辑
-│   ├── campaignArea.js # 征讨领域/Daily Commissions提醒Features
-│   ├── mapMission.js   # 地图识别任务提醒Features
-│   ├── HolyRelics.js   # Artifacts剩余空间检查Features
-│   ├── notice.js       # 通知发送Features
-│   ├── ws.js           # WebSocket通知Features
-│   └── tool.js         # 通用工具（OCR/找图/Record/主界面判断等）
-├── assets/             # 模板图片资源
-│   ├── paimon_menu.png # 主界面判断模板
-│   └── holyRelics.jpg  # ArtifactsInventory入口模板
-├── config/             # 运行时生成的Recording文件（activity/campaignArea/dailyCommission）
-├── main.js             # 主入口文件
-├── manifest.json       # 插件Configuration文件
-├── settings.json       # 用户Settings界面定义
-└── README.md           # Guide / Instructions文档
+│   ├── activity.js     # Core event processing logic
+│   ├── campaignArea.js # Trounce Domain / Daily Commission reminder logic
+│   ├── mapMission.js   # Map mission recognition feature
+│   ├── HolyRelics.js   # Artifact inventory space check feature
+│   ├── notice.js       # Notification delivery module
+│   ├── ws.js           # WebSocket notification module
+│   └── tool.js         # General utilities (OCR / Template matching / Record / Main UI detection)
+├── assets/             # Template image assets
+│   ├── paimon_menu.png # Paimon menu template for main UI detection
+│   └── holyRelics.jpg  # Artifact inventory tab template
+├── config/             # Runtime record files (activity / campaignArea / dailyCommission)
+├── main.js             # Main entry point
+├── manifest.json       # Plugin manifest
+├── settings.json       # User settings UI definition
+└── README.md           # Documentation
 ```
 
 ---
 
-## 核心模块
+## Core Modules
 
-### `activity.js` - 活动处理核心
+### `activity.js` - Core Event Logic
+- `scrollPage()`: Basic page scrolling function.
+- `scrollPagesByActivity()`: Scroll event list page-by-page.
+- `scrollPagesByActivityToTop()`: Scroll to the top of the event list.
+- `parseRemainingTimeToHours()`: Parse remaining duration text into hours.
+- `OcrKey()`: OCR recognition for remaining duration.
+- `activityMain()`: Main controller function for event scanning.
 
-主要包含以下Features函数：
+### `campaignArea.js` - Trounce Domain / Daily Commission Module
+- `ocrWeeklyCount()`: OCR recognition for Trounce Domain weekly claims.
+- `ocrDailyCommission()`: OCR recognition for Daily Commissions and Original Resin.
+- `ocrLongTermTrainingPoints()`: OCR recognition for Long-Term Encounter Points.
+- `campaignAreaMain()`: Main controller for Trounce Domain reminders.
+- `dailyCommissionMain()`: Main controller for Daily Commission reminders.
 
-- `scrollPage()` - 页面滚动基础函数
-- `scrollPagesByActivity()` - 按页滚动活动列表
-- `scrollPagesByActivityToTop()` - 滚动到活动列表顶部
-- `parseRemainingTimeToHours()` - 解析剩余时间文本为小时数
-- `OcrKey()` - OCR识别剩余时间
-- `activityMain()` - 主流程控制函数
+### `mapMission.js` - Map Mission Recognition Module
+- `ocrMapMission()`: OCR recognition of map task lists.
+- `mapMission()`: Main controller for map mission alerts.
 
-### `campaignArea.js` - 征讨领域/Daily Commissions模块
+### `HolyRelics.js` - Artifact Inventory Space Module
+- `checkHolyRelicsKey()`: Checks remaining Artifact inventory capacity and alerts user.
 
-- `ocrWeeklyCount()` - OCR识别征讨领域周次数
-- `ocrDailyCommission()` - OCR识别Daily Commissions与体力
-- `ocrLongTermTrainingPoints()` - OCR识别长期训练点
-- `campaignAreaMain()` - 征讨领域提醒主函数
-- `dailyCommissionMain()` - Daily Commissions提醒主函数
+### `notice.js` - Notification Module
+- `sendNotice()`: Sends event reminder notifications sorted by remaining duration.
+- `sendText()`: Sends standard notifications.
 
-### `mapMission.js` - 地图识别任务模块
+### `ws.js` - WebSocket Notification Module
+- `send()`: Sends raw WebSocket message.
+- `sendText()`: Sends text message.
+- `pullAccessWsProxyConfig()`: Pulls authorized wsproxy configuration from bgi-tools.
 
-- `ocrMapMission()` - OCR识别地图任务列表
-- `mapMission()` - 地图任务提醒主函数
-
-### `HolyRelics.js` - Artifacts空间模块
-
-- `checkHolyRelicsKey()` - 检查Artifacts剩余空间并提醒
-
-### `notice.js` - 通知模块
-
-- `sendNotice()` - 发送活动提醒通知，按剩余时间排序
-- `sendText()` - 发送Normal通知
-
-### `ws.js` - WebSocket通知模块
-
-- `send()` - 发送WebSocket消息
-- `sendText()` - 发送文本消息
-- `pullAccessWsProxyConfig()` - 从 bgi-tools 拉取授权 wsproxy Configuration
-
-### `tool.js` - 通用工具模块
-
-- `findText()` / `findTextAndClick()` - 通用OCR找文本/找文本并点击
-- `findImg()` / `findImgAndClick()` - 通用找图/找图并点击
-- `getDayOfWeek()` - 获取当前星期信息（按游戏4点刷新校准）
-- `isInMainUI()` / `toMainUi()` - 主界面判断与返回
-- `openBag()` - 打开Inventory并处理过期物品
-- `Record` - Recording文件统一读写类
+### `tool.js` - General Utility Module
+- `findText()` / `findTextAndClick()`: General text OCR search and click.
+- `findImg()` / `findImgAndClick()`: General template matching and click.
+- `getDayOfWeek()`: Gets current weekday adjusted to 4:00 AM server reset.
+- `isInMainUI()` / `toMainUi()`: Main screen check and navigation.
+- `openBag()`: Opens Inventory and handles expired item popups.
+- `Record`: Unified read/write helper class for record files.
 
 ---
 
-## Configuration选项
+## Settings Reference
 
-在 `settings.json` 中可Configuration以下参数：
+Configurable options in `settings.json`:
 
-| Configuration项                          |      类型      | Guide / Instructions                                            |
-|:-----------------------------|:------------:|:----------------------------------------------|
-| `debug`                      |   checkbox   | 启用开发者模式（框选识别区域辅助Debug）                           |
-| `toMainUi`                   |   checkbox   | 是否先返回主界面再执行                                   |
-| `noticeType`                 |    select    | 通知模式（BGI通知/独立通知/独立通知和BGI通知）                  |
-| `newActivityNotice`          |   checkbox   | 启用新活动通知（存储活动名称列表-历史对比）                       |
-| `mapMissionKeys`             | multi-checkbox | 地图识别任务提醒（多选）                                |
-| `relationship`               |   checkbox   | 剩余时间与白名单启用`和`关系（默认`或`关系）                      |
-| `whiteActivityNameList`      |    String    | 白名单活动名称（用\|分隔）                                |
-| `blackActivity`              |    String    | 黑名单活动名称（用\|分隔）- Supports条件语法：活动名-条件1,条件2            |
-| `notifyHoursThreshold`       |    String    | 通知剩余时间阈值（小时）                                  |
-| `activityKey`                |    String    | 打开活动页面的Shortcut Keys                                    |
-| `campaignAreaReminderDays`   | multi-checkbox | Weekly Boss提醒日（多选，默认周六/周日）                           |
-| `campaignAreaKey`            |    String    | 打开冒险之证的Shortcut Keys                                    |
-| `openBagKey`                 |    String    | 打开Inventory的Shortcut Keys                                      |
-| `checkHolyRelic`             |   checkbox   | 启用Artifacts空间提醒                                     |
-| `holyRelicsDiffCountThreshold` |   String    | Artifacts剩余空间阈值                                     |
-| `wsNoticeType`               |    select    | 独立通知Configuration方式（自定义通知/bgi-tools通知）                    |
-| `http_api_access_ws_proxy`   |    String    | bgi-tools获取授权wsproxy api地址                       |
-| `bgi_tools_token`            |    String    | bgi_tools授权token 语法:tokenName=tokenValue          |
-| `ws_proxy_url`               |    String    | WebSocket代理URL（独立通知Configuration）                        |
-| `ws_url`                     |    String    | WebSocket客户端 URL（独立通知Configuration）                      |
-| `ws_token`                   |    String    | WebSocket客户端 token（独立通知Configuration）                    |
-| `action`                     |    select    | 发送类型（私聊/群聊）（独立通知Configuration）                           |
-| `send_id`                    |    String    | 发送ID（群号或QQ号，对应发送类型） （独立通知Configuration）                  |
-| `at_list`                    |    String    | @某人列表使用,隔开（QQ号）      （独立通知Configuration）                 |
-
-> 注：`toTopCount`、`scrollPageCount` 已不再在Settings界面开放（代码内部使用默认值 10 / 4）。
+| Option | Type | Description |
+|:---|:---:|:---|
+| `debug` | checkbox | Enable developer debug bounding boxes |
+| `toMainUi` | checkbox | Return to main UI before execution |
+| `noticeType` | select | Notification mode (BGI / Standalone / Both) |
+| `newActivityNotice` | checkbox | Enable new event notifications |
+| `mapMissionKeys` | multi-checkbox | Map recognition mission reminders |
+| `relationship` | checkbox | Use `AND` logic between remaining time and whitelist |
+| `whiteActivityNameList` | String | Whitelist event keywords (`\|` separated) |
+| `blackActivity` | String | Blacklist event keywords (`\|` separated, supports conditions) |
+| `notifyHoursThreshold` | String | Remaining time threshold (hours) |
+| `activityKey` | String | Shortcut key for Events menu |
+| `campaignAreaReminderDays` | multi-checkbox | Trounce Domain reminder days (multi-select) |
+| `campaignAreaKey` | String | Shortcut key for Adventurer Handbook |
+| `openBagKey` | String | Shortcut key for Inventory |
+| `checkHolyRelic` | checkbox | Enable Artifact space reminder |
+| `holyRelicsDiffCountThreshold` | String | Artifact space threshold |
+| `wsNoticeType` | select | Standalone notification setup mode |
+| `http_api_access_ws_proxy` | String | bgi-tools wsproxy API URL |
+| `bgi_tools_token` | String | bgi-tools auth token |
+| `ws_proxy_url` | String | WebSocket proxy URL |
+| `ws_url` | String | WebSocket client URL |
+| `ws_token` | String | WebSocket client token |
+| `action` | select | Delivery type (Private Message / Group Chat) |
+| `send_id` | String | Recipient ID |
+| `at_list` | String | List of IDs to @ mention |
 
 ---
 
-## Working原理
+## How It Works
 
-1. Auto 返回游戏主界面
-2. 执行地图识别任务提醒（按Configuration的多选任务项）
-3. 执行Artifacts剩余空间检查提醒（如启用）
-4. 执行Daily Commissions奖励 / 体力 / 长期训练点提醒
-5. 检查是否为Settings的提醒日(默认周六/周日)，如果是则执行征讨领域减半次数提醒
-6. 按ConfigurationShortcut Keys打开活动页面
-7. 滚动到活动列表顶部
-8. 逐页扫描所有活动
-9. OCR识别每个活动的剩余时间
-10. 解析时间为小时数并过滤（包括白名单/黑名单过滤）
-11. 发送符合条件的活动提醒
-12. 对比历史Recording，发送新增活动提醒
-
----
-
-## Precautions / Notes
-
-- 请确保游戏分辨率为1920×1080以获得最佳效果
-- 脚本运行期间请勿操作鼠标
-- 某些特殊活动可能无法正确识别剩余时间
-- 建议在游戏空闲时运行此脚本
+1. Automatically return to the game main interface.
+2. Execute map mission recognition reminders according to configured options.
+3. Perform Artifact inventory remaining space check (if enabled).
+4. Perform Daily Commission rewards / Original Resin / Long-Term Encounter Points reminders.
+5. Check if today is a configured reminder day (default Saturday/Sunday); if so, check remaining Trounce Domain claims.
+6. Open Events menu using configured shortcut key.
+7. Scroll to top of the events list.
+8. Scan all events page by page.
+9. Perform OCR on each event to detect remaining duration.
+10. Parse duration into hours and apply whitelist/blacklist filters.
+11. Send reminders for matching events.
+12. Compare against previous history and notify if new events were detected.
 
 ---
 
-## Version历史
+## Version History
+
 ### 0.2.0 (2026-09-27)
-- bugfix: 修复 征讨领域 的 OCR 识别问题
+- Bugfix: Fixed OCR recognition issue for Trounce Domains.
+
 ### 0.1.9 (2026-08-16)
-- 新增 长期训练点识别Features（Daily Commissions提醒中追加长期训练点与过期时间提醒）
-- 优化 地图任务 OCR 识别Features
-- 重构 OCR 任务识别逻辑，提高识别准确性
-- 优化 活动页面滚动扫描逻辑
-- 修复 任务Switch通知中的页面Stable等待问题
-- 优化 活动页面滚动和鼠标操作策略
-- 更新 最低 BGI Version依赖 0.61.0 → 0.63.0
+- Added Long-Term Encounter Points recognition (appended to Daily Commission reminders with expiration notice).
+- Optimized map mission OCR recognition.
+- Refactored OCR mission recognition logic for higher accuracy.
+- Optimized event page scrolling and mouse operation logic.
+- Fixed page stability waiting issue during mission switch notifications.
+- Updated minimum BetterGI dependency from 0.61.0 to 0.63.0.
+
 ### 0.1.8 (2026-07-08)
-- 重构 活动Configuration文件读写逻辑（新增 `Record` 类统一数据读写）
-- 新增 Configuration文件管理和重复通知检测Features（Domain征讨/Daily Commissions避免重复发送相同内容）
-- 新增 日期格式化Features（YYYY-MM-DD）
-- 优化 Domain征讨和Daily Commissions的通知逻辑
+- Refactored event config file read/write logic (added `Record` class for unified I/O).
+- Added config file management and duplicate notification suppression (prevents repeated notifications for Trounce Domains / Daily Commissions).
+- Added date formatting function (`YYYY-MM-DD`).
+- Optimized notification logic for Trounce Domains and Daily Commissions.
+
 ### 0.1.7 (2026-06-05)
-- 修复bug
+- Fixed bugs.
+
 ### 0.1.6 (2026-05-30)
-- uid api改本体
+- Changed UID retrieval API to use core app.
+
 ### 0.1.5 (2026-04-24)
-- 新增Artifacts剩余空间检测提醒
+- Added Artifact inventory remaining space detection and reminder.
+
 ### 0.1.4 (2026-04-23)
-- 单例模式 Configuration唯一实例
+- Implemented singleton pattern for single configuration instance.
+
 ### 0.1.3 (2026-03-28)
-- 修复Exception / ErrorConfiguration导致无法运行
+- Fixed issue where invalid configuration caused execution failure.
+
 ### 0.1.2 (2026-03-23)
-- 新增云端ConfigurationFeatures
-- 改变wsproxy授权方式(授权token或bettergi-scripts-tools<Version需求0.0.7>授权拉取)
+- Added cloud configuration support.
+- Updated wsproxy authorization method (auth token or pull from bettergi-scripts-tools >= 0.0.7).
+
 ### 0.1.1 (2026-03-16)
-- Weekly Boss提醒日 升为多选
-- 适配新Domain征讨UI
+- Changed Trounce Domain reminder days to multi-select.
+- Adapted to new Trounce Domain UI.
+
 ### 0.1.0 (2026-02-01)
-- 新增 新活动通知(存储活动名称列表-历史对比)
+- Added new event notifications (stores event name list for historical comparison).
+
 ### 0.0.8 (2026-01-22)
-- 新增 地图识别任务提醒 如:
+- Added map recognition mission reminders.
   
   ![0.0.8-00](md/0.0.8-map-00.jpg)
   ![0.0.8](md/0.0.8-map.jpg)
+
 ### 0.0.7 (2026-01-19)
-- 新增Daily Commissions提醒
+- Added Daily Commission reminders.
+
 ### 0.0.6 (2026-01-06)
-- **Features优化**：新增识别uid通知提醒
-实例:
-![0.0.6](md/0.0.6.jpg)
+- **Feature Optimization**: Added UID recognition in notifications.
+
+  ![0.0.6](md/0.0.6.jpg)
 
 ### 0.0.5 (2026-01-04)
-
-- **性能优化**：优化滚动到顶部算法，减少页面滚动次数，提升初始化效率
-- **Features增强**：新增条件黑名单过滤机制，Supports基于活动状态的Dynamic过滤策略
-- **代码重构**：新增 `parseBlackActivity` 函数，实现黑名单Configuration的结构化解析
-- **架构改进**：重构黑名单匹配逻辑，引入条件匹配引擎，Supports多条件复合判断
-- **数据结构优化**：引入 `blackActivityMap` Configuration项，使用 Map 数据结构提升查找性能
-- **逻辑优化**：增强活动过滤算法，集成条件匹配验证机制
-- **初始化流程**：重构Configuration加载流程，新增 [init]() 函数统一处理Configuration项初始化
-- **文档完善**：更新Configuration项文档，补充条件黑名单语法Guide / Instructions
+- **Performance Optimization**: Optimized scroll-to-top algorithm to reduce scroll count and improve initialization efficiency.
+- **Feature Enhancement**: Added conditional blacklist filtering supporting dynamic filter rules based on event state.
+- **Code Refactor**: Added `parseBlackActivity` for structured parsing of blacklist settings.
+- **Architecture Improvement**: Refactored blacklist matching logic with condition matching engine supporting multi-condition evaluation.
+- **Data Structure Optimization**: Added `blackActivityMap` using Map data structure for faster lookup.
+- **Logic Optimization**: Enhanced event filtering algorithm integrated with condition evaluation.
+- **Initialization Flow**: Refactored config loading and added `init` function for unified configuration initialization.
+- **Documentation**: Updated configuration docs with conditional blacklist syntax guide.
 
 ### 0.0.4 (2026-01-01)
-
-- 新增 独立通知ConfigurationFeatures，Supports通过 WebSocket 发送通知
-- 新增 `ws.js` 模块，实现 WebSocket 通知Features
-- 新增 `noticeType` Configuration选项，用于选择通知模式
-- 新增 `ws_proxy_url`、`ws_url`、`ws_token` Configuration选项
-- 新增 `action`、`send_id`、`at_list` Configuration选项用于发送Settings
+- Added standalone notification support via WebSocket.
+- Added `ws.js` module for WebSocket notifications.
+- Added `noticeType` setting for choosing notification mode.
+- Added `ws_proxy_url`, `ws_url`, and `ws_token` settings.
+- Added `action`, `send_id`, and `at_list` delivery options.
 
 ### 0.0.3 (2025-12-29)
-
-- 修复 修复了活动过滤逻辑问题，将`activityNameList`更改为`whiteActivityNameList`以保持一致
-- 新增 黑名单与白名单的互斥过滤机制,黑名单中剔除白名单
-- 新增 在Configuration中增加了`relationship`参数，用于控制剩余时间与白名单活动的逻辑关系
-- 新增 Supports剩余时间和白名单的"与"关系和"或"关系Configuration
-- 新增 标记界面显示 `已完成` 的活动
+- Fixed event filtering logic issue, renamed `activityNameList` to `whiteActivityNameList` for consistency.
+- Added mutual exclusion between blacklist and whitelist (whitelist items stripped from blacklist).
+- Added `relationship` parameter in settings to control logical relation between time threshold and whitelist.
+- Supported AND / OR logical relation between time threshold and whitelist.
+- Displayed `Completed` status in UI markers.
 
 ### 0.0.2 (2025-12-22)
-
-- 新增 征讨领域周次数提醒Features
-- 新增 [campaignArea.js]() 模块，包含征讨领域相关Features
-- 新增 `campaignAreaKey` Configuration选项，用于自定义冒险之书页面Shortcut Keys
-- 新增 `campaignAreaReminderDay` Configuration选项，用于Configuration提醒日
-- 改进 增强滚动到顶部Features的Stable性
-- 新增 活动黑名单过滤Features，Supports通过 `blackActivityNameList` Configuration项排除不Concerned的活动
-- 新增 特殊活动时间格式Supports，针对"砺行修远"等活动提供周数显示
-- 新增 额外OCR识别Supports，可识别特定活动的附加信息（如"本周进度"）
-- 改进 活动过滤逻辑，增强黑名单匹配准确性
-- 改进 通知显示格式，增加活动描述信息Showing Off
-- 修复 若干已知问题，提升脚本Stable性
+- Added Trounce Domain weekly claims reminder.
+- Added `campaignArea.js` module.
+- Added `campaignAreaKey` setting to customize Adventurer Handbook shortcut key.
+- Added `campaignAreaReminderDay` setting for reminder day.
+- Improved scroll-to-top stability.
+- Added event blacklist filtering via `blackActivityNameList`.
+- Supported special event duration formats (e.g. week counter for recurring events).
+- Added extra OCR support for supplemental event information (e.g. "This Week's Progress").
+- Improved event filtering logic and blacklist accuracy.
+- Enhanced notification message format with event descriptions.
+- Fixed various known bugs to improve script stability.
 
 ### 0.0.1 (2025-12-21)
-
-- 新增 活动期限检测与通知Features
-- 新增 OCR识别活动列表和剩余时间
-- 新增 Auto 滚动浏览所有活动页面
-- 新增 智能解析剩余时间（Supports"22天14小时"等格式）
-- 新增 可Configuration的通知阈值Features
-- 新增 指定特定活动监控Features
-- 新增 防重复检测机制
-- 新增 Exception / Error处理和错误恢复机制
+- Added event duration detection and notification.
+- Added OCR recognition of event list and time remaining.
+- Added automatic scrolling through event pages.
+- Added smart duration parsing (supports formats like "22 days 14 hours").
+- Added configurable notification threshold.
+- Added support for monitoring specific events.
+- Added anti-duplicate detection mechanism.
+- Added exception handling and error recovery.
 
 ---
 
-## 其它
+## Other
 
-Author：云端客  
-脚本反馈邮箱：doutianmianxia@qq.com
+Author: 云端客 (Cloud Guest)  
+Feedback Email: doutianmianxia@qq.com

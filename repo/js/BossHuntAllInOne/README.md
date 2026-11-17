@@ -1,7 +1,16 @@
-- 1、由于各种原因，目前有一部分点位Nope收录，Anemo Hypostasis(打不过)、Golden Wolflord(打不过)、Cryo Hypostasis(很难打过)、深海龙蜥之群(打不过)、Secret Source Automaton: Overseer Device（地图未收录）。
-- 2、另外还有很多机制BOSS，必须带特定的Character才行，至于怎么配队，自己研究一下，我暂时没空写，至于Other的请随意。
-机制BOSS：Electro Hypostasis、Hydro Hypostasis、Pyro Hypostasis、Dendro Hypostasis、Iniquitous Baptist、Wayward Hermetic Spiritspeaker……
-此外「Icewind Suite」分为「歌裴莉娅的葬送」荒（蓝）与「科培琉司的劫罚」芒（金），不要选错了。
-- 3、由于一些 boss 的特殊性，不能选择原地连续Challenge，比如「Icewind Suite」和Oceanid。
-- 4、（已完成分层）另外很多行走脚本，是基于键鼠录制制作的，只能选择Zhongli作为行走位，并保证队伍中Nope任何速度加成，Nope的话，只能自己单独录制Go to的键鼠脚本了。(想解决这个问题，只能靠大家一起找鸭蛋催一下分层地图了)
-- 5、最后讲一下调度器中的Settings，打开地图追踪行走Configuration，打开允许在JsScript中使用，选择Switch的队伍，选择行走位(Zhongli)，打开CombatConfiguration，打开覆盖JS中的Auto CombatConfiguration，选择Combat策略，关闭Combat结束拾取物品和Kaedehara Kazuha拾取，不要打开更快的检查结束，Combat超时可以Settings长一点，比如240s。
+# All-in-One Boss Hunt
+
+- **1. Excluded Bosses**: Due to various mechanics or terrain issues, the following bosses are currently not included: Anemo Hypostasis, Golden Wolflord, Cryo Hypostasis, Bathysmal Vishap Herd, and Secret Source Automaton: Overseer Device (map route not recorded).
+- **2. Mechanics Bosses**: Many bosses require specific elements or counters. Research your team setups accordingly:
+  - Mechanics Bosses: Electro Hypostasis, Hydro Hypostasis, Pyro Hypostasis, Dendro Hypostasis, Iniquitous Baptist, Wayward Hermetic Spiritspeaker, etc.
+  - Furthermore, **Icewind Suite** is divided into "Nemesis of Coppelia" (Ousia / Blue) and "Dirge of Coppelius" (Pneuma / Gold) — be sure to select the correct variation.
+- **3. Respawn Limitations**: Certain bosses cannot be challenged continuously on the spot without leaving the area, such as Icewind Suite and the Oceanid.
+- **4. Walking Character**: Many navigation routes were recorded using keyboard/mouse movement. Set **Zhongli** as the active walking character and ensure your team has **no movement speed buffs** (e.g., Anemo resonance, weapons, or artifacts).
+- **5. Scheduler Settings**:
+  - Open **Map Pathing Walk Configuration** and enable **Allow in JsScript**.
+  - Set the team to switch to, and select the walker slot (**Zhongli**).
+  - Open **Combat Configuration** and enable **Override Auto Combat Configuration in JS**.
+  - Select your combat strategy.
+  - Disable "Pick up items after combat" and "Kaedehara Kazuha pickup".
+  - Do not enable "Faster check end".
+  - Set a generous Combat Timeout (e.g., 240s).

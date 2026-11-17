@@ -1,19 +1,17 @@
-脚本名称：Switch活动页面
+# Script Name: Switch Event Page
 
-Features描述： 打开活动页面、鼠标上滑并根据活动名称选择活动的脚本 (需要处于主界面)
+Feature Description: A script that opens the Events page, scrolls up, and selects an event based on its name (must be on the main screen).
 
+## Core Features
 
-## 核心Features
-
-1. 返回主界面,打开活动页面,Switch活动页面
-
-2. 可Settings 启动返回主界面(建议启用), 活动名称,最大识别次数(默认3次,不包含首次识别),滑多少次数到顶(默认4次,建议设大点)
+1. Returns to the main screen, opens the Events page, and switches to the target event page.
+2. Configurable settings: Return to main screen on start (recommended), Event Name, Maximum recognition attempts (default: 3 times, excluding initial attempt), Scroll count to top (default: 4 times, setting a higher value is recommended).
 
 ## Precautions / Notes
 
-1. 请尽量确保原神分辨率是1920x1080(虽然已兼容Other分辨率,但建议使用1920x1080,Other分辨率未测试过)
+1. Please ensure Genshin Impact is set to 1920x1080 resolution if possible (while other resolutions have partial compatibility, 1920x1080 is strongly recommended as other resolutions are untested).
 
-## 其它
+## Other Information
 
-Author：云端客
-脚本反馈邮箱：doutianmianxia@qq.com
+- **Author**: 云端客 (Cloud Guest)
+- **Feedback Email**: doutianmianxia@qq.com

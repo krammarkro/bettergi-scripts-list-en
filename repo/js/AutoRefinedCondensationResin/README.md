@@ -1,16 +1,16 @@
-# Auto 合成Condensed Resin脚本
+# Auto Condensed Resin Crafting Script
 
-## Features特点
-1. **多国合成台Supports**：可Go toMondstadt/Liyue/Inazuma/Fontaine合成台
-2. **智能时间判定**：
-   - 00:00~04:00 视为前一天
-   - Auto 适应游戏内时间机制
-3. **灵活执行Settings**：
-   - Supports每日Auto 执行
-   - 可指定每星期特定星期几执行
+## Features
+1. **Multi-Nation Crafting Bench Support**: Can travel to Crafting Benches in Mondstadt, Liyue, Inazuma, or Fontaine.
+2. **Intelligent Time Detection**:
+   - 00:00~04:00 is treated as the previous day.
+   - Automatically adapts to the in-game reset schedule.
+3. **Flexible Execution Settings**:
+   - Supports daily automated execution.
+   - Can specify particular days of the week to run.
 
-## 参数Guide / Instructions
-| 参数名     | 类型       | Guide / Instructions                                                                 |
-|------------|------------|----------------------------------------------------------------------|
-| **合成台位置**   | 下拉选择   | 可选：Mondstadt/Liyue/Inazuma/Fontaine<br>默认：Liyue合成台      |
-| **指定执行星期**       | 勾选   | 勾选星期一~星期日 |
+## Parameter Guide
+| Parameter | Type | Description |
+|---|---|---|
+| **Crafting Bench Location** | Dropdown | Options: Mondstadt / Liyue / Inazuma / Fontaine<br>Default: Liyue Crafting Bench |
+| **Designated Execution Days** | Checkbox | Select Monday through Sunday |

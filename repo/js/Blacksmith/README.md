@@ -1,60 +1,57 @@
-# Auto 锻造魔矿脚本
+# Auto Forging Mystic Enhancement Ore Script
 
-## ⚠️ 免责声明
+## ⚠️ Disclaimer
 
-> **重要提示：请在使用前仔细阅读以下内容**
+> **Important: Please read the following carefully before use.**
 
-### 使用风险
+### Usage Risks
 
-本脚本为开源Learning项目，仅限个人Learning使用，**禁止用于商业用途或任何违反游戏条款的行为**。滥用可能导致游戏Account封禁，开发者不承担任何直接或间接责任。
+This script is an open-source educational project intended strictly for personal study. **Commercial use or any violation of game terms of service is prohibited.** Misuse may result in game account sanctions. The developer assumes no direct or indirect liability.
 
-### 责任限制
+### Limitation of Liability
 
-本脚本按"现状"提供，不承诺兼容性、安全性或Features完整性。因使用本脚本导致的Account、数据、设备等任何损失，开发者概不负责。
+This script is provided "AS IS" without warranties of compatibility, security, or feature completeness. The developer is not responsible for any account, data, device, or other losses resulting from its use.
 
-### 禁止条款
+### Prohibitions
 
-严禁对本脚本进行逆向工程、恶意篡改或用于外挂等非法用途。如游戏运营商提出要求，开发者保留随时停止维护的权利。
+Reverse engineering, malicious tampering, or using this script for illicit cheating tools is strictly forbidden. The developer reserves the right to cease maintenance at any time upon request from the game operator.
 
-**使用本脚本即表示您已阅读、理解并同意上述所有条款。**
+**Using this script signifies that you have read, understood, and agreed to all terms stated above.**
 
-## 📞 联系与反馈
+## 📞 Contact & Feedback
 
-如有任何建议或问题，欢迎通过以下方式联系：  
-📧 QQ：1765137214（本人已退游，欢迎后续来者优化/更新）
+For questions or suggestions:  
+📧 QQ: 1765137214 (The author has retired from the game; future developers are welcome to optimize and update)
 
 ---
 
 ## ✨ Feature Overview
 
-适用于原神 7.0
-BGI 0.64.0 Version
-本脚本能够Auto Go to指定Blacksmith，通过智能图像识别技术Auto 选择或按预设优先级锻造魔矿：
+- Compatible with Genshin Impact 7.0+
+- Tested on BGI 0.64.0+
+- Automatically travels to designated blacksmiths, using computer vision to select or prioritize ores for forging Mystic Enhancement Ore:
+  - 🗺️ **Auto Navigation** - Smart pathfinding to the selected Blacksmith
+  - 🔍 **Ore Recognition** - Multi-ore detection and automatic selection
+  - 🎯 **Dual Forging Modes** - Provides both Auto and Manual priority modes
+  - 📊 **Status Notifications** - Real-time desktop alerts and detailed execution logs
+  - 🛡️ **Exception Handling** - Gracefully handles missing materials, recognition errors, and dialog blocks
 
-- 🗺️ **Auto 寻路** - 智能导航至指定Blacksmith
-- 🔍 **矿石识别** - Supports多种矿石的Auto 识别与选择
-- 🎯 **双模式锻造** - 提供Auto 和手动两种智能模式
-- 📊 **状态通知** - 实时桌面通知与详细执行Log
-- 🛡️ **Exception / Error处理** - 智能应对各种Exception / Error情况
+## 📁 File Structure
 
-## 📁 文件结构
-
+```text
+Auto Blacksmith Forging/
+├── main.js              # Core logic
+├── manifest.json        # Script metadata and base configuration
+└── settings.json        # User custom configuration file
 ```
-Auto 锻造魔矿脚本/
-├── main.js              # 核心业务逻辑
-├── manifest.json        # 脚本元信息与基础Configuration
-└── settings.json        # 用户自定义Configuration文件
-```
 
-## 🚀 FastStarting Up
+## 🚀 Quick Start
 
-### 1. 安装脚本
+### 1. Install Script
+Add this script to the BetterGI task scheduler.
 
-将本脚本添加至 BGI 脚本调度器。
-
-### 2. Configuration参数
-
-右键点击脚本，选择"编辑 JS Configuration"或直接修改 `settings.json` 文件：
+### 2. Configure Parameters
+Right-click the script, select "Edit JS Configuration", or modify `settings.json` directly:
 
 ```json
 {
@@ -64,205 +61,144 @@ Auto 锻造魔矿脚本/
     "AmethystLump": "Amethyst Lump",
     "RainbowdropCrystal": "Rainbowdrop Crystal",
     "notice": true,
-    "forgedOrNot": "是",
-    "model": "模式一"
+    "forgedOrNot": "Yes",
+    "model": "Mode 1"
 }
 ```
 
-### 3. 矿石ConfigurationGuide / Instructions
+### 3. Ore Configuration Guide
 
-**默认Supports矿石**：
-
+**Default Supported Ores**:
 - Crystal Chunk
 - Amethyst Lump
 - Condessence Crystal
 - Rainbowdrop Crystal
 
-**矿石优先级Guide / Instructions**：
+**Ore Priority Rules**:
+- The priority for each ore can be configured in `settings.json` from `0` to `4`.
+- **Priority 0**: The ore is disabled and automatically excluded by the script.
+- **Priority 1-4**: Lower numbers represent higher priority (1 is highest).
+- **Tied Priorities**: If priorities match, ores are evaluated in default sequence: `Condessence Crystal > Crystal Chunk > Amethyst Lump > Rainbowdrop Crystal`.
 
-- 每种矿石的优先级可在 `settings.json` 中Configuration，数值范围为 `0-4`。
-- **优先级为 0**：表示不使用该矿石，脚本会Auto 排除。
-- **优先级为 1-4**：数值越小，优先级越高。
-- **优先级相同时**：按照矿石的默认顺序（Condessence Crystal > Crystal Chunk > Amethyst Lump > Rainbowdrop Crystal）决定使用顺序。
+## ⚙️ Features in Detail
 
-## ⚙️ Features详解
+### 🔧 Forging Modes
 
-### 🔧 锻造模式
+| Mode | Description |
+| --- | --- |
+| **Mode 1 (Auto)** | Automatically scans inventory to forge with the highest-quantity ore. Automatically falls back to manual priority mode if recognition fails. |
+| **Mode 2 (Manual)** | Sequentially evaluates and uses primary and alternate ores strictly according to user-configured priority. |
 
-| 模式               | 描述                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------ |
-| **模式一（Auto ）** | Auto 识别Inventory中数量最多的矿石进行锻造，识别Defeat时Auto Switch到手动优先级模式（可能存在数量识别错误） |
-| **模式二（手动）** | 按照用户Configuration的优先级顺序，依次尝试主选及备选矿石                                                 |
+### 🎯 Special Features
 
-### 🎯 特殊Features
+- **Claim Only**: If set to "No", the script only checks and claims completed forge items without starting new forgings.
+- **Smart Fallback**: Automatically switches to manual priority mode if automated recognition fails.
+- **Notifications & Logs**: Supports desktop notifications and detailed logging to track script status.
+- **Error Handling**: Provides detailed prompts and auto-recovery for material shortages and repeated recognition failures.
+- **Priority Filtering**: Automatically skips ores configured with priority `0`.
 
-- **仅领取锻造**：如选择"否"，则仅检测并领取已完成的锻造奖励
-- **智能兜底**：Auto 模式识别Defeat时，Auto Switch到手动优先级模式
-- **通知与Log**：Supports桌面通知和详细Log，便于追踪脚本执行状态
-- **Exception / Error处理**：多次识别Defeat、材料不足等情况均有详细提示和Auto 处理
-- **优先级排序**：脚本会根据用户Configuration的矿石优先级进行排序，优先级为 0 的矿石会被Auto 排除。
+## 📋 Precautions & Notes
 
-## 📋 使用Precautions / Notes
+1. **Environment Requirements**: Ensure game resolution and BetterGI version meet script specifications.
+2. **Window Status**: Keep the game window in the foreground and unobstructed while running.
+3. **Keybindings**: Keep shortcut keys at default values (Map: `M`, Inventory: `B`). Mode 1 OCR may misread numbers if fonts or resolutions differ.
+4. **Ore Priority**: Ensure at least one ore has a priority greater than `0`; otherwise, the script will terminate with an error.
 
-1. **环境要求**：确保游戏分辨率、BGI Version与脚本要求一致
-2. **窗口状态**：运行脚本时请保持游戏窗口处于前台且未被遮挡
-3. **权限Settings**：确保已授予脚本必要的系统权限
-4. **权限Settings**：部分模块由于使用了Shortcut Keys，请确保Shortcut Keys为默认值。例如NatlanBlacksmith以及仅领取锻造前检查，使用地图Shortcut Keys"M"；模式一Minerals识别部分，使用InventoryShortcut Keys"B"。因为模式一调用了OCR，数字识别部分可能出现错误
-5. **矿石优先级Configuration**：请确保至少有一种矿石的优先级大于 0，否则脚本将停止运行并提示错误。
+## 📋 Custom Extensions: Adding New Ores and Blacksmiths
 
-
-## 📋 自定义扩展：添加新矿石与Blacksmith
-
-本脚本Supports用户自定义添加新的矿石种类和BlacksmithRoute。请严格按照以下步骤操作。
+The script supports user-defined ores and blacksmith routes:
 
 ---
 
-### 🔧 添加新矿石
+### 🔧 Adding a New Ore
 
-#### 1. 添加锻造界面图片
+#### 1. Add Forging Screen Icon
+- Take a screenshot of the ore icon in the top-right corner of the Forging UI (recommended size: `21×21` px).
+- Save as PNG under `assets/Picture/`.
+- Use English names without punctuation or spaces (e.g., `NewOre.png`).
 
-- 截图【锻造界面】中矿石Top-Right角的小图标，建议尺寸 21×21 像素。
-- 保存为 PNG 格式，放在 `assets/Picture/` 目录下。
-- 文件名建议使用英文且不含标点和空格，例如：`NewOre.png`。
+#### 2. Add Inventory Screen Icon
+- Take a screenshot of the ore icon in the Inventory UI (recommended size: `75×75` px).
+- Save as PNG under `assets/RecognitionObject/ItemImage/`.
+- Use the same English naming convention (e.g., `NewOre.png`).
 
-#### 2. 添加Inventory界面图片
+#### 3. Modify `main.js`
+At the top of `main.js`, add the new ore information to:
+- User Configuration
+- `OreChineseMap`
+- `orePriorityConfig`
+- `nicknameOrder`
+- `ingredientImageMap`
+- Inventory item icons map
 
-- 截图【Inventory界面】中对应矿石的图标，建议尺寸 75×75 像素。
-- 保存为 PNG 格式，放在 `assets/RecognitionObject/ItemImage/` 目录下。
-- 文件名同样建议使用英文且不含标点和空格，例如：`NewOre.png`。
+#### 4. Add Ore to `settings.json`
+Add the new ore key and priority mapping at the end of `settings.json` following the existing format.
 
-#### 3. 修改 main.js 文件
+---
 
-在 `main.js` 文件顶部，依次在以下区域添加新矿石信息
-- 【用户Configuration】
-- 【OreChineseMap】
-- 【orePriorityConfig】
-- 【nicknameOrder 】
-- 【ingredientImageMap】
-- 【Inventory界面物品图标】
-额外的，部分区域的新增需要添加【,】符号
+### 🔧 Adding a Blacksmith Route
 
-### 4. 添加矿石信息进setting.json文件
-在`setting.json`文件末尾，根据【新增示例】添加新矿。
+#### 1. Record Route
+1. Use BetterGI's path recording tool to record a route to the blacksmith.
+2. Save as JSON under `assets/assets/Pathing/` (e.g., `SnezhnayaBlacksmith.json`).
 
+#### 2. Update `settings.json`
+Add the new blacksmith option under `smithyName` in `settings.json`.
 
-  ## 🔧 添加BlacksmithRoute
-
-### 1. 录制Path
-1. 使用Path录制工具录制Go toBlacksmith的Path
-2. 保存为 JSON 文件，命名格式：`【地区名】Blacksmith.json`,如：`冰国Blacksmith.png`
-3. 放在 `assets/assets/Pathing` 目录下
-
-### 2. 添加Route信息进setting.json文件
-在`setting.json`文件，找到【Blacksmith地区选择（默认：MondstadtBlacksmith）】，根据【新增示例】添加信息。
-
+---
 
 ## ❓ FAQ
 
-Q：脚本运行后无反应？
-**A**：请按以下步骤排查：
+**Q: The script does nothing after starting?**  
+**A**: Troubleshoot with the following steps:
+1. Verify game resolution meets requirements (`1920×1080` recommended).
+2. Ensure BetterGI is version `0.48.2` or higher.
+3. Verify script configurations and ensure at least one ore priority is > 0.
+4. Ensure the game window is active in the foreground.
+5. Check that in-game hotkeys are default (`M` for Map, `B` for Bag).
 
-1. 检查游戏分辨率是否符合要求
-2. 确认 BGI Version是否为 0.48.2 或更高
-3. 验证脚本Configuration是否正确
-4. 确保游戏窗口处于前台且未被遮挡
-5. 确认游戏Shortcut KeysSettings为默认值（特别是地图"M"和Inventory"B"键）
-
-Q：OCR识别矿石数量不准确怎么办？
-**A**：这是OCR技术的固有局限性，可尝试：
-
-Switch到模式二（手动优先级模式）
+**Q: OCR misreads the ore quantities?**  
+**A**: This is an inherent limitation of OCR. Switch to **Mode 2 (Manual Priority Mode)** for deterministic behavior.
 
 ---
 
 ## 📜 Changelog
 
-### 2.4.3`(2026-08-29)`
+### 2.4.3 (2026-08-29)
+- **Optimized**: Natlan blacksmith route.
+- **Added**: Support for Snezhnaya blacksmith.
 
-- **优化**：NatlanBlacksmithRoute
-- **新增**：
-    1. Supports冰国SnezhnayaBlacksmith
+### 2.4.2 (2026-04-28)
+- **Added**: Custom extension documentation in README; added example mineral and route templates.
 
-### 2.4.2`(2026-04-28)`
+### 2.4.1 (2026-01-11)
+- **Fixed**: Stuck issue caused by failed clicks on the forge dialog icon.
 
-- **新增**：
-    1. README文件新增【自定义扩展】模块；
-    2. 文件内增新增 Minerals/Route【新增示例】，以便于后续自定义增添Minerals。
+### 2.4.0 (2025-11-29)
+- **Optimized**: Fixed overshooting on Natlan blacksmith route.
+- **Added**: Supported Moon realm blacksmith and Rainbowdrop Crystal; overhauled ore priority sorting; priority 0 excludes ore.
 
+### 2.3.1 (2025-08-30)
+- **Fixed**: Notification error in Mode 1; inventory screen exit bug.
 
-### 2.4.1`(2026-01-11)`
+### 2.3.0 (2025-08-28)
+- **Fixed**: Fontaine blacksmith overshooting.
+- **Optimized**: Checked big map for completed forge reward icon before pathing for claim-only mode.
+- **Added**: Mode selection (Mode 1 Auto / Mode 2 Manual); added Natlan Blacksmith support.
 
-- **修复**：
-    1. 对话界面点击锻造图标Defeat，卡住的问题
+### 2.2.1 (2025-08-03)
+- Accelerated forging speed and improved notification delivery.
 
-### 2.4.0`(2025-11-29)`
+### 2.1 (2025-06)
+- Updated versioning scheme; adapted for version 5.7 daily forge limit increase from 3 to 4 batches.
 
-- **优化**：NatlanBlacksmithRoute可能出现跑过头的问题
-- **新增**：
-    1. Supports月国Blacksmith，矿石Rainbowdrop Crystal的使用
-    2. 重构全新的矿石使用排序方式
-    3. 选择矿石排序为0时，可以排除对应矿石
+### 2.0 (2025-05-22)
+- Added automatic fallback to alternative ores when materials are insufficient or unread.
 
-### 2.3.1`(2025-08-30)`
-
-- **修复**：
-    1. 模式一识别开启通知时，发送通知报错
-    2. 模式一Inventory界面不退出的问题
-
-### 2.3.0`(2025-08-28)`
-
-- **修复**：FontaineBlacksmith跑过头导致Defeat的问题
-- **优化**：仅领取锻造时，先检测大地图Top-Left角是否有【锻造奖励】图标
-- **新增**：
-    1. 模式选择（默认模式一）
-        - 模式一：Auto 识别Inventory中数量最多的矿石锻造，DefeatAuto Switch到手动优先级（可能存在数量识别错误）
-        - 模式二：手动优先级，依次尝试主选及备选矿石
-    2. SupportsNatlanBlacksmith
-
-### 2.2.1`(2025-08-03)`
-
-- 加快锻造速度
-- 优化通知逻辑，减少通知被吞概率
-
-### 2.1
-
-- 使用新版Version号
-- 5.7 提高了锻造上限，锻造次数由 3 改为 4
-
-### 2.00523（2025-05-23）
-
-- 新增仅领取锻造
-- 优化点击逻辑
-- 修复锻造点击次数超过 3 次的 bug
-
-### 2.0（2025-05-22）
-
-- 新增矿石不足时Auto 选择Alternate矿石
-
-### 1.40521（2025-05-21）
-
-- 新增矿石未能识别时Auto 选择Alternate矿石
-
-### 1.4（2025-05-20）
-
-- 新增通知Features
-
-### 1.3（2025-05-15）
-
-- 修复选择"Condessence Crystal"时无法识别的问题
-- 仓库内新增标签
-
-### 1.2（2025-05-12）
-
-- 修复选择"Condessence Crystal"时无法识别的 bug
-
-### 1.1（2025-05-01）
-
-- 优化矿石选取方式，改用识图模式
+### 1.1 - 1.4 (2025-05)
+- Added desktop notifications, image recognition selection, and bug fixes for Condessence Crystals.
 
 ---
 
-**最后更新**：2026 年 04 月 28 日  
-**维护者**：@呱呱z
-
-> 💡 提示：建议定期检查更新以获取最佳体验和最新Features
+**Last Updated**: April 28, 2026  
+**Maintainer**: @呱呱z (GuaGuaz)

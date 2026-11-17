@@ -1,59 +1,60 @@
-商店Artifact EXP周四凌晨4点刷新，可以自行选择想买的商人(默认全选)
+Shop artifact EXP refreshes weekly on Thursday at 4:00 AM server time. You can customize which merchants to purchase from (all selected by default).
 
-根据体力代换计算，买完9个商人（共45个Artifacts）相当于用价值30体力的Mora换取了51体力的Artifact EXP。
+Based on Original Resin value conversions, purchasing from all 9 merchants (45 2-star artifacts in total) is equivalent to trading 30 Resin worth of Mora for 51 Resin worth of Artifact EXP.
 
-所以真的不建议将Artifact EXP分解成Mora，如果你真的很缺。
+Therefore, salvaging artifacts into Mora is generally discouraged if you are short on artifact EXP.
 
-**体力代换明细**（基准：1 体力 = 3,000 Mora ≈ 738 Artifacts经验）
+**Resin Value Breakdown** (Benchmark: 1 Resin = 3,000 Mora ≈ 738 Artifact EXP)
 
-- Mora基准：20 体力打地脉花 = 60,000 Mora（世界8+固定产出）
-- 经验基准：20 体力打ArtifactsDomain ≈ 14,760 经验（统计期望值，含5星当Artifact EXP喂）
+- Mora Benchmark: 20 Resin Ley Line Blossom of Wealth = 60,000 Mora (World Level 8+ fixed drop)
+- EXP Benchmark: 20 Resin Artifact Domain ≈ 14,760 EXP (statistical expectation, including 5-star artifacts used as EXP fodder)
 
-| 项目     | 计算                    | 折算体力  |
-| -------- | ----------------------- | --------- |
-| 花费Mora | 45 × 2000 = 90,000 Mora | 30 体力   |
-| 获得Artifact EXP | 45 × 840 = 37,800 经验  | ≈ 51 体力 |
+| Item | Calculation | Resin Value |
+|---|---|---|
+| Mora Spent | 45 × 2,000 = 90,000 Mora | 30 Resin |
+| Artifact EXP Gained | 45 × 840 = 37,800 EXP | ≈ 51 Resin |
 
-**运行Recording与多账户**
+**Execution Records & Multi-Account Support**
 
-- 运行Recording保存在 `record/账户名/records.json`，每个商人点位独立Recording
-- 买满5个或商品售罄后，该点位记为本周完成，周四凌晨4点刷新前再次运行会Auto 跳过；若运行途中中断，再次运行会从断点继续（已完成的点位跳过，没买完/Defeat的点位Auto 重试补买）
-- 本周勾选的商人全部完成时，脚本会直接跳过运行
+- Execution records are stored in `record/<AccountName>/records.json`, tracked independently for each merchant point.
+- After purchasing 5 artifacts or when items are sold out, that merchant is marked as completed for the current week. Re-running before the Thursday 4:00 AM refresh will automatically skip finished merchants. If interrupted mid-run, re-running will resume from the breakpoint (skipping finished merchants and retrying incomplete or failed ones).
+- If all selected merchants are already completed for the week, the script will skip execution directly.
 
-**账户名称Settings**
+**Account Name Setting**
 
-- 账户名用于区分多账户的运行Recording，默认为"默认账户"，Recording保存在 `record/你填的名称/records.json`
-- 名称中的Path非法字符（\ / : * ? " < > |）会Auto 替换为下划线
-- 留空则通过OCRAuto 识别当前游戏 UID 作为账户名，识别Defeat时使用"默认账户"文件夹
+- The account name distinguishes run records between different game accounts. Defaults to "Default", with records saved in `record/<AccountName>/records.json`.
+- Illegal filesystem characters (`\ / : * ? " < > |`) in the name are automatically replaced with underscores.
+- If left blank, OCR automatically detects the current game UID as the account name, falling back to the "Default" folder if recognition fails.
 
-**取消运行限制**
+**Bypass Run Restrictions**
 
-勾选后无视Recording强制重跑所有勾选商人，仅本次生效，运行后会Auto 取消勾选，下次如使用此Features需要再次勾选。
+When checked, ignores existing records and forces a complete run across all selected merchants. Applies only to the current execution and unchecks itself automatically afterward.
 
 ## Changelog
-### 2.6.5（2026.09.08）
-1. 运行Recording保存形式修改为`.json`文件，Recording文件结构优化
-1. Supports断点续跑Features，详情见`运行Recording与多账户`
-1. 添加通过UID获取账户名称的Features，详情见`账户名称Settings`
 
-### 2.6.4（2026.09.01）
-1. 取消运行限制改为一次性勾选，运行后Auto 取消勾选
-2. Recording完成时间增加售罄放行：购买数量为0时，仅当所有Route均售罄（本周已买过）才Recording，存在购买Defeat/Exception / Error的Route则不Recording（下次重试），避免手动购买售罄后运行，反复重跑
-3. 优化Artifacts数量识别：OCR改用去掉末尾5字符取前面数字
+### 2.6.5 (2026-09-08)
+1. Changed record storage format to `.json` files, optimizing record file structures.
+2. Added breakpoint resume support; see `Execution Records & Multi-Account Support`.
+3. Added automatic account name detection via UID; see `Account Name Setting`.
 
-### 2.6.3（2026.08.27）
-1. 修复未打开Settings面板时商人默认值不加载导致 0 购买，及Defeat运行误记完成时间导致本周无法重试的问题
-1. 修改了manifest, 使每次更新保持脚本名称不变，Version特性在描述中体现
+### 2.6.4 (2026-09-01)
+1. "Bypass Run Restrictions" changed to a single-use toggle that unchecks automatically after execution.
+2. Added sold-out check for completion timestamps: when purchased quantity is 0, records completion only if all routes are sold out (already purchased this week); routes with purchase failures or errors are not marked as completed so they can be retried.
+3. Optimized artifact quantity recognition: OCR now strips the last 5 characters to parse leading digits.
 
-### 2.6.2（2026.08.21）
-1. 新增Snezhnaya点位
+### 2.6.3 (2026-08-27)
+1. Fixed an issue where merchant defaults were not loaded when the settings panel remained unopened, resulting in 0 purchases, and prevented failed runs from erroneously writing completion timestamps.
+2. Adjusted manifest so the script name remains consistent across updates, with version features described in the summary.
 
-### 2.6.1（2026.08.14）
-1. Route重命名
-2. 修改Log输出内容
-3. 固定Route运行顺序
+### 2.6.2 (2026-08-21)
+1. Added Snezhnaya merchant locations.
 
-### 2.6（2026.08.06）
-1. 增加Inventory过期物品弹窗检测
-2. 商人选择改为多选框
-3. 增加OCR识别Artifacts购买数量
+### 2.6.1 (2026-08-14)
+1. Renamed routes.
+2. Updated log output text.
+3. Fixed route execution sequence.
+
+### 2.6 (2026-08-06)
+1. Added popup detection for expiring inventory items.
+2. Converted merchant selection into multi-select checkboxes.
+3. Added OCR recognition for purchased artifact quantities.

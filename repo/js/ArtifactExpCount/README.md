@@ -1,2 +1,1 @@
-统计Inventory中的Artifacts经验和Artifact EXP数量，建议搭配JS通知使用。
-
+Counts artifact EXP and enhancement material quantities in the Inventory. Recommended to use alongside JS Notification.

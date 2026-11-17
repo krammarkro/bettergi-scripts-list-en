@@ -1,43 +1,43 @@
-# 采集小道具Switch
+# Gathering Gadget Switcher
 
-从Inventory小道具页Auto 查找并装备以下道具：
+Automatically finds and equips the following gadgets from the Inventory Gadgets tab:
 
-- `化种匣`：适合放在可采种植物Route之前。
-- `王树瑞佑`：适合放在Auto Woodcutting脚本之前。
-- `叁零式·便携营养袋`：适合放在需要体力补充的采集或Combat脚本之前。
+- `Seed Dispensary`: Suitable to place before plant seed-gathering routes.
+- `The Boon of the Elder Tree`: Suitable to place before automated woodcutting scripts.
+- `NRE (Menu 30)`: Suitable to place before gathering or combat scripts that require recovery.
 
-脚本只负责装备Switch，植物采集Route与Woodcutting任务继续由对应脚本执行。当前装备已经符合Configuration时，脚本识别到“卸下”按钮后直接结束。
+The script only handles swapping the equipped gadget; route tracking and woodcutting tasks continue to be handled by their respective scripts. If the requested gadget is already equipped, the script detects the "Unequip" state and exits immediately.
 
 ## Usage
 
-1. 将脚本加入调度器Configuration组。
-2. 右键打开“JS 脚本自定义Configuration”。
-3. 选择 `化种匣`、`王树瑞佑` 或 `叁零式·便携营养袋`。
-4. 将脚本放在对应采集任务之前。
+1. Add this script to a scheduler configuration group.
+2. Right-click to open "Modify JS Custom Configuration".
+3. Select `Seed Dispensary`, `The Boon of the Elder Tree`, or `NRE (Menu 30)`.
+4. Place the script right before the corresponding gathering/farming task.
 
-示例编排：
+Example orchestration:
 
 ```text
-采集小道具Switch（化种匣）
-植物采集Route
-采集小道具Switch（王树瑞佑）
-Auto Woodcutting-地图追踪版
-采集小道具Switch（叁零式·便携营养袋）
-需要体力的采集或Combat脚本
+Gathering Gadget Switcher (Seed Dispensary)
+Plant Gathering Route
+Gathering Gadget Switcher (The Boon of the Elder Tree)
+Auto Woodcutting - Map Pathing Version
+Gathering Gadget Switcher (NRE (Menu 30))
+Combat / Gathering Script Requiring Recovery
 ```
 
-## 使用条件
+## Requirements
 
-- Account已经获得所选小道具。
-- 从游戏主界面启动。
-- 已在 BetterGI `0.64.0`、游戏 `1920×1080` 环境实机验证。
+- The account must already possess the selected gadget.
+- Start from the game main UI.
+- Verified on BetterGI `0.64.0` at `1920×1080` resolution.
 
-## 实机验证
+## Verification Notes
 
-- 化种匣能够识别“已装备”和“替换”状态；装备后，Sweet FlowerRoute连续识别到“Sweet Flower的种子”。
-- 王树瑞佑能够从化种匣Switch成功；后续社区Woodcutting脚本识别到王树瑞佑，并完成一轮Birch WoodRoute，Recording获得Birch Wood 75。
-- 叁零式·便携营养袋能够从化种匣Switch成功；装备后识别到"卸下"按钮。
+- Seed Dispensary correctly recognizes "Equipped" and "Switch" states; after equipping, Sweet Flower routes consistently collect "Sweet Flower Seed".
+- The Boon of the Elder Tree successfully swaps in from Seed Dispensary; subsequent woodcutting scripts detect the Boon and complete a Birch Wood route, logging 75 Birch Wood collected.
+- NRE (Menu 30) successfully swaps in from Seed Dispensary; after equipping, the script detects the "Unequip" button state.
 
-## 资源Guide / Instructions
+## Asset Documentation
 
-`assets/RecognitionObject` 中的三张 PNG 是Inventory小道具主体的实机识别模板。模板已避开快捷栏编号、状态角标、星级和数量区域。
+The three PNG files in `assets/RecognitionObject` are actual in-game recognition templates for the gadgets. Templates exclude quickbar slot numbers, status corner badges, star ratings, and quantity text.

@@ -1,163 +1,135 @@
-# Guide / Instructions
+# User Guide
 
-该脚本按MiningRoute的效率从高到低Mining，Recording矿产资源的刷新时间，Auto 规划MiningRoute，可选Mining种类和挖Mining Area域。
+This script mines mineral resources in descending order of route efficiency, records the respawn timers of ore nodes, automatically plans mining routes, and allows you to select ore types and mining regions.
 
-- 脚本将在启动后持续Mining，直到以下三个条件中的**任一**条件Happy
-  1. Mining的个数达到预定数值
-  1. Mining持续时间达到预定数值
-  1. 当前时间已过预定时间范围
+- After starting, the script will mine continuously until **any** of the following three conditions is met:
+  1. The number of mined ores reaches the specified target value.
+  2. The mining duration reaches the specified target value.
+  3. The current time exceeds the specified time range.
 
-        填写一个中国标准时间（CST）的时间范围或时间点。
+        Enter a time range or target time in China Standard Time (CST).
 
-        例如填写时间`10:30`，如果我们在`7:00`Starting UpMining，那么将在Mining约3个半小时后停止。
+        For example, if you enter `10:30` and start mining at `7:00`, it will stop after mining for about 3.5 hours.
 
-        例如填写时间`03:50`，如果我们在`22:00`Starting UpMining，那么将在第二天`03:50`左右停止。
+        For example, if you enter `03:50` and start mining at `22:00`, it will stop around `03:50` the next morning.
 
-        例如填写时间`23:00~03:50`，如果我们在`23:30`Starting UpMining，那么将在第二天`03:50`左右停止；如果我们在`22:30`Starting UpMining，脚本会因Nope, Not In预设时间范围内立即停止。
+        For example, if you enter `23:00~03:50` and start mining at `23:30`, it will stop around `03:50` the next morning; if you start at `22:30`, the script will stop immediately because it is outside the preset time range.
 
-  如果三个条件均未填写，脚本将在挖完所有的矿后停止。Note如果第一次运行这个脚本，挖所有矿的过程可能持续十数个小时。
+  If none of the three conditions are configured, the script will stop after mining all available ores. Note that if you run this script for the first time, mining all ores may take more than a dozen hours.
 
-- 地面Mining队伍中请带**Linnea**或**Noelle**，只挖Underwater的矿则无此限制。如需进一步了解，请阅读[进阶使用](#进阶使用)中的相关内容。
-- 矿产资源的刷新时间Recording在脚本目录下`local/persistent_data.json`文件中，升级或重新安装BetterGI可能导致该Recording丢失，请自行备份。
-- `需要Combat的Route`提供四个选项：`正常挖`、`只跳过与Elite怪Combat的Route`、`只挖需要Combat的Route`、`全跳过`。选择`全跳过`将不运行所有需要打败怪物的MiningRoute；选择`只挖需要Combat的Route`则只运行含Combat的Route。无论哪种模式，Character仍可能在运行部分Route时被路过的怪物摸两下，请仍保证队伍有一定的生存能力。
+- For surface mining, include **Linnea** or **Noelle** in your team; underwater mining does not have this restriction. For more details, see [Advanced Usage](#advanced-usage).
+- Ore respawn times are recorded in the `local/persistent_data.json` file inside the script directory. Updating or reinstalling BetterGI may cause this data to be lost, so please back it up manually.
+- The `Routes Requiring Combat` option provides four choices: `Mine Normally`, `Skip Only Elite Monster Combat Routes`, `Mine Only Combat Routes`, and `Skip All`. Choosing `Skip All` will not run any mining routes that require defeating monsters; choosing `Mine Only Combat Routes` will only run routes involving combat. Regardless of mode, characters may still get attacked occasionally by passing monsters on certain routes, so ensure your team maintains adequate survivability.
 
-## 进阶使用
+## Advanced Usage
 
-- 如果有多个游戏帐号，可在最后一个输入框内为每个游戏帐号填写一个唯一的字符串以使他们的刷新时间分开保存，互不干扰。这个唯一的字符串并不必须是帐号的UID，只要互不相同就可以了。
-- 对于因Nope完成地图探索任务而无法正常完成某些Route的玩家，如果不想跳过整个区域，可以将脚本文件名称填入`local/disabled_paths.txt`文件中以跳过这些地图追踪脚本，语法请参考`assets/disabled_paths.conf`。
-- 如果一定要使用OtherCharacterMining，请在自定义Mining动作中填写相应的Character和Mining动作，例如`Dehya attack(2.0)`。也可填写`默认`或`default`来使用全局Settings中的Mining动作。使用此选项可能导致产量下降或Other问题，对此我们不做任何保证，亦不能提供技术Supports。
-- 脚本会Auto 检验队伍Character，如果希望使用LinneaMining请**不要**填写自定义Mining动作。
+- If you have multiple game accounts, you can enter a unique identifier string for each account in the last input box so that their respawn records are saved separately without interfering with each other. This string does not have to be the account's UID, as long as it is unique across your accounts.
+- If you cannot complete certain routes due to unfinished map exploration quests and do not want to skip an entire region, you can add the script file names to `local/disabled_paths.txt` to skip those pathing scripts. Refer to `assets/disabled_paths.conf` for syntax.
+- If you must use other characters for mining, enter the character and custom mining action in the custom mining action setting, such as `Dehya attack(2.0)`. You can also enter `默认` or `default` to use the mining action from global settings. Using this option may result in reduced yield or other issues, for which no guarantees or technical support can be provided.
+- The script automatically checks team characters. If you want to use Linnea for mining, **do not** configure a custom mining action.
+- The script automatically records the actual execution time of each route and stores it in `local/user_records.json`, separated by account and mining mode (Linnea/Claymore), keeping up to the 7 most recent records per route. This file is maintained automatically by the script with no manual editing needed. Updating or reinstalling BetterGI may cause these records to be lost, so you may back it up together with `persistent_data.json`.
+- The "Duration Data Source" option determines where the route durations used for scheduling come from:
+  - `Optimize Based on Execution Records` (default): Combines actual data from `local/user_records.json` and the "Exploration Factor" for optimized estimation.
+  - `Use Route Default Data`: Uses the estimated values in `assets/statistics.json` directly.
+- The "Exploration Factor" is only effective when `Optimize Based on Execution Records` is selected. Its value ranges from 0 to 1; higher values bias towards trying rarely run routes to gather data, while 0 means no optimistic correction is applied.
 
-
-- 脚本会Auto Recording每条Route的实际运行时长，存储在 `local/user_records.json` 文件中，按帐号和Mining模式（Linnea/Claymore）分开保存，每条Route最多保留最近 7 次Recording。该文件由脚本Auto 维护，无Manual Required编辑。升级或重装 BetterGI 可能导致该Recording丢失，可随 `persistent_data.json` 一起备份。
-- 「时长数据来源」选项决定调度时用的Route时长从哪来：
-  - `根据运行Recording优化`（默认）：结合 `local/user_records.json` 的实际数据和「Curious系数」做优化估算
-  - `使用Route默认数据`：完全使用 `assets/statistics.json` 中的预估值
-- 「Curious系数」只在 `根据运行Recording优化` 时生效，取值 0~1，数值越大越倾向尝试跑得少的Route，帮助采集数据；0 表示不做乐观修正。
-
-## ChangeLog
+## Changelog
 
 ### 0.35.2
-- 优化了部分Route
+- Optimized several routes.
 
 ### 0.35.1
-- 优化了部分Route
+- Optimized several routes.
 
 ### 0.35
-
-- 新增Snezhnaya地区MineralsRoute
-- 新增「只挖需要Combat的Route」选项
-- 调整默认Route的时长数据
-- 优化了部分Route
+- Added Snezhnaya region mineral routes.
+- Added the "Mine Only Combat Routes" option.
+- Adjusted default route duration data.
+- Optimized several routes.
 
 ### 0.34
-
-- 新增 `local/user_records.json`，Auto Recording每条Route的实际运行耗时，按帐号和Mining模式分开存储，每条Route最多保留最近 7 次
-- 新增「时长数据来源」「Curious系数」选项，可结合实际运行数据优化MiningRoute的时长估算
-- Mining时长数据按Character模式分开（Linnea / Claymore）
-- End校验改为「接近End」判定，兼容 SIFT 地图追踪文件
-- 增加排除Snezhnaya地区的选项
-- 优化了部分Route
+- Added `local/user_records.json` to automatically record actual execution times for each route, stored separately by account and mining mode, keeping up to the 7 most recent runs per route.
+- Added "Duration Data Source" and "Exploration Factor" options to optimize route time estimation based on real runtime data.
+- Separated mining duration data by character mode (Linnea / Claymore).
+- Changed route completion check to "near destination" evaluation, compatible with SIFT pathing files.
+- Added option to exclude Snezhnaya.
+- Optimized several routes.
 
 ### 0.33
-
-- 优化了部分Route以更好适配LinneaMining
+- Optimized several routes for better compatibility with Linnea mining.
 
 ### 0.32
-
-- 优化了LinneaMining的逻辑
-- 优化了部分Route以更好适配LinneaMining
+- Optimized Linnea mining logic.
+- Optimized several routes for better compatibility with Linnea mining.
 
 ### 0.31
-
-- 优化了LinneaMining的逻辑
-- 优化了Linnea的Mining动作，special thanks to [@this-Fish](https://github.com/this-Fish)
+- Optimized Linnea mining logic.
+- Optimized Linnea mining actions, special thanks to [@this-Fish](https://github.com/this-Fish).
 
 ### 0.30
-
-- 修复若干bug
+- Fixed various bugs.
 
 ### 0.29
-
-- 稍微优化了LinneaMining的逻辑
+- Slightly optimized Linnea mining logic.
 
 ### 0.28
-
-- 增加LinneaMining实验性Supports，效果不甚Stable，待针对性优化。
+- Added experimental support for Linnea mining; stability is still being optimized.
 
 ### 0.27
-
-- 增加Sea of Bygone Eras、Ancient Sacred Mountain地区的Route
-- 重制自定义Configuration页面
+- Added routes for Sea of Bygone Eras and Ancient Sacred Mountain regions.
+- Redesigned custom settings interface.
 
 ### 0.25
-
-- 修复坐标监控逻辑中未指定地图的bug，special thanks to [@this-Fish](https://github.com/this-Fish)
+- Fixed bug where map was unspecified in coordinate monitoring logic, special thanks to [@this-Fish](https://github.com/this-Fish).
 
 ### 0.22
-
-- 增加处理过期物品的弹出窗口
+- Added handling for expired item popups.
 
 ### 0.18
-
-- 修复坐标监控逻辑中的bug
+- Fixed bug in coordinate monitoring logic.
 
 ### 0.16
-
-- Log实时输出进度
+- Added real-time progress output to logs.
 
 ### 0.15
-
-- 子任务结束时如果坐标未变化则不写入Recording
+- Do not write records when subtasks end with unchanged coordinates.
 
 ### 0.14
-
-- 允许用户使用BetterGI默认的Mining逻辑
+- Allowed users to use BetterGI's default mining logic.
 
 ### 0.11
-
-- 增加排除Nod-Krai地区的选项
+- Added option to exclude Nod-Krai region.
 
 ### 0.10
-
-- 在Mining结束时发送通知消息
-- 修复新获取矿石无法正确识别的bug
+- Send notification messages when mining ends.
+- Fixed bug where newly acquired ores were not recognized correctly.
 
 ### 0.9
-
-- 增加Rainbowdrop CrystalRoute
+- Added Rainbowdrop Crystal routes.
 
 ### 0.8
-
-- 适配BetterGI 0.50.0，移除DPI缩放适配的选项
+- Adapted for BetterGI 0.50.0, removed DPI scaling adaptation option.
 
 ### 0.7
-
-- 允许用户自定义MiningCharacter和动作
+- Allowed users to customize mining character and actions.
 
 ### 0.6
-
-- 增加跳过与Elite怪CombatRoute的选项
+- Added option to skip combat routes with elite monsters.
 
 ### 0.5
-
-- 更新Route规划算法
+- Updated route planning algorithm.
 
 ### 0.4
+- Refactored custom configuration options.
 
-- 重构自定义Configuration选项
-
-### 0.3 
-
-- Starting Up运行之前SwitchConfiguration组中Settings的队伍（如果有）
-- 增加手动启用DPI缩放适配的选项
+### 0.3
+- Switch team to the party configured in the settings group (if any) before starting.
+- Added option to manually enable DPI scaling adaptation.
 
 ### 0.2
-
-- 对于较快结束的任务不写入Recording
-- Supports用户自行定义要跳过的Path追踪子任务
-- 输出Path追踪子任务的Starting Up和结束Log，以便于Log分析
+- Do not record tasks that finish very quickly.
+- Supported custom configuration to skip specified pathing subtasks.
+- Output start and end logs for pathing subtasks to facilitate log analysis.
 
 ### 0.1
-
-- 首次发布
+- Initial release.

@@ -1,216 +1,198 @@
-# 传送并Auto Domain (增强版)
+# Teleport and Auto Domain (Enhanced Edition)
 
-本脚本为 **BetterGI** 自带脚本的增强Version。
-允许用户直接在脚本Settings中自定义“刷取次数”、“树脂类型”及Other高级参数，Supports周期性素材刷取，无需修改 BetterGI 全局Settings。
-
----
-
-⚠️有任何问题 **务必** 先阅读错误信息，依照错误信息指示修改Settings，并确保您已 **完整阅读** 本Guide / Instructions。⚠️
-
-遇到无法排除的问题，请将Log去除敏感信息(如Account名称)后，至github提issue上传。
-本JS脚本修改者NopeQQAccount。
-
-**强烈建议**先以Debug模式运行后再上传Log。
-
-Nope附上LogRecording的问题将被 **无视** 。
-
-Log默认位置在 `BetterGI\log\` 。
+This script is an enhanced version of the built-in **BetterGI** script.
+It allows users to customize "Run Count", "Resin Type", and other advanced settings directly in the script configuration, supporting scheduled/cyclical material farming without altering global BetterGI settings.
 
 ---
 
-## ✨ 主要Features
+⚠️ If you encounter any issues, **always** read the error message first, adjust settings according to the error instructions, and make sure you have **completely read** this guide. ⚠️
 
-* **全球时区Auto 换日**：内置时区计算逻辑，Auto 适配游戏服务器换日时间。
-* **自定义树脂策略**：Supports指定各类型树脂的使用次数，或选择Auto 刷取至树脂耗尽。
-* **智能队伍Switch**：进本前Auto Switch至指定队伍。
-* **全Auto 托管**：Auto 传送、进门、Combat及领奖。
-* **Auto 处理**：Supports结束后Auto 分解Artifacts。
-* **Combat策略选择**：Supports自定义Combat策略文件，可针对不同Domain/队伍Configuration不同的Combat逻辑。
-* **Auto 识别限时全开**：Auto 通过OCR识别游戏内的限时全开活动状态。
+For issues you cannot resolve, please remove sensitive information (such as account names) from the log and submit an issue on GitHub. The modifier of this JS script does not have a QQ account.
+
+It is **strongly recommended** to run in Debug mode before uploading logs.
+
+Issues submitted without log files will be **ignored**.
+
+The default log directory is `BetterGI\log\`.
+
+---
+
+## ✨ Key Features
+
+* **Global Timezone Daily Reset**: Built-in timezone calculation logic automatically adapts to game server reset times.
+* **Custom Resin Strategy**: Supports specifying run counts for each resin type, or automatically farming until resin is depleted.
+* **Smart Party Switching**: Automatically switches to the specified party before entering the domain.
+* **Fully Automated**: Automatic teleporting, domain entry, combat, and reward claiming.
+* **Post-Run Processing**: Supports automatically salvaging artifacts upon completion.
+* **Combat Strategy Selection**: Supports custom combat strategy files, allowing domain/party-specific combat logic.
+* **Auto-Detect Limited-Time All-Open Events**: Automatically checks for in-game "All Domains Open" events via OCR.
 
 ---
 
 ## 🚀 Usage
 
-⚠️ **重要** ：本脚本的参数需要在 **调度器** 中Configuration！
+⚠️ **Important**: This script's parameters must be configured in the **Scheduler**!
 
-1. 在调度器中添加脚本。
-2. **右键点击**脚本并选择 **“修改JS脚本自定义Configuration”**。
+1. Add the script in the Scheduler.
+2. **Right-click** the script and select **"Edit JS Script Custom Configuration"**.
 
-### 📌 必填项
+### 📌 Required Settings
 
-* **指定要Go to的Domain**
-
-  * 请在下拉菜单中选择目标Domain。
-  * **Note**：【Character天赋】、【武器升级】、【Artifacts】三类选项**互斥** (只能选其中一个)，若同时选择多项，脚本将报错停止。
-
-<br>
-
-* **树脂策略Configuration**
-
-  * **刷取至树脂耗尽 (最高优先级)**
-
-    * 若启用此选项，脚本将**忽略**下方所有具体次数的设定。
-    * 依照Configuration中 **树脂刷取顺序** 栏中的树脂种类依序刷取至耗尽，未填写在顺序栏中的树脂 **不会** 进行刷取。
+* **Target Domain to Enter**
+  * Select your target domain from the dropdown menu.
+  * **Note**: The three categories [Character Talent], [Weapon Ascension], and [Artifacts] are **mutually exclusive** (select only one). Selecting multiple categories will cause the script to terminate with an error.
 
 <br>
 
-  * **指定每种树脂刷取数量**
+* **Resin Strategy Configuration**
+  * **Farm until resin is depleted (Highest Priority)**
+    * If enabled, the script will **ignore** specific run counts configured below.
+    * It uses resin sequentially according to the **Resin Consumption Order** setting until depleted. Resin types not included in the order list **will not** be consumed.
 
-    * 仅在“刷取至树脂耗尽”**关闭** 时生效。
-    * 脚本将按照设定的次数进行刷取（若四项均为 0 则不执行Combat）。
-    * Supports的树脂类型：
+<br>
+
+  * **Specify Run Count per Resin Type**
+    * Only takes effect when "Farm until resin is depleted" is **disabled**.
+    * The script will farm according to the specified run counts (if all four are 0, no combat will be performed).
+    * Supported resin types:
       * **Condensed Resin**
-      * **原粹树脂(依照数量计算最少刷取次数)**
-      * **须臾树脂**
-      * **脆弱树脂**
+      * **Original Resin (calculates minimum runs based on quantity)**
+      * **Transient Resin**
+      * **Fragile Resin**
 
-### ⚙️ 可选项
+### ⚙️ Optional Settings
 
-* **【风险】强制运行**
-
-  * **Features**：勾选后将**忽略日期与限时全开检查**，直接进入Domain。
-  * **适用场景**：限时全开Auto 识别有问题或确认游戏有“精通移涌”活动时使用。
-  * **Warning**：若当日未开放该素材且无活动，勾选此项将会导致刷错素材。
-  * **优先级**：此选项优先级最高，勾选后“Auto 识别限时全开”将无效。
-
-<br>
-
-* **Auto 识别限时全开**
-
-  * **Features**：当日期不匹配时，Auto 通过OCR识别游戏内的限时全开活动状态。
-  * **适用场景**：希望脚本Auto 检测活动并在有活动时Auto 进入Domain。
-  * **特点**：不需要再手动使用强制运行选项了
-  * **限制**：会增加约10-15秒的检测时间,面对特别卡的设备占用时间很长且容易报错
-  * **提示**：OCR识别实际上不太Stable，这里只做尽力识别，仍有优化空间，比如识别多处文本进行匹配，或者是利用上识别到的结束时间让不用每次运行都进行OCR，目前主要是测试Stable性
+* **[Risky] Force Run**
+  * **Function**: Ignores date checks and limited-time all-open checks, entering the domain directly.
+  * **Use Case**: Use when limited-time all-open auto-detection fails or when an event such as "Overflowing Mastery" is active.
+  * **Warning**: If the material is not available today and no event is active, checking this option will result in farming the wrong materials.
+  * **Priority**: Highest priority; checking this will bypass "Auto-Detect Limited-Time All-Open".
 
 <br>
 
-* **闲时刷取Artifacts**
-
-  * **Features**：当目标素材（武器/天赋）Nope, Not In开放日期且无活动时，Auto Switch到Artifacts刷取。
-  * **适用场景**：希望在非素材开放日能消耗树脂刷取Artifacts。
-  * **Configuration要求**：需同时Configuration目标素材（武器/天赋）和Artifacts选项。
-  * **优先级**：优先尝试刷取目标素材（武器/天赋），条件不Happy时才Switch到Artifacts。
-  * **提示**：如果与Auto 识别限时全开同时开启时，OCRDefeat会导致Go to刷取Artifacts
-
-<br>
-
-* **Auto Switch到指定队伍**
-
-  * 输入队伍名称（需与游戏内完全一致，Supports正则表达式），留空则不Switch。
+* **Auto-Detect Limited-Time All-Open**
+  * **Function**: When the date does not match, automatically detects in-game all-open event status via OCR.
+  * **Use Case**: Automatically detects events and enters domains when active without manual intervention.
+  * **Advantage**: Eliminates the need to manually toggle the Force Run option.
+  * **Limitations**: Adds approximately 10-15 seconds of detection time; takes longer and may encounter errors on low-spec/laggy devices.
+  * **Note**: OCR recognition is done on a best-effort basis. There is room for optimization (such as multi-text matching or caching event end times). Currently provided for stability testing.
 
 <br>
 
-* **Domain刷取轮数**
-
-  * `0`：刷到体力耗尽或达到指定树脂次数（默认）。
-  * `数字`：刷满该场数后强制停止（无论是否还有体力）。
-
-<br>
-
-* **Combat完成后等待时间**
-
-  * SettingsCombatSettlement后的缓冲秒数（默认 5 秒），防止因电脑读取卡顿导致过早退出或识别Defeat。
+* **Idle Artifact Farming**
+  * **Function**: When target materials (Talent/Weapon) are not available today and no event is active, automatically switches to farming artifacts.
+  * **Use Case**: Safely consume resin on artifacts when target materials are not currently available.
+  * **Configuration**: Must configure both target materials (Talent/Weapon) and the Artifact domain option.
+  * **Priority**: Prioritizes target materials; switches to artifacts only when availability conditions are not met.
+  * **Note**: If enabled alongside "Auto-Detect Limited-Time All-Open", OCR failure will trigger fallback to artifact farming.
 
 <br>
 
-* **结束后Auto 分解Artifacts**
-
-  * **Features**：开启后，任务结束前会Auto 执行Artifacts分解逻辑。
-  * **分解星级**：可指定分解 **1~4 星** 的Artifacts（需配合下拉菜单Settings）。
+* **Auto Switch to Specified Party**
+  * Enter the party name (must match the in-game party name exactly, supports regex); leave empty to skip party switching.
 
 <br>
 
-* **启用Debug模式**
-
-  * 开启后会输出更多详细Log信息，用于脚本出错时排查问题。
+* **Domain Run Count**
+  * `0`: Farm until resin is depleted or specified resin counts are met (default).
+  * `Number`: Forcibly stops after reaching this number of runs (regardless of remaining resin).
 
 <br>
 
-* **指定Combat策略**
+* **Wait Time After Combat**
+  * Buffer delay in seconds after combat rewards/settlement (default: 5 seconds) to prevent premature exit or failed recognition due to PC loading lag.
 
-  * **Features**：指定使用的Combat策略文件，默认根据队伍Auto 选择Combat策略。
-  * **策略文件存放位置**：`BetterGI/User/AutoFight/`
-  * **用法**：在下拉菜单中选择指定Combat策略，并在Combat策略名称栏中填写文件名（后缀加不加都行，建议不加）,策略文件放在 `User/AutoFight` 下的目录中，（如 `Hu Tao`，实际查找 `User/AutoFight/Hu Tao.txt`,如果位于子目录：例如`AutoFight/群友分享/Hu Tao.txt`则填写`群友分享/Hu Tao`）。
+<br>
+
+* **Auto Salvage Artifacts on Completion**
+  * **Function**: When enabled, automatically runs artifact salvage logic before concluding the task.
+  * **Salvage Rarity**: Specify salvaging **1-4 Star** artifacts (configured via dropdown).
+
+<br>
+
+* **Enable Debug Mode**
+  * Outputs more detailed log info for troubleshooting when errors occur.
+
+<br>
+
+* **Specify Combat Strategy**
+  * **Function**: Designates the combat strategy file to use; defaults to auto-selecting strategy based on party.
+  * **Strategy File Location**: `BetterGI/User/AutoFight/`
+  * **Usage**: Select custom combat strategy in dropdown and enter the filename in the Combat Strategy Name field (extension is optional, leaving it off is recommended). Files are stored under `User/AutoFight` (e.g. `Hu Tao` looks for `User/AutoFight/Hu Tao.txt`; if in a subfolder like `AutoFight/community/Hu Tao.txt`, enter `community/Hu Tao`).
   
-  **温馨提示**：部分文件名含有.txt是不能使用的(不是指后缀)，例如.txtaa.txt(或者aa.txt.txt)程序处理完之后会变成aa.txt，导致无法指向原有的文件 ~~但应该没人会用这种文件名~~
+  **Tip**: Avoid filenames containing `.txt` in the middle (e.g. `.txtaa.txt`), as filename normalization will turn it into `aa.txt`.
 
 <br>
 
 ---
 
-## ⏰ 时区Settings
+## ⏰ Timezone Settings
 
-脚本会Auto 读取 BetterGI 的全局Settings来判定今日素材。
-请务必Go to **BetterGISettings > OtherSettings > 服务器时区Settings** 进行正确Configuration（如官服/亚服/B服设为 UTC+08:00）。
-
----
-
-## ⚠️ 已知问题
-
-
-暂无。
-
+The script reads BetterGI's global settings to determine today's material rotation.
+Please ensure you go to **BetterGI Settings > Other Settings > Server Timezone Settings** and configure it correctly (e.g., UTC+08:00 for Official CN / Asia server).
 
 ---
 
-## ⚠️ 修改脚本
+## ⚠️ Known Issues
 
-本脚本采用AI进行生成修改，修改者 **Nope任何编程能力** 。
-故在此授权任何人可以在不标注、不通知修改者(RJFAC)的情况下对脚本内容维护、修改、重写、分享、上传、覆盖此脚本的部分或全部内容。
+None currently.
 
-* **Precautions / Notes**
-  * 修改脚本前请先进行 **备份** 
-  * 修改脚本后请务必 **检查** 以下事项，再提交PR：
-      * 更新manifest.json中的version参数
-      * 在manifest.json中的authors栏位填上您的名字与github账户链接
-      * 更新README.md的Changelog栏位
-      * 在README.md关于Author栏位填上您的名字与github账户链接
-  * 掉落物名称统一使用最高Rare度（技能突破天赋书4星/武器突破素材5星）。
+---
+
+## ⚠️ Modifying the Script
+
+This script was modified with AI assistance. The author has no programming background.
+Permission is granted for anyone to maintain, modify, rewrite, share, upload, or overwrite any part of this script without crediting or notifying the modifier (RJFAC).
+
+* **Precautions**
+  * Always **backup** before modifying.
+  * Before submitting a PR, make sure to check:
+      * Update the version parameter in `manifest.json`
+      * Add your name and GitHub profile link to `manifest.json` authors
+      * Update the Changelog section in `README.md`
+      * Add your name and GitHub profile link to the Author section in `README.md`
+  * Drop item names are standardized to the highest rarity (4-star for Talent Books / 5-star for Weapon Ascension Materials).
 
 ---
 
 ## 📜 Changelog
 
 ### v1.1.2 - [RJFAC](https://github.com/RJFAC)
-* 修正「菫色之庭」异体字导致的传送问题
+* Fixed teleport issue caused by variant character in "Violet Court"
 
 ### v1.1.1 - [RJFAC](https://github.com/RJFAC)
-* 新增Supports7.0SnezhnayaVersion
-* 新增天赋技能材料Domain「荒坠的圣迹」与对应选项「「Philosophies of Charity」、「「Philosophies of Fortitude」、「「Philosophies of Glory」
-* 新增武器突破素材Domain「妄念的创痕」与对应选项「Triumph of the Pale Star Army」、「Revelry of the Cellared Spiritual Nectar」、「The Frost Emperor's Farewell」
-* 新增ArtifactsDomain「逆悬的冰河」与对应选项「Scarlet Proof / Heart of the Furnace」
-* Guide / Instructions文档更新
-* 修正缺失LiyueArtifactsDomain「山脊守望」与对应选项「Pale Flame / Tenacity of the Millelith」的问题
-
+* Added support for 7.0 Snezhnaya version
+* Added Talent domain "荒坠的圣迹" and corresponding options "Philosophies of Charity", "Philosophies of Fortitude", "Philosophies of Glory"
+* Added Weapon Ascension domain "妄念的创痕" and corresponding options "Triumph of the Pale Star Army", "Revelry of the Cellared Spiritual Nectar", "The Frost Emperor's Farewell"
+* Added Artifact domain "逆悬的冰河" and corresponding options "Scarlet Proof / Heart of the Furnace"
+* Updated instructions documentation
+* Fixed missing Liyue Artifact domain "Ridge Watch" and options "Pale Flame / Tenacity of the Millelith"
 
 ### v1.1.0 - [lingyu](https://github.com/aaahai00)
-* 新增限时全开Auto 识别Features，通过OCRAuto 检测游戏内限时全开活动状态
-* 新增"闲时刷取Artifacts"Features，当目标素材Nope, Not In开放日且无活动时Auto 刷取Artifacts
-* 修复Combat策略Pathbug，Supports子目录策略文件
-* 优化Combat策略名称输入，Auto 处理Path分隔符和 `.txt` 后缀名 ~~(应该Nope人用.txt作为文件名的一部分的吧)~~
-* 优化Configuration界面布局
+* Added auto-detect limited-time all-open feature via OCR
+* Added "Idle Artifact Farming" feature to farm artifacts when target materials are not available and no event is running
+* Fixed combat strategy path bug, supporting subfolder strategy files
+* Optimized combat strategy name input, handling path separators and `.txt` extensions automatically
+* Optimized configuration UI layout
 
 ### v1.0.0 - [RJFAC](https://github.com/RJFAC)
-* 新增BGI通知
-* 新增月之七VersionArtifactsDomain「山风的荆冕」
-* 修正Version号以符合SemVer规范
+* Added BetterGI notifications
+* Added Artifact domain "山风的荆冕"
+* Corrected version number to follow SemVer specifications
 
 ### v0.10 - [RJFAC](https://github.com/RJFAC)
-* 调整Combat策略Settings方式
-* 在显示Log中新增Guide / Instructions
-* Guide / Instructions文档排版
-* Debug模式新增显示传入参数
+* Adjusted combat strategy configuration method
+* Added instructions in displayed logs
+* Improved instructions documentation layout
+* Debug mode now displays input arguments
 
 ### v0.8 - [风铃](https://github.com/zephyr-bell)
-* Supports自定义Combat策略文件
+* Added support for custom combat strategy files
 
 ---
 
+## 👨‍💻 About Authors
 
-## 👨‍💻 关于Author
-
-* **原Author**: [huiyadanli](https://github.com/huiyadanli), iris, 霁
-* **修改者**: [RJFAC](https://github.com/RJFAC), [风铃](https://github.com/zephyr-bell), [lingyu](https://github.com/aaahai00)
-* **辅助生成**: AI
+* **Original Authors**: [huiyadanli](https://github.com/huiyadanli), iris, 霁
+* **Modifiers**: [RJFAC](https://github.com/RJFAC), [风铃](https://github.com/zephyr-bell), [lingyu](https://github.com/aaahai00)
+* **Assisted By**: AI

@@ -1,41 +1,32 @@
-# Auto 修改画质与音量
+# Auto Switch Graphics Settings & Volume
 
-## 重要提醒
+## Important Notice
 
-- 为了保证您的良好体验，请务必在Starting Up使用前阅读完本 README。
-- 如果您在更新本 JS 后遇到问题，请在所有Configuration组中移除并重新添加本 JS，这是为了重建自定义Configuration文件以匹配新的Settings UI。
-- 如果您发现运行此 JS 时失去焦点（也就是鼠标在操作别的窗口，而原神窗口在视觉上被覆盖），可以Go to BetterGI 主界面，点击Bottom-Left角Settings，找到通用FeaturesSettings，展开OtherSettings，找到失去焦点Auto 恢复，点击Right Side开关启用此Features。
+- To ensure a smooth experience, please read this README completely before running the script.
+- If you encounter issues after updating this JS script, please remove and re-add it across all Configuration Groups to regenerate the custom settings file matching the new Settings UI.
+- If you notice the game window losing focus while running this script (i.e., operating mouse/keyboard in other windows while Genshin is obscured), go to the BetterGI main interface, click Settings in the bottom-left corner, find General Settings -> Other Settings, find "Auto Restore on Focus Loss", and toggle it on.
 
-## 作用Guide / Instructions
+## Purpose
 
-本 JS 可以根据用户的预设Auto 修改图像和声音Settings，避免了繁琐的手动调整流程。在您使用 BetterGI Auto 完成锄地等重复性任务前，可以运行本 JS，调低画质并静音以降低功耗；同样地，在锄地结束后也可以运行本 JS，调回高画质保证游戏体验。您还可以根据自己的需求开发新的用法。
+This script automatically adjusts graphics and audio settings based on user presets, eliminating tedious manual adjustments. Before starting repetitive automated tasks such as mob farming with BetterGI, you can run this script to lower graphics settings and mute audio to reduce power consumption and heat. Once tasks are complete, run it again to restore high graphics quality for regular gameplay. You can also tailor workflows to your own preferences.
 
-## 兼容性
+## Compatibility
 
-由于缺少修改画质的选项，本 JS **不Supports**云原神。
+- **Cloud Genshin is NOT supported** due to the lack of graphics adjustment options.
+- Tested and confirmed working on `1920×1080` and `2560×1440` resolutions. `3840×2160` should theoretically work as well.
+- This script relies on OCR and therefore **ONLY supports Simplified Chinese in-game UI**. If you normally use another language, please submit an Issue.
+- Tested to work normally under most graphics configurations. However, testing was primarily conducted on high-performance PCs; performance on older hardware or mobile devices is untested. If you run into issues, please file an Issue specifying your hardware specs and symptoms.
+- **Adjusting game resolution is NOT supported** as it may crash BetterGI. You can use [Unity command-line arguments](https://docs.unity3d.com/cn/2021.1/Manual/CommandLineArguments.html) to specify window dimensions.
 
-经过实测，本 JS Supports 1920 \* 1080、2560 \* 1440 分辨率。推测 3840 \* 2160 也可Supports。
+## Usage Instructions
 
-本 JS 基于 OCR 识别，故**仅Supports**简体中文 UI。如果您平时使用的是其它语言，可以发 Issue Guide / Instructions。Roger That需求后，Author将酌情尝试通过在 JS 运行前后修改 UI 语言以解决此问题。
+Add this script to a Configuration Group, right-click the script, and select `Edit JS Script Custom Configuration` to adjust preset graphics and sound options in the pop-up dialog.
 
-经过实测，本 JS 可以在大部分图像Settings下正常运行。但由于Author仅在高性能 PC 上测试了本 JS，其在老旧平台或移动设备上的运行效果是未知的。如果您遇到问题，请发 Issue Guide / Instructions您的运行平台和运行效果。
+### Options Guide
 
-由于可能导致 BetterGI 崩溃，本 JS **不Supports**调整游戏分辨率。您可使用 [Unity 启动参数](https://docs.unity3d.com/cn/2021.1/Manual/CommandLineArguments.html)指定原神的窗口宽高等。
-
-## Usage
-
-在Configuration组中添加本 JS 后，右键本 JS，点击`修改JS脚本自定义Configuration`，即可在弹出的对话框中调整预设图像和声音Settings。
-
-### 选项Guide / Instructions
-
-预设Settings的标签名称与选项名称皆与游戏内名称一致，如果您发现不同，请发 Issue。
-
-启用Fast模式后，选择选项将不再依赖 OCR，而是直接点击硬编码的坐标（也就是盲点），且点击更为迅速，在Nope默认选项的情况下耗时是Normal模式的一半左右。Fast模式可能在性能稍差的设备上不可用，因为 UI 动画速度可能过慢。如果您更追求Stable，不要勾选Fast模式。
-
-每项Settings的第一个选项都是`默认`，在您选中它后本 JS 会**不修改**此选项。
-
-Note，即使您预设`图像质量`选项不是`默认`或`自定义`，本 JS 依然会根据您的预设修改其余选项。所以如果您Settings了图像质量预设，又修改了其余选项为非预设的值，则在 JS 运行结束后`图像质量`将是`自定义`。
-
-音量Settings只允许您设定不大于 10 的自然数，您可预设为 -1 以不修改对应的音量。Tips: 您还可直接在调度器中添加 Shell 指令以Auto 调整系统音量。
-
-Thank You您耐心读完此 README，请勾选自定义Configuration中的复选框。
+- Setting labels and option names match the in-game text. If you find discrepancies, please open an Issue.
+- Enabling **Fast Mode** bypasses OCR and clicks hardcoded coordinates directly, cutting execution time roughly in half compared to normal mode when non-default options are selected. Fast mode might not work properly on lower-spec machines if UI animation speeds lag. If you prioritize stability, leave Fast Mode unchecked.
+- The first option for each setting is `Default`. When selected, the script will leave that option **unmodified**.
+- Note: Even if you set the preset `Graphics Quality` option to something other than `Default` or `Custom`, the script will still modify individual sub-settings according to your presets. Therefore, modifying individual options away from preset defaults will result in the in-game display showing `Custom`.
+- Volume settings only accept natural numbers from `0` to `10`. Set to `-1` to leave the corresponding volume unchanged. *Tip: You can also add Shell commands in the scheduler to adjust system volume directly.*
+- Thank you for patiently reading this README; please remember to check the confirmation checkbox in the custom configuration.

@@ -1,318 +1,322 @@
 # FullyAutoAndSemiAutoTools
 
-**全Auto  + 半Auto Path任务工具箱**  
+**Fully Automated + Semi-Automated Pathing Toolbox**  
 
-## 项目概述
+## Project Overview
 
-FullyAutoAndSemiAutoTools 是一套高度模块化、可高度自定义的Auto 化Path执行工具箱。
+FullyAutoAndSemiAutoTools is a highly modular and customizable automated pathing execution toolbox.
 
-Supports**全Auto **与**半Auto **两种运行模式，核心目标包括：
+Supports both **Fully Automated** and **Semi-Automated** operating modes. Core goals include:
 
-- 智能扫描 & 多层级管理大量Path文件（Supports任意深度目录结构）
-- 精细的冷却时间控制（小时制 + Cron，需要外部解析服务）`根据Path的CD`
-- 根据Path特性Auto SwitchCombat/元素队伍
-- 集成丰富的实时辅助Features
-- 执行Recording防重复 + 择优优先未完成Path
-- Supports黑白名单、多 UID 隔离Recording与Path缓存
-## 快捷使用
-- 1.(首次/刷新存储)Account刷新 Settings刷新层级 运行一次 (Auto 识别uid存储) 先获取Version密钥
-  </br>
-  ![init-re](md/init-re.jpg)</br>
-- 2.执行
-  **选择 全Auto **</br>
-  ![run-init-01](md/run-init-01.jpg)</br>
-  **CD算法需要部署 [bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) 并启用http</br>
-   也可以开启择优模式(择优模式不依赖bettergi-scripts-tools)**</br>
-  ![run-init-01](md/run-init-cd-01.jpg)</br>
-  ![init-http](md/init-http.jpg)</br>
-  **日常选择 全Auto **</br>
-  ![init-auto](md/init-auto.jpg)</br>
-  **Configuration队伍**</br>
-   Configuration默认 行走队</br>
-   队伍Configuration 实例语法对应映射: Minerals,火,水,风,雷,草,冰,岩 </br>
-   队伍Configuration 实例语法: 矿采集,水火风雷,水火风雷,水火风雷,元素,矿采集 </br>
-   Nope可留空 如 矿采集,,,,,矿采集</br>
-  **锄地队伍Configuration**</br>
-  实例语法: Enemies and Monsters->Clockwork Meka=速通,..... (还不清楚的看`锄地队伍Configuration图映射`)</br>
-  ![init-team](md/init-team.jpg)</br>
-  **`锄地队伍Configuration图映射`**</br>
-  ![init-team-map](md/init-team-map.jpg)</br>
-  **`选中执行组`**</br>
-   多选项 为或关系 </br>
-   如选中 Local Specialties的Liyue 和 Liyue的Cor Lapis 会执行 Local Specialties的Liyue下所有的Path</br>
-   如需要指定 请勿选中上级目录 Liyue的Cor Lapis(3级Path)->Local Specialties的Liyue(2级Path) </br>
-   如图选中下3级Path时不要选中对应的2级Path</br>
-  ![init-run-pathing](md/init-run-pathing.jpg)</br>
-  ![init-run-pathing-01](md/init-run-pathing-01.jpg)</br>
-- 3.高级Configuration请继续查看文档后续
-### 核心亮点（最新版）
+- Intelligent scanning & multi-tier management of large numbers of pathing files (supports arbitrary directory depths)
+- Fine-grained cooldown control (hours + Cron, requires external parsing service) based on route CDs
+- Automatic switching between combat / elemental parties based on route characteristics
+- Integrated real-time auxiliary features
+- Execution history to prevent duplicates + optimization mode prioritizing uncompleted paths
+- Blacklist/whitelist filtering, multi-UID record isolation, and per-account path caching
 
-- **Path扫描全面重构**：Supports任意层级目录，父子关系清晰，性能Stable
-- **按 UID 缓存Path列表**（`path-json-by-uid.json`），多AccountSwitch极快
-- 小时制 & Cron 双冷却系统（需搭配 bettergi-scripts-tools）
-- 智能队伍Switch（Combat/七元素）
-- 实时任务：Auto 对话跳过、Auto 拾取、Auto Combat
-- 择优执行 + 执行Recording + 错误Path追踪
-- 半Auto Shortcut Keys干预（继续/跳过）
-- 开发者模式 + 详细Log + UIDAuto 识别
+## Quick Start
+1. **(Initial Setup / Storage Refresh)**: Set the refresh depth under Account Refresh, run once (automatically detects and saves UID), and enter the Version Key.  
+   <br>
+   ![init-re](md/init-re.jpg)<br>
+2. **Execution**:  
+   **Select Fully Automated**<br>
+   ![run-init-01](md/run-init-01.jpg)<br>
+   **The CD calculation requires deploying [bettergi-scripts-tools](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) and enabling HTTP.<br>
+   Alternatively, enable Optimization Mode (Optimization Mode does not depend on bettergi-scripts-tools).**<br>
+   ![run-init-01](md/run-init-cd-01.jpg)<br>
+   ![init-http](md/init-http.jpg)<br>
+   **Daily Use: Select Fully Automated**<br>
+   ![init-auto](md/init-auto.jpg)<br>
+   **Party Configuration**<br>
+   Configure the default movement party.<br>
+   Party syntax mapping order: Ore, Pyro, Hydro, Anemo, Electro, Dendro, Cryo, Geo.<br>
+   Example syntax: `Mining,HydroPyroAnemoElectro,HydroPyroAnemoElectro,HydroPyroAnemoElectro,Elemental,Mining`<br>
+   Leave empty if unused, e.g. `Mining,,,,,Mining`<br>
+   **Mob Farming Party Configuration**<br>
+   Example syntax: `Enemies and Monsters->Clockwork Meka=Speedrun,.....` (refer to the Mob Farming Party Configuration Mapping diagram below)<br>
+   ![init-team](md/init-team.jpg)<br>
+   **Mob Farming Party Configuration Mapping**<br>
+   ![init-team-map](md/init-team-map.jpg)<br>
+   **Select Execution Groups**<br>
+   Multiple selections operate with an OR relationship.<br>
+   E.g., selecting `Local Specialties` -> `Liyue` and `Liyue` -> `Cor Lapis` will execute all paths under `Local Specialties` -> `Liyue`.<br>
+   To run specific paths only, do not select parent folders. E.g., when selecting the level-3 path `Cor Lapis`, do not select the level-2 parent `Liyue`.<br>
+   ![init-run-pathing](md/init-run-pathing.jpg)<br>
+   ![init-run-pathing-01](md/init-run-pathing-01.jpg)<br>
+3. For advanced configurations, please continue reading the documentation below.
 
-## 文件结构一览
+### Core Highlights (Latest Version)
 
-```
+- **Completely Refactored Path Scanning**: Supports arbitrary directory depth with clear parent-child hierarchies and stable performance.
+- **Per-UID Path Caching** (`path-json-by-uid.json`): Lightning-fast switching between multiple accounts.
+- Dual cooldown system with Hours & Cron (requires bettergi-scripts-tools).
+- Intelligent party switching (Combat / Seven Elements).
+- Real-time tasks: Auto dialog skip, auto pickup, auto combat.
+- Prioritized execution + execution tracking + error path logging.
+- Semi-automated hotkey overrides (Continue / Skip).
+- Developer mode + detailed logging + automatic UID detection.
+
+## File Structure Overview
+
+```text
 FullyAutoAndSemiAutoTools/
 ├── config/
-│   ├── SevenElement.json           # 七元素Path→队伍映射
-│   ├── cd-pathing.json             # Path冷却规则（hours/cron）
-│   ├── record.json                 # 本次执行Recording
-│   ├── PathRecord.json             # 历史Path执行Recording
-│   ├── uidSettings.json            # 用户Configuration快照（多UIDSupports）
-│   ├── path-json-by-uid.json       # 按UID缓存的PathJSON列表
-│   └── RefreshSettings.json        # 刷新Configuration缓存（可选）
+│   ├── SevenElement.json           # Seven Elements path -> team mapping
+│   ├── cd-pathing.json             # Path cooldown rules (hours/cron)
+│   ├── record.json                 # Current run execution log
+│   ├── PathRecord.json             # Historical path execution log
+│   ├── uidSettings.json            # User configuration snapshot (multi-UID support)
+│   ├── path-json-by-uid.json       # Path JSON list cached per UID
+│   └── RefreshSettings.json        # Refresh configuration cache (optional)
 ├── utils/
-│   ├── SwitchTeam.js               # 队伍Switch核心
-│   ├── cron.js                     # Cron 解析工具
-│   └── tool.js                      # UID 识别模块
-├── pathing/                        # ★ 所有Path文件目录（需符号链接）
-├── SymLink.bat                     # 一键创建 pathing 链接
-├── main.js                         # 主程序入口（已重构Path扫描）
-├── manifest.json                   # 脚本元信息 & Version标识
-└── settings.json                   # Configuration模板（用户界面依据）
+│   ├── SwitchTeam.js               # Team switching core
+│   ├── cron.js                     # Cron parsing utility
+│   └── tool.js                     # UID detection module
+├── pathing/                        # ★ Pathing directory (symbolic link required)
+├── SymLink.bat                     # One-click script to create pathing link
+├── main.js                         # Main entry point (refactored scanner)
+├── manifest.json                   # Script metadata & version tag
+└── settings.json                   # Configuration template (UI schema)
 ```
 
-## 核心流程图
+## Core Workflow Diagrams
 
-### 1. 整体流程图（graph TD 风格，适合看结构与分支）
+### 1. Overall Flowchart
 
 ```mermaid
 graph TD
-  A[启动脚本] --> B[读取 config_run]
+  A["Start Script"] --> B["Read config_run"]
 
-  B --> C{config_run ?}
+  B --> C{"config_run ?"}
 
-%% ────────────── 刷新模式 ──────────────
-  C -->|刷新| Refresh[刷新模式]
+%% ────────────── Refresh Mode ──────────────
+  C -->|Refresh| Refresh["Refresh Mode"]
 
-  Refresh --> Scan[扫描 pathing 目录<br>readPaths 递归读取所有文件/文件夹]
+  Refresh --> Scan["Scan pathing directory<br>readPaths recursively reads all files/folders"]
 
-  Scan --> Depth[应用 loading_level<br>限制最大递归深度]
+  Scan --> Depth["Apply loading_level<br>Limit max recursion depth"]
 
-  Depth --> BlackWhite[应用黑白名单过滤<br>config_white_list / config_black_list<br>（优先级高于Other过滤）]
+  Depth --> BlackWhite["Apply blacklist/whitelist filtering<br>config_white_list / config_black_list<br>(Higher priority than other filters)"]
 
-BlackWhite --> Generate[生成 multi-checkbox Configuration项<br>写入 uidSettings.json<br>写入 path-json-by-uid.json<br>（此时黑白名单已生效）]
+  BlackWhite --> Generate["Generate multi-checkbox config options<br>Write to uidSettings.json<br>Write to path-json-by-uid.json<br>(Blacklist/whitelist applied)"]
 
-Generate --> RefreshEnd[刷新结束<br>黑白名单已固化到缓存中]
+  Generate --> RefreshEnd["Refresh finished<br>Blacklist/whitelist persisted to cache"]
 
-%% ────────────── 加载模式 ──────────────
-C -->|加载| Load[加载模式]
+%% ────────────── Load Mode ──────────────
+  C -->|Load| Load["Load Mode"]
 
-Load --> ReadCache[读取上次缓存<br>path-json-by-uid.json + uidSettings.json<br>（已包含刷新时的黑白名单过滤结果）]
+  Load --> ReadCache["Read previous cache<br>path-json-by-uid.json + uidSettings.json<br>(Includes previous blacklist/whitelist results)"]
 
-ReadCache --> LoadFilter{二次过滤项}
+  ReadCache --> LoadFilter{"Secondary Filters"}
 
-LoadFilter --> TheLayer[the_layer = true ?<br>只保留指定层级]
+  LoadFilter --> TheLayer["the_layer = true ?<br>Keep only specified depth"]
 
-LoadFilter --> HighFilter[high_level_filtering 有值 ?<br>Path字符串匹配过滤]
+  LoadFilter --> HighFilter["high_level_filtering provided ?<br>Path string pattern matching"]
 
-LoadFilter --> BlackWhiteLoad[黑白名单输入框显示<br>但修改无效<br>（不重新过滤缓存）]
+  LoadFilter --> BlackWhiteLoad["Blacklist/whitelist input boxes displayed<br>but edits do not take effect<br>(Does not re-filter cache)"]
 
-TheLayer & HighFilter --> ShowOptions[显示最终过滤后的选项列表<br>供用户勾选]
+  TheLayer & HighFilter --> ShowOptions["Display final filtered options list<br>for user selection"]
 
-BlackWhiteLoad -.-> ShowOptions[黑白名单修改不生效]
+  BlackWhiteLoad -.-> ShowOptions["Blacklist/whitelist changes ignored"]
 
-ShowOptions --> LoadEnd[加载结束<br>黑白名单不参与二次过滤]
+  ShowOptions --> LoadEnd["Load finished<br>Blacklist/whitelist not re-filtered"]
 
-%% ────────────── 执行模式 ──────────────
-C -->|执行| Exec[执行模式<br>不显示黑白名单 / 层级 / 高阶过滤项<br>直接使用已勾选Path]
+%% ────────────── Execution Mode ──────────────
+  C -->|Execute| Exec["Execution Mode<br>Hides blacklist / depth / high-level filters<br>Directly uses checked paths"]
 
-Exec --> Run[读取 CD + Recording<br>构建 needRunMap → 执行]
+  Exec --> Run["Read CD + Records<br>Construct needRunMap -> Execute"]
 
-%% 样式
-classDef refresh fill:#e8f5e9,stroke:#2e7d32
-classDef load    fill:#e3f2fd,stroke:#1976d2
-classDef exec    fill:#f3e5f5,stroke:#7b1fa2
-classDef filter  fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+%% Styles
+  classDef refresh fill:#e8f5e9,stroke:#2e7d32
+  classDef load    fill:#e3f2fd,stroke:#1976d2
+  classDef exec    fill:#f3e5f5,stroke:#7b1fa2
+  classDef filter  fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
 
-class Refresh,Scan,Depth,BlackWhite,Generate refresh
-class Load,ReadCache,TheLayer,HighFilter,BlackWhiteLoad,ShowOptions load
-class Exec,Run exec
-class BlackWhite,TheLayer,HighFilter filter
+  class Refresh,Scan,Depth,BlackWhite,Generate refresh
+  class Load,ReadCache,TheLayer,HighFilter,BlackWhiteLoad,ShowOptions load
+  class Exec,Run exec
+  class BlackWhite,TheLayer,HighFilter filter
 ```
 
-### 2. 执行时序图（sequenceDiagram 风格，适合看交互顺序）
+### 2. Execution Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-  participant U as 用户
-  participant UI as Settings界面
-  participant S as 扫描 & 缓存模块
-  participant F as 过滤逻辑
-  participant R as Recording/缓存文件<br>(uidSettings.json + path-json-by-uid.json)
-  participant CD as 冷却检查
-  participant E as 执行引擎
-  participant T as 队伍Switch
-  participant P as Path执行
+  participant U as User
+  participant UI as Settings UI
+  participant S as Scan & Cache Module
+  participant F as Filter Logic
+  participant R as Record / Cache File<br>(uidSettings.json + path-json-by-uid.json)
+  participant CD as Cooldown Checker
+  participant E as Execution Engine
+  participant T as Team Switcher
+  participant P as Path Execution
 
-  U->>UI: 选择 config_run 并保存
+  U->>UI: Select config_run and save
 
-  alt config_run = 刷新
-    UI->>S: Starting Up刷新（重新扫描 pathing 目录）
-    S->>F: 读取 loading_level
-    F-->>S: 限制递归深度
-    S->>F: 读取黑白名单
-    F-->>S: 过滤掉黑名单文件夹，保留白名单优先
-    Note over S,F: the_layer 与 high_level_filtering<br>在本模式不参与过滤
-    S->>R: 写入完整过滤后的Path列表 & Configuration快照
-    R-->>UI: 刷新完成，显示新生成的选项列表
-  else config_run = 加载
-    UI->>R: 请求读取上次缓存
-    R-->>UI: 返回已缓存的Path列表<br>（已包含刷新时的黑白名单结果）
-    UI->>F: 显示 the_layer / high_level_filtering / loading_level 输入框
-    Note over UI,F: 黑白名单输入框显示，但修改无效
-    alt 用户修改了 the_layer 或 high_level_filtering
-      F->>F: 对缓存列表进行二次过滤
-      F-->>UI: 显示过滤后的选项列表
-    else 未修改或修改了黑白名单
-      F-->>UI: 沿用原缓存列表<br>（黑白名单修改被忽略）
+  alt config_run = Refresh
+    UI->>S: Start Refresh (re-scan pathing directory)
+    S->>F: Read loading_level
+    F-->>S: Limit recursion depth
+    S->>F: Read blacklist/whitelist
+    F-->>S: Filter out blacklisted folders, prioritize whitelist
+    Note over S,F: the_layer and high_level_filtering<br>are not applied in this mode
+    S->>R: Write filtered path list & configuration snapshot
+    R-->>UI: Refresh complete, display newly generated options
+  else config_run = Load
+    UI->>R: Request previous cache
+    R-->>UI: Return cached path list<br>(includes previous blacklist/whitelist results)
+    UI->>F: Display the_layer / high_level_filtering / loading_level inputs
+    Note over UI,F: Blacklist/whitelist boxes are shown, but changes do not take effect
+    alt User modified the_layer or high_level_filtering
+      F->>F: Perform secondary filtering on cached list
+      F-->>UI: Display filtered options list
+    else Unmodified or modified blacklist/whitelist
+      F-->>UI: Keep existing cached list<br>(blacklist/whitelist changes ignored)
     end
-    UI-->>U: 显示可勾选的Path组
-  else config_run = 执行
-    UI->>R: 读取用户已勾选的Path组 & Configuration
-    R-->>UI: 返回最终待执行列表
-    Note over UI,R: 此时所有层级/过滤/黑白名单Configuration已固化<br>不再受任何影响
-    UI->>CD: 检查冷却规则（hours / cron）
-    CD-->>UI: 过滤掉仍在CD的Path组
-    UI->>E: Starting Up执行（needRunMap）
-    loop 遍历每个Path组
-      E->>T: 根据Path特性决定队伍
-      alt 需要Combat / 元素 / 锄地特化
+    UI-->>U: Display selectable path groups
+  else config_run = Execute
+    UI->>R: Read selected path groups & configuration
+    R-->>UI: Return final execution list
+    Note over UI,R: All depth/filter/whitelist settings are now frozen<br>and will not change
+    UI->>CD: Check cooldown rules (hours / cron)
+    CD-->>UI: Filter out path groups currently on CD
+    UI->>E: Start execution (needRunMap)
+    loop Iterate each path group
+      E->>T: Determine party based on path characteristics
+      alt Requires Combat / Elemental / Mob Farming specialization
         T->>T: switchTeamByName / switchTeamByIndex
       end
-      T-->>E: 队伍就位
-      alt 半Auto 模式
-        E->>U: 等待Shortcut Keys（继续/跳过）
-        U-->>E: 按键响应
+      T-->>E: Party ready
+      alt Semi-Automated Mode
+        E->>U: Wait for hotkey (Continue / Skip)
+        U-->>E: Hotkey pressed
       end
-      E->>P: pathingScript.runFile(Path)
-      P-->>E: 执行完成 / Exception / Error
-      E->>R: Recording执行结果（成功/Defeat/时间戳）
+      E->>P: pathingScript.runFile(path)
+      P-->>E: Execution complete / Exception handled
+      E->>R: Record execution result (success/failure/timestamp)
     end
-    R-->>UI: 保存最终Recording
-    UI-->>U: 执行完成
+    R-->>UI: Save final records
+    UI-->>U: Execution completed
   end
 ```
 
-## 重要Configuration项一览（settings.json）
+## Important Configuration Options (settings.json)
 
-| Configuration项                 | 类型  | 主要作用                                                              | Recommended默认/示例                                      |
-|---------------------|-----|-------------------------------------------------------------------|----------------------------------------------|
-| config_uid          | 复选框 | 当前Configurationuid:{无}(仅仅显示Configurationuid无Other作用)                                       | xxx                                          |
-| key                 | 文本  | 脚本密钥                                                              | xxx                                          |
-| config_run          | 下拉  | 运行模式：刷新 / 加载 / 执行                                                 | 刷新 → 首次，加载 → 日常                              |
-| refresh_record      | 复选框 | Configuration模式-刷新-清空运行Recording                                                    |                                              |
-| refresh_record_mode | 下拉  | 清空运行Recording模式 全部                                                       | UID                                          |                                            |
-| high_level_filtering       | 文本  | 高阶过滤                                                              |                                              |
-| loading_level       | 文本  | Path层级深度（≥1，实际Supports更高深度）                                               | 2 或 3                                        |
-| the_layer       | 复选框  | 只加载指定层级                                                           |                                              |
-| order_rules         | 文本  | 执行顺序规则（可留空）<br>语法：父文件夹名称->文件夹名称=顺序整数,...<br>示例：Food and Alchemy->Crystalfly=1,       | ""（默认按扫描顺序）或 "Food and Alchemy->Crystalfly=1,pathing->Local Specialties=2"   |
-| open_limit_max         | 复选框  | 开启执行组最大Path数Configuration                                                      | |
-| limit_max_group         | 文本  | Configuration执行组最大Path数（可留空）<br>语法：父文件夹名称->文件夹名称=最大Path数,...<br>示例：Food and Alchemy->Crystalfly=50, | ""（默认按扫描顺序）或 "Food and Alchemy->Crystalfly=50,pathing->Local Specialties=50" |
-| config_white_list   | 文本  | 白名单（逗号分隔）                                                         | Crystalfly,特产                                        |
-| config_black_list   | 文本  | 黑名单（优先级更高）                                                        | Other,Mob Farming,Weekly Boss                                   |
-| open_cd             | 复选框 | 启用冷却控制                                                            | 建议开启                                         |
-| http_api            | 文本  | Cron 解析服务地址                                                       | http://127.0.0.1:8081/...                    |
-| real_time_missions  | 多选  | 实时辅助（对话/Combat/拾取）                                                    | 至少开「Auto 拾取」                                    |
-| choose_best         | 复选框 | 择优模式（优先未跑/最久未跑Path）                                                 | Recommended开启                                         |
-| mode                | 下拉  | 全Auto  / 半Auto                                                          | 全Auto （日常）                                      |
-| auto_semi_key_mode  | 下拉  | 半Auto Shortcut Keys行为（继续/跳过）                                                   | 继续运行                                         |
-| auto_key            | 文本  | 半Auto 干预Shortcut Keys                                                          | F10 / F11（避免冲突）                              |
-| team_fight          | 文本  | 通用行走队伍名称                                                       | 必须填写                                         |
-| team_hoe_ground     | 文本  | 锄地特化队伍Configuration（语法：父文件夹->子文件夹=队伍名,...）                                   | Enemies and Monsters->Floating Fungi=Floating Fungi队                                |
-| team_seven_elements | 文本  | 七元素队伍（Minerals,火,水,风,雷,草,冰,岩）                                           | 按顺序填写                                        |
-| is_debug            | 复选框 | 开发者模式（详细Log）                                                       | Debug时开启                                        |
+| Setting Name | Type | Main Function | Recommended Default / Example |
+|---|---|---|---|
+| config_uid | Checkbox | Current configuration UID display (informative only) | xxx |
+| key | Text | Script License Key | xxx |
+| config_run | Dropdown | Run Mode: Refresh / Load / Execute | Refresh -> First time, Load -> Daily |
+| refresh_record | Checkbox | Clear run history when refreshing configuration | Unchecked |
+| refresh_record_mode | Dropdown | Run history clear mode: All / UID | UID |
+| high_level_filtering | Text | High-level string pattern filtering | Empty |
+| loading_level | Text | Path directory depth (>= 1) | 2 or 3 |
+| the_layer | Checkbox | Load only specified directory depth | Unchecked |
+| order_rules | Text | Custom execution order rules (optional)<br>Syntax: `ParentFolder->Folder=OrderInt,...`<br>Example: `Food and Alchemy->Crystalfly=1,` | `""` (Default scan order) or `"Food and Alchemy->Crystalfly=1,pathing->Local Specialties=2"` |
+| open_limit_max | Checkbox | Enable max route limit per execution group | Unchecked |
+| limit_max_group | Text | Configure max routes per execution group (optional)<br>Syntax: `ParentFolder->Folder=MaxPaths,...`<br>Example: `Food and Alchemy->Crystalfly=50,` | `""` or `"Food and Alchemy->Crystalfly=50,pathing->Local Specialties=50"` |
+| config_white_list | Text | Whitelist keywords (comma-separated) | `Crystalfly,Local Specialties` |
+| config_black_list | Text | Blacklist keywords (higher priority) | `Other,Mob Farming,Weekly Boss` |
+| open_cd | Checkbox | Enable route cooldown control | Recommended: Checked |
+| http_api | Text | Cron parsing service address | `http://127.0.0.1:8081/...` |
+| real_time_missions | Multi-select | Real-time assists (Dialogue / Combat / Pickup) | Enable at least "Auto Pickup" |
+| choose_best | Checkbox | Optimization mode (prioritizes unrun/least recently run routes) | Recommended: Checked |
+| mode | Dropdown | Fully Automated / Semi-Automated | Fully Automated (Daily) |
+| auto_semi_key_mode | Dropdown | Semi-auto hotkey behavior (Continue / Skip) | Continue |
+| auto_key | Text | Semi-auto intervention hotkey | F10 / F11 (avoid conflicts) |
+| team_fight | Text | General movement/runner party name | Required |
+| team_hoe_ground | Text | Mob farming specialized party configuration (Syntax: `Parent->Child=TeamName,...`) | `Enemies and Monsters->Floating Fungi=FungiTeam` |
+| team_seven_elements | Text | Seven Elements parties (Ore, Pyro, Hydro, Anemo, Electro, Dendro, Cryo, Geo) | Fill in sequence |
+| is_debug | Checkbox | Developer mode (detailed logging) | Checked when debugging |
 
+## Syntax Guide
 
-
-## 语法Guide / Instructions
-- high_level_filtering 高阶过滤
+### high_level_filtering (High-Level Filtering)
 ```text
-语法：xxx->xxx-> ..... 无限制               
+Syntax: xxx->xxx-> ..... (arbitrary depth)
 
-实例：pathing\Local Specialties\
-语法：Local Specialties
-实例：pathing\Local Specialties\Fontaine\
-语法：Local Specialties->Fontaine
-实例：pathing\Local Specialties\Fontaine\Lumitoile\
-语法：Local Specialties->Fontaine->Lumitoile
-实例：pathing\Local Specialties\Fontaine\Lumitoile\Lumitoile@jbcaaa\
-语法：Local Specialties->Fontaine->Lumitoile->Lumitoile@jbcaaa
+Example folder: pathing\Local Specialties\
+Syntax: Local Specialties
+
+Example folder: pathing\Local Specialties\Fontaine\
+Syntax: Local Specialties->Fontaine
+
+Example folder: pathing\Local Specialties\Fontaine\Lumitoile\
+Syntax: Local Specialties->Fontaine->Lumitoile
+
+Example folder: pathing\Local Specialties\Fontaine\Lumitoile\Lumitoile@jbcaaa\
+Syntax: Local Specialties->Fontaine->Lumitoile->Lumitoile@jbcaaa
 ```
-- 以下语法风格请保持一致 ，否则会导致Path会出现Exception / Error运行 如使用 地产->nam=1 同时保持 地产->nam=队伍名1 则Path会出现Exception / Error运行
-- order_rules 执行顺序规则
-    1. `rootName` 根目录下层文件夹名称，`parentName` 父目录名称，`name` 文件夹名称
-    2. 建议语法：`rootName->parentName->name=1,rootName->parentName->name2=2`
-    3. `rootName=parentName`时 语法`rootName->parentName->name=1`不可用， 请使用 `parentName->name=1` 语法
-    4. `rootName->name=1` 语法不Supports
-    5. 匹配精度：`rootName->parentName->name` > `parentName->name` > 默认顺序 
-- team_hoe_ground 锄地特化队伍Configuration
-    1. `rootName` 根目录下层文件夹名称，`parentName` 父目录名称，`name` 文件夹名称
-    2. 建议语法：`rootName->parentName->name=队伍名,rootName->parentName->name2=队伍名`
-    3. `rootName=parentName`时 语法`rootName->parentName->name=队伍名`不可用， 请使用 `parentName->name=队伍名` 语法
-    4. `rootName->name=队伍名` 语法不Supports
-    5. 匹配精度：`rootName->parentName->name` > `parentName->name` > 默认顺序
-- limit_max_group Configuration执行组最大Path数
-    1. `parentName` 父目录名称，`name` 文件夹名称
-    2. 建议语法：`parentName->name=50,parentName->name2=50`
-    3. 匹配精度： `parentName->name` > 默认顺序
-## (可选)额外jsonConfiguration
 
-### Configuration项order_rules
+Keep consistent syntax styles across your configuration. Do not mix competing syntax patterns for the same paths, which may cause execution errors.
 
-Path:config/PathOrder.json
-order值越大优先级越高 `公共Configuration 锄地模块排序未Configuration 希望好心人完善  预留order 900~700`
+### order_rules (Execution Order Rules)
+1. `rootName` is the first folder under root, `parentName` is the parent directory name, `name` is the folder name.
+2. Recommended syntax: `rootName->parentName->name=1,rootName->parentName->name2=2`
+3. When `rootName=parentName`, the syntax `rootName->parentName->name=1` is invalid; use `parentName->name=1` instead.
+4. The syntax `rootName->name=1` is not supported.
+5. Matching priority: `rootName->parentName->name` > `parentName->name` > Default order.
+
+### team_hoe_ground (Mob Farming Team Configuration)
+1. `rootName` is the first folder under root, `parentName` is the parent directory name, `name` is the folder name.
+2. Recommended syntax: `rootName->parentName->name=TeamName,rootName->parentName->name2=TeamName`
+3. When `rootName=parentName`, use `parentName->name=TeamName`.
+4. Matching priority: `rootName->parentName->name` > `parentName->name` > Default order.
+
+### limit_max_group (Execution Group Max Paths)
+1. `parentName` is the parent directory name, `name` is the folder name.
+2. Recommended syntax: `parentName->name=50,parentName->name2=50`
+3. Matching priority: `parentName->name` > Default order.
+
+## (Optional) Additional JSON Configuration Files
+
+### Configuration item: order_rules
+File path: `config/PathOrder.json`  
+Higher `order` values indicate higher execution priority. (Reserved range: 900~700 for mob farming modules).
 ```json
 [
   {
     "uid": "",
-    //AccountUID
+    // Account UID
     "is_common": false,
-    //是否为公共Configuration
+    // Whether this is a shared global configuration
     "root_name": "",
-    //根文件夹下对应的文件夹名称
+    // Folder name under root
     "parent_name": "",
-    //父文件夹名称
+    // Parent folder name
     "name": "",
-    //文件夹名称
+    // Target folder name
     "order": 0
-    //顺序
+    // Execution priority order
   }
 ]
 ```
 
-### Configuration项team_hoe_ground
-
-Path:config/HoeGround.json
-
+### Configuration item: team_hoe_ground
+File path: `config/HoeGround.json`
 ```json
 [
   {
     "uid": "",
-    //AccountUID
+    // Account UID
     "is_common": false,
-    //是否为公共Configuration
+    // Whether this is a shared global configuration
     "root_name": "",
-    //根文件夹下对应的文件夹名称
+    // Folder name under root
     "parent_name": "",
-    //父文件夹名称
+    // Parent folder name
     "name": "",
-    //文件夹名称
+    // Target folder name
     "team_name": ""
-    //队伍名称
+    // Party name in-game
   }
 ]
 ```
 
-## CD 规则示例（cd-pathing.json）
-level值越大优先级越高
+## Cooldown Rule Example (cd-pathing.json)
+Higher `level` values have higher priority.
 ```json
 [
   {
@@ -335,71 +339,67 @@ level值越大优先级越高
   }
 ]
 ```
-## 运行实例部分Log
-实例==>运行Minerals 大类 Rainbowdrop Crystal 运行完成 再次运行 Log截图Showing Off：
+
+## Example Run Log
+Example: Running `Rainbowdrop Crystal` under the `Minerals` category. Log screenshot upon completion and re-running:  
 ![bettergi-scripts-tools](md/F-md.jpg)
-## Cron 解析服务部署（必须）
 
-**bettergi-scripts-tools** 是 Cron 解析的必要依赖，请至少选择一种方式部署：
-> bettergi-scripts-tools Version需要 v0.0.3
-### 1. Windows 一键运行
+## Cron Parsing Service Deployment (Required for Cron CD)
 
-下载 [release](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) 中的 windows zip 包 → 解压 → 双击 .exe
-运行
+**bettergi-scripts-tools** is required for Cron parsing. Please deploy using at least one of the following methods (requires version v0.0.3+):
 
-### 2. Java 运行
+### 1. Windows Executable
+Download the Windows zip archive from [GitHub Releases](https://github.com/Kirito520Asuna/bettergi-scripts-tools/releases) -> extract -> run `.exe`.
 
-下载 jar 包 → 执行：
-
+### 2. Java JAR
+Download the JAR file and execute:
 ```bash
 java -jar bettergi-scripts-tools-xxxx.jar
 ```
 
-### 3. Docker 部署
-
+### 3. Docker Deployment
 ```bash
 docker pull ghcr.io/kirito520asuna/bettergi-scripts-tools:latest
 docker run -d -p 8081:8081 --name bettergi-scripts-tools ghcr.io/kirito520asuna/bettergi-scripts-tools:latest
 ```
 
-**默认 API 地址**：`http://127.0.0.1:8081/bgi/cron/next-timestamp/all`
+**Default API URL**: `http://127.0.0.1:8081/bgi/cron/next-timestamp/all`
 
-## Recommended使用流程
+## Recommended Workflow
 
-1. 双击 `SymLink.bat` 创建 pathing 链接
-2. 首次运行强烈建议先「刷新」一次（生成 path-json-by-uid.json 缓存）
-3. 日常使用「加载」模式 → Fast恢复Configuration & Path列表
-4. 微调Path组 → Switch「执行」模式 → 一键启动
+1. Double-click `SymLink.bat` to create the `pathing` link.
+2. For initial use, perform a **Refresh** once (generates `path-json-by-uid.json` cache).
+3. For daily routines, use **Load** mode to quickly restore configurations and path lists.
+4. Adjust checked path groups -> switch to **Execute** mode -> start execution.
 
-**多Account特别友好**：每个 UID 都有独立Path缓存，SwitchAccount无需重复扫描
+**Multi-Account Friendly**: Each UID maintains an independent path cache, making account switching instantaneous without rescanning.
 
-## 小技巧与实用建议
+## Tips & Practical Advice
 
-- 最省事组合：全Auto  + 择优模式 + Auto 拾取 + 冷却控制
-- 最安全组合：半Auto  + Auto 拾取 + 详细Log + 大量黑名单
-- Path目录再深也没关系，扫描已Supports任意层级
-- 错误Path反复出现？查看 record.json 加黑名单或修复
-- 多UID用户：首次每个号都「刷新」一次，建立独立缓存
+- **Most convenient setup**: Fully Automated + Optimization Mode + Auto Pickup + Cooldown Control.
+- **Safest setup**: Semi-Automated + Auto Pickup + Detailed Logging + Comprehensive Blacklists.
+- Directory depth is unrestricted; the scanner supports arbitrary folder hierarchies.
+- If a problematic path fails repeatedly, inspect `record.json` and blacklist or fix the route.
+- Multi-UID users: Run "Refresh" once on each account to initialize individual caches.
 
 ## Precautions / Notes
 
-- 首次使用或升级后建议删除旧 `path-json-by-uid.json` 重新生成
-- 半Auto 模式请确保Shortcut Keys不与 BetterGI 冲突
-- Cron 模式必须部署解析服务，否则冷却检查无效
-- 最低兼容Version：BetterGI 0.54.3+
+- On initial use or after updates, delete legacy `path-json-by-uid.json` and regenerate.
+- In semi-automated mode, ensure the hotkey does not conflict with BetterGI or other software.
+- Cron mode requires deploying the external parsing service, otherwise cooldown checks are skipped.
+- Minimum compatible BetterGI version: `0.54.3+`.
 
-## Version密钥
+## Version Key
 
-| Version    | 密钥          |
-|-------|-------------|
+| Version | Key |
+|---|---|
 | 0.0.1 | PGCSBY37NJA |
 
-## Version历史（简要）
+## Version History
 
-### 0.0.1 2026.01.30
+### 0.0.1 (2026-01-30)
+- Initial feature release.
 
-基本Features完成
+**Author**: 云端客 (Kirito520Asuna)
 
-**Author**：云端客 (Kirito520Asuna)
-
-祝你使用愉快，素材永远收不完～✨
+Happy automated farming, Traveler! May your materials never run dry! ✨

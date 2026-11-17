@@ -1,93 +1,80 @@
-# 批量讨伐Character养成材料BOSS
+# Batch Hunt Character Ascension Material Bosses
 
-## 一、Features简介
-1. 一次性Configuration多个Character材料的boss
-2. 体力不足时保存进度，每次运行时断点续打
-3. Supports三种刷取模式，包括一次性刷取、一次性刷取但每日限量、每日重复刷取
+## I. Feature Overview
+1. Configure multiple character material bosses at once.
+2. Saves progress when resin is depleted, resuming from the breakpoint on subsequent runs.
+3. Supports three farming modes: One-Time, One-Time with Daily Limit, and Daily Repeating.
 
+## II. Script Usage Guide
+1. Add and run this JS script in the Scheduler.
+2. Upon startup, the script opens a built-in configuration editor where you can add, delete, reorder, and modify Boss configurations.
+3. Click "Save and Close"; the script saves configurations and begins hunting in list order.
+4. Right-click the script -> Edit JS Script Custom Configuration, and uncheck "Open configuration editor on startup" for automated/AFK use.
 
-## 二、脚本使用指南
-1. 在调度器中添加并运行此 JS 脚本。
-2. 脚本启动后会打开内置Configuration编辑器，可添加、删除、排序并修改 Boss Configuration。
-3. 点击“保存并关闭”，脚本会保存Configuration并按列表顺序Starting Up讨伐。
-4. 右键点击脚本-修改JS脚本自定义Configuration，取消勾选启动时打开Configuration编辑器以挂机使用
-### 选项Guide / Instructions
+### Option Explanations
 
-1.  **Combat超时时间**：
-    *   **每个boss独立Settings** ，单位为秒，默认为240秒，如果超过这个时间，强制结束Combat
-    *  **务必确保**BOSS在这个时间内死亡，Nope针对超时处理。
+1. **Combat Timeout**:
+   - **Configured independently per boss**, in seconds (default: 240 seconds). If exceeded, combat is forcibly terminated.
+   - **Make sure** the boss dies within this duration; there is no special handling for timeouts.
 
-2.  **刷取模式**：
-    >刷取的前提是有体力，没体力会Auto 停止
-  *   **一次性**：boss刷取次数完成后不再刷取这个Configuration。且按添加顺序，刷完一个Configuration后，才会刷取下一个Configuration。需Configuration`讨伐次数`。选择此模式时，`每日限量次数`选项无效
-  *   **一次性-每日限量**：跟一次性类似，但可以在`每日限量次数`限制刷取的次数，刷够次数后会按添加顺序刷取下一Configuration，需同时Configuration`讨伐次数`跟`每日限量次数`
-  *   **每日重置**：简单说就是每天都刷取`每日限量次数`指定的次数，无论刷完与否，次日重置。选择此模式时，`讨伐次数`选项无效
+2. **Farming Mode**:
+   > Farming requires Original Resin; runs will automatically stop if resin is depleted.
+   - **One-Time**: Once the configured run count is reached, this boss configuration is completed and retired. Bosses are cleared sequentially in the order added. Requires configuring `Hunt Count`. The `Daily Limit Count` option is ignored.
+   - **One-Time - Daily Limit**: Similar to One-Time, but caps daily runs using `Daily Limit Count`. Once the daily limit is hit, the script proceeds to the next boss in list order, repeating daily until the total count is fulfilled. Requires configuring both `Hunt Count` and `Daily Limit Count`.
+   - **Daily Reset**: Farms up to `Daily Limit Count` every day; resets daily regardless of whether runs were completed. The `Hunt Count` option is ignored.
 
-## 三、不Supports的BOSS
-以下Boss目前尚未添加Supports：
-*   Anemo Hypostasis
-*   Golden Wolflord
-*   Cryo Hypostasis
-*   深海龙蜥之群
+## III. Unsupported Bosses
+The following bosses are currently unsupported:
+* Anemo Hypostasis
+* Golden Wolflord
+* Cryo Hypostasis
+* Bathysmal Vishap Herd
 
-## 四、使用BOSSConfiguration编辑器
+## IV. Using the Boss Configuration Editor
+When launched with the editor enabled, the built-in configuration editor opens. You can add, delete, sort, and modify boss configs directly. After clicking "Save and Close", configs are written to `assets\config\config.json` and script execution continues.
 
-脚本启动时会打开内置Configuration编辑器，可直接添加、删除、排序并修改 Boss Configuration。点击“保存并关闭”后，Configuration会写回 `assets\config\config.json`，随后脚本继续执行。
+## V. Bug Feedback & Suggestions
+For any issues or feature requests, feedback is welcome:
+* QQ Group: [1025022262](https://qm.qq.com/q/7i92V2JYF)
+* GitHub Issues: [**Create an Issue**](https://github.com/1004452714/AutoBoss/issues)
 
-
-
-## 五、BUG反馈or建议
-有任何问题或者Features需求，欢迎反馈
-*   QQ群：[1025022262](https://qm.qq.com/q/7i92V2JYF)
-*   GitHub Issues：[**点此创建 Issues**](https://github.com/1004452714/AutoBoss/issues)
-
-## 六、Changelog
+## VI. Changelog
 ### 2026.11.10 V0.8.3
-
-*   新增SnezhnayaBOSSRouteSupports：**浪涛锚定者**
-*   Radiant Moonfly改为Auto 寻路（使用 `Radiant MoonflyGo to.json`），移除其键鼠Go to与强制传送追踪文件
+* Added Snezhnaya boss route support: **Wave Anchorer**
+* Radiant Moonfly switched to auto-pathfinding (using `Radiant MoonflyGo to.json`), removing keymouse navigation and forced teleport tracking files.
 
 ### 2026.09.26 V0.8.2
-
-*   新增SnezhnayaBOSSRouteSupports：**Guardian Blade of Drifting Snow**
+* Added Snezhnaya boss route support: **Guardian Blade of Drifting Snow**
 
 ### 2026.08.12 V0.7
-
-*   新增两个BOSSRouteSupports：**Immortal Construct**、**Chimeric Winged Lion**
-*   Immortal ConstructCombat后改为完整重新寻路
+* Added route support for two bosses: **Immortal Construct**, **Chimeric Winged Lion**
+* Immortal Construct now uses full pathfinding after combat.
 
 ### 2026.05.02 V0.6.2
-
-*   新增内置 Boss Configuration编辑器
+* Added built-in Boss Configuration Editor.
 
 ### 2026.04.11 V0.6.1
-
-*   修复一些问题
+* Fixed miscellaneous bugs.
 
 ### 2026.04.10 V0.6
-
-*   新增BOSSRouteSupports
-*   修复添加boss模式无效的问题
+* Added boss route support.
+* Fixed issue where adding boss mode had no effect.
 
 ### 2025.11.16 V0.5
-
-*   本次Version更新后可能会重置且不Supports老Versionconfig.json，强烈建议备份后重新Configuration
-*   新增两种刷取模式：
-    * **一次性-每日限量** ：与上Version的 **一次性** 类似，但可以在`每日限量次数`限制刷取的次数，刷够次数后会按添加顺序刷取下一Configuration，次日循环，刷完总数量为止。
-    * **每日重置**：每日都会刷取`每日限量次数`指定的次数。无论刷完与否都会在次日重置次数。
-*   新增两个BOSSRouteSupports：**Knuckle Duckle**、**Frostnight Herra**
+* This update may reset and does not support older versions of `config.json`; backing up and reconfiguring is strongly recommended.
+* Added two farming modes:
+  * **One-Time - Daily Limit**: Similar to One-Time, but limits daily runs to `Daily Limit Count`; proceeds to the next boss once daily limit is met, repeating daily until total count is reached.
+  * **Daily Reset**: Farms up to `Daily Limit Count` daily; count resets every day.
+* Added support for two boss routes: **Knuckle Duckle**, **Frostnight Herra**.
 
 ### 2025.08.23 V0.3
+* Fixed bug where premature teleport occurred before rewards were successfully claimed.
+* Fixed bug where runs were counted as completed even if rewards failed to claim.
+* Updated boss list display formatting.
 
-*   fix 修复奖励未领取成功，提前传送的bug
-*   fix 修复奖励未领取成功，仍然会计数已完成的bug
-*   update 改了一下boss列表Showing Off的排版
-
-### 2025.08.21 
-
-*   fix 截图资源未释放
-*   update 地图追踪文件
+### 2025.08.21
+* Fixed unreleased screenshot resource leak.
+* Updated map tracking files.
 
 ### 2025.08.21 V0.1
-
-*   初版发布
+* Initial release.

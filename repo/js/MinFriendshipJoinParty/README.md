@@ -1,16 +1,16 @@
-**简介：**
----
-- 将指定队伍中的Character换成Friendship度最低的四位Character
-- 入队Character将排除主角和两位奇偶Character
-- 若Friendship未满Character不足4人，则将不可避免的编入Friendship已满Character
----
+# Min Friendship Join Party
 
+## Overview
+- Replaces characters in the designated party with the four characters who have the lowest Companionship EXP (Friendship levels).
+- Automatically excludes the Traveler and two special parity characters.
+- If fewer than 4 characters remain with non-maxed Friendship, characters with maxed Friendship will fill the remaining slots.
 
-**Instructions：**
+## Instructions
 
-   1. 添加脚本
-       - 在 BGI Configuration组中添加“最低Friendship入队”脚本。请不要在调度器外直接运行。
-   2. Configuration组Settings
-       - 无需Settings
-   3. JS脚本自定义Configuration（右键点击“最低Friendship入队”脚本 → 修改JS脚本自定义Configuration）
-       - 填写指定队伍的名称
+1. **Add Script**
+   - Add the "Min Friendship Join Party" script to a BetterGI configuration group. Do not run standalone outside the Scheduler.
+2. **Configuration Group Settings**
+   - No special configuration group settings required.
+3. **JS Script Custom Configuration**
+   - Right-click the script in BetterGI → select **Modify JS Script Custom Configuration**.
+   - Enter your target **Party Name**.
