@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Crystalfly Trap 装置",
+  "version": "1.0",
+  "description": "Auto Crystalfly Trap 装置，安装位置Natlan 圣火竞技场传送点",
+  "authors": [
+    {
+      "name": "miludelongwang",
+      "links": "https://github.com/miludelongwang"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

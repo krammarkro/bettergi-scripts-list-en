@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "name": "全Auto 使用多个Redeem Code ",
+  "version": "2.0",
+  "description": "Auto 使用Redeem Code ，自定义配置里输入Redeem Code ，多个Redeem Code 支持用非字母数字串隔开，建议用空格隔开。Auto 检测新旧Redeem Code ，无需反复启停该脚本",
+  "authors": [
+    {
+      "name": "miludelongwang",
+      "links": "https://github.com/miludelongwang"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

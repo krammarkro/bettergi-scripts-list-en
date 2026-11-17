@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "name": "IngredientsProcessing(模拟点击)",
+  "version": "1.0.2",
+  "description": "根据选择Processing物，Auto ProcessingIngredients。Processing时会直接拉满Processing数量。\n \n使用前请阅读“readme”文件以获取更多详细信息。",
+  "tags": [
+    "IngredientsProcessing",
+    "模拟点击"
+  ],
+  "authors": [
+    {
+      "name": "呱呱z",
+      "links": "https://github.com/jidingcai"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

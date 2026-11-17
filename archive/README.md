@@ -1,3 +1,3 @@
-本目录收录部分因 `BetterGI` 或者 `原神` 更新之后导致无法使用的脚本。
+This directory contains scripts that are no longer usable due to updates to `BetterGI` or `Genshin Impact`.
 
-感谢这些作者对 `BetterGI` 的发展做出的巨大贡献。
+Thank you to these authors for their tremendous contributions to the development of `BetterGI`.

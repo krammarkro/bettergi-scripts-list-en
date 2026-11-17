@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "WalkRight5Seconds",
+  "version": "1.0",
+  "description": "Right Walk 5秒",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

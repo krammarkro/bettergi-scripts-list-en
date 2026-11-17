@@ -1,0 +1,25 @@
+{
+  "manifest_version": 1,
+  "bgi_version": "0.44.6",
+  "name": "Food/DishesCrafting及IngredientsProcessing",
+  "version": "1.4",
+  "tags": [
+    "Food/DishesCrafting",
+    "搜索",
+    "IngredientsProcessing",
+    "坐标点击"
+  ],
+  "description": "Auto 烹饪Food/Dishes以及ProcessingIngredients,需要0.44.6及以上版本",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    },
+    {
+      "name": "呱呱z",
+      "links": "https://github.com/jidingcai"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "SereniteaPotCoolIsleFindTubby",
+  "version": "1.0",
+  "description": "Left Walk 1.5秒",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

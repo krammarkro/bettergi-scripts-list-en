@@ -1,29 +1,29 @@
-## 注意事项
+## Precautions / Notes
 
-本地图追踪以 **须弥解谜全解** 的情况下制作。
+本地图追踪以 **Sumeru解谜全解** 的情况下制作。
 
 ---
 
-## 采集路线表
-> 路径数据基于队伍（迪希雅、枫原万叶、罗莎莉亚、蓝砚）运行所得。
+## Gathering Route表
+> Path数据基于队伍（Dehya、Kaedehara Kazuha、Rosaria、Lan Yan）运行所得。
 
-| 任务名 | 时长 | 个数 | 效率（秒/个） |
+| 任务名 | 时长 |  items数 | 效率（seconds/ items） |
 | ------ | ---- | ---- | -------------- |
-| 01-须弥-帕蒂沙兰-须弥城-3个 | 29秒 | 3 | 9.67 |
-| 02-须弥-帕蒂沙兰-须弥城右下-5个 | 52秒 | 5 | 10.40 |
-| 03-须弥-帕蒂沙兰-禅那园-12个 | 1分21秒 | 12 | 6.75 |
-| 04-须弥-帕蒂沙兰-觉王之殿下方-3个 | 36秒 | 3 | 12.00 |
-| 05-须弥-帕蒂沙兰-须弥城左上-3个 | 42秒 | 3 | 14.00 |
-| 06-须弥-帕蒂沙兰-卡萨扎莱宫-11个 | 1分11秒 | 11 | 6.45 |
-| 07-须弥-帕蒂沙兰-桓那兰那右下-11个 | 2分14秒 | 11 | 12.18 |
-| 08-须弥-帕蒂沙兰-桓那兰那-9个 | 2分20秒 | 9 | 15.56 |
-| 09-须弥-帕蒂沙兰-桓那兰那右上-8个 | 1分36秒 | 8 | 12.00 |
+| 01-Sumeru-Padisarah-Sumeru City-3 items | 29seconds | 3 | 9.67 |
+| 02-Sumeru-Padisarah-Sumeru CityBottom-Right-5 items | 52seconds | 5 | 10.40 |
+| 03-Sumeru-Padisarah-Pardis Dhyai-12 items | 1分21seconds | 12 | 6.75 |
+| 04-Sumeru-Padisarah-Fane of Ashvattha下方-3 items | 36seconds | 3 | 12.00 |
+| 05-Sumeru-Padisarah-Sumeru CityTop-Left-3 items | 42seconds | 3 | 14.00 |
+| 06-Sumeru-Padisarah-The Palace of Alcazarzaray-11 items | 1分11seconds | 11 | 6.45 |
+| 07-Sumeru-Padisarah-VanaranaBottom-Right-11 items | 2分14seconds | 11 | 12.18 |
+| 08-Sumeru-Padisarah-Vanarana-9 items | 2分20seconds | 9 | 15.56 |
+| 09-Sumeru-Padisarah-VanaranaTop-Right-8 items | 1分36seconds | 8 | 12.00 |
 
 ## 总计
-- **总个数**：**65个**
-- **总时长**：**约12分钟**
+- **总 items数**：**65 items**
+- **总时长**：**约12minutes**
 
 
-**桓那兰那区域特殊说明**：
-- 桓那兰那区域需在**现实世界**状态下进行采集（非梦境状态）。
-- 桓那兰那区域另有3朵帕蒂沙兰，需通过弹琴召唤健壮的草种子击碎巨石并完成战斗后方可拾取，且该巨石与草种子每日都会重置，流程繁琐，**故不考虑制作该路线**。
+**Vanarana区域特殊说明**：
+- Vanarana区域需在**现实世界**状态下进行采集（非梦境状态）。
+- Vanarana区域另有3朵Padisarah，需通过弹琴召唤健壮的草种子击碎巨石并完成Combat后方可拾取，且该巨石与草种子每日都会重置，流程繁琐，**故不考虑制作该Route**。

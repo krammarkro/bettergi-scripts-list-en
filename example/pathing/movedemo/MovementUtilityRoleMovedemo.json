@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "MovementUtilityRoleMovedemo",
+    "type": "collect",
+    "author": "彩虹QQ人",
+    "version": "1.0",
+    "description": "This pathing route is suitable for characters like Varesa / Mavuika / Yelan / Sayu who can use hold-E to navigate. Adding movement utility characters reduces route traversal time while making AFK look more natural.",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0"
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -83.8427734375,
+      "y": 2781.735595703125,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": -78.734375,
+      "y": 2801.173583984375,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": -68.8935546875,
+      "y": 2813.9794921875,
+      "action": "combat_script",
+      "move_mode": "climb",
+      "action_params": "瓦雷莎 keydown(w), e(hold)",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": -33.337890625,
+      "y": 2861.16943359375,
+      "action": "combat_script",
+      "move_mode": "climb",
+      "action_params": "瓦雷莎 keyup(w)",
+      "type": "path"
+    }
+  ]
+}

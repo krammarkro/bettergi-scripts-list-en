@@ -1,0 +1,9 @@
+// Author: vulgar_rustic
+// Description: Shield (Zhongli), Auto-attack (Furina), Damage buff & vacuum loot (Kazuha), Healer (Baizhu)
+
+钟离 s(0.2), e(hold), wait(0.2), w(0.2)
+芙宁娜 e
+万叶 e(hold), wait(0.1), attack
+白术 e, wait(1),w(0.5),wait(1), q
+
+// No need to cast Zhongli, Furina, or Kazuha bursts, just Baizhu burst to keep the party healthy (200 ER recommended)

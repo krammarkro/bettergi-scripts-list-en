@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "GoToFontaineSmithyCollect",
+  "version": "1.0",
+  "description": "到Fontaine 鐵匠店領取合成Weapon 升級材料，配合'传送到Fontaine 鐵匠Forge Ore'能自動化Forge OreCollect Ore。註1:使用時請先禁用任何生存位使用技能。",
+  "authors": [
+    {
+      "name": "蜜柑魚"
+    }
+  ],
+  "main": "main.js"
+}

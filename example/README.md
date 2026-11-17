@@ -1,36 +1,36 @@
-# BetterGI 脚本示例
+# BetterGI Script Examples
 
-本目录提供了BetterGI各类脚本的基本示例，帮助用户快速理解和学习如何使用BetterGI的脚本功能。
+This directory provides basic examples of various BetterGI scripts to help users quickly understand and learn how to use BetterGI's scripting features.
 
-## 目录结构
+## Directory Structure
 
-- `js/` - JavaScript脚本示例，展示如何使用JS实现各种自动化功能
-- `pathing/` - 地图路径追踪脚本示例，演示如何创建高效的材料采集路线
+- `js/` - JavaScript script examples demonstrating various automation features
+- `pathing/` - Map pathing route script examples demonstrating how to create efficient material gathering routes
 
-## 用途
+## Purpose
 
-这些示例旨在：
-1. 演示脚本的基本结构和格式
-2. 提供常见使用场景的模板
-3. 帮助新用户学习脚本编写的最佳实践
-4. 展示BetterGI脚本系统的功能和可能性
+These examples are designed to:
+1. Demonstrate the basic structure and format of scripts
+2. Provide templates for common use cases
+3. Help new users learn script writing best practices
+4. Showcase the features and capabilities of the BetterGI script system
 
-## 如何使用
+## How to Use
 
-1. 浏览示例文件夹，找到与您需求相似的示例
-2. 查看示例脚本的结构和注释
-3. 复制相关示例作为您自己脚本的起点
-4. 根据需要修改和调整参数
+1. Browse the example folders to find an example relevant to your needs
+2. Review the structure and comments of the example script
+3. Copy the example as a starting point for your own script
+4. Modify and adjust parameters as needed
 
-## 脚本开发参考
+## Script Development References
 
-如需编写更多自定义脚本，请参考：
-- [脚本编写指南](https://bgi.huiyadan.com/dev/)
-- [主仓库脚本](https://github.com/babalae/bettergi-scripts-list/tree/main/repo)
+For more detailed script development, please refer to:
+- [Script Writing Guide](https://bgi.huiyadan.com/dev/)
+- [Main Repository Scripts](https://github.com/babalae/bettergi-scripts-list/tree/main/repo)
 
-## 贡献
+## Contributing
 
-欢迎提交新的示例或改进现有示例。提交前请确保您的示例：
-- 包含详细的注释说明
-- 遵循 BetterGI 的脚本命名规范
-- 提供实用的功能演示
+Contributions of new examples or improvements to existing ones are welcome. Please ensure your submission:
+- Contains clear and detailed comments
+- Follows BetterGI script naming conventions
+- Demonstrates practical functionality

@@ -1,60 +1,60 @@
-# 堇瓜全收集
+# Lavender MelonFull Collection
 
-> 所有路线均基于 **解谜全解、宝箱全收、剧情全通** 的前提下制作
+> 所有Route均基于 **解谜全解、宝箱全收、剧情全通** 的前提下制作
 
-## 注意事项
+## Precautions / Notes
 
-- 本路线以 **万叶吸引果子** 为基准，但同样适配 **草神纳西妲**。
-- 推荐携带 **迪希雅**：在部分有怪的路径中，吸引果子后可切换回迪希雅承受伤害。
-- **不建议** 队伍中同时携带万叶和纳西妲。
+- 本Route以 **Kaedehara Kazuha吸引果子** 为基准，但同样适配 **NahidaNahida**。
+- Recommended携带 **Dehya**：在部分有怪的Path中，吸引果子后可切换回Dehya承受伤害。
+- **不Recommendation** 队伍中同时携带Kaedehara Kazuha和Nahida。
 
-## 采集路线表
-> 路径数据基于队伍（迪希雅、枫原万叶、双风）运行所得。
+## Gathering Route表
+> Path数据基于队伍（Dehya、Kaedehara Kazuha、Anemo Resonance）运行所得。
 
-| 任务名 | 时长 | 个数 | 效率（秒/个） |
+| 任务名 | 时长 |  items数 | 效率（seconds/ items） |
 | ------ | ---- | ---- | -------------- |
-| 01-堇瓜-鸣神岛-稻妻城-3个 | 29秒 | 3 | 9.67 |
-| 02-堇瓜-鸣神岛-稻妻城东-3个 | 51秒 | 3 | 17.00 |
-| 03-堇瓜-鸣神岛-稻妻城西-3个 | 1分1秒 | 3 | 20.33 |
-| 04-堇瓜-清籁岛-越石村-3个 | 25秒 | 3 | 8.33 |
-| 05-堇瓜-清籁岛-淺瀨神社-3个 | 39秒 | 3 | 13.00 |
-| 06-堇瓜-鸣神岛-绀田村一-3个 | 27秒 | 3 | 9.00 |
-| 07-堇瓜-鸣神岛-绀田村二-2个 | 17秒 | 2 | 8.50 |
-| 08-堇瓜-鸣神岛-绀田村三-1个 | 16秒 | 1 | 16.00 |
-| 09-堇瓜-鸣神岛-绀田村四-8个 | 42秒 | 8 | 5.25 |
-| 10-堇瓜-鸣神岛-绀田村五-3个 | 16秒 | 3 | 5.33 |
-| 11-堇瓜-鸣神岛-离岛-3个 | 39秒 | 3 | 13.00 |
-| 12-堇瓜-神无冢-九条阵屋一-8个 | 53秒 | 8 | 6.63 |
-| 13-堇瓜-神无冢-九条阵屋二-3个 | 31秒 | 3 | 10.33 |
-| 14-堇瓜-神无冢-踏鞴砂一-3个 | 28秒 | 3 | 9.33 |
-| 15-堇瓜-神无冢-踏鞴砂二-15个 | 1分51秒 | 15 | 7.40 |
-| 16-堇瓜-神无冢-踏鞴砂三-3个 | 31秒 | 3 | 10.33 |
-| 17-堇瓜-神无冢-踏鞴砂四-3个 | 53秒 | 3 | 17.67 |
-| 18-堇瓜-神无冢-踏鞴砂五-8个 | 1分16秒 | 8 | 9.50 |
-| 19-堇瓜-神无冢-踏鞴砂六-7个 | 1分27秒 | 7 | 12.43 |
-| 20-堇瓜-八酝岛-无想刃狭间-3个 | 40秒 | 3 | 13.33 |
-| 21-堇瓜-八酝岛-椛染之庭-3个 | 27秒 | 3 | 9.00 |
-| 22-堇瓜-八酝岛-蛇骨矿洞东-6个 | 1分13秒 | 6 | 12.17 |
-| 23-堇瓜-八酝岛-蛇骨矿洞西-18个 | 1分53秒 | 18 | 6.28 |
-| 24-堇瓜-八酝岛-绯木村西南-3个 | 31秒 | 3 | 10.33 |
-| 25-堇瓜-八酝岛-藤兜砦-6个 | 39秒 | 6 | 6.50 |
-| 26-堇瓜-八酝岛-无明砦-6个 | 1分12秒 | 6 | 12.00 |
-| 27-堇瓜-海祇岛-珊瑚宫东-6个 | 1分27秒 | 6 | 14.50 |
-| 28-堇瓜-海祇岛-珊瑚宫北-5个 | 24秒 | 5 | 4.80 |
-| 29-堇瓜-海祇岛-珊瑚宫西-3个 | 28秒 | 3 | 9.33 |
-| 30-堇瓜-海祇岛-望泷村一-9个 | 1分3秒 | 9 | 7.00 |
-| 31-堇瓜-海祇岛-望泷村二-3个 | 23秒 | 3 | 7.67 |
-| 32-堇瓜-鸣神岛-镇守之森一-3个 | 26秒 | 3 | 8.67 |
-| 33-堇瓜-鸣神岛-镇守之森二-3个 | 30秒 | 3 | 10.00 |
-| 34-堇瓜-鸣神岛-影向山北侧-17个 | 1分44秒 | 17 | 6.12 |
-| 35-堇瓜-鸣神岛-荒海一-3个 | 33秒 | 3 | 11.00 |
-| 36-堇瓜-鸣神岛-荒海二-3个 | 40秒 | 3 | 13.33 |
-| 37-堇瓜-鸣神岛-刃连岛-2个 | 44秒 | 2 | 22.00 |
-| 38-堇瓜-鸣神岛-神里屋敷一-3个 | 29秒 | 3 | 9.67 |
-| 39-堇瓜-鸣神岛-神里屋敷二-6个 | 53秒 | 6 | 8.83 |
+| 01-Lavender Melon-Narukami Island-Inazuma City-3 items | 29seconds | 3 | 9.67 |
+| 02-Lavender Melon-Narukami Island-Inazuma City东-3 items | 51seconds | 3 | 17.00 |
+| 03-Lavender Melon-Narukami Island-Inazuma City西-3 items | 1分1seconds | 3 | 20.33 |
+| 04-Lavender Melon-Seirai Island-Koseki Village-3 items | 25seconds | 3 | 8.33 |
+| 05-Lavender Melon-Seirai Island-淺瀨神社-3 items | 39seconds | 3 | 13.00 |
+| 06-Lavender Melon-Narukami Island-Konda Village一-3 items | 27seconds | 3 | 9.00 |
+| 07-Lavender Melon-Narukami Island-Konda Village二-2 items | 17seconds | 2 | 8.50 |
+| 08-Lavender Melon-Narukami Island-Konda Village三-1 items | 16seconds | 1 | 16.00 |
+| 09-Lavender Melon-Narukami Island-Konda Village四-8 items | 42seconds | 8 | 5.25 |
+| 10-Lavender Melon-Narukami Island-Konda Village五-3 items | 16seconds | 3 | 5.33 |
+| 11-Lavender Melon-Narukami Island-Ritou-3 items | 39seconds | 3 | 13.00 |
+| 12-Lavender Melon-Kannazuka-Kujou Encampment一-8 items | 53seconds | 8 | 6.63 |
+| 13-Lavender Melon-Kannazuka-Kujou Encampment二-3 items | 31seconds | 3 | 10.33 |
+| 14-Lavender Melon-Kannazuka-Tatarasuna一-3 items | 28seconds | 3 | 9.33 |
+| 15-Lavender Melon-Kannazuka-Tatarasuna二-15 items | 1分51seconds | 15 | 7.40 |
+| 16-Lavender Melon-Kannazuka-Tatarasuna三-3 items | 31seconds | 3 | 10.33 |
+| 17-Lavender Melon-Kannazuka-Tatarasuna四-3 items | 53seconds | 3 | 17.67 |
+| 18-Lavender Melon-Kannazuka-Tatarasuna五-8 items | 1分16seconds | 8 | 9.50 |
+| 19-Lavender Melon-Kannazuka-Tatarasuna六-7 items | 1分27seconds | 7 | 12.43 |
+| 20-Lavender Melon-Yashiori Island-Musoujin Gorge-3 items | 40seconds | 3 | 13.33 |
+| 21-Lavender Melon-Yashiori Island-椛染之庭-3 items | 27seconds | 3 | 9.00 |
+| 22-Lavender Melon-Yashiori Island-Jakotsu Mine东-6 items | 1分13seconds | 6 | 12.17 |
+| 23-Lavender Melon-Yashiori Island-Jakotsu Mine西-18 items | 1分53seconds | 18 | 6.28 |
+| 24-Lavender Melon-Yashiori Island-Higi VillageSouthwest-3 items | 31seconds | 3 | 10.33 |
+| 25-Lavender Melon-Yashiori Island-Fort Fujitou-6 items | 39seconds | 6 | 6.50 |
+| 26-Lavender Melon-Yashiori Island-无明砦-6 items | 1分12seconds | 6 | 12.00 |
+| 27-Lavender Melon-Watatsumi Island-Sangonomiya Shrine东-6 items | 1分27seconds | 6 | 14.50 |
+| 28-Lavender Melon-Watatsumi Island-Sangonomiya Shrine北-5 items | 24seconds | 5 | 4.80 |
+| 29-Lavender Melon-Watatsumi Island-Sangonomiya Shrine西-3 items | 28seconds | 3 | 9.33 |
+| 30-Lavender Melon-Watatsumi Island-Bourou Village一-9 items | 1分3seconds | 9 | 7.00 |
+| 31-Lavender Melon-Watatsumi Island-Bourou Village二-3 items | 23seconds | 3 | 7.67 |
+| 32-Lavender Melon-Narukami Island-Chinju Forest一-3 items | 26seconds | 3 | 8.67 |
+| 33-Lavender Melon-Narukami Island-Chinju Forest二-3 items | 30seconds | 3 | 10.00 |
+| 34-Lavender Melon-Narukami Island-Mt. YougouNorth Side-17 items | 1分44seconds | 17 | 6.12 |
+| 35-Lavender Melon-Narukami Island-Araumi一-3 items | 33seconds | 3 | 11.00 |
+| 36-Lavender Melon-Narukami Island-Araumi二-3 items | 40seconds | 3 | 13.33 |
+| 37-Lavender Melon-Narukami Island-刃连岛-2 items | 44seconds | 2 | 22.00 |
+| 38-Lavender Melon-Narukami Island-Kamisato Estate一-3 items | 29seconds | 3 | 9.67 |
+| 39-Lavender Melon-Narukami Island-Kamisato Estate二-6 items | 53seconds | 6 | 8.83 |
 
 ## 总计
-- **总个数**：**196个**
+- **总 items数**：**196 items**
 - **总时长**：**约31分鈡**
 
-> 包含效率偏低路线，请根据实际需求酌情取舍。
+> 包含效率偏低Route，请根据实际需求酌情取舍。

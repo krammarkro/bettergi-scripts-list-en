@@ -1,0 +1,35 @@
+{
+  "manifest_version": 1,
+  "name": "Tzi-Daily All-in-One+副本Crystalfly Serenitea Pot邮件",
+  "version": "0.04",
+  "bgi_version": "0.36.0",
+  "description": "Daily All-in-One 包含Daily 任务 刷副本，Decompose 狗粮，Serenitea Pot，抓Crystalfly  Auto 下线。【Auto 副本】请先去独立任务中将Auto 秘境配置完成，【Auto Crystalfly 】队伍需要携带早柚或瑶瑶。【Serenitea Pot】将快捷道具栏需装满4个，确保Serenitea Pot在第5位。运行前可以右键配置参数。主要适配Fontaine 凯瑟琳锚点。",
+  "authors": [
+    {
+      "name": "T子",
+      "link": "https://github.com/T888T/bettergi-scripts-list"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "versionLog": {
+    "V0.04": [
+      "新增是否Auto 秘境选项",
+      "新增设置世界权限 默认当前的选项",
+      "新增和优化一些Crystalfly 点位",
+      "修复不抓晶核还会Switch 队伍的问题"
+    ],
+    "v0.03": [
+      "新增多个Crafting Bench点位",
+      "新增多个Crystalfly 抓取点位",
+      "优化领取历练点可能存在的异常"
+    ],
+    "V0.02": [
+      "修复领取邮件时无邮件时会异常的问题",
+      "优化部分延迟提升兼容性"
+    ],
+    "v0.01": [
+      "同时感谢大佬们的付出 为我提供思路"
+    ]
+  }
+}

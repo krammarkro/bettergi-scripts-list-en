@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "传送到合成台",
+  "name": "传送到Crafting Bench",
   "version": "1.1",
-  "description": "传送到枫丹合成台旁边，可搭配合成浓缩树脂",
+  "description": "传送到Fontaine Crafting Bench旁边，可搭配合成浓缩树脂",
   "authors": [
     {
       "name": "Lix",

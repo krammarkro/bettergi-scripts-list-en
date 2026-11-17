@@ -1,2 +1,2 @@
-统计背包中的圣遗物经验和狗粮数量，建议搭配JS通知使用。
+统计Inventory中的Artifacts经验和Artifact EXP数量，建议搭配JS通知使用。
 

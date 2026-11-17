@@ -1,5 +1,5 @@
-# 食材
+# Ingredients
 ## 非特产
-### 稻妻
-#### 作者 @起个名字好难的喵、@蜜柑魚
-- 需草神纳西妲
+### Inazuma
+#### Author @起 items名字好难的喵、@蜜柑魚
+- 需NahidaNahida

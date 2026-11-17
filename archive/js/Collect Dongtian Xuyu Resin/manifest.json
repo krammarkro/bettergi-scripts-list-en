@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "领取洞天百宝须臾树脂，只领取须臾树脂，前面是领取洞天宝钱和好感",
+  "name": "领取Realm百宝须臾树脂，只领取须臾树脂，前面是领取RealmCurrency和Companionship EXP",
   "version": "1.0",
-  "description": "领取洞天须臾树脂",
+  "description": "领取Realm须臾树脂",
   "authors": [
     {
       "name": "风埠",

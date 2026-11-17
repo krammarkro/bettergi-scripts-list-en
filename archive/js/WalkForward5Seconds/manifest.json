@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "WalkForward5Seconds",
+  "version": "1.0",
+  "description": "用于Forward 走5秒",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

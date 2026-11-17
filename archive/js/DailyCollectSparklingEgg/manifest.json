@@ -1,0 +1,13 @@
+{
+  "manifest_version": 1,
+  "name": "DailyCollectSparklingEgg",
+  "version": "1.0",
+  "description": "Daily 领取闪闪礼蛋",
+  "authors": [
+    {
+      "name": "芝士贝果"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

@@ -1,29 +1,29 @@
-## 注意事项
+## Precautions / Notes
 
-**批量采集前，请对用到的路径进行预测试，避免因线路卡死或其他异常情况导致空跑**
+**批量采集前，请对用到的Path进行预测试，避免因Route卡死或OtherException / Error情况导致空跑**
 
-目前脚本已支持识别背包内木材数量（默认关闭），可在自定义配置中指定木材种类进行识别（**存在无法识别的情况**）
+目前脚本已Supports识别Inventory内木材数量（默认关闭），可在自定义Configuration中指定木材种类进行识别（**存在无法识别的情况**）
 
-开启背包检测后，会导致自定义配置中填入的砍伐数目**不生效**，且**无法识别的木材不进行采集**
+开启Inventory检测后，会导致自定义Configuration中填入的砍伐数目**不生效**，且**无法识别的木材不进行采集**
 
-脚本内置的路径仅供参考，随着软件及地图的更新，可能**并非最佳**采集路径，如有更好的路径，欢迎贡献
+脚本内置的Path仅供参考，随着软件及地图的更新，可能**并非最佳**采集Path，如有更好的Path，欢迎贡献
 
-目前脚本已支持7.0版本之前的全部木材，清单如下：`桦木 萃华木 松木 垂香木 杉木 竹节 却砂木 梦见木 枫木 孔雀木 御伽木 证悟木 业果木 辉木 刺葵木 柽木 悬铃木 椴木 白梣木 香柏木 炬木 白栗栎木 燃爆木 灰灰楼林木 桃椰子木 银冷杉木 榛木 夏栎木 桤木 雪杨木 白桦木 青榉木 落叶松木`
+目前脚本已Supports7.0Version之前的全部木材，清单如下：`Birch Wood Cuihua Wood Pine Wood Fragrant Cedar Wood Fir Wood Bamboo Segment Sandbearer Wood Yumemiru Wood Maple Wood Aralia Wood Otogi Wood Brightwood Karmaphala Wood Adhigama Wood Athel Wood Tamarisk Wood Platanus Wood Linden Wood Ash Wood Cypress Wood Torch Wood White Chestnut Oak Wood Explosive Wood Mountain Date Palm Wood Peach Palm Wood Silver Fir Wood Hazel Wood Pedunculate Oak Wood Alder Wood Snow Poplar Wood White Birch Wood Bluebeech Wood Larch Wood`
 
-## 原理说明
+## 原理Guide / Instructions
 
-5.2版本后，王树瑞佑的使用冷却时间从15秒降至5秒
+5.2Version后，王树瑞佑的使用冷却时间从15秒降至5秒
 
 退出重新登陆会刷新木材采集时间
 
 当采集到第11棵树的时候，第1棵树会刷新，采集到第12棵树(第1棵树)的时候，第2棵树会刷新，依次类推
 
-## 循环说明
+## 循环Guide / Instructions
 
-* 未标注：从传送锚点开始采集，重复循环该路径
+* 未标注：从Teleport WaypointStarting Up采集，重复循环该Path
 
-* 大循环：从传送锚点开始前往采集区域，仅执行1次
+* 大循环：从Teleport WaypointStarting UpGo to采集区域，仅执行1次
 
-* 循环：不含传送锚点，减少地图传送及跑图时间，执行完1次大循环后，重复循环该路径
+* 循环：不含Teleport Waypoint，减少地图传送及Pathing时间，执行完1次大循环后，重复循环该Path
 
-因采用不同配队时，采取不同的循环方式耗时上有一定差距，故部分木材预留了循环路径和未标注路径，请根据实际情况自行选择，在[main.js](main.js)的`pathingMap`中修改即可。
+因采用不同配队时，采取不同的循环方式耗时上有一定差距，故部分木材预留了循环Path和未标注Path，请根据实际情况自行选择，在[main.js](main.js)的`pathingMap`中修改即可。

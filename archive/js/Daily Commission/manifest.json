@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "领取每日委托奖励",
+  "name": "Daily Commission",
   "version": "1.3",
-  "description": "用于领取每日委托奖励",
+  "description": "用于领取Daily 委托奖励",
   "authors": [
     {
       "name": "鹤望兰"

@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Inazuma Crafting Bench",
+  "version": "1.0",
+  "description": "去Inazuma Crafting Bench 那位莱特不行，他冲刺比其他成男Character 远（成男Character 冲刺右键8下，A左走5秒，跳跃找交互，停顿）",
+  "authors": [
+    {
+      "name": "fengbu"
+    }
+  ],
+  "tags": [
+    "稻妻",
+    "合成台"
+  ],
+  "main": "main.js"
+}

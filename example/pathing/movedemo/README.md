@@ -1,8 +1,7 @@
-“跑图功能位角色movedemo.json”是针对于
+"Movement Utility Role movedemo.json" is designed for characters with skill-based mobility acceleration, such as:
 
-玛薇卡、瓦雷莎、夜兰、早柚等具有E技能加速移动的角色而设计的。
+Mavuika, Varesa, Yelan, Sayu, etc.
 
-原理：先按W（不松）再按E（长按）之后到达目的地在松开W。
+Mechanism: Press W (hold) -> press E (hold) -> upon arriving at destination, release W.
 
-PS：一定要松开W！！！
-
+PS: Always make sure to release W!

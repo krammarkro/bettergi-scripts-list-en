@@ -1,2 +1,2 @@
-此为浊水幻灵等级100+的怪
-怪量总计：21只
+此为Tainted Water PhantasmLevel 100+的怪
+怪量总计：21 mobs

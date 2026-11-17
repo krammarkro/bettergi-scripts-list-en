@@ -1,39 +1,39 @@
-# 原神大剑角色挖矿推荐
-## 注意事项
-- 须弥地区地形极其复杂，仅推荐解锁了所有改变地形的解谜机关、洞穴等的高探索度玩家使用。
+# 原神Claymore CharacterMiningRecommended
+## Precautions / Notes
+- Sumeru地区地形极其复杂，仅Recommended解锁了所有改变地形的解谜机关、洞穴等的高探索度玩家使用。
 - 也可人工监控跑一次，筛选后使用。
 
-## 支持大剑角色推荐排行榜
-1. 爱诺
-2. 诺艾尔
-3. 玛薇卡
-4. 迪希雅
-5. 娜维娅
-6. 辛焱
-7. 重云
-8. 荒泷一斗
-9. 基尼奇
-10. 菲米尼
-11. 卡维
-12. 优菈
-13. 嘉明
-14. 多莉
-15. 北斗
-16. 早柚
-17. 迪卢克
-18. 坎蒂丝（技能）
-19. 雷泽（技能）
-20. 凝光
-21. 钟离（技能）
+## 支持Claymore CharacterRecommended排行榜
+1. Aino
+2. Noelle
+3. Mavuika
+4. Dehya
+5. Navia
+6. Xinyan
+7. Chongyun
+8. Arataki Itto
+9. Kinich
+10. Freminet
+11. Kaveh
+12. Eula
+13. Gaming
+14. Dori
+15. Beidou
+16. Sayu
+17. Diluc
+18. Candace（技能）
+19. Razor（技能）
+20. Ningguang
+21. Zhongli（技能）
 
 ## 实用Tips
-如果综合考虑行走+战斗的话，迪希雅、玛薇卡、诺艾尔是不错的挖矿角色人选
+如果综合考虑行走+Combat的话，Dehya、Mavuika、Noelle是不That's WrongMining角色人选
 
 ## 更新信息
 更新时间：2025-12-20
 
-## 作者
-"name": "火山",
+## Author
+"name": "Volcano",
 "links": "https://github.com/RRRR623"
 
 "name": "芝士贝果",

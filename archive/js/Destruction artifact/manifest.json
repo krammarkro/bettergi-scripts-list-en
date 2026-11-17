@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "摧毁狗粮",
+  "name": "Destruction artifact",
   "version": "1.0",
-  "description": "用于摧毁狗粮获取摩拉",
+  "description": "用于Destroy 狗粮获取摩拉",
   "authors": [
     {
-      "name": "鹤望兰",
+      "name": "鹤望兰"
     }
   ],
-  "main": "main.js",
+  "main": "main.js"
 }

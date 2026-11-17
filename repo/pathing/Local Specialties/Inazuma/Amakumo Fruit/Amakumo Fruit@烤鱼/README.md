@@ -1,1 +1,1 @@
-路线为对彩虹QQ人的路线补充，与曦的路线01重叠，包括天云草实50+，其他特产若干
+Route为对彩虹QQ人的Route补充，与曦的Route01重叠，包括Amakumo Fruit50+，Other特产若干

@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "爱可菲自动化",
+  "name": "爱可菲Auto 化",
   "version": "1.4",
   "bgi_version": "0.44.0",
-  "description": "爱可菲厨艺机关自动化，请注意说明文件，如有BUG请联系作者QQ:119996800",
+  "description": "爱可菲厨艺机关Auto 化，请注意说明文件，如有BUG请联系作者QQ:119996800",
   "tags": [
     "爱可菲"
   ],

@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "关闭计算机",
+  "name": "关闭Computer",
   "version": "1.0",
-  "description": "用于关闭计算机",
+  "description": "用于关闭Computer",
   "authors": [
     {
       "name": "HZYgrandma",

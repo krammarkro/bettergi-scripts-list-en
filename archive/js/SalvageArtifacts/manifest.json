@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "分解狗粮",
+  "name": "SalvageArtifacts",
   "version": "1.0",
-  "description": "用于分解狗粮",
+  "description": "用于Decompose 狗粮",
   "authors": [
     {
-      "name": "HZYgrandma",
+      "name": "HZYgrandma"
     }
   ],
-  "main": "main.js",
+  "main": "main.js"
 }

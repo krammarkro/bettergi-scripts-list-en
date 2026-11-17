@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "尘歌壶一条龙-领取洞天宝钱、角色好感和购买物品",
+  "name": "Serenitea PotAll-in-One-领取RealmCurrency、Character Companionship EXP和Purchase 物品",
   "version": "0.0.3",
-  "description": "自动放置并进入尘歌壶，寻找阿圆，领取洞天宝钱和好感(需要配置进入尘歌壶以后的路线)，支持自动购买指定物品(更新时间：5.5版本)",
+  "description": "Auto 放置并进入Serenitea Pot，寻找Tubby，领取RealmCurrency和Companionship EXP(需要配置进入Serenitea Pot以后的路线)，支持Auto Purchase 指定物品(更新时间：5.5版本)",
   "authors": [
     {
       "name": "bling-yshs",
@@ -10,8 +10,8 @@
     }
   ],
   "tags": [
-    "尘歌壶",
-    "购买物品"
+    "Serenitea Pot",
+    "Purchase 物品"
   ],
   "settings_ui": "settings.json",
   "main": "main.js"

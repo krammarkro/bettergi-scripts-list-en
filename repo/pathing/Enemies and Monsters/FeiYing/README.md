@@ -1,1 +1,1 @@
-低效，不推荐專門打
+Inefficient; not recommended for targeted farming.

@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "name": "返回主界面",
+  "name": "Back",
   "version": "1.0",
   "description": "强制返回主界面",
   "authors": [

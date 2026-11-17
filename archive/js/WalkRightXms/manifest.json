@@ -1,0 +1,13 @@
+{
+  "manifest_version": 1,
+  "name": "WalkRightXms",
+  "version": "1.0",
+  "description": "可以选择Right Walk 多少毫秒",
+  "authors": [
+    {
+      "name": "miludelongwang"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

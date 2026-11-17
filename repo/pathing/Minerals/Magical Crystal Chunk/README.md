@@ -1,42 +1,42 @@
-## 请务必在队伍中携带莉奈娅
+## 请务必在队伍中携带Linnea
 
-###### 魔晶矿规律要根据铁匠或地脉花观测，刚需手动，不建议加入日常。
+###### Magical Crystal Chunk规律要根据铁匠或地脉花观测，刚Manual Required，不Recommendation加入日常。
 
-###### 与其他矿物路线存在重叠，谨慎使用。
+###### 与OtherMineralsRoute存在重叠，谨慎使用。
 
-###### 因小程序地图定位问题，暂无挪德卡莱、蒙德新地图。
+###### 因小程序地图定位问题，暂无Nod-Krai、Mondstadt新地图。
 
-风龙废墟少量点位因刷新问题暂无更新。
+Stormterror's Lair少量点位因刷新问题暂无更新。
 
 
 
-魔晶矿刷新机制（截止4.1）可参考米游社作者：火丁AAA：https://m.miyoushe.com/ys?channel=miyousheluodi/#/article/44616107
+Magical Crystal Chunk刷新机制（截止4.1）可参考米游社Author：火丁AAA：https://m.miyoushe.com/ys?channel=miyousheluodi/#/article/44616107
 
 
 
 国家每天刷新点位数量
 
-蒙德：6
+Mondstadt：6
 
-璃月：10
+Liyue：10
 
-稻妻：8
+Inazuma：8
 
-须弥：8
+Sumeru：8
 
-枫丹：8
+Fontaine：8
 
-纳塔：7-8
+Natlan：7-8
 
-挪德卡莱：8
-
-
+Nod-Krai：8
 
 
 
 
 
-###### 感谢@火山@芝士贝果@蜜柑魚等大佬的文件帮我度过创建初期。
+
+
+###### Thank You@Volcano@芝士贝果@蜜柑魚等大佬的文件帮我度过创建初期。
 
 
 

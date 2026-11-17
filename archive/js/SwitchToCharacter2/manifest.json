@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "SwitchToCharacter2",
+  "version": "1.0",
+  "description": "用于Switch 2号Character",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

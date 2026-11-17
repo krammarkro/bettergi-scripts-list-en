@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "返回七天神像切换指定队伍",
+  "name": "Auto TP 7Statue to SwitchParty",
   "version": "1.0",
-  "description": "回七天神像（脱战&回血），再按顺序切换指定队伍",
+  "description": "回七天神像（脱战&回血），再按顺序Switch 指定队伍",
   "authors": [
     {
       "name": "LL&起个名字好难的喵"

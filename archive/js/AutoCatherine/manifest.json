@@ -1,11 +1,11 @@
 {
   "manifest_version": 1,
-  "name": "自动找凯瑟琳",
+  "name": "AutoCatherine",
   "version": "1.2",
   "description": "去找凯瑟琳(基于路径追踪)",
   "authors": [
     {
-        "name": "½"
+      "name": "½"
     }
   ],
   "settings_ui": "settings.json",

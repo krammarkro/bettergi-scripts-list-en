@@ -1,4 +1,4 @@
-请设置较长的战斗超时时间，否则超时后判定为战斗结束
-请在自动战斗界面设置关闭战斗结束拾取物品和万叶拾取，关闭更快的检查结束
-请设置行走位为钟离（或其他成男成女角色），且配队中无其他加速buff
+请Settings较长的Combat超时时间，否则超时后判定为Combat结束
+请在Auto Combat界面Settings关闭Combat结束拾取物品和Kaedehara Kazuha拾取，关闭更快的检查结束
+请Settings行走位为Zhongli（或Other成男成女Character），且配队中无OtherSpeed Upbuff
 

@@ -1,155 +1,155 @@
-# 账号切换工具使用说明
+# AccountSwitch工具Instructions
 
-## 快速开始
+## FastStarting Up
 
-### 方式一：账号图片识别（推荐）
+### 方式一：Account图片识别（Recommended）
 
-1. **准备账号图片**
-   - **推荐方式**：使用脚本的"截图模式"自动获取并保存截图（详见截图模式部分）
-   - **手动方式**：在 `accounts/` 目录下放置账号截图
+1. **准备Account图片**
+   - **Recommended方式**：使用脚本的"截图模式"Auto 获取并保存截图（详见截图模式部分）
+   - **手动方式**：在 `accounts/` 目录下放置Account截图
    - 图片命名为 `{UID}.png`，如 `284073800.png`
-   - 截图应包含账号选择界面中该账号的明显标识
+   - 截图应包含Account选择界面中该Account的明显标识
 
-2. **配置脚本**
-   - 打开BetterGI配置面板
-   - 填写目标账号UID
-   - 确保"跳过搜索直接输入账号密码"未勾选
+2. **Configuration脚本**
+   - 打开BetterGIConfiguration面板
+   - 填写目标AccountUID
+   - 确保"跳过搜索直接输入Account密码"未勾选
 
 3. **运行脚本**
-   - 脚本会自动定位到账号选择界面
-   - 识别并点击对应账号图片
-   - 自动进入游戏并返回主界面
+   - 脚本会Auto 定位到Account选择界面
+   - 识别并点击对应Account图片
+   - Auto 进入游戏并返回主界面
 
-### 方式二：账号密码输入
+### 方式二：Account密码输入
 
-1. **配置脚本**
-   - 打开BetterGI配置面板
-   - 填写目标账号UID（用于通知显示）
-   - 填写账号和密码
-   - 勾选"跳过搜索直接输入账号密码"
+1. **Configuration脚本**
+   - 打开BetterGIConfiguration面板
+   - 填写目标AccountUID（用于通知显示）
+   - 填写Account和密码
+   - 勾选"跳过搜索直接输入Account密码"
 
 2. **运行脚本**
-   - 脚本会自动进入账号密码输入界面
-   - 自动点击同意按钮、输入账号密码
-   - 自动进入游戏并返回主界面
+   - 脚本会Auto 进入Account密码输入界面
+   - Auto 点击同意按钮、输入Account密码
+   - Auto 进入游戏并返回主界面
 
-### 说明
-- **两种方式可同时使用**：方式二作为方式一的补充，当图片识别失败时会自动回退到账号密码方式
-- **推荐配置**：同时填写账号密码作为备用，提高切换成功率
+### Guide / Instructions
+- **两种方式可同时使用**：方式二作为方式一的补充，当图片识别Defeat时会Auto 回退到Account密码方式
+- **RecommendedConfiguration**：同时填写Account密码作为Alternate，提高Switch成功率
 
 ## 截图模式
 
-截图模式是一个辅助功能，用于自动获取并保存账号图片，方便后续使用账号图片识别方式进行切换。
+截图模式是一个辅助Features，用于Auto 获取并保存Account图片，方便后续使用Account图片识别方式进行Switch。
 
 **使用步骤**：
-1. **配置脚本**
-   - 打开BetterGI配置面板
-   - 填写目标账号UID（优先使用，用于命名图片）
+1. **Configuration脚本**
+   - 打开BetterGIConfiguration面板
+   - 填写目标AccountUID（优先使用，用于命名图片）
    - 勾选"截图模式"
 
 2. **运行脚本**
-   - 脚本会优先使用配置中的"要切换到的账号UID"命名图片
-   - 如果未填写该项，会尝试自动识别当前账号的UID
-   - 导航到账号选择界面
-   - 自动截图并保存账号图片
+   - 脚本会优先使用Configuration中的"要Switch到的AccountUID"命名图片
+   - 如果未填写该项，会尝试Auto 识别当前Account的UID
+   - 导航到Account选择界面
+   - Auto 截图并保存Account图片
    - 返回主界面并发送成功通知
 
 **保存位置**：
 - 图片保存在 `accounts/` 目录下
 - 文件名格式为 `{UID}.png`
 
-## 配置说明
+## ConfigurationGuide / Instructions
 
-在BetterGI的配置面板中进行以下设置：
+在BetterGI的Configuration面板中进行以下Settings：
 
-### 1. 目标账号UID
-- 输入要切换到的账号UID
-- 用于识别账号图片文件名、通知显示和截图模式命名
+### 1. 目标AccountUID
+- 输入要Switch到的AccountUID
+- 用于识别Account图片文件名、通知显示和截图模式命名
 
-### 2. 账号（可选）
-- 当无法通过图片识别找到账号时备用
-- 建议填写，以防图片识别失败
+### 2. Account（可选）
+- 当无法通过图片识别找到Account时Alternate
+- 建议填写，以防图片识别Defeat
 
 ### 3. 密码（可选）
-- 当无法通过图片识别找到账号时备用
-- 建议填写，以防图片识别失败
+- 当无法通过图片识别找到Account时Alternate
+- 建议填写，以防图片识别Defeat
 
-### 4. 跳过搜索直接输入账号密码
-- **勾选**：不尝试查找账号图片，直接使用账号密码登录
-- **不勾选**：优先尝试通过账号图片识别切换，失败时回退到账号密码方式
+### 4. 跳过搜索直接输入Account密码
+- **勾选**：不尝试查找Account图片，直接使用Account密码登录
+- **不勾选**：优先尝试通过Account图片识别Switch，Defeat时回退到Account密码方式
 
 ### 5. UID校验
-- **勾选**：在切换前后检查当前账号UID，辅助判断切换是否成功
+- **勾选**：在Switch前后检查当前AccountUID，辅助判断Switch是否成功
 - **不勾选**：不进行UID校验
 
-### 6. UID验证失败时尝试停止配置组
-- **勾选**：当UID验证失败时自动终止整个配置组（需配合停止快捷键使用）
-- **不勾选**：仅记录错误日志，不干预后续任务
-- **停止快捷键**：填写 `VK_` 格式的虚拟键码（如 `VK_F8`），需与BetterGI全局设置一致
+### 6. UID验证Defeat时尝试停止Configuration组
+- **勾选**：当UID验证Defeat时Auto 终止整个Configuration组（需配合停止Shortcut Keys使用）
+- **不勾选**：仅Recording错误Log，不干预后续任务
+- **停止Shortcut Keys**：填写 `VK_` 格式的虚拟键码（如 `VK_F8`），需与BetterGI全局Settings一致
 
 ### 7. 截图模式
-- **勾选**：进入截图模式，自动截图保存对应UID的账号图片
-- **不勾选**：正常执行账号切换流程
+- **勾选**：进入截图模式，Auto 截图保存对应UID的Account图片
+- **不勾选**：正常执行AccountSwitch流程
 
-## 常见问题
+## FAQ
 
-### Q: 账号图片识别失败怎么办？
+### Q: Account图片识别Defeat怎么办？
 A: 确保：
 1. 图片存放在 `accounts/` 目录下
 2. 图片命名为正确的UID格式
-3. 截图清晰，包含账号的明显标识
-4. 同时填写账号密码作为备用方案
+3. 截图清晰，包含Account的明显标识
+4. 同时填写Account密码作为Alternate方案
 
-### Q: 提示"账号图片不存在且未配置账号密码"怎么办？
-A: 脚本在切换前会检查账号图片是否存在。出现此提示说明：
+### Q: 提示"Account图片不存在且未ConfigurationAccount密码"怎么办？
+A: 脚本在Switch前会检查Account图片是否存在。出现此提示Guide / Instructions：
 1. `accounts/{UID}.png` 不存在或无法读取（可能是更新脚本后图片被清空）
-2. 同时没有配置账号密码作为备用
+2. 同时NopeConfigurationAccount密码作为Alternate
 
-### Q: 切换失败后会怎样？
-A: 脚本会尝试返回主界面，并发送失败通知。如果配置了账号密码，建议手动检查账号状态。
+### Q: SwitchDefeat后会怎样？
+A: 脚本会尝试返回主界面，并发送Defeat通知。如果Configuration了Account密码，建议手动检查Account状态。
 
 ### Q: 为什么需要填写UID？
 A: UID用于：
-1. 确定账号图片文件名
-2. 在通知中显示切换的账号信息
+1. 确定Account图片文件名
+2. 在通知中显示Switch的Account信息
 3. 截图模式下命名保存的图片文件
 
-## 注意事项
+## Precautions / Notes
 
-1. 首次使用前建议先手动测试一遍切换流程
+1. 首次使用前建议先手动测试一遍Switch流程
 2. 确保游戏分辨率为1920x1080
-3. 账号图片建议截取账号选择界面中该账号的清晰截图
+3. Account图片建议截取Account选择界面中该Account的清晰截图
 4. 密码输入时不会显示，属于正常现象
-5. 截图模式下，默认使用设置的目标UID，未设置时会尝试自动识别
-6. **更新\重新订阅脚本后 `accounts/` 目录下的账号图片可能会被清空**，请在更新后重新放入账号图片，或提前配置账号密码作为备用
+5. 截图模式下，默认使用Settings的目标UID，未Settings时会尝试Auto 识别
+6. **更新\重新订阅脚本后 `accounts/` 目录下的Account图片可能会被清空**，请在更新后重新放入Account图片，或提前ConfigurationAccount密码作为Alternate
 
 ## 问题反馈
 
-如果在使用过程中遇到预料之外的弹窗或其他问题，脚本可能无法处理，请按照以下方式反馈：
+如果在使用过程中遇到预料之外的弹窗或Other问题，脚本可能无法处理，请按照以下方式反馈：
 
 1. **截图保存**：截取全屏原图，确保包含完整的游戏界面和弹窗
-2. **联系作者**：QQ号 718135749
+2. **联系Author**：QQ号 718135749
 3. **提供信息**：简要描述遇到的问题和操作步骤
 
-感谢您的支持！
+Thank You您的Supports！
 
 <details>
 <summary>项目介绍（点击展开）</summary>
 
 ## 项目介绍
 
-基于状态机实现的自动账号切换脚本，支持通过账号图片识别或手动输入账号密码两种方式切换原神账号。
+基于状态机实现的Auto AccountSwitch脚本，Supports通过Account图片识别或手动输入Account密码两种方式Switch原神Account。
 
-### 功能特性
+### Features特性
 
-- **双模式切换**：支持账号图片自动识别和账号密码手动输入两种方式
-- **状态机管理**：使用有限状态机管理切换流程，稳定可靠
-- **自动返回**：切换失败时自动尝试返回原账号
-- **通知提醒**：切换成功或失败时发送系统通知
+- **双模式Switch**：SupportsAccount图片Auto 识别和Account密码手动输入两种方式
+- **状态机管理**：使用有限状态机管理Switch流程，Stable可靠
+- **Auto 返回**：SwitchDefeat时Auto 尝试返回原Account
+- **通知提醒**：Switch成功或Defeat时发送系统通知
 - **循环防护**：防止状态循环卡死
-- **UID校验**：支持切换前后检查当前账号UID，提高切换准确性
-- **智能终止** UID验证失败时可自动终止整个配置组
-- **截图模式**：自动截图保存账号图片，方便后续切换
+- **UID校验**：SupportsSwitch前后检查当前AccountUID，提高Switch准确性
+- **智能终止** UID验证Defeat时可Auto 终止整个Configuration组
+- **截图模式**：Auto 截图保存Account图片，方便后续Switch
 
 ### 目录结构
 
@@ -157,9 +157,9 @@ A: UID用于：
 AccountSwitchStateMachine/
 ├── main.js                    # 主脚本文件
 ├── manifest.json              # 脚本清单
-├── settings.json              # 配置定义
+├── settings.json              # Configuration定义
 ├── assets/
-│   ├── states.json            # 状态机配置
+│   ├── states.json            # 状态机Configuration
 │   └── RecognitionObjects/    # 状态识别图片
 │       ├── Paimon.png
 │       ├── Menu.png
@@ -176,73 +176,73 @@ AccountSwitchStateMachine/
 │       ├── EnterGame2.png
 │       ├── Login.png
 │       └── Confirm.png
-└── accounts/                  # 账号图片存放目录
-    └── {uid}.png              # 以UID命名的账号截图
+└── accounts/                  # Account图片存放目录
+    └── {uid}.png              # 以UID命名的Account截图
 ```
 
-### 工作流程
+### Working流程
 
 ```
-开始
+Starting Up
 │
 ├─► 截图模式（勾选时）
-│   ├─► 使用设置的UID或识别当前UID
-│   ├─► 导航到账号选择界面
-│   ├─► 截图保存账号图片
+│   ├─► 使用Settings的UID或识别当前UID
+│   ├─► 导航到Account选择界面
+│   ├─► 截图保存Account图片
 │   └─► 返回主界面
 │       ├─► 成功 → 发送成功通知
-│       └─► 失败 → 发送失败通知
+│       └─► Defeat → 发送Defeat通知
 │
-├─► 前置检查（账号图片是否存在，账号密码是否已配置）
+├─► 前置检查（Account图片是否存在，Account密码是否已Configuration）
 │   ├─► 图片存在 → 继续
-│   └─► 图片缺失且无账号密码 → 终止并提示
+│   └─► 图片缺失且无Account密码 → 终止并提示
 │
-├─► 尝试账号图片方式（未勾选跳过时）
-│   ├─► 预加载账号图片
-│   ├─► 切换到选择账号界面
-│   ├─► 查找并点击账号图片
-│   └─► 切换到主界面
+├─► 尝试Account图片方式（未勾选跳过时）
+│   ├─► 预加载Account图片
+│   ├─► Switch到选择Account界面
+│   ├─► 查找并点击Account图片
+│   └─► Switch到主界面
 │       ├─► 成功 → 发送成功通知
-│       └─► 失败 → 回退到账号密码方式
+│       └─► Defeat → 回退到Account密码方式
 │
-└─► 账号密码方式
-    ├─► 检查账号密码
-    ├─► 切换到输入账号密码界面
+└─► Account密码方式
+    ├─► 检查Account密码
+    ├─► Switch到输入Account密码界面
     ├─► 点击同意按钮
-    ├─► 输入账号密码
+    ├─► 输入Account密码
     ├─► 点击进入游戏
-    └─► 切换到主界面
+    └─► Switch到主界面
         ├─► 成功 → 发送成功通知
-        └─► 失败 → 尝试返回原账号 → 发送失败通知
+        └─► Defeat → 尝试返回原Account → 发送Defeat通知
 ```
 
-### 状态说明
+### 状态Guide / Instructions
 
-| 状态名 | 说明 |
+| 状态名 | Guide / Instructions |
 |--------|------|
 | mainUI | 主界面（派蒙图标） |
 | menuUI | 菜单界面（ESC菜单） |
 | prepareToLogOut | 预备退出登录界面 |
-| loginScreen | 登录界面（切换账号按钮） |
-| exitAccount | 退出账号界面 |
-| enterGame | 进入游戏或登录其他账号界面 |
-| selectAccount | 选择账号界面 |
-| enterAccountAndPassword | 输入账号密码界面 |
-| noAccount | 无账号登录界面 |
+| loginScreen | 登录界面（SwitchAccount按钮） |
+| exitAccount | 退出Account界面 |
+| enterGame | 进入游戏或登录OtherAccount界面 |
+| selectAccount | 选择Account界面 |
+| enterAccountAndPassword | 输入Account密码界面 |
+| noAccount | 无Account登录界面 |
 
-### 更新日志
+### Changelog
 
 #### v1.2
-- **新增**：切换前检查账号图片是否存在，缺失且未配置账号密码时提前终止并提示，避免在切换流程中途出错
+- **新增**：Switch前检查Account图片是否存在，缺失且未ConfigurationAccount密码时提前终止并提示，避免在Switch流程中途出错
 
 #### v1.1
-- **新增**：UID验证失败时自动终止配置组功能，支持配置对应键值
-- **优化**：修改了账号密码界面的识别条件，修复可能会出现的误识别问题
+- **新增**：UID验证Defeat时Auto 终止Configuration组Features，SupportsConfiguration对应键值
+- **优化**：修改了Account密码界面的识别条件，修复可能会出现的误识别问题
 
 #### v1.0
-- 初始版本
+- 初始Version
 - 实现状态机管理
-- 支持账号图片和账号密码两种切换方式
-- 添加自动返回和通知功能
+- SupportsAccount图片和Account密码两种Switch方式
+- 添加Auto 返回和通知Features
 
 </details>

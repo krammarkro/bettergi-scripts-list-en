@@ -1,0 +1,13 @@
+{
+  "manifest_version": 1,
+  "name": "GoToFontaineSmithyForge",
+  "version": "1.0",
+  "description": "到Fontaine 鐵匠店合成Weapon 升級材料，配合'传送到Fontaine 鐵匠Collect Ore'能自動化Forge OreCollect Ore。註1:可選使用水晶礦(默認)、紫晶礦、萃凝晶。註2:需要每種礦至少能合成一次。註3:使用時請先禁用任何生存位使用技能。",
+  "authors": [
+    {
+      "name": "蜜柑魚"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

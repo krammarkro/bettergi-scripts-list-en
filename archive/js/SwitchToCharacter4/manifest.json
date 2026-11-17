@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "SwitchToCharacter4",
+  "version": "1.0",
+  "description": "用于Switch 4号Character",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

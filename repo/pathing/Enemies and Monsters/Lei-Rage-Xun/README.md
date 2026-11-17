@@ -1,6 +1,6 @@
 ## 请带雷火角色。
 
-活化蘑菇占据精英400名额，路线全100+大蘑菇，无小蘑菇。
+活化Mushroom占据Elite400名额，Route全100+大Mushroom，无小Mushroom。
 
 
 

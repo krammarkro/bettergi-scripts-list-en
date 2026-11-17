@@ -1,0 +1,9 @@
+// Author:AC4488
+// Description:雷电将军、芙宁娜、枫原万叶、芭芭拉
+
+雷电将军 e
+芙宁娜 e
+枫原万叶 e(hold),wait(0.3),attack
+芭芭拉 e
+
+

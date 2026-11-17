@@ -1,11 +1,11 @@
 {
   "manifest_version": 1,
-  "name": "登录游戏",
+  "name": "Login",
   "version": "1.0",
-  "description": "输入账号和密码并进入游戏",
+  "description": "输入Account 和密码并进入游戏",
   "authors": [
     {
-      "name": "愚溪",
+      "name": "愚溪"
     }
   ],
   "settings_ui": "settings.json",

@@ -1,38 +1,38 @@
-# 莲蓬全收集
+# Lotus HeadFull Collection
 
-> 所有路线均基于 **解谜全解、宝箱全收、剧情全通** 的前提下制作
+> 所有Route均基于 **解谜全解、宝箱全收、剧情全通** 的前提下制作
 
-## 采集路线表
-> 路径数据基于队伍（迪希雅、枫原万叶、罗莎莉亚、蓝砚）运行所得。
+## Gathering Route表
+> Path数据基于队伍（Dehya、Kaedehara Kazuha、Rosaria、Lan Yan）运行所得。
 
-| 任务名 | 时长 | 个数 | 效率（秒/个） |
+| 任务名 | 时长 |  items数 | 效率（seconds/ items） |
 | ------ | ---- | ---- | -------------- |
-| 01-莲蓬-璃月-华池岩岫-4个 | 35秒 | 4 | 8.75 |
-| 02-莲蓬-璃月-奥藏山-11个 | 2分44秒 | 11 | 14.91 |
-| 03-莲蓬-璃月-南天门-3个 | 51秒 | 3 | 17.00 |
-| 04-莲蓬-璃月-采樵谷-4个 | 2分3秒 | 4 | 30.75 |
-| 05-莲蓬-璃月-璃月港一-5个 | 45秒 | 5 | 9.00 |
-| 06-莲蓬-璃月-璃月港二-1个 | 31秒 | 1 | 31.00 |
-| 07-莲蓬-璃月-天衡山西南-3个 | 26秒 | 3 | 8.67 |
-| 08-莲蓬-璃月-灵矩关-2个 | 49秒 | 2 | 24.50 |
-| 09-莲蓬-璃月-遁玉陵-8个 | 1分31秒 | 8 | 11.38 |
-| 10-莲蓬-璃月-渌华池一-2个 | 40秒 | 2 | 20.00 |
-| 11-莲蓬-璃月-渌华池二-12个 | 1分38秒 | 12 | 8.17 |
-| 12-莲蓬-璃月-归离原西-3个 | 40秒 | 3 | 13.33 |
-| 13-莲蓬-璃月-归离原东-2个 | 35秒 | 2 | 17.50 |
-| 14-莲蓬-璃月-墟散人离之处-2个 | 22秒 | 2 | 11.00 |
-| 15-莲蓬-璃月-璃月港北-2个 | 41秒 | 2 | 20.50 |
-| 16-莲蓬-璃月-明蕴镇北-2个 | 42秒 | 2 | 21.00 |
-| 17-莲蓬-璃月-地中之盐-7个 | 2分0秒 | 7 | 17.14 |
-| 18-莲蓬-璃月-山脊守望-6个 | 1分42秒 | 6 | 17.00 |
-| 19-莲蓬-璃月-石门-8个 | 2分18秒 | 8 | 17.25 |
-| 20-莲蓬-璃月-荻花洲一-2个 | 30秒 | 2 | 15.00 |
-| 21-莲蓬-璃月-荻花洲二-4个 | 43秒 | 4 | 10.75 |
-| 22-莲蓬-璃月-望舒客栈西-1个 | 47秒 | 1 | 47.00 |
-| 23-莲蓬-璃月-古茶树坡-5个 | 1分1秒 | 5 | 12.20 |
+| 01-Lotus Head-Liyue-Clear Pool and Mountain Cavern-4 items | 35seconds | 4 | 8.75 |
+| 02-Lotus Head-Liyue-Mt. Aocang-11 items | 2分44seconds | 11 | 14.91 |
+| 03-Lotus Head-Liyue-Nantianmen-3 items | 51seconds | 3 | 17.00 |
+| 04-Lotus Head-Liyue-采樵谷-4 items | 2分3seconds | 4 | 30.75 |
+| 05-Lotus Head-Liyue-Liyue Harbor一-5 items | 45seconds | 5 | 9.00 |
+| 06-Lotus Head-Liyue-Liyue Harbor二-1 items | 31seconds | 1 | 31.00 |
+| 07-Lotus Head-Liyue-Mt. TianhengSouthwest-3 items | 26seconds | 3 | 8.67 |
+| 08-Lotus Head-Liyue-Lingju Pass-2 items | 49seconds | 2 | 24.50 |
+| 09-Lotus Head-Liyue-Dunyu Ruins-8 items | 1分31seconds | 8 | 11.38 |
+| 10-Lotus Head-Liyue-Luhua Pool一-2 items | 40seconds | 2 | 20.00 |
+| 11-Lotus Head-Liyue-Luhua Pool二-12 items | 1分38seconds | 12 | 8.17 |
+| 12-Lotus Head-Liyue-Guili Plains西-3 items | 40seconds | 3 | 13.33 |
+| 13-Lotus Head-Liyue-Guili Plains东-2 items | 35seconds | 2 | 17.50 |
+| 14-Lotus Head-Liyue-墟散人离之处-2 items | 22seconds | 2 | 11.00 |
+| 15-Lotus Head-Liyue-Liyue Harbor北-2 items | 41seconds | 2 | 20.50 |
+| 16-Lotus Head-Liyue-Mingyun Town北-2 items | 42seconds | 2 | 21.00 |
+| 17-Lotus Head-Liyue-Sal Terrae-7 items | 2分0seconds | 7 | 17.14 |
+| 18-Lotus Head-Liyue-山脊守望-6 items | 1分42seconds | 6 | 17.00 |
+| 19-Lotus Head-Liyue-Stone Gate-8 items | 2分18seconds | 8 | 17.25 |
+| 20-Lotus Head-Liyue-Dihua Marsh一-2 items | 30seconds | 2 | 15.00 |
+| 21-Lotus Head-Liyue-Dihua Marsh二-4 items | 43seconds | 4 | 10.75 |
+| 22-Lotus Head-Liyue-Wangshu Inn西-1 items | 47seconds | 1 | 47.00 |
+| 23-Lotus Head-Liyue-Teatree Slope-5 items | 1分1seconds | 5 | 12.20 |
 
 ## 总计
-- **总个数**：**99个**
+- **总 items数**：**99 items**
 - **总时长**：**约25分鈡**
 
-> 包含效率偏低路线，请根据实际需求酌情取舍。
+> 包含效率偏低Route，请根据实际需求酌情取舍。

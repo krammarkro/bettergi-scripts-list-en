@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "自动食材加工",
+  "name": "Auto IngredientsProcessing",
   "version": "1.0",
-  "description": "自动食材加工, 可自动获取加工完成食材，可指定制作食材.",
+  "description": "Auto IngredientsProcessing, 可Auto 获取Processing完成Ingredients，可指定CraftingIngredients.",
   "authors": [
     {
       "name": "听雨♪",

@@ -1,2 +1,2 @@
-此为浊水幻灵效率较高路线
-怪量总计：27只
+此为Tainted Water Phantasm效率较高Route
+怪量总计：27 mobs

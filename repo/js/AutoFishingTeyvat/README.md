@@ -1,104 +1,104 @@
-# 🎣 提瓦特自动钓鱼（全流程 + 自选）
+# 🎣 TeyvatAuto Fishing（全流程 + 自选）
 
-一款基于 BGI 的全自动钓鱼脚本，支持全提瓦特所有可追踪垂钓点。  
-提供灵活筛选、路径控制、自动化钓鱼与冷却记录等完整功能，适用于日常收集、兑换材料获取与全图钓鱼需求。
-
----
-
-## ✨ 功能概述
-
-脚本可自动追踪并完成 BGI 支持的所有垂钓点，包括路径导航、时间调整、钓鱼流程与冷却记录等完整逻辑。
-（更新鱼类数据后可能出现因版号落后导致无法运行的问题，在BGI本体的 `设置` -> `帮助` ->`版本更新` ->`检查是否存在最新测试版` 更新到测试版即可正常使用）
+一款基于 BGI 的全Auto Fishing脚本，Supports全Teyvat所有可追踪垂钓点。  
+提供灵活筛选、Path控制、Auto 化Fishing与冷却Recording等完整Features，适用于日常收集、兑换材料获取与全图Fishing需求。
 
 ---
 
-## ⭐ 核心功能
+## ✨ Features概述
+
+脚本可Auto 追踪并完成 BGI Supports的所有垂钓点，包括Path导航、时间调整、Fishing流程与冷却Recording等完整逻辑。
+（更新鱼类数据后可能出现因版号落后导致无法运行的问题，在BGI本体的 `Settings` -> `帮助` ->`Version更新` ->`检查是否存在最新测试版` 更新到测试版即可正常使用）
+
+---
+
+## ⭐ 核心Features
 
 - 🎯 **自由筛选**：按地区、鱼类、鱼饵自定义任务
-- 🎁 **材料直钓**：支持直接钓取兑换材料（如「渔获」所需鱼类）
-- 🌗 **自动调节时间**：根据目标鱼类自动切换昼夜
-- 🧭 **特殊点位支持**：可处理部分无法通过地图追踪到达的钓鱼点
+- 🎁 **材料直钓**：Supports直接钓取兑换材料（如「The Catch」所需鱼类）
+- 🌗 **Auto 调节时间**：根据目标鱼类Auto Switch昼夜
+- 🧭 **特殊点位Supports**：可处理部分无法通过地图追踪到达的Fishing点
 - 🔁 **从指定点继续任务**（需启用全部垂钓点）
-- ⚔️ **战斗路线可选**（默认关闭）
-- ⏱ **钓鱼超时自定义**
-- ⏳ **定时自动停止（最多 24 小时）**
-- 💎 **4 点自动领取月卡**（可选）
-- 📒 **垂钓点冷却记录**（多人模式记录房主 CD）
-- 🧲 **自动拾取**（可选）
+- ⚔️ **CombatRoute可选**（默认关闭）
+- ⏱ **Fishing超时自定义**
+- ⏳ **定时Auto 停止（最多 24 小时）**
+- 💎 **4 点Auto 领取月卡**（可选）
+- 📒 **垂钓点冷却Recording**（多人模式Recording房主 CD）
+- 🧲 **Auto 拾取**（可选）
 
 ---
 
-## ⚠️ 使用注意事项
+## ⚠️ 使用Precautions / Notes
 
-1. 部分点位包含战斗，队伍中请避免“双风”或“跑步加速（非冲刺）”角色
-2. 跑图角色必须为**少男体型**
+1. 部分点位包含Combat，队伍中请避免“双风”或“跑步Speed Up（非冲刺）”Character
+2. PathingCharacter必须为**少男体型**
 3. 鱼类 + 鱼饵的选择逻辑：
     - 所有选中的鱼类会加入任务列表
-    - 若某鱼饵对应的鱼类未被选中，则该鱼饵对应的所有鱼类会被自动加入
-4. 混合路线（路径追踪 + GCM）可能卡死，可在 JS 配置中关闭键鼠路线
+    - 若某鱼饵对应的鱼类未被选中，则该鱼饵对应的所有鱼类会被Auto 加入
+4. 混合Route（Path追踪 + GCM）可能卡死，可在 JS Configuration中关闭键鼠Route
 5. 请确保 **F2 未被占用**（用于多人模式检测）
-6. 鹤观点位支持自动使用「奇特的羽毛」
+6. Tsurumi Island点位SupportsAuto 使用「奇特的羽毛」
 
 ---
 
-# 📘 配置说明
+# 📘 ConfigurationGuide / Instructions
 
-## 📂 基础配置
+## 📂 基础Configuration
 
 <details>
 <summary><strong>筛选垂钓点</strong></summary>
 
 ### 钓取特定物品的兑换材料
 字段：`path_sort_material`
-- 选择后将忽略其他筛选
-- 用于快速钓取如「渔获」「赤穗酒枡」「灰河渡手」等材料
+- 选择后将忽略Other筛选
+- 用于Fast钓取如「The Catch」「Ako's Sake Vessel」「Fleuve Cendre Ferryman」等材料
 
 ### 🗺 地区筛选
 字段：`path_sort_area`
 - 可多选
-- 包含：蒙德、璃月、稻妻、须弥、枫丹、纳塔、至冬、挪德卡莱、层岩巨渊·地下矿区、渊下宫、远古圣山
+- 包含：Mondstadt、Liyue、Inazuma、Sumeru、Fontaine、Natlan、Snezhnaya、Nod-Krai、The Chasm: Underground Mines、Enkanomiya、Ancient Sacred Mountain
 
 ### 鱼类筛选
 字段：`path_sort_fish`
 - 可多选
-- 若与鱼饵冲突，会自动补全任务列表
+- 若与鱼饵冲突，会Auto 补全任务列表
 
 ### 鱼饵筛选
 字段：`path_sort_bait`
 - 可多选
-- 若鱼饵对应鱼类未被选中，会自动加入
+- 若鱼饵对应鱼类未被选中，会Auto 加入
 
-### 禁用键鼠路线
+### 禁用键鼠Route
 字段：`block_gcm`
 - 默认关闭
-- 开启后禁用所有 GCM 路线
+- 开启后禁用所有 GCM Route
 
-### 启用战斗路线
+### 启用CombatRoute
 字段：`block_fight`
 - 默认关闭
 
-### 启用鹤观路线
+### 启用Tsurumi IslandRoute
 字段：`block_tsurumi`
 - 需拥有「奇特的羽毛」
 
 ### 奇特的羽毛使用方式
 字段：`tsurumi_method`
-- 方式 1：打开背包替换（默认）
+- 方式 1：打开Inventory替换（默认）
 - 方式 2：使用快捷更换
 </details>
 
 ---
 
-## ⚙️ 进阶配置
+## ⚙️ 进阶Configuration
 
 <details>
-<summary><strong>垂钓点进阶功能 & BGI 内置钓鱼参数</strong></summary>
+<summary><strong>垂钓点进阶Features & BGI 内置Fishing参数</strong></summary>
 
 ### 从指定垂钓点继续
 字段：`path_continue`
 - 仅在启用全部垂钓点时可用
 
-### 自动抛竿未上钩超时
+### Auto 抛竿未上钩超时
 字段：`time_out_throw`
 - 默认：10 秒
 
@@ -110,30 +110,30 @@
 
 ---
 
-## 🧰 高级配置
+## 🧰 高级Configuration
 
 <details>
-<summary><strong>满足特殊需求</strong></summary>
+<summary><strong>Happy特殊需求</strong></summary>
 
 ### 通知
 字段：`启用通知`
 - 每次进度更新时进行通知
 
-### 自动拾取
-字段：`启用自动拾取`
+### Auto 拾取
+字段：`启用Auto 拾取`
 
-### 自动领取月卡（4 点）
+### Auto 领取月卡（4 点）
 字段：`启用4点领取月卡`
 
 ### 垂钓点 CD 统计
 字段：`启用垂钓点CD统计`
 - 默认开启
-- 多人模式非房主自动禁用
+- 多人模式非房主Auto 禁用
 
-### 自定义 CD 记录标识
-字段：`自定义CD记录标识`
+### 自定义 CD Recording标识
+字段：`自定义CDRecording标识`
 - 留空则默认读取 UID
-- 输入任意文本后将使用输入的文本作为自己世界的CD记录标识
+- 输入任意文本后将使用输入的文本作为自己世界的CDRecording标识
 
 ### 强制停止运行时间
 字段：`小时` + `分钟`
@@ -143,19 +143,19 @@
 
 ---
 
-## 🧪 开发者配置
+## 🧪 开发者Configuration
 
 <details>
-<summary><strong>调试模式</strong></summary>
+<summary><strong>Debug模式</strong></summary>
 
-### 指定调试垂钓点
+### 指定Debug垂钓点
 字段：`path_select`
 
-### 调试时间
+### Debug时间
 字段：`path_time`
 - 全天 / 白天 / 夜晚
 
-### 调试日志
+### DebugLog
 字段：`developer_log`
 - 目前不可用
 
@@ -168,118 +168,118 @@
 <details>
 <summary>点击展开</summary>
 
-| 地区 | 垂钓点名称 | 类型 | 鱼类 | 鱼饵 | 战斗路线 | 键鼠(GCM) |
+| 地区 | 垂钓点名称 | 类型 | 鱼类 | 鱼饵 | CombatRoute | 键鼠(GCM) |
 |------|------------|------|------|------|----------|----------|
-| 枫丹 | E001-枫丹-垂钓点-伊黎耶林区幽林雾道西南 | 普通 | 花鳉、波波心羽鲈、烘烘心羽鲈、维护机关·水域清理者、维护机关·态势控制者、维护机关·澄金领队型 | 果酿饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E002-枫丹-垂钓点-伊黎耶林区柔灯港西北 | 普通 | 海涛斧枪鱼、波波心羽鲈、维护机关·水域清理者、维护机关·澄金领队型 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E003-枫丹-垂钓点-枫丹动能工程科学研究院区中央实验室遗址南 | 普通 | 花鳉、海涛斧枪鱼、波波心羽鲈、维护机关·初始能力型、维护机关·水域清理者 | 果酿饵、甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E004-枫丹-垂钓点-枫丹廷区茉洁站西南 | 普通 | 海涛斧枪鱼、烘烘心羽鲈、维护机关·初始能力型、维护机关·态势控制者 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E005-枫丹-垂钓点-枫丹廷区枫丹廷东北 | GCM | 海涛斧枪鱼、波波心羽鲈、烘烘心羽鲈、维护机关·水域清理者、维护机关·态势控制者 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  | 是 |
-| 枫丹 | E006-枫丹-垂钓点-枫丹廷区枫丹廷南 | 普通 | 花鳉、海涛斧枪鱼、维护机关·水域清理者、维护机关·态势控制者 | 果酿饵、甘露饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E007-枫丹-垂钓点-白露区白淞镇西南 | 普通 | 花鳉、波波心羽鲈、烘烘心羽鲈、维护机关·水域清理者、维护机关·白金典藏型 | 果酿饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E008-枫丹-垂钓点-翡黎区芒索斯山东麓东 | 普通 | 海涛斧枪鱼、烘烘心羽鲈、维护机关·初始能力型、维护机关·态势控制者 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E009-枫丹-垂钓点-苍晶区厄里那斯东 | 普通 | 海涛斧枪鱼、波波心羽鲈、烘烘心羽鲈、维护机关·初始能力型 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E010-枫丹-垂钓点-苍晶区厄里那斯东北 | 普通 | 吹沙角鲀、波波心羽鲈、维护机关·初始能力型、维护机关·水域清理者、维护机关·态势控制者 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E011-枫丹-垂钓点-苍晶区海露港北 | 普通 | 海涛斧枪鱼、波波心羽鲈、烘烘心羽鲈、维护机关·水域清理者、维护机关·态势控制者 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E012-枫丹-垂钓点-莫尔泰区卡布狄斯堡遗迹南 | 普通 | 花鳉、波波心羽鲈、烘烘心羽鲈、维护机关·态势控制者、维护机关·澄金领队型 | 果酿饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E013-枫丹-垂钓点-莫尔泰区欧庇克莱歌剧院南 | 普通 | 海涛斧枪鱼、烘烘心羽鲈、维护机关·水域清理者、维护机关·态势控制者、维护机关·澄金领队型 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E014-枫丹-垂钓点-诺思托伊区佩特莉可镇南 | 普通 | 海涛斧枪鱼、波波心羽鲈、烘烘心羽鲈、维护机关·初始能力型、维护机关·水域清理者、维护机关·态势控制者、维护机关·澄金领队型 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  |  |
-| 枫丹 | E015-枫丹-垂钓点-枫丹廷区欧庇克莱歌剧院西 | GCM | 海涛斧枪鱼、波波心羽鲈、烘烘心羽鲈、维护机关·初始能力型 | 甘露饵、酸桔饵、维护机关频闪诱饵 |  | 是 |
-| 璃月 | B001-璃月-垂钓点-云来海璃月港东南 | 普通 | 甜甜花鳉、擒霞客、水晶宴、斗棘鱼、炮鲀 | 果酿饵、赤糜饵、飞蝇假饵 |  |  |
-| 璃月 | B002-璃月-垂钓点-沉玉谷·上谷古树茶坡 | 普通 | 花鳉、斗棘鱼、流纹褐蝶鱼、锖假龙、金赤假龙、玉玉心羽鲈 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵、酸桔饵 |  |  |
-| 璃月 | B003-璃月-垂钓点-沉玉谷·上谷古树茶坡东 | 普通 | 花鳉、擒霞客、水晶宴、斗棘鱼、锖假龙、玉玉心羽鲈 | 果酿饵、赤糜饵、飞蝇假饵、酸桔饵 |  |  |
-| 璃月 | B004-璃月-垂钓点-沉玉谷·南陵悬练山西南 | 普通 | 甜甜花鳉、擒霞客、赤魔王、金赤假龙、玉玉心羽鲈 | 果酿饵、赤糜饵、飞蝇假饵、酸桔饵 |  |  |
-| 璃月 | B005-璃月-垂钓点-珉林天遒谷 | 战斗 | 花鳉、水晶宴、斗棘鱼 | 果酿饵、赤糜饵 | 是 |  |
-| 璃月 | B006-璃月-垂钓点-珉林奥藏山 | 普通 | 花鳉、甜甜花鳉、擒霞客、水晶宴、长生仙 | 果酿饵、蠕虫假饵 |  |  |
-| 璃月 | B007-璃月-垂钓点-珉林琥牢山东 | 普通 | 花鳉、甜甜花鳉、擒霞客、水晶宴、斗棘鱼、流纹褐蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 璃月 | B008-璃月-垂钓点-琼玑野归离原东北 | 普通 | 甜甜花鳉、斗棘鱼、赤魔王、金赤假龙、錆假龙、流纹褐蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 璃月 | B009-璃月-垂钓点-琼玑野渌华池 | 普通 | 甜甜花鳉、斗棘鱼、赤魔王、金赤假龙、錆假龙、流纹褐蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 璃月 | B010-璃月-垂钓点-碧水原奥藏山东 | 战斗 | 花鳉、擒霞客、水晶宴、流纹褐蝶鱼 | 果酿饵、蠕虫假饵 | 是 |  |
-| 璃月 | B011-璃月-垂钓点-碧水原无妄坡南 | 战斗 | 花鳉、甜甜花鳉、擒霞客、流纹褐蝶鱼 | 果酿饵、蠕虫假饵 | 是 |  |
-| 璃月 | B012-璃月-垂钓点-碧水原望舒客栈西 | 普通 | 甜甜花鳉、斗棘鱼、赤魔王、金赤假龙、锖假龙、流纹褐蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 璃月 | B013-璃月-垂钓点-碧水原药蝶谷东 | 普通 | 花鳉、斗棘鱼、流纹褐蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 璃月 | B014-璃月-垂钓点-碧水原轻策庄东北 | 普通 | 甜甜花鳉、擒霞客、水晶宴、斗棘鱼、流纹褐蝶鱼、苦炮鲀 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 层岩巨渊·地下矿区 | ZB001-层岩巨渊·地下矿区-垂钓点-地下水泽西 | 普通 | 花锵、斗棘鱼、赤魔王、流纹褐蝶鱼、苦炮鲀 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 层岩巨渊·地下矿区 | ZB002-层岩巨渊·地下矿区-垂钓点-无名遗迹西 | 战斗 | 甜甜花锵、擒霞客、水晶宴、赤魔王、炮鲀 | 果酿饵、赤糜饵、飞蝇假饵 | 是 |  |
-| 稻妻 | C001-稻妻-垂钓点-八酝岛名椎滩北 | 战斗 | 花鳉、肺棘鱼、流纹京紫蝶鱼、苦炮鲀 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 | 是 |  |
-| 稻妻 | C002-稻妻-垂钓点-海祇岛水月池东 | 战斗 | 花鳉、琉璃花鳉、擒霞客、水晶宴、肺棘鱼、流纹京紫蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 | 是 |  |
-| 稻妻 | C003-稻妻-垂钓点-海祇岛珊瑚宫北 | 普通 | 花鳉、琉璃花鳉、擒霞客、水晶宴、肺棘鱼、流纹京紫蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 稻妻 | C004-稻妻-垂钓点-清籁岛天云峠北 | 普通 | 花鳉、擒霞客、水晶宴、流纹京紫蝶鱼、炮鲀 | 果酿饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 稻妻 | C005-稻妻-垂钓点-清籁岛越石村东南 | 普通 | 琉璃花鳉、肺棘鱼、赤魔王、金赤假龙、锖假龙、流纹京紫蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 稻妻 | C006-稻妻-垂钓点-神无冢甘金岛南 | 普通 | 琉璃花鳉、肺棘鱼、流纹京紫蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 稻妻 | C007-稻妻-垂钓点-鸣神岛离岛西 | 普通 | 琉璃花鳉、肺棘鱼、赤魔王、炮鲀、苦炮鲀 | 果酿饵、赤糜饵、飞蝇假饵 |  |  |
-| 稻妻 | C008-稻妻-垂钓点-鹤观千来神祠西 | 普通 | 花鳉、琉璃花鳉、擒霞客、水晶宴 | 果酿饵 |  |  |
-| 稻妻 | C009-稻妻-垂钓点-鹤观逢岳之野西南 | 普通 | 花鳉、肺棘鱼、赤魔王、流纹京紫蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 稻妻 | C010-稻妻-垂钓点-神无冢九条阵屋东南 | GCM | 雷鸣仙 | 蠕虫假饵 |  | 是 |
-| 渊下宫 | ZC001-渊下宫-垂钓点-蛇肠之路南 | 普通 | 水晶宴、肺棘鱼、佛玛洛鳐、迪芙妲鳐 | 果酿饵、赤糜饵、飞蝇假饵 |  |  |
-| 渊下宫 | ZC002-渊下宫-垂钓点-蛇心之地北 | 战斗 | 擒霞客、赤魔王、佛玛洛鳐、迪芙妲鳐 | 果酿饵、赤糜饵、飞蝇假饵 | 是 |  |
-| 渊下宫 | ZC003-渊下宫-垂钓点-蛇心之地西北 | 普通 | 擒霞客、流纹京紫鲽鱼、佛玛洛鳐、迪芙妲鳐 | 果酿饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 纳塔 | F001-纳塔-垂钓点-境壁山浮羽之湾东 | 普通 | 伪装鲨鲨独角鱼、花鳉、繁花斗士急流鱼、深潜斗士急流鱼、晚霞翻车鲀、青浪翻车鲀 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F002-纳塔-垂钓点-奥奇卡纳塔东 | 普通 | 花鳉、青浪翻车鲀、晚霞翻车鲀、伪装鲨鲨独角鱼 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F003-纳塔-垂钓点-奥奇卡纳塔东北 | 战斗 | 青浪翻车鲀、繁花斗士急流鱼、伪装鲨鲨独角鱼 | 澄晶果粒饵 | 是 |  |
-| 纳塔 | F004-纳塔-垂钓点-奥奇卡纳塔北 | 普通 | 花鳉、晚霞翻车鲀、伪装鲨鲨独角鱼、深潜斗士急流鱼 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F005-纳塔-垂钓点-奥奇卡纳塔南 | 普通 | 花鳉、繁花斗士急流鱼、深潜斗士急流鱼、青浪翻车鲀、晚霞翻车鲀 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F006-纳塔-垂钓点-奥奇卡纳塔西 | 普通 | 深潜斗士急流鱼、繁花斗士急流鱼、伪装鲨鲨独角鱼 | 澄晶果粒饵 |  |  |
-| 纳塔 | F007-纳塔-垂钓点-奥奇卡纳塔西北 | 普通 | 拟似燃素独角鱼、炽岩斗士急流鱼 | 温火饵 |  |  |
-| 纳塔 | F008-纳塔-垂钓点-涌流地溶水域 | 普通 | 炽岩斗士急流鱼、拟似燃素独角鱼 | 温火饵 |  |  |
-| 纳塔 | F009-纳塔-垂钓点-翘枝崖花羽会北 | 普通 | 晚霞翻车鲀、深潜斗士急流鱼、伪装鲨鲨独角鱼 | 澄晶果粒饵 |  |  |
-| 纳塔 | F010-纳塔-垂钓点-翘枝崖花羽会西 | 普通 | 花鳉、繁花斗士急流鱼、深潜斗士急流鱼、晚霞翻车鲀、伪装鲨鲨独角鱼 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F011-纳塔-垂钓点-距石山祖遗庙宇东 | 普通 | 炽岩斗士急流鱼、拟似燃素独角鱼 | 温火饵 |  |  |
-| 纳塔 | F012-纳塔-垂钓点-安饶之野西 | 普通 | 拟似燃素独角鱼、秘源机关·巡戒使 | 温火饵 |  |  |
-| 纳塔 | F013-纳塔-垂钓点-安饶之野西北 | 普通 | 炽岩斗士急流鱼、拟似燃素独角鱼、秘源机关·巡戒使 | 温火饵 |  |  |
-| 纳塔 | F014-纳塔-垂钓点-安饶之野东 | 普通 | 花鳉、繁花斗士急流鱼、青浪翻车鲀、晚霞翻车鲀、伪装鲨鲨独角鱼 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F015-纳塔-垂钓点-悠悠度假村彩彩崖北 | 普通 | 花鳉、繁花斗士急流鱼、青浪翻车鲀、伪装鲨鲨独角鱼 | 果酿饵、澄晶果粒饵 |  |  |
-| 纳塔 | F016-纳塔-垂钓点-悠悠度假村呼呼丘西南 | 普通 | 繁花斗士急流鱼、深潜斗士急流鱼、晚霞翻车鲀、伪装鲨鲨独角鱼 | 澄晶果粒饵 |  |  |
-| 纳塔 | F017-纳塔-垂钓点-悠悠度假村悠悠集市西南 | 普通 | 花鳉、深潜斗士急流鱼、青浪翻车鲀、晚霞翻车鲀 | 果酿饵、澄晶果粒饵 |  |  |
-| 远古圣山 | ZF001-远古圣山-垂钓点-分流识海 | 普通 | 炽岩斗士急流鱼、秘源机关·巡戒使 | 温火饵 |  |  |
-| 蒙德 | A001-蒙德-垂钓点-龙脊雪山寒天之钉西 | 普通 | 花鳉、鸩棘鱼、雪中君、流纹茶蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 蒙德 | A002-蒙德-垂钓点-坠星山谷低语森林南 | 普通 | 蓝染花鳉、水晶宴、鸩棘鱼、锖假龙、流纹茶蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 蒙德 | A003-蒙德-垂钓点-坠星山谷望风山地 | 普通 | 花鳉、蓝染花鳉、擒霞客、水晶宴、鸩棘鱼、金赤假龙、流纹茶蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 蒙德 | A004-蒙德-垂钓点-明冠山地风龙废墟北 | 战斗 | 花鳉、蓝染花鳉、擒霞客、水晶宴 | 果酿饵 | 是 |  |
-| 蒙德 | A005-蒙德-垂钓点-明冠山地风龙废墟南 | 普通 | 花鳉、蓝染花鳉、擒霞客、流纹茶蝶鱼 | 果酿饵、蠕虫假饵 |  |  |
-| 蒙德 | A006-蒙德-垂钓点-苍风高地晨曦酒庄西南 | 战斗 | 蓝染花鳉、擒霞客、鸩棘鱼、赤魔王、流纹茶蝶鱼、炮鲀、苦炮鲀 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 | 是 |  |
-| 蒙德 | A007-蒙德-垂钓点-苍风高地清泉镇北 | 普通 | 花鳉、蓝染花鳉、鸩棘鱼、赤魔王、流纹茶蝶鱼、炮鲀、苦炮鲀 | 果酿饵、赤糜饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 蒙德 | A008-蒙德-垂钓点-风啸山坡风起地南 | 普通 | 花鳉、蓝染花鳉、鸩棘鱼、流纹茶蝶鱼 | 果酿饵、赤糜饵、蠕虫假饵 |  |  |
-| 蒙德 | A009-蒙德-垂钓点-风息山风车镇东 | 普通 | 鸩棘鱼、赤魔王、金赤假龙、綦假龙 | 赤糜饵、飞蝇假饵 |  |  |
-| 蒙德 | A010-蒙德-垂钓点-风息山荆夫港西南 | 普通 | 蓝染花鳉、擒霞客、水晶宴、綦假龙 | 果酿饵、飞蝇假饵 |  |  |
-| 蒙德 | A011-蒙德-垂钓点-风息山荆夫港南 | 普通 | 擒霞客、流纹茶蝶鱼、炮鲀、苦炮鲀、綦假龙 | 果酿饵、蠕虫假饵、飞蝇假饵 |  |  |
-| 须弥 | D001-须弥-垂钓点-下风蚀地活力之家西南 | 普通 | 花鳉、擒霞客、赤魔王、真果角鲀、青金斧枪鱼 | 果酿饵、赤糜饵、甘露饵 |  |  |
-| 须弥 | D002-须弥-垂钓点-下风蚀地阿如村 | 普通 | 花鳉、水晶宴、吹沙角鲀、暮云角鲀、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D003-须弥-垂钓点-千壑沙地「五绿洲」的孑遗 | 战斗 | 真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 甘露饵 | 是 |  |
-| 须弥 | D004-须弥-垂钓点-护世森无郁稠林 | 普通 | 沉波蜜桃、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 甘露饵 |  |  |
-| 须弥 | D005-须弥-垂钓点-桓那兰那觉王之殿北 | 普通 | 花鳉、真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D006-须弥-垂钓点-荒石苍漠铁穆山南 | 普通 | 擒霞客、真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D007-须弥-垂钓点-道成林天臂池 | 普通 | 赤魔王、真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 赤糜饵、甘露饵 |  |  |
-| 须弥 | D008-须弥-垂钓点-道成林维摩庄北 | 普通 | 花鳉、真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D009-须弥-垂钓点-道成林须弥城南 | 普通 | 擒霞客、吹沙角鲀、暮云角鲀、青金斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D010-须弥-垂钓点-阿陀河谷奥摩斯港北 | 普通 | 水晶宴、真果角鲀、吹沙角鲀、暮云角鲀、青金斧枪鱼、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 须弥 | D011-须弥-垂钓点-阿陀河谷降诸魔山 | 普通 | 擒霞客、真果角鲀、暮云角鲀、翡玉斧枪鱼 | 果酿饵、甘露饵 |  |  |
-| 挪德卡莱 | G001-挪德卡莱-垂钓点-伦波岛叮铃哐啷蛋卷工坊北 | 普通 | 花鳉、蓝昼明眼鱼、夜色明眼鱼、无奇巨斧鱼、素素凶凶鲨 | 果酿饵、槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G002-挪德卡莱-垂钓点-伦波岛空寂走廊西北 | 普通 | 花鳉、蓝昼明眼鱼、夜色明眼鱼 | 果酿饵、清白饵 |  |  |
-| 挪德卡莱 | G003-挪德卡莱-垂钓点-伦波岛蓝珀湖 | 普通 | 无奇巨斧鱼、冷冽巨斧鱼、炽铁巨斧鱼、素素凶凶鲨、虹光凶凶鲨 | 槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G004-挪德卡莱-垂钓点-伦波岛那夏镇西南 | 普通 | 花鳉、无奇巨斧鱼、冷冽巨斧鱼、夜色明眼鱼 | 果酿饵、槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G005-挪德卡莱-垂钓点-帕哈岛月矩力实验设计局北 | 普通 | 花鳉、蓝昼明眼鱼、素素凶凶鲨、虹光凶凶鲨 | 果酿饵、清白饵 |  |  |
-| 挪德卡莱 | G006-挪德卡莱-垂钓点-帕哈岛月矩力实验设计局东南 | 普通 | 花鳉、无奇巨斧鱼、冷冽巨斧鱼、夜色明眼鱼 | 果酿饵、槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G007-挪德卡莱-垂钓点-希汐岛沐光之台西南 | 普通 | 素素凶凶鲨、虹光凶凶鲨、蓝昼明眼鱼、夜色明眼鱼 | 槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G008-挪德卡莱-垂钓点-希汐岛霜月之坊东北 | 普通 | 冷冽巨斧鱼、蓝昼明眼鱼、夜色明眼鱼、虹光凶凶鲨 | 槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G009-挪德卡莱-垂钓点-希汐岛霜月之坊西 | 战斗 | 花鳉、蓝昼明眼鱼、夜色明眼鱼 | 果酿饵、清白饵 | 是 |  |
-| 挪德卡莱 | G010-挪德卡莱-垂钓点-虚海望噩影泽地东北 | 普通 | 花鳉、素素凶凶鲨、虹光凶凶鲨、蓝昼明眼鱼 | 果酿饵、清白饵 |  |  |
-| 挪德卡莱 | G011-挪德卡莱-垂钓点-虚海望皮拉米达城南 | 普通 | 花鳉、无奇巨斧鱼、冷冽巨斧鱼、素素凶凶鲨、虹光凶凶鲨 | 果酿饵、槲梭饵、清白饵 |  |  |
-| 挪德卡莱 | G012-挪德卡莱-垂钓点-烟硌山峰望崖营壁西 | 普通 | 无奇巨斧鱼、冷冽巨斧鱼、素素凶凶鲨、虹光凶凶鲨、蓝昼明眼鱼、夜色明眼鱼 | 槲梭饵、清白饵 |  |  |
-| 霜月 | ZG001-霜月-垂钓点-乌吉恩圈 | 普通 | 花鳉、冷冽巨斧鱼、蓝昼明眼鱼、夜色明眼鱼 | 果酿饵、槲梭饵、清白饵 |  |  |
-| 至冬 | H001-至冬-垂钓点-永凝冻土海屑镇 | 普通 | 花鳉、炭灰雪圆鳍、青仙星花鱼、赤甜星花鱼 | 果酿饵、闪烁饵 |  |  |
-| 至冬 | H002-至冬-垂钓点-永凝冻土海屑镇西南 | 战斗 | 花鳉、炭灰雪圆鳍、月光雪圆鳍、青仙星花鱼、赤甜星花鱼 | 果酿饵、闪烁饵 | 是 |  |
-| 至冬 | H003-至冬-垂钓点-古兽冰原中部 | 普通 | 炭灰雪圆鳍、月光雪圆鳍、虹晶星花鱼、赤甜星花鱼、青仙星花鱼 | 闪烁饵 |  |  |
-| 至冬 | H004-至冬-垂钓点-古兽冰原巡猎者木屋北 | 普通 | 花鳉、炭灰雪圆鳍、赤甜星花鱼、青仙星花鱼、虹晶星花鱼 | 果酿饵、闪烁饵 |  |  |
-| 至冬 | H005-至冬-垂钓点-古兽冰原凝露镇东 | 普通 | 青仙星花鱼、赤甜星花鱼、虹晶星花鱼、炭灰雪圆鳍、奶油雪圆鳍、月光雪圆鳍 | 闪烁饵 |  |  |
-| 至冬 | H006-至冬-垂钓点-古兽冰原凝露镇东北 | 普通 | 花鳉、青仙星花鱼、赤甜星花鱼、炭灰雪圆鳍、月光雪圆鳍 | 果酿饵、闪烁饵 |  |  |
-| 至冬 | H007-至冬-垂钓点-霜殛寒峰汐歌洞窟西 | 普通 | 花鳉、炭灰雪圆鳍、月光雪圆鳍、虹晶星花鱼、赤甜星花鱼 | 果酿饵、闪烁饵 |  |  |
+| Fontaine | E001-Fontaine-垂钓点-Erinnyes ForestFoggy Forest PathSouthwest | Normal | Medaka、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller、Maintenance Mek: Gold Leader | Fruit Paste Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E002-Fontaine-垂钓点-Erinnyes ForestLumidouce HarborNorthwest | Normal | Streaming Axe Marlin、Rippling Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Gold Leader | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E003-Fontaine-垂钓点-Fontaine Research Institute of Kinetic Energy Engineering RegionCentral Laboratory Ruins南 | Normal | Medaka、Streaming Axe Marlin、Rippling Heartfeather Bass、Maintenance Mek: Initial Configuration、Maintenance Mek: Water Body Cleaner | Fruit Paste Bait、Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E004-Fontaine-垂钓点-Court of Fontaine RegionMarcotte StationSouthwest | Normal | Streaming Axe Marlin、Blazing Heartfeather Bass、Maintenance Mek: Initial Configuration、Maintenance Mek: Situation Controller | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E005-Fontaine-垂钓点-Court of Fontaine RegionCourt of FontaineNortheast | GCM | Streaming Axe Marlin、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  | 是 |
+| Fontaine | E006-Fontaine-垂钓点-Court of Fontaine RegionCourt of Fontaine南 | Normal | Medaka、Streaming Axe Marlin、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller | Fruit Paste Bait、Sugardew Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E007-Fontaine-垂钓点-Belleau RegionPoissonSouthwest | Normal | Medaka、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Platinum Collection | Fruit Paste Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E008-Fontaine-垂钓点-翡黎区芒索斯山东麓东 | Normal | Streaming Axe Marlin、Blazing Heartfeather Bass、Maintenance Mek: Initial Configuration、Maintenance Mek: Situation Controller | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E009-Fontaine-垂钓点-Beryl RegionElynas东 | Normal | Streaming Axe Marlin、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Initial Configuration | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E010-Fontaine-垂钓点-Beryl RegionElynasNortheast | Normal | Sandstorm Angler、Rippling Heartfeather Bass、Maintenance Mek: Initial Configuration、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E011-Fontaine-垂钓点-Beryl RegionRomaritime Harbor北 | Normal | Streaming Axe Marlin、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E012-Fontaine-垂钓点-Morte RegionFort Charybdis Ruins南 | Normal | Medaka、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Situation Controller、Maintenance Mek: Gold Leader | Fruit Paste Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E013-Fontaine-垂钓点-Morte RegionOpera Epiclese南 | Normal | Streaming Axe Marlin、Blazing Heartfeather Bass、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller、Maintenance Mek: Gold Leader | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E014-Fontaine-垂钓点-诺思托伊区Petrichor南 | Normal | Streaming Axe Marlin、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Initial Configuration、Maintenance Mek: Water Body Cleaner、Maintenance Mek: Situation Controller、Maintenance Mek: Gold Leader | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  |  |
+| Fontaine | E015-Fontaine-垂钓点-Court of Fontaine RegionOpera Epiclese西 | GCM | Streaming Axe Marlin、Rippling Heartfeather Bass、Blazing Heartfeather Bass、Maintenance Mek: Initial Configuration | Sugardew Bait、Sour Bait、Flashing Maintenance Mek Bait |  | 是 |
+| Liyue | B001-Liyue-垂钓点-Cloud SeaLiyue HarborSoutheast | Normal | Sweet-Flower Medaka、Dawncatcher、Crystalfish、Betta、Pufferfish | Fruit Paste Bait、Redrot Bait、Fake Fly Bait |  |  |
+| Liyue | B002-Liyue-垂钓点-Chenyu Vale: Upper Vale古树茶坡 | Normal | Medaka、Betta、Brown Shirakodai、Rusty Koi、Golden Koi、Jade Heartfeather Bass | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait、Sour Bait |  |  |
+| Liyue | B003-Liyue-垂钓点-Chenyu Vale: Upper Vale古树茶坡东 | Normal | Medaka、Dawncatcher、Crystalfish、Betta、Rusty Koi、Jade Heartfeather Bass | Fruit Paste Bait、Redrot Bait、Fake Fly Bait、Sour Bait |  |  |
+| Liyue | B004-Liyue-垂钓点-Chenyu Vale: Southern MountainMt. XuanlianSouthwest | Normal | Sweet-Flower Medaka、Dawncatcher、Akai Maou、Golden Koi、Jade Heartfeather Bass | Fruit Paste Bait、Redrot Bait、Fake Fly Bait、Sour Bait |  |  |
+| Liyue | B005-Liyue-垂钓点-MinlinTianqiu Valley | Combat | Medaka、Crystalfish、Betta | Fruit Paste Bait、Redrot Bait | 是 |  |
+| Liyue | B006-Liyue-垂钓点-MinlinMt. Aocang | Normal | Medaka、Sweet-Flower Medaka、Dawncatcher、Crystalfish、Abiding Angelfish | Fruit Paste Bait、False Worm Bait |  |  |
+| Liyue | B007-Liyue-垂钓点-MinlinMt. Hulao东 | Normal | Medaka、Sweet-Flower Medaka、Dawncatcher、Crystalfish、Betta、Brown Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Liyue | B008-Liyue-垂钓点-Qiongji EstuaryGuili PlainsNortheast | Normal | Sweet-Flower Medaka、Betta、Akai Maou、Golden Koi、錆假龙、Brown Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Liyue | B009-Liyue-垂钓点-Qiongji EstuaryLuhua Pool | Normal | Sweet-Flower Medaka、Betta、Akai Maou、Golden Koi、錆假龙、Brown Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Liyue | B010-Liyue-垂钓点-Bishui PlainMt. Aocang东 | Combat | Medaka、Dawncatcher、Crystalfish、Brown Shirakodai | Fruit Paste Bait、False Worm Bait | 是 |  |
+| Liyue | B011-Liyue-垂钓点-Bishui PlainWuwang Hill南 | Combat | Medaka、Sweet-Flower Medaka、Dawncatcher、Brown Shirakodai | Fruit Paste Bait、False Worm Bait | 是 |  |
+| Liyue | B012-Liyue-垂钓点-Bishui PlainWangshu Inn西 | Normal | Sweet-Flower Medaka、Betta、Akai Maou、Golden Koi、Rusty Koi、Brown Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Liyue | B013-Liyue-垂钓点-Bishui PlainYaodie Valley东 | Normal | Medaka、Betta、Brown Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Liyue | B014-Liyue-垂钓点-Bishui PlainQingce VillageNortheast | Normal | Sweet-Flower Medaka、Dawncatcher、Crystalfish、Betta、Brown Shirakodai、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| The Chasm: Underground Mines | ZB001-The Chasm: Underground Mines-垂钓点-Underground Waterway西 | Normal | 花锵、Betta、Akai Maou、Brown Shirakodai、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| The Chasm: Underground Mines | ZB002-The Chasm: Underground Mines-垂钓点-Nameless Ruins西 | Combat | Sweet Flower锵、Dawncatcher、Crystalfish、Akai Maou、Pufferfish | Fruit Paste Bait、Redrot Bait、Fake Fly Bait | 是 |  |
+| Inazuma | C001-Inazuma-垂钓点-Yashiori IslandNazuchi Beach北 | Combat | Medaka、Lunged Stickleback、Purple Shirakodai、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait | 是 |  |
+| Inazuma | C002-Inazuma-垂钓点-Watatsumi IslandSuigetsu Pool东 | Combat | Medaka、Glaze Medaka、Dawncatcher、Crystalfish、Lunged Stickleback、Purple Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait | 是 |  |
+| Inazuma | C003-Inazuma-垂钓点-Watatsumi IslandSangonomiya Shrine北 | Normal | Medaka、Glaze Medaka、Dawncatcher、Crystalfish、Lunged Stickleback、Purple Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Inazuma | C004-Inazuma-垂钓点-Seirai IslandAmakumo Peak北 | Normal | Medaka、Dawncatcher、Crystalfish、Purple Shirakodai、Pufferfish | Fruit Paste Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Inazuma | C005-Inazuma-垂钓点-Seirai IslandKoseki VillageSoutheast | Normal | Glaze Medaka、Lunged Stickleback、Akai Maou、Golden Koi、Rusty Koi、Purple Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Inazuma | C006-Inazuma-垂钓点-Kannazuka甘金岛南 | Normal | Glaze Medaka、Lunged Stickleback、Purple Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Inazuma | C007-Inazuma-垂钓点-Narukami IslandRitou西 | Normal | Glaze Medaka、Lunged Stickleback、Akai Maou、Pufferfish、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、Fake Fly Bait |  |  |
+| Inazuma | C008-Inazuma-垂钓点-Tsurumi IslandChirai Shrine西 | Normal | Medaka、Glaze Medaka、Dawncatcher、Crystalfish | Fruit Paste Bait |  |  |
+| Inazuma | C009-Inazuma-垂钓点-Tsurumi IslandAutake PlainsSouthwest | Normal | Medaka、Lunged Stickleback、Akai Maou、Purple Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Inazuma | C010-Inazuma-垂钓点-KannazukaKujou EncampmentSoutheast | GCM | Raimei Angelfish | False Worm Bait |  | 是 |
+| Enkanomiya | ZC001-Enkanomiya-垂钓点-The Serpent's Bowels南 | Normal | Crystalfish、Lunged Stickleback、Formalo Ray、Divda Ray | Fruit Paste Bait、Redrot Bait、Fake Fly Bait |  |  |
+| Enkanomiya | ZC002-Enkanomiya-垂钓点-The Serpent's Heart北 | Combat | Dawncatcher、Akai Maou、Formalo Ray、Divda Ray | Fruit Paste Bait、Redrot Bait、Fake Fly Bait | 是 |  |
+| Enkanomiya | ZC003-Enkanomiya-垂钓点-The Serpent's HeartNorthwest | Normal | Dawncatcher、流纹京紫鲽鱼、Formalo Ray、Divda Ray | Fruit Paste Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Natlan | F001-Natlan-垂钓点-境壁山Tecoloapan Bay东 | Normal | Pseudoshark Unihornfish、Medaka、Floral Rapidfighting Fish、Diving Rapidfighting Fish、Dusk Sunfish、Greenwave Sunfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F002-Natlan-垂钓点-Ochkanatlan东 | Normal | Medaka、Greenwave Sunfish、Dusk Sunfish、Pseudoshark Unihornfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F003-Natlan-垂钓点-OchkanatlanNortheast | Combat | Greenwave Sunfish、Floral Rapidfighting Fish、Pseudoshark Unihornfish | Spinelgrain Bait | 是 |  |
+| Natlan | F004-Natlan-垂钓点-Ochkanatlan北 | Normal | Medaka、Dusk Sunfish、Pseudoshark Unihornfish、Diving Rapidfighting Fish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F005-Natlan-垂钓点-Ochkanatlan南 | Normal | Medaka、Floral Rapidfighting Fish、Diving Rapidfighting Fish、Greenwave Sunfish、Dusk Sunfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F006-Natlan-垂钓点-Ochkanatlan西 | Normal | Diving Rapidfighting Fish、Floral Rapidfighting Fish、Pseudoshark Unihornfish | Spinelgrain Bait |  |  |
+| Natlan | F007-Natlan-垂钓点-OchkanatlanNorthwest | Normal | Phony Phlogiston Unihornfish、Magma Rapidfighting Fish | Emberglow Bait |  |  |
+| Natlan | F008-Natlan-垂钓点-Toyac SpringsToyac Springs | Normal | Magma Rapidfighting Fish、Phony Phlogiston Unihornfish | Emberglow Bait |  |  |
+| Natlan | F009-Natlan-垂钓点-Tilted Branch CliffFlower-Feather Clan北 | Normal | Dusk Sunfish、Diving Rapidfighting Fish、Pseudoshark Unihornfish | Spinelgrain Bait |  |  |
+| Natlan | F010-Natlan-垂钓点-Tilted Branch CliffFlower-Feather Clan西 | Normal | Medaka、Floral Rapidfighting Fish、Diving Rapidfighting Fish、Dusk Sunfish、Pseudoshark Unihornfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F011-Natlan-垂钓点-距石山Ancestral Temple东 | Normal | Magma Rapidfighting Fish、Phony Phlogiston Unihornfish | Emberglow Bait |  |  |
+| Natlan | F012-Natlan-垂钓点-Atocpan西 | Normal | Phony Phlogiston Unihornfish、Secret Source Scout Sweeper | Emberglow Bait |  |  |
+| Natlan | F013-Natlan-垂钓点-AtocpanNorthwest | Normal | Magma Rapidfighting Fish、Phony Phlogiston Unihornfish、Secret Source Scout Sweeper | Emberglow Bait |  |  |
+| Natlan | F014-Natlan-垂钓点-Atocpan东 | Normal | Medaka、Floral Rapidfighting Fish、Greenwave Sunfish、Dusk Sunfish、Pseudoshark Unihornfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F015-Natlan-垂钓点-Easybreeze ResortColorfall Cliffs北 | Normal | Medaka、Floral Rapidfighting Fish、Greenwave Sunfish、Pseudoshark Unihornfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Natlan | F016-Natlan-垂钓点-Easybreeze Resort呼呼丘Southwest | Normal | Floral Rapidfighting Fish、Diving Rapidfighting Fish、Dusk Sunfish、Pseudoshark Unihornfish | Spinelgrain Bait |  |  |
+| Natlan | F017-Natlan-垂钓点-Easybreeze ResortEasybreeze MarketSouthwest | Normal | Medaka、Diving Rapidfighting Fish、Greenwave Sunfish、Dusk Sunfish | Fruit Paste Bait、Spinelgrain Bait |  |  |
+| Ancient Sacred Mountain | ZF001-Ancient Sacred Mountain-垂钓点-Sea of Shifting Sentience | Normal | Magma Rapidfighting Fish、Secret Source Scout Sweeper | Emberglow Bait |  |  |
+| Mondstadt | A001-Mondstadt-垂钓点-DragonspineSkyfrost Nail西 | Normal | Medaka、Venomspine Fish、Snowstrider、Tea-Colored Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Mondstadt | A002-Mondstadt-垂钓点-Starfell ValleyWhispering Woods南 | Normal | Aizen Medaka、Crystalfish、Venomspine Fish、Rusty Koi、Tea-Colored Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Mondstadt | A003-Mondstadt-垂钓点-Starfell ValleyStormbearer Mountains | Normal | Medaka、Aizen Medaka、Dawncatcher、Crystalfish、Venomspine Fish、Golden Koi、Tea-Colored Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Mondstadt | A004-Mondstadt-垂钓点-Brightcrown MountainsStormterror's Lair北 | Combat | Medaka、Aizen Medaka、Dawncatcher、Crystalfish | Fruit Paste Bait | 是 |  |
+| Mondstadt | A005-Mondstadt-垂钓点-Brightcrown MountainsStormterror's Lair南 | Normal | Medaka、Aizen Medaka、Dawncatcher、Tea-Colored Shirakodai | Fruit Paste Bait、False Worm Bait |  |  |
+| Mondstadt | A006-Mondstadt-垂钓点-Windwail HighlandDawn WinerySouthwest | Combat | Aizen Medaka、Dawncatcher、Venomspine Fish、Akai Maou、Tea-Colored Shirakodai、Pufferfish、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait | 是 |  |
+| Mondstadt | A007-Mondstadt-垂钓点-Windwail HighlandSpringvale北 | Normal | Medaka、Aizen Medaka、Venomspine Fish、Akai Maou、Tea-Colored Shirakodai、Pufferfish、Bitter Pufferfish | Fruit Paste Bait、Redrot Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Mondstadt | A008-Mondstadt-垂钓点-Windwail HighlandWindrise南 | Normal | Medaka、Aizen Medaka、Venomspine Fish、Tea-Colored Shirakodai | Fruit Paste Bait、Redrot Bait、False Worm Bait |  |  |
+| Mondstadt | A009-Mondstadt-垂钓点-Windrest PeakMillhaven东 | Normal | Venomspine Fish、Akai Maou、Golden Koi、Cerulean Doppeldrake | Redrot Bait、Fake Fly Bait |  |  |
+| Mondstadt | A010-Mondstadt-垂钓点-Windrest PeakDornman PortSouthwest | Normal | Aizen Medaka、Dawncatcher、Crystalfish、Cerulean Doppeldrake | Fruit Paste Bait、Fake Fly Bait |  |  |
+| Mondstadt | A011-Mondstadt-垂钓点-Windrest PeakDornman Port南 | Normal | Dawncatcher、Tea-Colored Shirakodai、Pufferfish、Bitter Pufferfish、Cerulean Doppeldrake | Fruit Paste Bait、False Worm Bait、Fake Fly Bait |  |  |
+| Sumeru | D001-Sumeru-垂钓点-Land of Lower SetekhDar al-ShifaSouthwest | Normal | Medaka、Dawncatcher、Akai Maou、True Fruit Angler、Lazurite Axe Marlin | Fruit Paste Bait、Redrot Bait、Sugardew Bait |  |  |
+| Sumeru | D002-Sumeru-垂钓点-Land of Lower SetekhAaru Village | Normal | Medaka、Crystalfish、Sandstorm Angler、Sunset Cloud Angler、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D003-Sumeru-垂钓点-Desert of Hadramaveth「Debris of Panjvahe | Combat | True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Sugardew Bait | 是 |  |
+| Sumeru | D004-Sumeru-垂钓点-Lokapala JungleMawtiyima Forest | Normal | Peach of the Deep Waves、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Sugardew Bait |  |  |
+| Sumeru | D005-Sumeru-垂钓点-VanaranaFane of Ashvattha北 | Normal | Medaka、True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D006-Sumeru-垂钓点-荒石苍漠Mount Temur南 | Normal | Dawncatcher、True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D007-Sumeru-垂钓点-Avidya ForestYazadaha Pool | Normal | Akai Maou、True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Redrot Bait、Sugardew Bait |  |  |
+| Sumeru | D008-Sumeru-垂钓点-Avidya ForestVimara Village北 | Normal | Medaka、True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D009-Sumeru-垂钓点-Avidya ForestSumeru City南 | Normal | Dawncatcher、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D010-Sumeru-垂钓点-Ardravi ValleyPort Ormos北 | Normal | Crystalfish、True Fruit Angler、Sandstorm Angler、Sunset Cloud Angler、Lazurite Axe Marlin、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Sumeru | D011-Sumeru-垂钓点-Ardravi ValleyDevantaka Mountain | Normal | Dawncatcher、True Fruit Angler、Sunset Cloud Angler、Halcyon Jade Axe Marlin | Fruit Paste Bait、Sugardew Bait |  |  |
+| Nod-Krai | G001-Nod-Krai-垂钓点-Lempo IsleClink-Clank Krumkake Craftshop北 | Normal | Medaka、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye、Common Axehead Fish、Veggie Mauler Shark | Fruit Paste Bait、Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G002-Nod-Krai-垂钓点-Lempo IsleNothing PassageNorthwest | Normal | Medaka、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye | Fruit Paste Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G003-Nod-Krai-垂钓点-Lempo IsleBlue Amber Lake | Normal | Common Axehead Fish、Frosted Axehead Fish、Blazing Axehead Fish、Veggie Mauler Shark、Neon Mauler Shark | Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G004-Nod-Krai-垂钓点-Lempo IsleNasha TownSouthwest | Normal | Medaka、Common Axehead Fish、Frosted Axehead Fish、Nightgaze Crystal-Eye | Fruit Paste Bait、Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G005-Nod-Krai-垂钓点-Paha Isle月矩力实验设计局北 | Normal | Medaka、Azuregaze Crystal-Eye、Veggie Mauler Shark、Neon Mauler Shark | Fruit Paste Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G006-Nod-Krai-垂钓点-Paha Isle月矩力实验设计局Southeast | Normal | Medaka、Common Axehead Fish、Frosted Axehead Fish、Nightgaze Crystal-Eye | Fruit Paste Bait、Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G007-Nod-Krai-垂钓点-Hiisi IslandLight-Bathed PlatformSouthwest | Normal | Veggie Mauler Shark、Neon Mauler Shark、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye | Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G008-Nod-Krai-垂钓点-Hiisi IslandFrostmoon WorkshopNortheast | Normal | Frosted Axehead Fish、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye、Neon Mauler Shark | Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G009-Nod-Krai-垂钓点-Hiisi IslandFrostmoon Workshop西 | Combat | Medaka、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye | Fruit Paste Bait、Refreshing Lakka Bait | 是 |  |
+| Nod-Krai | G010-Nod-Krai-垂钓点-虚海望噩影泽地Northeast | Normal | Medaka、Veggie Mauler Shark、Neon Mauler Shark、Azuregaze Crystal-Eye | Fruit Paste Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G011-Nod-Krai-垂钓点-虚海望Piramida南 | Normal | Medaka、Common Axehead Fish、Frosted Axehead Fish、Veggie Mauler Shark、Neon Mauler Shark | Fruit Paste Bait、Berry Bait、Refreshing Lakka Bait |  |  |
+| Nod-Krai | G012-Nod-Krai-垂钓点-烟硌山峰Cliffwatch Camp西 | Normal | Common Axehead Fish、Frosted Axehead Fish、Veggie Mauler Shark、Neon Mauler Shark、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye | Berry Bait、Refreshing Lakka Bait |  |  |
+| 霜月 | ZG001-霜月-垂钓点-Ungien's Circle | Normal | Medaka、Frosted Axehead Fish、Azuregaze Crystal-Eye、Nightgaze Crystal-Eye | Fruit Paste Bait、Berry Bait、Refreshing Lakka Bait |  |  |
+| Snezhnaya | H001-Snezhnaya-垂钓点-Everfrozen Earth海屑镇 | Normal | Medaka、Charcoal Snowfin、Frostpetal Starbloom Fish、Ruby Starbloom Fish | Fruit Paste Bait、Glimmering Bait |  |  |
+| Snezhnaya | H002-Snezhnaya-垂钓点-Everfrozen Earth海屑镇Southwest | Combat | Medaka、Charcoal Snowfin、Moonlight Snowfin、Frostpetal Starbloom Fish、Ruby Starbloom Fish | Fruit Paste Bait、Glimmering Bait | 是 |  |
+| Snezhnaya | H003-Snezhnaya-垂钓点-Volkodlak Tundra中部 | Normal | Charcoal Snowfin、Moonlight Snowfin、Iridescent Starbloom Fish、Ruby Starbloom Fish、Frostpetal Starbloom Fish | Glimmering Bait |  |  |
+| Snezhnaya | H004-Snezhnaya-垂钓点-Volkodlak Tundra巡猎者木屋北 | Normal | Medaka、Charcoal Snowfin、Ruby Starbloom Fish、Frostpetal Starbloom Fish、Iridescent Starbloom Fish | Fruit Paste Bait、Glimmering Bait |  |  |
+| Snezhnaya | H005-Snezhnaya-垂钓点-Volkodlak Tundra凝露镇东 | Normal | Frostpetal Starbloom Fish、Ruby Starbloom Fish、Iridescent Starbloom Fish、Charcoal Snowfin、Cream Snowfin、Moonlight Snowfin | Glimmering Bait |  |  |
+| Snezhnaya | H006-Snezhnaya-垂钓点-Volkodlak Tundra凝露镇Northeast | Normal | Medaka、Frostpetal Starbloom Fish、Ruby Starbloom Fish、Charcoal Snowfin、Moonlight Snowfin | Fruit Paste Bait、Glimmering Bait |  |  |
+| Snezhnaya | H007-Snezhnaya-垂钓点-Fellfrost Peak汐歌Cave西 | Normal | Medaka、Charcoal Snowfin、Moonlight Snowfin、Iridescent Starbloom Fish、Ruby Starbloom Fish | Fruit Paste Bait、Glimmering Bait |  |  |
 
 </details>
 
 ---
 
-# 📬 反馈与支持
+# 📬 反馈与Supports
 
-- **推荐反馈群**：BetterGI v7 群（1029539994）
+- **Recommended反馈群**：BetterGI v7 群（1029539994）
 - **反馈邮箱**：hijiwos@hotmail.com

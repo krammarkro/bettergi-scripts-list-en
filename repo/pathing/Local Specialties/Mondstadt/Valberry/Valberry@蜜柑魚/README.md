@@ -1,45 +1,45 @@
-# 落落莓采集路线 · 推荐配置与说明
+# ValberryGathering Route · Recommended配置与说明
 
-## 推荐使用角色：迪希雅（行走位）
+## Recommended使用角色：Dehya（行走位）
 
-- **建议等级**：迪希雅 60 级（突破后）
+- **Recommendation等级**：Dehya 60 级（突破后）
   - 解锁固有天赋「崇诚之真」：提升队伍白天移动速度
-- **推荐武器**：钟剑（受到攻击时生成护盾，便于在怪物群中穿梭）
+- **Recommended武器**：The Bell（受到攻击时生成护盾，便于在Monsters / Enemies群中穿梭）
 
-## 路线说明
+## Route说明
 
-- 采集路径中 **经常需要在怪物群中穿梭**
-- 在落落莓附近有怪物群聚集的点位，路线会自动使用迪希雅的 **元素战技（E）**
+- 采集Path中 **经常需要在Monsters / Enemies群中穿梭**
+- 在Valberry附近有Monsters / Enemies群聚集的点位，Route会自动使用Dehya的 **元素战技（E）**
   - 提供抗打断效果，防止角色被打偏而无法对准采集点
 
-## 采集路线表
-> 路径数据基于队伍（迪希雅、枫原万叶、罗莎莉亚、蓝砚）运行所得
+## Gathering Route表
+> Path数据基于队伍（Dehya、Kaedehara Kazuha、Rosaria、Lan Yan）运行所得
 
-| 任务名 | 时长 | 个数 | 效率（秒/个） | 秒均（个/秒） |
+| 任务名 | 时长 |  items数 | 效率（seconds/ items） | seconds均（ items/seconds） |
 | --- | --- | --- | --- | --- |
-| A01 蒙德-望风山地一 | 1分57秒 | 24 | 4.88 | 0.205 |
-| A02 蒙德-望风山地二 | 1分56秒 | 12 | 9.67 | 0.103 |
-| A03 蒙德-望风山地三 | 2分5秒 | 24 | 5.21 | 0.192 |
-| A04 蒙德-望风角 | 1分34秒 | 16 | 5.88 | 0.170 |
-| A05 蒙德-明冠峡西北一 | 1分1秒 | 12 | 5.08 | 0.197 |
-| A06 蒙德-明冠峡西北二 | 41秒 | 8 | 5.13 | 0.195 |
-| F01 纳塔-花羽会七天神像 | 42秒 | 2 | 21.00 | 0.048 |
+| A01 Mondstadt-Stormbearer Mountains一 | 1分57seconds | 24 | 4.88 | 0.205 |
+| A02 Mondstadt-Stormbearer Mountains二 | 1分56seconds | 12 | 9.67 | 0.103 |
+| A03 Mondstadt-Stormbearer Mountains三 | 2分5seconds | 24 | 5.21 | 0.192 |
+| A04 Mondstadt-Stormbearer Point | 1分34seconds | 16 | 5.88 | 0.170 |
+| A05 Mondstadt-Brightcrown CanyonNorthwest一 | 1分1seconds | 12 | 5.08 | 0.197 |
+| A06 Mondstadt-Brightcrown CanyonNorthwest二 | 41seconds | 8 | 5.13 | 0.195 |
+| F01 Natlan-Flower-Feather ClanStatue of The Seven | 42seconds | 2 | 21.00 | 0.048 |
 
 ## 总时长
-约 10 分钟（精确合计：9分56秒）  
-总个数：98 个
+约 10 minutes（精确合计：9分56seconds）  
+总 items数：98  items
 
-> 效率（秒/个）= 时长 ÷ 个数，数值越低越好  
-> 秒均（个/秒）= 个数 ÷ 时长，数值越高越好  
-> A02 路线包含简易脚本，会尝试走向地图边缘采集，**失败概率较高**，建议谨慎使用或手动调整
+> 效率（seconds/ items）= 时长 ÷  items数，数值越低越好  
+> seconds均（ items/seconds）=  items数 ÷ 时长，数值越高越好  
+> A02 Route包含简易脚本，会尝试走向地图边缘采集，**Defeat概率较高**，Recommendation谨慎使用或手动调整
 
-## 推荐队伍配置
+## Recommended Team配置
 
 | 角色 | 作用 |
 |------|------|
-| 迪希雅 | 行走位、抗打断、白天移速辅助 |
-| 罗莎莉亚 | 夜间移速提升（与迪希雅形成全天候加速） |
-| 枫原万叶 | 体力消耗降低、聚怪辅助 |
-| 任意风系角色 | 双风共鸣：提升移速、降低体力消耗 |
+| Dehya | 行走位、抗打断、白天移速辅助 |
+| Rosaria | 夜间移速提升（与Dehya形成全天候Speed Up） |
+| Kaedehara Kazuha | Stamina消耗降低、聚怪辅助 |
+| 任意风系角色 | Anemo Resonance共鸣：提升移速、降低Stamina消耗 |
 
-> 双风 + 迪希雅（白天）+ 罗莎莉亚（夜间）可实现全时段高速采集体验。
+> Anemo Resonance + Dehya（白天）+ Rosaria（夜间）可实现全时段高速采集体验。

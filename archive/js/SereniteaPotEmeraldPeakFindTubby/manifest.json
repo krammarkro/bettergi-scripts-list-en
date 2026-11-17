@@ -1,0 +1,12 @@
+{
+  "manifest_version": 1,
+  "name": "SereniteaPotEmeraldPeakFindTubby",
+  "version": "1.0",
+  "description": "Right Walk 0.5秒",
+  "authors": [
+    {
+      "name": "风埠"
+    }
+  ],
+  "main": "main.js"
+}

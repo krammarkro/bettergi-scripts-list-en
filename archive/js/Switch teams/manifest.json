@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "切换队伍",
+  "name": "Switch teams",
   "version": "1.0",
-  "description": "按顺序切换至队伍",
+  "description": "按顺序Switch 至队伍",
   "authors": [
     {
       "name": "LL"

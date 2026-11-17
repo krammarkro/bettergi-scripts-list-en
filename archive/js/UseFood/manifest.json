@@ -1,0 +1,17 @@
+{
+  "manifest_version": 1,
+  "name": "Food/Dishes使用",
+  "version": "1.2",
+  "description": "请输入Food/Dishes全部名称,需要0.44.6以及以上版本",
+  "tags": [
+    "Food/Dishes"
+  ],
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

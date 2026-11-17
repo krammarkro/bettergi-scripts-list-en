@@ -1,0 +1,36 @@
+{
+  "info": {
+    "name": "27-Bird Egg-Fontaine-Fortress of Meropide-Lower-Statue of The Seven-x2",
+    "type": "collect",
+    "version": "1.0",
+    "description": "",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "呱呱z",
+        "links": "https://github.com/jidingcai"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 4545.52,
+      "y": 4225.61,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "x": 4550.19,
+      "y": 4225.85,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "nahida_collect",
+      "action_params": ""
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-- 本目录下的路线与`中效率`目录下的路线互不重合，用户可根据自己的实际需求选择仅跑高效路线或全都跑。
+- Routes in this directory do not overlap with those in `Medium Efficiency`. Users can run only high-efficiency routes or all routes according to their needs.
 
-- 部分路线需要草神，无草神也可运行。BetterGI会自动跳过部分路线。
+- Some routes require Nahida, but can also run without her. BetterGI will automatically skip routes that require her if unavailable.
 
-- 对开发者：划分高效率与中效率的阈值为每分钟5.0个鸟蛋。计算方式为$`\frac{预期收获}{运行时间+脚本间隔}`$，其中脚本间隔在0.55版本以后为1秒。
+- For developers: The threshold separating high and medium efficiency is 5.0 Bird Eggs per minute. Calculated as: $`\frac{Expected Yield}{Runtime + Script Delay}`$，where script delay is 1 second after version 0.55.

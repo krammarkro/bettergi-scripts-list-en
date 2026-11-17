@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Switch Account （非OCR方案）",
+  "version": "1.0",
+  "description": "从主页面退出登录实现Switch 选定Account 。\n脚本问题请联系作者。\n免责申明：所有的Account 密码均保存在本地，请使用者妥善保管Account 密码，请勿外泄Account 密码。\n",
+  "tags": [
+    "Switch Account ",
+    "坐标点击"
+  ],
+  "authors": [
+    {
+      "name": "彩虹QQ人",
+      "email": "846224811@qq.com",
+      "links": "https://github.com/KRdingsan"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

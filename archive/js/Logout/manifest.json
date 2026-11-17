@@ -1,11 +1,11 @@
 {
   "manifest_version": 1,
-  "name": "退出并重登",
+  "name": "Logout",
   "version": "1.0",
-  "description": "退出游戏并退出账号",
+  "description": "退出游戏并退出Account",
   "authors": [
     {
-      "name": "愚溪",
+      "name": "愚溪"
     }
   ],
   "main": "main.js"

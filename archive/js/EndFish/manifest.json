@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "结束钓鱼",
+  "name": "EndFish",
   "version": "1.0",
   "description": "结束钓鱼",
   "authors": [
     {
-      "name": "龙弗山权",
+      "name": "龙弗山权"
     }
   ],
-  "main": "main.js",
+  "main": "main.js"
 }

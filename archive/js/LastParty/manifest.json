@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "切换上一队",
+  "name": "LastParty",
   "version": "1.0",
-  "description": "用于切换到上一队",
+  "description": "用于Switch 到上一队",
   "authors": [
     {
-      "name": "HZYgrandma",
+      "name": "HZYgrandma"
     }
   ],
-  "main": "main.js",
+  "main": "main.js"
 }

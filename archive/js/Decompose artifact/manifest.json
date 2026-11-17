@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "分解狗粮",
+  "name": "Decompose artifact",
   "version": "1.0",
-  "description": "用于分解狗粮",
+  "description": "用于Decompose 狗粮",
   "authors": [
     {
-      "name": "鹤望兰",
+      "name": "鹤望兰"
     }
   ],
-  "main": "main.js",
+  "main": "main.js"
 }
