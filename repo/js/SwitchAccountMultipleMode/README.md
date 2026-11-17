@@ -1,51 +1,17 @@
-## 1.下拉列表模式
+# Switch Account (Multi-Mode)
 
-### 1.1.使用前准备
+## 1. Dropdown Selection Mode
 
-确保你想要Switch的Account是已登录状态，且Account选择列表中存在。
+### 1.1 Prerequisites
+Ensure the target account you want to switch to is already logged in on the client and appears in the in-game account selection dropdown list.
 
-### 1.2.使用方式
+### 1.2 Usage
+1. Add this script to your Configuration Group.
+2. Right-click and choose "Modify JS Script Custom Configuration".
+3. Enter the exact name of the account you want to log in as; this name must match the entry displayed in the account list.
+   - Confirm whether your login uses phone number or email format.
 
-1. 把此脚本添加到Configuration组
-2. 右键点击选择"修改JS脚本自定义Configuration"
-3. 填入你想登录的账户名称，该名称必须和Account列表中显示的一致
-   - 请确认你此次登录使用的是手机号还是邮箱
+## 2. Bilibili Server Alternate Account Switching
+Ensure the target account is already logged into the client (currently supports alternating between two accounts).
 
-## 2.B服Switch另一个Account
-
-确保你想要Switch的Account（目前只Supports两个Account互相Switch）是已登录状态。
-
-目前因为窗口句柄的问题还Compare不完善，所以Other的自定义信息填了也没多大用，跑起来也不敢说太Stable，大家多测测，更诚邀大佬们来改良
-
-[在此Thank You空的大力Supports，点击可查看原po](https://pd.qq.com/g/620449244035027412/post/B_022e6a69a93f0a001441152193488791090X60?showGuild=1&errCode=0&asideType=Full) 
-
-## 3.国际服
-
-目前已实现国际服Account+密码和下拉列表登陆，并能Switch服务器（亚、欧、美、台港澳），部分未尽问题尚未处理，大家多测测，更诚邀大佬们来改良
-
-国际服有个坑点是Account密码登完后，是否保存Recording的弹框是在退出的时候才弹的，本脚本没做处理，用下拉列表的望周知
-
-## 4.Account+密码
-
-开JS自定义填就是了，选对模式，Other不该选不该填的就别选别填
-
-# **重要免责声明：**
-
-1. **数据安全：**
-   1. 本脚本使用的用户名、密码等敏感信息仅存储在本地设备，开发者无法获取。
-   2. 使用者需自行承担账户信息泄露风险，请勿在公共设备或不可信环境中使用。
-2. **使用风险：**
-   1. 本脚本为开源Learning项目，禁止用于商业用途或违反游戏条款的行为。
-   2. 滥用可能导致游戏Account封禁，开发者不承担任何直接或间接责任。
-3. **责任限制：**
-   1. 本脚本按“现状”提供，不承诺兼容性、安全性或Features完整性。
-   2. 因使用本脚本导致的Account、数据、设备损失，开发者概不负责。
-4. **禁止条款：**
-   1. 严禁逆向工程、恶意篡改或用于外挂等非法用途。
-   2. 若游戏运营商提出要求，开发者保留随时停止维护的权利。
-
-使用脚本即表示您已阅读并同意上述条款。
-
-如果使用BGIAll-in-One Run启动，且第一个脚本就是AccountSwitch，则需要开启BGI启动Configuration-同时启动原神-Auto 进入游戏
-
-根据使用者设备Configuration和网络环境，脚本中的延时可以适当调整。（如果不熟悉脚本操作则不建议修改延时）
+Note: Window handle detection has limitations on certain setups; if you encounter issues, verify game client focus and window scaling settings.

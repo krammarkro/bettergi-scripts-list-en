@@ -1,24 +1,17 @@
-## 一、Features概述
+# Scaramouche Boss Burst Recharge
 
-### 1. 充能
+## 1. Feature Overview
 
-- 在Statue of The SevenSwitch Party后，Go toThe DoctorWeekly Boss直接把Character大招回满
+### Burst Energy Recharging
+- Switches party at a Statue of The Seven, enters the Scaramouche / Shouki no Kami Weekly Boss domain, and immediately refills all party members' Elemental Burst energy to maximum using the boss encounter mechanic.
 
-## 二、Version与环境
+## 2. Version & Environment
 
-- BGI ≥ v0.55
+- BetterGI ≥ v0.55
 
-1.4
-适配幼女少女成女体型
-
-1.3
-充能结束后退出Weekly Boss不再回Statue of The Seven，解决因设备问题传Statue of The Seven卡死问题
-
-1.2
-增加进入Weekly Boss判断
-
-1.1
-修复Switch Party问题
-
-1.0
-Switch Party充能
+### Changelog
+- **v1.4**: Added support for child, teen, and adult female model sizes.
+- **v1.3**: Exits domain without teleporting back to Statue of The Seven to resolve loading freeze on slower devices.
+- **v1.2**: Added domain entry state check.
+- **v1.1**: Fixed party switching issue.
+- **v1.0**: Initial release for party switch and burst recharge.

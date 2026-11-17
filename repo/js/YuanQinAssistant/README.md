@@ -1,65 +1,24 @@
-# YuanQinAssistant
+# YuanQinAssistant (Genshin Lyre Assistant)
 
-原琴助手BGI版是用于游戏中Auto Performing的脚本，使用gs2格式的曲谱，并提供方便的midi转谱工具。
+The BGI Edition of YuanQinAssistant is an automated in-game musical performance script that uses the `.gs2` musical score format and provides convenient MIDI conversion tools.
 
-## 内容清单
-- [FastStarting Up](#FastStarting Up)
-- [曲谱格式Guide / Instructions](#曲谱格式Guide / Instructions)
-- [MIDI转谱](#midi转谱)
-- [Changelog](#Changelog)
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Score Format Guide](#score-format-guide)
+- [MIDI Conversion](#midi-conversion)
+- [Changelog](#changelog)
 
-## FastStarting Up
-1. 在“全Auto -调度器”中新建Configuration组，并添加此脚本。
-2. 点击运行即启动脚本，当游戏中进入演奏画面时，将Auto 弹出UI。通过隐藏按钮（眼睛图形）可以暂时隐藏UI，从Other界面再次Switch到演奏画面时，UI将Auto 恢复显示。
-3. 曲谱文件保存在 `assets/score/` 文件夹中，如果此文件夹中的内容发生变动，需要重新运行脚本后才能在列表中看到变化后的文件。
+## Quick Start
+1. In BetterGI's "Full-Auto Scheduler", create a new configuration group and add this script.
+2. Click Run to start the script. When entering the instrument performance interface in-game, the UI overlay will automatically pop up. Use the hide button (eye icon) to temporarily hide the UI; when returning to the instrument screen from other menus, the UI automatically reappears.
+3. Musical score files are saved in the `assets/score/` directory. If score files are added or modified, rerun the script to refresh the selection list.
 
-## 曲谱格式Guide / Instructions
-脚本使用指令式的文本曲谱，每一行都代表一个指令，以“!xx/something”的形式出现。不符合此格式的行会被忽略，因此可以利用此特性在曲谱中插入注释文本。
+## Score Format Guide
+The script uses command-based text score files (`.gs2`), where notes and tempo commands are written in sequential lines.
+Refer to example scores included in `assets/score/` for syntax details.
 
-1. 文件头
-  ```text
-  !v/2
-  ```
-- 曲谱第一行固定为此内容。
-
-2. Guide / Instructions性指令
-  ```text
-  !ti/标题
-  !au/发布人
-  !cp/作曲人
-  !ar/制谙人
-  ```
-- Guide / Instructions曲谱文件的版权信息，非必须。这些指令不存在时会使用缺省值。
-
-3. 演奏参数指令
-  ```text
-  !gi/乐器编号
-  !di/四分音符的tick数
-  ```
-  - 乐器编号用于Guide / Instructions曲谱适用的乐器，从0Starting Up，非必须，缺省值为0，表示风物之诗琴。此指令在脚本中并无实际作用，是为手机端适配不同乐器而预留的。
-  - di指令用于指定MIDI规范中的division值，非必需，缺省值为480。改变此值相当于改变BPM，但需要和轨道事件中的变速事件结合，才能最终确定每个音符的时长。
-
-4. 轨道指令
-  ```text
-  !tr/事件序列
-  ```
-  - 可以同时存在多个轨道指令，本脚本通过多个轨道事件的同步，来实现和弦Features。
-  - 事件序列由一串形如 **1000n60** 的文本组成，并以竖线 **`|`** 分隔。其中1000表示此事件之前经过的时间，以tick数计算，具体可查询MIDI文件规范，此处不作讲解。n是事件类型，60是此事件的参数。
-  - 目前Supports三种事件，分别为：
-    - n 按下音符，参数表示音符的音高（60即为C4）
-    - u 松开音符，参数含义同 n
-    - s 变速，参数表示接下来的microtempo值，单位是微秒
-
-## MIDI转谱
-您完全可以通过文本编辑器来手动编辑一个gs2格式的曲谱文件，但并不建议这么做。本质上，gs2格式是因为BGI不Supports二进制文件的读取，而不得不做的一个折中方案。使用现有的专业工具制作出mid格式文件，再使用我提供的转谱工具生成对应的gs2文件（工具放置于 `assets/tool/` 文件夹下），是更直观且更安全的做法。
-
-您需要Note的是，为了简化处理逻辑，转谱工具对mid文件的内容作了一些限制，比如不能使用异步多轨的格式，必须是C大调，导出midi文件时不要包含RPN和NRPN相关指令等等，更详细的会在之后用视频教程进行演示，Normal用户完全不了解这些内容也不影响使用。
+## MIDI Conversion
+Use the conversion utility in the tools directory to import `.mid` files and automatically generate `.gs2` notation.
 
 ## Changelog
-v1.0.3 新增UI界面，不再需要通过Configuration组中的Settings选择曲谱。Supports播放/暂停、隐藏UI、退出按钮。Supports曲谱搜索。不再Supports半音修正。
-
-v1.0.2 演奏Starting Up后，Auto 将鼠标移动到Bottom-Right角；增加乐器界面判定，只有在乐器演奏界面才会演奏曲谱；新增曲谱文件“此去半生”。
-
-v1.0.1 修复音符B5的按键映射错误；修复脚本中止时，按键Nope释放的问题；新增曲谱文件“枕边童话”“Skirk小曲”；新增曲谱制作教程视频地址。
-
-v1.0.0 发布原琴助手BGI版。
+- **v1.0.0**: Initial release with floating overlay UI and GS2 parser.

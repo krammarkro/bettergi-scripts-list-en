@@ -20,7 +20,7 @@ Right-click the script and select "Modify JS Custom Configuration":
 ### Step 3: Configure Scheduler Settings
 - Set combat timeout to 40–60 seconds.
 - It is best to disable "Auto Combat - Automatically pick up drops after combat" to avoid wasting significant time.
-![](Configuration组Configuration参考.png)
+![](configuration_reference.png)
 
 ### Step 4: Run the Script
 Close the configuration window and run the script to begin automatically completing your Daily Commissions.
@@ -63,7 +63,7 @@ Check whether BetterGI shortcuts (e.g. Stop Current Script) or third-party tools
 - If issues persist, send that day's logs from `BetterGI/log/` and commission screenshots to the author for troubleshooting.
 
 ## Developer Guide
-Dialogue commission documentation: [AutoCommission Standard Dialogue Commission Creation Guide](https://cnb.cool/bettergi/bettergi-scripts-list/-/tree/main/repo/js/AutoCommission/对话委托制作方法.md).
+Dialogue commission documentation: [AutoCommission Standard Dialogue Commission Creation Guide](https://cnb.cool/bettergi/bettergi-scripts-list/-/tree/main/repo/js/AutoCommission/dialogue_commission_guide.md).
 
 ## Feedback
 1. Join QQ group: 1053392753

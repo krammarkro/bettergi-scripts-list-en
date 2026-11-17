@@ -1,51 +1,49 @@
-# 🏮 Serenitea Pot All-in-One Instructions
+# 🏮 Serenitea Pot All-in-One Guide
 
-## ✨ 主要Features
-- Auto 进入Serenitea Pot
-- Auto 找阿圆领取奖励（宝钱+Friendship）
-- Auto 购买物品
-- Auto 做饭、锻造
+## ✨ Core Features
+- Automatically enter the Serenitea Pot
+- Automatically talk to Tubby to collect Realm Currency and Companionship EXP
+- Automatically purchase items from the Realm Depot
+- Automatically cook dishes and forge ores
 
-## ⚙️ SettingsGuide / Instructions
+## ⚙️ Settings Guide
 
-### 1. 寻路PathSettings
-**填写规则**：`方向键+空格+时间(毫秒)`
-- W=向前，S=向后，A=向左，D=向右
-- 示例：`A 1800,S 1300` （先向左走1.8秒，再向后走1.3秒）
+### 1. Navigation Path Settings
+**Format**: `DirectionKey + Space + Duration(ms)`
+- `W` = Forward, `S` = Backward, `A` = Left, `D` = Right
+- Example: `A 1800,S 1300` (Walk left for 1.8 seconds, then backward for 1.3 seconds)
 
-### 2. 购买物品Settings
-**填写规则**：物品名称用英文逗号隔开
-- Supports部分名称匹配
-- 示例：`祝圣精华,树脂,矿石`
-- 留空则不购买
+### 2. Item Purchase Settings
+**Format**: Item names separated by commas
+- Supports partial name matching
+- Example: `Sanctifying Essence,Transient Resin,Mystic Enhancement Ore`
+- Leave blank to skip purchasing
 
-### 3. 锻造/CookingPath
-**格式同上**
-- 锻造Path示例：`D 2000`
-- CookingPath示例：`W 1000`
-- 只在指定星期几执行
+### 3. Forging / Cooking Navigation Paths
+**Format same as above**
+- Forging path example: `D 2000`
+- Cooking path example: `W 1000`
+- Executes only on configured days of the week
 
-### 4. 奖励领取Settings
-- ✅ 不领取CharacterFriendship
-- ✅ 不领取洞天宝钱
-- 勾选=跳过，不勾选=领取
+### 4. Reward Collection Settings
+- ✅ Skip Companionship EXP
+- ✅ Skip Realm Currency
+- Checked = Skip, Unchecked = Claim
 
-### 5. 执行时间Settings
-- 勾选星期几执行Serenitea Pot
-- 勾选星期几购买物品/做饭/锻造
+### 5. Execution Schedule Settings
+- Choose which days of the week to enter the Serenitea Pot
+- Choose which days of the week to purchase items, cook, or forge
 
-## 🚀 FastStarting Up
-1. 游戏分辨率设为：1920×1080
-2. 按格式填写寻路Path
-3. 点击运行！
+## 🚀 Quick Start
+1. Set game resolution to: 1920×1080
+2. Configure navigation paths following the format
+3. Click Run!
 
-## 💡 小贴士
-- Recommended使用洞天摹数：`81708444664`
-- Path填写：先手动走一遍，Recording方向和大致时间
-- 物品名称：填关键部分即可（如"精华"匹配"祝圣精华"）
-- 锻造/做饭Path要能到达对应Working台
+## 💡 Tips
+- Recommended Realm Layout replica code: `81708444664`
+- Path setup: Walk the path manually first to record directions and approximate timings
+- Item names: Partial keywords are sufficient (e.g. `Essence` matches `Sanctifying Essence`)
+- Forging/cooking paths must lead within interaction distance of the respective crafting stations
 
-## ⚠️ Note
-- 凌晨0点到4点会被当成前一天
-
-有问题请查看脚本内的详细Guide / Instructions！
+## ⚠️ Notes
+- Hours between 00:00 and 04:00 (server time) are treated as part of the previous day.

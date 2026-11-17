@@ -218,12 +218,12 @@ Once configured, simply run the script to begin automated Companionship EXP farm
 - `main.js`: Core script logic
 - `settings.json`: Configuration definition file
 - `assets/AutoPath/`: Pathing files directory
-  - `Treasure Hoarder-准备.json`: Preparation path (Hilichurl clearance)
-  - `Treasure Hoarder-触发点.json`: Trigger point path
-  - `Treasure Hoarder-Combat点.json`: Combat point path
-  - `愚人众-准备.json`: Fatui preparation path (Teleport Waypoint to trigger point)
-  - `愚人众-触发点.json`: Fatui trigger point path
-  - `愚人众-Combat点.json`: Fatui combat point path
+  - `Treasure Hoarder-Preparation.json`: Preparation path (Hilichurl clearance)
+  - `Treasure Hoarder-TriggerPoint.json`: Trigger point path
+  - `Treasure Hoarder-CombatPoint.json`: Combat point path
+  - `Fatui-Preparation.json`: Fatui preparation path (Teleport Waypoint to trigger point)
+  - `Fatui-TriggerPoint.json`: Fatui trigger point path
+  - `Fatui-CombatPoint.json`: Fatui combat point path
 
 ---
 

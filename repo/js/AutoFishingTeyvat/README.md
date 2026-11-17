@@ -116,27 +116,27 @@ Field: `time_out_whole`
 <summary><strong>Special Preferences</strong></summary>
 
 ### Notifications
-Field: `启用通知` (Enable Notifications)
+Field: `Enable Notifications`
 - Sends notifications on progress updates.
 
 ### Auto-Pickup
-Field: `启用Auto 拾取` (Enable Auto-Pickup)
+Field: `Enable Auto-Pickup`
 
 ### 4:00 AM Welkin Moon Claim
-Field: `启用4点领取月卡` (Enable 4 AM Welkin Claim)
+Field: `Enable 4 AM Welkin Claim`
 
 ### Fishing Spot Cooldown Tracking
-Field: `启用垂钓点CD统计` (Enable Fishing CD Tracking)
+Field: `Enable Fishing CD Tracking`
 - Enabled by default.
 - Automatically disabled for non-hosts in co-op.
 
 ### Custom CD Tracking Tag
-Field: `自定义CDRecording标识` (Custom CD Record Identifier)
+Field: `Custom CD Record Identifier`
 - Leave empty to use the account UID by default.
 - Entering custom text uses that text as the tracking identifier for your world.
 
 ### Forced Shutdown Time
-Field: `小时` (Hours) + `分钟` (Minutes)
+Field: `Hours` + `Minutes`
 - Effective only when both values are set.
 
 </details>

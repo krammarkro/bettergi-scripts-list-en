@@ -11,7 +11,7 @@
 
 - Online Spreadsheet: https://docs.qq.com/sheet/DVlF4V1RhRXlQakZk
 - Each category of voice lines occupies only a single column, with one voice line per line within each cell.
-- When exporting to CSV, use the file name `千星奇域-猜Character辅助-Working表1.csv`.
+- When exporting to CSV, use the file name `Miliastra-CharacterGuessHelper-Sheet1.csv`.
 - After exporting the CSV, execute:
 
 ```bash

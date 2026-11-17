@@ -24,8 +24,8 @@ Configure settings in the script settings UI (corresponding to `settings.json`):
 | Option | Type | Description | Example |
 |---|---|---|---|
 | **key** | input-text | Version key (required; see version table below) | `xxxx` |
-| **auto_load** | multi-checkbox | Configuration load sources (multiple selection):<br>・Input: uses the `run_config` field below<br>・UID: reads `config/run_config.json` (per UID)<br>・bgi_tools: fetches from remote API | Default: `["输入加载", "UID加载"]` |
-| **auto_check** | multi-checkbox | Checks to perform:<br>・"幽境检查": Check Stygian Onslaught status<br>・"Artifacts空间检查": Check Artifact Inventory free space | Default: `["幽境检查", "Artifacts空间检查"]` |
+| **auto_load** | multi-checkbox | Configuration load sources (multiple selection):<br>・Input: uses the `run_config` field below<br>・UID: reads `config/run_config.json` (per UID)<br>・bgi_tools: fetches from remote API | Default: `["Input", "UID"]` |
+| **auto_check** | multi-checkbox | Checks to perform:<br>・Check Stygian Onslaught status<br>・Check Artifact Inventory free space | Default: `["Stygian Onslaught Check", "Artifact Space Check"]` |
 | **holy_relic_threshold** | input-text | Remaining free artifact slots threshold (e.g. 100 free slots remaining at 2300/2400) | `100` |
 | **run_config** | input-text | Domain schedule configuration string (used when "Input" source is active; see syntax below) | `Domain\|0,6\|9\|\|FastClear\|Pale Flame\|3\|1` |
 | **loop_plan** | checkbox | Enable continuous resin plan looping | `false` |
@@ -118,10 +118,10 @@ Boss||3||Pyro Regisvine||||false||||||           # Simple setup: Farm Pyro Regis
         "runType": "Domain",
         "autoFight": {
           "physical": [
-            { "order": 0, "name": "原粹树脂", "open": true },
+            { "order": 0, "name": "Original Resin", "open": true },
             { "order": 1, "name": "Condensed Resin", "open": false },
-            { "order": 2, "name": "须臾树脂", "open": false },
-            { "order": 3, "name": "脆弱树脂", "open": false }
+            { "order": 2, "name": "Transient Resin", "open": false },
+            { "order": 3, "name": "Fragile Resin", "open": false }
           ],
           "domainName": "Pale Flame",
           "partyName": "FastClear",
@@ -133,11 +133,11 @@ Boss||3||Pyro Regisvine||||false||||||           # Simple setup: Farm Pyro Regis
         "order": 2,
         "days": [],
         "record": true,
-        "runType": "地脉",
+        "runType": "LeyLine",
         "autoLeyLineOutcrop": {
           "count": 1,
           "country": "Natlan",
-          "leyLineOutcropType": "启示之花",
+          "leyLineOutcropType": "Blossom of Revelation",
           "friendshipTeam": "",
           "team": "",
           "timeout": 120,

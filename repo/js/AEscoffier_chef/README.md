@@ -1,113 +1,100 @@
-# 🍽️ 一只Escoffier脚本FeaturesGuide / Instructions
-主要Features：Food / Dishes制作、全Auto 解锁Auto Cooking、特殊Food / Dishes制作、Food Processing、~~不可制作的Food / Dishes获取~~
+# 🍽️ Escoffier Chef Script Feature Guide
+Main features: Dish cooking, full auto-unlocking auto-cook proficiency, special dish crafting, ingredient processing, and recipe assistance.
 
-Food Processing系统可实现 **Auto 化批量Processing**、**按需求计算目标产量**、**智能选择鱼类** 、**是否等待Processing完成**、**矿石Speed Up暂**等Features。
+The ingredient processing system provides **automated batch processing**, **target yield calculation**, **smart fish selection**, **wait for processing completion toggle**, and **ore acceleration** features.
 
-基于 **地图追踪 · OCR · 模板匹配** 的Auto Cooking脚本，可实现 **一键刷满所有Food / Dishes熟练度**。
-
-实力派「技术Food / Dishes」大师，Furina亲封「甜点大校」，[前]德波大饭Shopkeeper厨 Escoffier，向你致以问候。ヾ(≧▽≦*)o
+An automated cooking script based on **Map Pathing · OCR · Template Matching**, capable of **maxing out proficiency for all dishes in one click**.
 
 ---
 
-## ⚠️（重要）分辨率限制
-**注：**请确保分辨率为1920x1080，否则可能导致Food Processing部分的鱼类选择和矿石选择出错
+## ⚠️ (Important) Resolution Requirement
+**Note:** Please make sure your game resolution is set to **1920x1080**. Other resolutions may cause fish and ore selection during ingredient processing to fail.
 
 ---
 
-## 🛠️ 额外Cooking时间(ms) Settings方法
+## 🛠️ Extra Cooking Delay (ms) Setup Guide
 
-### **1. 初始准备**
-- 确保 JS 脚本Configuration中的第一个Settings项 **「启用脚本」未勾选**
-- 确保 `额外Cooking时间(ms)` 为默认值 **0**
-- 若实际Cooking过程结果偏右就将`额外Cooking时间(ms)`调大，反之调小(建议调整范围 -100~100)
+### **1. Initial Setup**
+- Ensure the first setting in the JS script configuration, **"Enable Script" is unchecked**.
+- Ensure `Extra Cooking Delay (ms)` is set to the default value **0**.
+- If the cooking needle lands to the right of the target zone during testing, increase `Extra Cooking Delay (ms)`; if it lands to the left, decrease it (recommended range: -100 to 100 ms).
 
-### **2. 启用脚本**
-在阅读完整 README 并确保Nope问题后，勾选 JS 脚本Configuration中的 **「启用脚本」**。
-
----
-
-## ⭐ 刷满熟练度Features
-启用该Features后，已选择的Food / Dishes和数量将不会生效。  
-脚本会默认刷取 **所有未满熟练度的Food / Dishes**。  
-启用前请确保所有原料充足。
-
-默认刷取次数：**Food / Dishes星级 × 5**，如果检测到Auto Cooking解锁，则会提前终止刷取
+### **2. Enable Script**
+After reading this guide and confirming settings, check **"Enable Script"** in the JS configuration.
 
 ---
 
-## ✨ 特殊Food / Dishes
+## ⭐ Max Out Proficiency Feature
+When enabled, selected dishes and quantities in manual cooking are ignored.  
+The script automatically iterates through **all dishes with unmaxed proficiency**.  
+Please ensure all required ingredients are in stock before running.
 
-### **选择Cooking数量的应用对象**
-
-```Cooking次数```：根据填入的```Cooking数量```，填入多少次就Cooking多少次
-
-```预期的特殊Food / Dishes数```：根据填入的```Cooking数量```，计算出“必出”概率
-
- - 假设10%的概率出特殊Food / Dishes，那么```Cooking数量```为5的情况下就Cooking 10 * 5 = 50次
- - 内置的特殊Food / Dishes爆率如下（游戏内具体爆率未知，以下表格仅供参考）
-   <details>
-     <summary> 点击展开 </summary>
-   
-     | 星级	 | 奇怪    | Normal    | Tasty   |
-     |-----|-------|-------|------|
-     | 1	  | 0.1	  | 0.15	 | 0.2  |
-     | 2	  | 0.1	  | 0.1	  | 0.15 |
-     | 3	  | 0.05	 | 0.1	  | 0.15 |
-     | 4	  | 0.05	 | 0.05	 | 0.1  |
-      注：EscoffierTasty15%
-     
-   </details>
+Default attempts per dish: **Dish Star Rarity × 5**. If auto-cooking is unlocked early, attempts for that dish terminate immediately.
 
 ---
 
-## ⚙️ Food Processing模式
+## ✨ Special Dishes
 
-### **选择Processing数量的应用对象**
+### **Cooking Quantity Target Mode**
 
-```Food Processing次数```  
-根据填写的 **Processing数量**，脚本会执行对应次数的Processing操作。  
-适用于：你已经明确知道要Processing多少次。
+`Cooking Attempts`: Performs exact number of cooking attempts entered in `Cooking Quantity`.
 
-```预期的Ingredients数量（持有总量）```  
-根据填写的 **Processing数量**，脚本会计算需要Processing的次数，以达到目标持有量。  
-适用于：你希望最终持有某个Ingredients达到指定数量。
+`Expected Special Dishes`: Calculates required cooking attempts based on drop rates to reach target special dish count.
+- Example: With a 10% special dish rate, entering a target of 5 special dishes triggers 10 × 5 = 50 cooking attempts.
+- Estimated special dish rates:
+<details>
+  <summary> Click to Expand </summary>
 
-> 例如：
-> - 你已有 20 份Flour，想要总共 100 份
-> - 则填写 `100`，脚本会Auto 计算需要Processing 80 次
->
-> 若为FishProcessing，则按 **Processing数量 × 产出倍率** 计算（不同鱼类产量不同）。
+| Rarity | Suspicious | Normal | Delicious |
+|---|---|---|---|
+| 1-Star | 10% | 15% | 20% |
+| 2-Star | 10% | 10% | 15% |
+| 3-Star | 5% | 10% | 15% |
+| 4-Star | 5% | 5% | 10% |
 
-### **Processing数量（1–9999）**
+*Note: Escoffier Delicious base rate is 15%.*
 
-- 若填写 **单个数字** → 应用于所有已勾选的Ingredients
-- 若填写 **多个数字（空格分隔）** → 按顺序对应每个Ingredients
-- 若数量不足，则未指定的Ingredients默认视为 `0`
+</details>
 
-示例：
+---
+
+## ⚙️ Ingredient Processing Mode
+
+### **Processing Quantity Target Mode**
+
+`Process Attempts`: Performs exact number of processing operations specified. Suitable when you already know how many batches you want to process.
+
+`Expected Ingredient Total (Target Inventory)`: Calculates needed processing batches to reach a desired total stock in inventory.
+> Example:
+> - You have 20 Flour and want 100 total.
+> - Entering `100` calculates 80 processing operations needed.
+> - For fish, calculations use `Processing Quantity × Yield Multiplier` (varies by fish species).
+
+### **Processing Quantity (1–9999)**
+- Single number: applies to all checked ingredients.
+- Multiple space-separated numbers: applies sequentially to each checked ingredient.
+- Unspecified ingredients default to `0`.
+
+Example:
 ```
 10 5 0 20
 ```
-表示：
-- 第 1 个Food Processing 10 次
-- 第 2 个Processing 5 次
-- 第 3 个不Processing
-- 第 4 个Processing 20 次  
-  （依此类推）
+Means:
+- Ingredient 1: 10 times
+- Ingredient 2: 5 times
+- Ingredient 3: skip (0)
+- Ingredient 4: 20 times
 
-## 可ProcessingIngredients列表
-
-可勾选的Processing项目包括：
-
+## Processable Ingredients
 - Flour
 - Raw Meat
-- Fish（特殊规则见下）
-- Mysterious MeatProcessing产物
+- Fish (special rules below)
+- Processed Mysterious Meat
 - Cream
 - Smoked Fowl
 - Butter
 - Ham
-- 糖
+- Sugar
 - Spice
 - Crab Roe
 - Jam
@@ -115,93 +102,65 @@ Food Processing系统可实现 **Auto 化批量Processing**、**按需求计算�
 - Bacon
 - Sausage
 
-> **Note：FishProcessing的默认单位为 1 条鱼 → 1 份Fish**  
-> 若选择特定鱼类，则按其产出倍率计算。
+> **Note**: Default fish conversion is 1 fish → 1 Fish piece. Choosing specific fish species scales by yield multiplier.
 
-## 鱼类选择（用于FishProcessing）
+## Fish Selection (for Fish Processing)
+If Fish processing is selected, you can specify fish species to consume:
+- **No fish selected**: Uses game default order.
+- **Fish selected**: Consumes fish in selected order.
+- **Target Inventory Mode**: Calculates required fish using `Processing Quantity × Yield Multiplier`.
 
-若勾选了 **Fish** Processing，则可进一步选择用于Processing的鱼类。
+## Ore Acceleration
+Supports selecting ore types to accelerate processing time:
+- Iron Chunk: -20s
+- White Iron Chunk: -40s
+- Crystal Chunk: -60s
+- Magical Crystal Chunk: -60s
+- Starsilver: -40s
+- Amethyst Lump: -60s
+- Condessence Crystal: -60s
+- Rainbowdrop Crystal: -60s
 
-- 若 **未选择任何鱼类** → 使用游戏默认鱼类
-- 若 **选择了鱼类** → 按选择顺序依次使用
-- 若为 **预期的Ingredients数量模式** → 按 `Processing数量 × 产出倍率` 计算所需鱼类数量
+> If unselected or ores are exhausted, the script waits naturally for processing completion.
 
-可选鱼类包括（部分示例）：
-
-- Medaka、Glaze Medaka、Sweet-Flower Medaka、Aizen Medaka（默认）
-- Dawncatcher、Crystalfish、Lunged Stickleback、Betta、Venomspine Fish
-- Akai Maou、Snowstrider、Golden Koi、Rusty Koi
-- …（完整列表见Configuration项）
-
-## 使用矿石Speed Up
-
-Supports勾选用于Speed UpProcessing的矿石类型，例如：
-
-- Iron Chunk：-20s
-- White Iron Chunk：-40s
-- Crystal Chunk：-60s
-- Magical Crystal Chunk：-60s
-- Starsilver：-40s
-- Amethyst Lump：-60s
-- Condessence Crystal：-60s
-- Rainbowdrop Crystal：-60s
-
-> 若未选择或矿石耗尽，则脚本会Auto 等待Processing完成。
-
-## 矿石保留数量
-
-该值能确保持有的矿石不会低于此数
+## Minimum Ore Stock
+Ensures inventory count for specified ores will not fall below this threshold.
 
 ---
 
-## ⭐ 全局Settings
+## ⭐ Global Settings
 
-### **手动Cooking方式**
+### **Manual Cooking Mode**
+- `Custom Mode (manual delay required)`: Use if built-in timing misses the target zone.
+- `BetterGI Built-in Auto Cooking`: Recommended default option.
 
-```定制模式(需要手动Configuration 时延 )```：在本体Cooking方法不准时可以尝试使用此项
+### **When Ingredients Are Depleted**
+- `Skip Dish`: Skips cooking this dish immediately upon detecting insufficient ingredients.
+- `Use Remaining Ingredients`: Dynamically calculates maximum possible batches from remaining stock.
+- `Disable`: Disables check step to save time; skips dish once ingredients run out.
 
-```BGI本体的Auto Cooking方法```：建议启用此选项，如果BGI本体的Cooking不准可以考虑选用另一种手动Cooking方式
+### **Character Cooking Bonus**
+If specified character is unavailable, defaults to character with 12% double dish bonus, or keeps game default character.
 
-### **检测到Ingredients不足时**
-
-```跳过此Food / Dishes```：如果检测到Ingredients不足，则不进行Cooking操作，直接跳过当前Food / Dishes，继续Cooking下一个Food / Dishes
-
-```用尽Ingredients```：与```禁用```类似，但是会根据已有IngredientsDynamic计算实际的Food / Dishes次数，留出1份Food / Dishes所需的Ingredients，然后继续Cooking下一个Food / Dishes
-
-```禁用```：会关闭检测步骤，节省时间，用尽Ingredients后会跳过当前Food / Dishes继续Cooking下一个Food / Dishes
-
-### **Auto Cooking未解锁时**
-
-如果勾选了```刷满熟练度```，则该项无效
-
-### **[Cooking]Character加成**
-
-如果没要找到指定的Character加成，则默认选择12%概率产出2倍Food / Dishes，否则不做选择（保留游戏默认Character）
-
-### **[Processing]等待Food Processing完成**
-
-勾选后，将在制作Food / Dishes后等待全部完成再退出，未勾选则直接退出不等待（例如，SettingsProcessing200次，在第一轮Settings完99次[Processing次数上限]Processing后直接退出）
+### **Wait for Processing Completion**
+When checked, waits for all processing timers to finish before exiting; otherwise exits immediately after initiating processing.
 
 ---
 
-## 🛠️ OtherGuide / Instructions
-
-1. 如果在```选择Food / Dishes```处选择了重复的Food / Dishes，仍视作选择1次
-2. 对应的```Cooking数量```Settings单个数值将应用到所有选择的Food / Dishes，如果使用空格隔开数值Settings多个Food / Dishes的数量，需要确保数值的数量等于实际选择的Food / Dishes数（若出现重复项，只计入出现的第一个重复项）
-   - 例：选择的Food / Dishes A B C A B D Settings的数值 1 2 3 4 ，分别代表A: 1, B: 2, C: 3, D: 4
-   - Note：```Cooking数量```的顺序为对应的```选择Food / Dishes```处从左到右、从上到下
-3. JS脚本Configuration的食谱顺序与游戏内基本一致（可以使用游戏内的筛选Features，Fast找到Food / Dishes）
-4. 运行前确保Food / Dishes不会超过2000上限
-5. 若Food / Dishes已解锁Auto Cooking，则不会使用手动Cooking。
-6. 请务必确保材料充足（如果材料不足有可能导致卡死）
+## 🛠️ Additional Notes
+1. Duplicate selections in dish picker are counted once.
+2. Cooking quantities match selected dishes in order from left to right, top to bottom.
+3. Keep inventory dish count under the 2,000 cap.
+4. Dishes that already have auto-cook unlocked bypass manual cooking.
+5. Ensure adequate raw ingredient stock before starting.
 
 ---
 
-## 🍱 脚本内置Food / Dishes一览
+## 🍱 Built-in Recipe & Dish Index
 <details>
-  <summary> 点击展开 </summary>
+  <summary> Click to Expand </summary>
 
-| 图标 | 名称 | Rare度 | 类别 | 类型 | 效果Guide / Instructions | 获取方式 | 所属地区 | 所需Ingredients |
+| Icon | Name | Rarity | Category | Type | Effect Description | Acquisition Method | Region | Required Ingredients |
 | - | - | - | - | - | - | - | - | - |
 | <img src='./assets/images/food/「Tea Party Polyphony」.png' alt='「Tea Party Polyphony」'  style='max-width: 100%; height: auto;' /> | 「Tea Party Polyphony」 | 3 | 减少体力消耗 | 特殊Food / Dishes | <div>队伍中所有Character攀爬和冲刺消耗的体力降低25%，持续1500秒。多人游戏时，仅对自己的Character生效。</div> | <div>Cooking获得</div><div>【Character】  Sandrone  </div><div>【食谱】  Fruity Trio  </div> | Fontaine | Marcotte(2),Bulle Fruit(1),Jam(1),Bird Egg(1) |
 | <img src='./assets/images/food/Boredom-Busting Bubblegum.png' alt='Boredom-Busting Bubblegum'  style='max-width: 100%; height: auto;' /> | Boredom-Busting Bubblegum | 3 | 复活 | 特殊Food / Dishes | <div>复苏选中的Character。</div><div>为其恢复生命值上限的20%，并额外恢复1500点生命值。</div> | <div>Cooking获得</div><div>【Character】  Lohen  </div><div>【食谱】  Mint Bubblegum  </div> | Mondstadt | Mint(2),Valberry(2),糖(1) |
@@ -640,7 +599,7 @@ Supports勾选用于Speed UpProcessing的矿石类型，例如：
 - 邮箱（可能无法及时回复）：**hijiwos@hotmail.com**
 - Changelog
   <details>
-  <summary> 点击展开 </summary>
+  <summary> Click to Expand </summary>
 
   - ver 2.4.2
 

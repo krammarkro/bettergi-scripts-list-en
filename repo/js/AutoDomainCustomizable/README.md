@@ -162,9 +162,9 @@ Permission is granted for anyone to maintain, modify, rewrite, share, upload, or
 
 ### v1.1.1 - [RJFAC](https://github.com/RJFAC)
 * Added support for 7.0 Snezhnaya version
-* Added Talent domain "荒坠的圣迹" and corresponding options "Philosophies of Charity", "Philosophies of Fortitude", "Philosophies of Glory"
-* Added Weapon Ascension domain "妄念的创痕" and corresponding options "Triumph of the Pale Star Army", "Revelry of the Cellared Spiritual Nectar", "The Frost Emperor's Farewell"
-* Added Artifact domain "逆悬的冰河" and corresponding options "Scarlet Proof / Heart of the Furnace"
+* Added Talent domain "Desolate Sacred Relic" and corresponding options "Philosophies of Charity", "Philosophies of Fortitude", "Philosophies of Glory"
+* Added Weapon Ascension domain "Scar of Delusion" and corresponding options "Triumph of the Pale Star Army", "Revelry of the Cellared Spiritual Nectar", "The Frost Emperor's Farewell"
+* Added Artifact domain "Inverted Glacial River" and corresponding options "Scarlet Proof / Heart of the Furnace"
 * Updated instructions documentation
 * Fixed missing Liyue Artifact domain "Ridge Watch" and options "Pale Flame / Tenacity of the Millelith"
 
@@ -177,7 +177,7 @@ Permission is granted for anyone to maintain, modify, rewrite, share, upload, or
 
 ### v1.0.0 - [RJFAC](https://github.com/RJFAC)
 * Added BetterGI notifications
-* Added Artifact domain "山风的荆冕"
+* Added Artifact domain "Mountain Breeze's Crown of Thorns"
 * Corrected version number to follow SemVer specifications
 
 ### v0.10 - [RJFAC](https://github.com/RJFAC)
@@ -186,13 +186,13 @@ Permission is granted for anyone to maintain, modify, rewrite, share, upload, or
 * Improved instructions documentation layout
 * Debug mode now displays input arguments
 
-### v0.8 - [风铃](https://github.com/zephyr-bell)
+### v0.8 - [Zephyr Bell](https://github.com/zephyr-bell)
 * Added support for custom combat strategy files
 
 ---
 
 ## 👨‍💻 About Authors
 
-* **Original Authors**: [huiyadanli](https://github.com/huiyadanli), iris, 霁
-* **Modifiers**: [RJFAC](https://github.com/RJFAC), [风铃](https://github.com/zephyr-bell), [lingyu](https://github.com/aaahai00)
+* **Original Authors**: [huiyadanli](https://github.com/huiyadanli), iris, Ji
+* **Modifiers**: [RJFAC](https://github.com/RJFAC), [Zephyr Bell](https://github.com/zephyr-bell), [lingyu](https://github.com/aaahai00)
 * **Assisted By**: AI

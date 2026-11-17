@@ -1,71 +1,15 @@
-Configuration组SettingsPrecautions / Notes
-1、开启地图追踪行走Configuration
-2、关闭Auto 拾取
-3、开启CombatConfiguration
-4、Combat策略选择"根据队伍Auto 选择"
-5、关闭Auto 检测Combat结束
-6、Other默认就行
+# Weekly Boss Automation Guide
 
-JSConfigurationPrecautions / Notes
-1、必须同时填写复活Food / Dishes和恢复Food / Dishes，才能正常复活
-2、目前bgi本体不SupportsCombat复活，检测到阵亡Character会立刻报错，并传送到Statue of The Seven复活，脚本中的复活Features是每轮Combat提前做了一次检测，因此Combat脚本中最好每个Character只上场一次，避免复活检测失效。
-3、单轮Combat时长是指Combat脚本运行一轮所需要的时间，填写Combat时长可以精确到小数点后两位，我最常用的Weekly Boss队大约是13.5秒，不要填个几百秒之类的，不然很多Features都用不了
-4、Combat中只有四类Food / Dishes可以生效，重复使用相同类型的Food / Dishes会覆盖掉上一个，四类Food / Dishes分别为攻击类、防御类、药剂类、冒险类
-5、需要勾选最后的用户协议才能正常运行
+## Configuration Group Settings & Precautions
+1. Enable pathing movement in settings.
+2. Disable auto-pickup during combat.
+3. Enable combat configuration.
+4. Set combat strategy selection to "Auto select based on active party".
+5. Disable auto-detection of combat end.
+6. Leave other settings at default.
 
-Other重要Precautions / Notes
-1、Weekly Boss大部分流程需要护盾Character提前开盾，请将护盾Character放在第一位！！！
-2、世界树The Doctor必须自己录制键鼠脚本，详情请看下方Guide / Instructions!!!
-3、如果勾选了红血，Auto Taking Medicine，请确保4个小道具中有食物袋，并且食物袋中有复活药和恢复Food / Dishes，
-复活药Recommended2星以上，1星道具复活后因为血条过短，可能导致红血无法识别无法Auto Taking Medicine
-4、剧情Nope推进，地图上NopeWeekly Boss入口的，需要在jsSettings中勾选，此外游戏内首次跳过剧情进入Weekly Boss，游戏会提示可能剧透的窗口，脚本不会帮你确认，请自己手动确认之后，再运行脚本。
-正常进度的用户，千万别勾选这个，会进不去Weekly Boss。
-
-各Weekly BossPrecautions / Notes：
-"北风狼"：避免使用风系和冰系的Character
-
-"风魔龙"：无
-
-"Childe"：压力大时Recommended护盾类Food / Dishes
-
-"Azhdaha"：boss伤害较高，强烈建议填写护盾类Food / Dishes
-
-"La Signora"：必须携带火或雷后台，破除冰盾才能Challenge成功，后期可能考虑优化为检测到进入冰盾状态，切火元素Character上前破盾
-
-"Raiden Shogun"：存在必杀机制，建议填写复活Food / Dishes
-
-"Wanderer"：存在必杀机制，建议填写复活Food / Dishes
-
-"阿佩普"：二阶段击杀Common Mobs的时候，可能遇到草盾怪物，建议使用优先使用火后台，
-
-"All-Devouring Narwhal"：无
-
-"Arlecchino"：压力大时Recommended护盾类Food / Dishes，火抗药剂
-
-"源焰之主"：BOSS存在侵蚀机制，Character容易蒸发，关卡难度较大，强烈建议额外使用生命类Food / Dishes和火抗药剂并填写复活Food / Dishes
-
-"The Game Before the Gate"：存在必杀机制，建议填写复活Food / Dishes。此外boss开局可能进入撞棋子的模式，导致无法造成伤害，强烈建议开启满能量模式并吃点攻击Food / Dishes，争取第一轮带走 boss避免ChallengeDefeat。
-
-"The Game Before the Gate"：存在必杀机制，建议填写复活Food / Dishes。此外boss开局可能进入撞棋子的模式，导致无法造成伤害，强烈建议开启满能量模式并吃点攻击Food / Dishes，争取第一轮带走 boss避免ChallengeDefeat。
-
-"The Game Before the Gate"：存在必杀机制，建议填写复活Food / Dishes。此外boss开局可能进入撞棋子的模式，导致无法造成伤害，强烈建议开启满能量模式并吃点攻击Food / Dishes，争取第一轮带走 boss避免ChallengeDefeat。
-
-"The Doctor"：三月The Doctor开局需要Go to柱子处躲避，在Nope移速加成的情况下少女体型到成男可以正常跑到柱子处躲避，如果你无法到达正确的位置，可以使用记事本打开脚本文件夹中的utils.js文件，使用ctrl+f搜索，找到await keyMaintain("d", 4500); 更改这里的数值，数字越大，向右跑的距离越多。
-
-"世界树The Doctor"：世界树版The Doctor的二阶段机制很特殊，boss会弹出墙壁把人送走，Nope简单通用的破解流程，单独训练个模型来实现很Troublesome。我的思路是不使用大招先通过一阶段，之后进入二阶段后，这时Character位置刷新重置，可以使用键鼠脚本来完成一次机制破除和一轮输出，练度No Problem可以一套直接把boss带走，避免二次弹出墙壁。接下来我分享下我多年键鼠脚本的录制经验。
-1、首先千万不要移动你的鼠标，只能使用wsad来实现移动
-2、按键和点击可以多来几次提高容错，避免卡顿导致按键和点击被吞掉
-3、实战录制的时候，如果你已经成功击败了 boss，不要In a Rush停下录制，再多录制一个轮次，还是为了提高容错
-接下来是录制的详细思路，首先等待10s左右，避免上一轮技能还在cd，
-之后点击任意一个数字（1到4），确定一个固定的Pathing人员，最好是带护盾，先开一个护盾获得霸体效果（Zhongli的话需要先面向左边，避免长e柱子挡路），
-然后按下w走向boss，boss激活后，马上按下s往后慢慢走，直到碰到墙壁，然后按下d，当 boss 弹出墙壁推走Character的时候，多次点击鼠标右键冲刺Fast抵达角落，可以多冲刺几次，保证容错
-确保到达指定位置后，Fast进行普攻破除墙壁，之后按下s键，多次点击鼠标右键冲刺到达 boss 附近，之后就Starting Up正常的输出流程，直到带走 boss。
-键鼠脚本录制好了之后，将其命名为"世界树The DoctorCombat",文件格式后缀是json,不要把文件格式也改了。
-最后最重要的一点，录制完后一定要测试一下！！！
-
-结语：
-本脚本适合不想再花时间手打Weekly Boss，同时队伍练度较高的玩家，由于BGI的Combat目前还很死板以及boss机制问题，高难度要想Challenge成功，基本要靠很高的练度以及合适的Character(脱手远程输出、高额护盾)还有Taking Medicine，ChallengeDefeat是很正常的，成功率有个30%就很不错了，4.0新Version后更新了红血Auto Taking Medicine的Features(非常Thank You mno 和 汐 在锄地All-in-One Run中提到的血量检测方法！！！)，大部分场景Challenge会更加轻松一些，
-最后实在打不过的，可以尝试减低难度，boss材料掉落概率从难度4级到1级为，2.4、2.1、1.55、1。
-未来会考虑添加更Stable准确的对应策略，提高Challenge成功率。目前在计划中的就是”The Game Before the Gate“，检测到必杀技后，会FastGo to中心位置使用冰冻破解机制。
-
-
+## JS Configuration Notes
+1. Both a revival dish and a recovery/healing dish must be configured to ensure proper revival.
+2. Currently, vanilla BetterGI does not support in-combat revivals; detecting a fallen character immediately raises an error and teleports to a Statue of The Seven. The revival feature in this script runs a check before each combat cycle. Therefore, combat scripts should ideally swap each character in only once per cycle to prevent failed checks.
+3. Single combat cycle duration refers to the time it takes for your combat script to complete one full rotation. This can be configured to two decimal places (e.g., 13.5 seconds). Do not enter inflated values (like hundreds of seconds), as this disables timing-dependent functions.
+4. Weekly boss domain selection: Configure which weekly bosses you wish to challenge and how many times per boss.

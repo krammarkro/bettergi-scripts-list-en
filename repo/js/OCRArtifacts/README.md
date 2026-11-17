@@ -1,7 +1,7 @@
-# Artifacts解析 - OCRArtifacts
+# Artifact OCR Parser - OCRArtifacts
 
-使用ocr识别Inventory中的Artifacts并解析为json格式
+Uses OCR to recognize artifacts in the inventory and parse them into structured JSON format.
 
-tips: 暂时Nope适配识别非满星Artifacts, 如: 猎人套的4星Artifacts识别可能会有问题
-      Recommended在1920*1080分辨率下使用
-
+## Tips
+- Currently does not support non-5-star artifacts (e.g., 4-star pieces of sets like Marechaussee Hunter may encounter recognition issues).
+- Recommended resolution: 1920×1080.

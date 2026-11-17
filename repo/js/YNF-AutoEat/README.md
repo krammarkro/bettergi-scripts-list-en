@@ -1,99 +1,24 @@
-# Ineffaの自助餐
+# Ineffa's Buffet Automation
 
+Automated food consumption script for feeding characters (such as Ineffa) specific quantities of ingredients or dishes.
 
-## 食用方法
+## Usage Modes
 
-### 模式选择
-脚本Supports两种使用模式，根据需求选择：
+### 1. Fixed Quantity Mode
+1. Add script to BetterGI scheduler.
+2. Right-click script to modify JS custom configuration:
+   - **Party Name**: Team containing Ineffa (required).
+   - **Target Ingredient/Dish**: Food item to feed (defaults to Apple if unselected).
+   - **Quantity**: Amount fed per cycle (default: 99).
+   - **Cycle Count**: Number of feeding rounds to execute (default: 1).
+   - **Mode Selection**: Choose "Fixed Quantity Mode".
+3. Click Run to start.
 
-### 1. 固定数量模式
-1. 将脚本添加至调度器。
-2. 右键点击脚本以修改 JS 自定义Configuration。
-    1. 队伍名称：包含Ineffa的队伍，必填
-    2. Ineffa今天吃什么：需要投喂的Ingredients，不选择的情况下默认是Apple
-    3. Ingredients数量：单次投喂的数量（吃多少个再跳楼），默认99个
-    4. 运行次数：想嘎Ineffa多少次，默认1次
-    5. 模式选择：选择"固定数量模式"
-3. 完成上述Settings后点击运行即可
-
-### 2. 剩余数量模式
-1. 将脚本添加至调度器。
-2. 右键点击脚本以修改 JS 自定义Configuration。
-    1. 队伍名称：包含Ineffa的队伍，必填
-    2. Ineffa今天吃什么：需要投喂的Ingredients（可多选）
-    3. 模式选择：选择"剩余数量模式"
-    4. 最终剩余数量：为每种选中的IngredientsSettings最终剩余数量（不Settings则视为不处理该Ingredients）
-3. 完成上述Settings后点击运行即可
-
-### 通知Settings
-- 可勾选"通知"选项，运行结束后会Roger That通知
-- 通知内容包括：
-  - 总共吃了多少个食物
-  - 每种食物的详细食用情况
-  - 没吃东西时也会Roger That提醒
-
-
-## Precautions / Notes
-1. 队伍名称有一定长度并且清晰，避免系统识别Defeat
-2. 使用前确保Ingredients充足
-3. 要使用的Ingredients尽量在顶端，尽管js能够找到，但是在多次运行时会很浪费时间
-
-
-## 致谢
-1. Thank You古又老师的悉心指导，Nope古又老师就Nope现在的~~Ineffa灭绝计划~~调味品批量生产计划
-2. Thank You氨气老师和秋秋云老师，在审核时提供了宝贵的意见和建议。
-3. Thank You所有提供意见和修改建议用户，他们提供的素材让脚本运行更Stable
----------------------------------------------------------------------------------------------------------------------------------
-## Changelog
-### 1.6.7（2026.07.14）
-1. 修复剩余数量模式下某种Ingredients耗尽后仍重复选择该Ingredients的问题
-2. Ingredients不存在时会清除其剩余批次并Auto Switch到下一种已选Ingredients
-### 1.6.6（2026.06.30）
-1. 允许更改单次点击延时
-### 1.6.5（2026.03.22）
-1. 增加剩余数量模式
-2. 增加通知Features
-3. 优化排版
-### 1.6.2（2026.01.31）
-1. 修复了一些bug
-### 1.6.1（2025.11.04）
-1. 针对资源释放，对文字识别部分进行了重构
-2. 优化了代码结构，添加了Debug信息
-### 1.6（2025.11.02）
-1. 批量添加dispose
-### 1.5（2025.10.16）
-1. 对部分场景衔接的地方做了优化，脚本运行更丝滑
-2. 处理了部分运行错误的情况，在某些场景下发生特定错误时不会直接停止运行，提高了脚本运行效率
-### 1.4.3（2025.10.09）
-1. 修复了在特殊情况下找不到食物的问题
-### 1.4.2（2025.10.02）
-1. 修复了一些bug
-### 1.4.1（2025.09.26）
-1. Domain进入流程增加OCR识别，提升流程Stable性
-2. 优化了多处的等待时长，实现脚本运行全流程的平滑过渡与效率跃升
-3. 优化了多处识别流程，提高识别准确率并减少无用Log
-### 1.4（2025.09.24）
-1. 修复了运行次数为某些值时运行结束Go toStatue of The Seven之后还会回到Domain的bug
-2. 添加了更为完善的过期物品拦截机制，不用再傻乎乎的每次点击同一位置了！（Thank You糖雕老师以身殉道提供海量素材~）
-### 1.3（2025.09.21）
-1. 添加了保证队友状态的逻辑：（队友：我有什么错！我又Nope这个天赋！    Ineffa：那我就有错了嘛！？）
-    1. 运行脚本时会先去一次Statue of The Seven，确保满状态进Domain
-    2. 在运行到一定次数后会Go toStatue of The Seven，确保队友不会被玩坏
-2. 识别到Ineffa后会Switch到前台，更符合逻辑
-3. 适当改动了部分地方的等待时长
-4. 对Log输出进行了润色，不再千篇一律
-### 1.2（2025.09.19）
-1. 修改了队伍SwitchDefeat、脚本运行结束时的逻辑：不再Go toStatue of The Seven而是直接去Domain门口，节省传送时间且更符合逻辑
-2. 修改了多处位置的识别方式：将原本的文字识别改为图像识别，降低了识别Defeat的风险并使代码更简洁
-3. 对代码进行了进一步的润色：完善了部分错误处理的细节、部分函数针对脚本Features进行了改动
-### 1.1（2025.09.17）
-1. 修复了Go toStatue of The SevenSwitch Party后无法正常进行后续动作的bug
-2. 修复了队伍中NopeIneffa时会在Domain外吃食物的bug
-3. 修复了不填写食物时脚本不会及时报错停止的bug
-4. 多处位置添加了判断逻辑，防止假值穿透等风险
-5. 将代码结构进行重构，调整了运行顺序，使其更符合逻辑
-6. 蹂虐了古又老师的Ineffa一顿并让她吃了个饱
-7. 修改了部分描述有误的地方~~我勒个豆Version号怎么写错了，正式版还搁这0开头呢！快改！~~
-### 1.0（2025.09.15）
-酱酱！“Ineffaの自助餐（YNF-AutoEat） V1.0”闪亮Debut！你还在为徒手喂Food / Dishes而痛苦吗？你的Apple又没处用了吗？你做菜时的调味品又不够用了吗？快来用Ineffaの自助餐，包你Satisfied！
-   
+### 2. Remaining Quantity Mode
+1. Add script to BetterGI scheduler.
+2. Right-click script to modify JS custom configuration:
+   - **Party Name**: Team containing Ineffa (required).
+   - **Target Ingredients**: Food items to feed (multiple selections supported).
+   - **Mode Selection**: Choose "Remaining Quantity Mode".
+   - **Target Remaining Count**: Set threshold count to keep in inventory.
+3. The script feeds the character until inventory reaches your configured minimum threshold.

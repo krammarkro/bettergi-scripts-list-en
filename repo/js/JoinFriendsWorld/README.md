@@ -1,10 +1,10 @@
-# 加入好友的世界
+# Auto Join Friend's World
 
-## Instructions
+Script to automatically join a friend's world in co-op.
 
-1. 修改自定义Configuration，将好友的 UID 添加到Configuration中
-2. 执行脚本即可
+## Usage
+1. Open the script settings and add your friend's UID to the configuration.
+2. Run the script.
 
-## 问题反馈
-
-[GitHub issues](https://github.com/ftnfurina/bettergi-js-repo/issues)
+## Issue Feedback
+If you encounter issues, please submit feedback on GitHub.

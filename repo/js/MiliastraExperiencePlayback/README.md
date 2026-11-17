@@ -33,17 +33,17 @@
 | --- | --- | --- | --- |
 | `weeklyEnabled` | Execute weekly stage clear tasks | | `true` |
 | `room` | Wonderland stage keyword or stage GUID | | `20031486040` |
-| `playbacks` | Replay file pool for stage clears | Comma-separated, randomly chosen; copy custom replays to `assets/playbacks` | `美景音乐播放器Settlement.json` |
+| `playbacks` | Replay file pool for stage clears | Comma-separated, randomly chosen; copy custom replays to `assets/playbacks` | `ScenicMusicPlayerSettlement.json` |
 | `expPerAttempt` | EXP gained per attempt | If deleting saves is enabled, add 50 EXP per achievement completed | `20` |
 | `deleteStageSave` | Delete stage save file | Allows re-achieving milestones for extra EXP | `false` |
-| `deleteStageSaveKeyword` | Stage save deletion keyword | Matches the [Stage] column in the stage save list | `音乐播放` |
+| `deleteStageSaveKeyword` | Stage save deletion keyword | Matches the [Stage] column in the stage save list | `MusicPlayback` |
 | `expWeeklyLimit` | Weekly EXP cap | | `4000` |
 | `force` | Force execution even if weekly cap is reached | | `false` |
 | `thisAttempts` | Specific number of clear attempts | 0 for automatic calculation | `0` |
 | `dailyEnabled` | Execute daily stage clear tasks | | `false` |
 | `dailyRooms` | Daily stage keywords or stage GUIDs | Comma-separated | `24429042323,28644538672,45694132064` |
-| `dailyPlaybacks` | Random pool of daily replay files | Semicolon separates different stages; commas separate variations for the same stage | `通关回放1.json,通关回放2.json;30秒按1通关.json;轰鸣木桩Settlement.json` |
-| `dailyRewards` | Claim daily rewards | Attempts to claim Chronicle EXP and daily activity rewards | `["Chronicles of the Realms", "绮衣珍赏", "奇趣盛邀", "星境彩馈"]` |
+| `dailyPlaybacks` | Random pool of daily replay files | Semicolon separates different stages; commas separate variations for the same stage | `ClearReplay1.json,ClearReplay2.json;30sClear.json;TargetDummySettlement.json` |
+| `dailyRewards` | Claim daily rewards | Attempts to claim Chronicle EXP and daily activity rewards | `["Chronicles of the Realms", "Apparel Appreciation", "Whimsical Invitation", "Astral Bounty"]` |
 | `dailyLimit` | Daily clear limit per individual stage | | `1` |
 | `dailyForce` | Force run ignoring daily stage limits | | `false` |
 | `closeStageDialog` | Close guide dialog before executing replay | Disable if your replay handles manual dialog closing | `true` |
