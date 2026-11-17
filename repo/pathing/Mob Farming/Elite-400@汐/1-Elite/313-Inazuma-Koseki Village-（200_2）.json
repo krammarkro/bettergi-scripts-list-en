@@ -1,0 +1,35 @@
+{
+  "info": {
+    "name": "313-Inazuma-Koseki Village-（200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "2遗迹机兵\n  Route信息：该Route预计用时24秒，包含x2Elite，预计收入400Mora，包含以下怪物：x2Ruin Defender。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -4023.31,
+      "y": -4428.8,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": -4022.26,
+      "y": -4469.69,
+      "action": "fight",
+      "move_mode": "run",
+      "type": "path"
+    }
+  ]
+}

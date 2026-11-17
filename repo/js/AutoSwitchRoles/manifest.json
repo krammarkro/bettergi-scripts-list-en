@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "配对界面切换角色",
+  "name": "Auto Switch Party Members",
   "version": "7.1.0",
   "bgi_version": "0.62.0",
-  "description": "在配对界面切换指定位置的指定角色",
+  "description": "Automatically swaps specific characters into the active party.",
   "authors": [
     {
       "name": "Tool_tingsu",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

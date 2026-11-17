@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "name": "Character Development All-in-One",
+  "version": "1.9.1",
+  "description": "End-to-end character progression: boss materials, talents, and weapon ascension.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "saved_files": [
+    "completed_tasks.json"
+  ],
+  "main": "main.js",
+  "tags": []
+}

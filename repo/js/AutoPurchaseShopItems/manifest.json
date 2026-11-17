@@ -1,0 +1,27 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Purchase Shop Items",
+  "version": "3.7.2",
+  "bgi_version": "0.67.1",
+  "description": "Visits general goods shops to purchase cooking ingredients and bait.",
+  "authors": [
+    {
+      "name": "蜜柑魚",
+      "links": "https://github.com/this-Fish"
+    },
+    {
+      "name": "Leeon_666",
+      "links": "https://github.com/Leeon-666"
+    }
+  ],
+  "tags": [
+    "自动购买",
+    "购买商品",
+    "模拟点击"
+  ],
+  "saved_files": [
+    "record/"
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

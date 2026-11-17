@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "怪物图鉴数量统计",
+  "name": "OCR Monster Count",
   "version": "5.6",
   "bgi_version": "0.45.1",
-  "description": "",
+  "description": "Counts defeated monsters on screen.",
   "authors": [
     {
       "name": "mno",
@@ -15,5 +15,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

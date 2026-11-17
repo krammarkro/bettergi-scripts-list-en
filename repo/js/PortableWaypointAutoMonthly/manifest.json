@@ -1,0 +1,20 @@
+{
+  "manifest_version": 1,
+  "name": "Portable Waypoint Auto Refresh",
+  "version": "1.1",
+  "description": "Automatically places and maintains portable waypoints at farming spots.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "saved_files": [
+    "dateRecord.txt",
+    "续费.json",
+    "恢复.json"
+  ],
+  "tags": []
+}

@@ -1,0 +1,71 @@
+{
+  "info": {
+    "name": "Whopperflower-CuiKuaiPo-Bottom-Left",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Whopperflower",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "san"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 1143,
+      "y": 137.03
+    },
+    {
+      "id": 2,
+      "action": "",
+      "move_mode": "run",
+      "type": "path",
+      "x": 1101.75,
+      "y": 111.5
+    },
+    {
+      "id": 3,
+      "x": 1102.5,
+      "y": 136,
+      "move_mode": "run",
+      "type": "path",
+      "action": "fight"
+    },
+    {
+      "id": 4,
+      "action": "",
+      "move_mode": "run",
+      "type": "path",
+      "x": 1071,
+      "y": 188.5
+    },
+    {
+      "id": 5,
+      "x": 1044.5,
+      "y": 213,
+      "move_mode": "run",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "action": "",
+      "move_mode": "run",
+      "type": "path",
+      "x": 990,
+      "y": 187.5
+    },
+    {
+      "id": 7,
+      "action": "fight",
+      "move_mode": "run",
+      "type": "path",
+      "x": 972,
+      "y": 184
+    }
+  ]
+}

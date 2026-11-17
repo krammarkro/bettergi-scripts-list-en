@@ -1,7 +1,7 @@
 {
-  "name": "圣遗物批量强化",
+  "name": "Artifact Fast Upgrader",
   "version": "1.2.0",
-  "description": "一个批量强化圣遗物的脚本",
+  "description": "Automates upgrading artifacts to +4, +8, +16, or +20 with rule filters.",
   "settings_ui": "settings.json",
   "main": "main.js",
   "bgi_version": "0.55.0",
@@ -11,5 +11,6 @@
       "links": "https://github.com/Kirito520Asuna"
     }
   ],
-  "dependencies": []
+  "dependencies": [],
+  "tags": []
 }

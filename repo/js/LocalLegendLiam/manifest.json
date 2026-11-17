@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Local Legend: Liam Hunter",
+  "version": "3.0",
+  "description": "Automates locating and defeating the Fontaine Local Legend Liam.",
+  "authors": [
+    {
+      "name": "xiaozhang12312",
+      "links": "https://github.com/xiaozhang12312"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

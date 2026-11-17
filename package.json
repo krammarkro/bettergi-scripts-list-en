@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "genshin-db": "^5.2.15",
+    "pinyin": "^4.0.0"
+  }
+}

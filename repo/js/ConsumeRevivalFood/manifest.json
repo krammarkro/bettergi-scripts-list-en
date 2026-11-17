@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Consume Revival Food",
+  "version": "1.1",
+  "description": "Automatically feeds fallen characters revival food from inventory.",
+  "authors": [
+    {
+      "name": "mno",
+      "links": "https://github.com/Bedrockx"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

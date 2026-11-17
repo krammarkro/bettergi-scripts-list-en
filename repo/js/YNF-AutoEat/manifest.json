@@ -1,14 +1,12 @@
 {
   "manifest_version": 1,
-  "name": "伊涅芙の自助餐",
-  
+  "name": "Auto Eat Recovery Food",
   "version": "1.6.7",
-
   "tags": [
     "伊涅芙",
     "调味品"
   ],
-  "description": "伊涅芙天赋吃食物，30%概率产生调味品",
+  "description": "Automatically consumes food when health drops below threshold.",
   "authors": [
     {
       "name": "江紫烟owo",

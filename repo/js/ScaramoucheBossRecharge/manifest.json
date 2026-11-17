@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Scaramouche Boss Energy Recharge",
+  "version": "1.4",
+  "bgi_version": "0.55.3",
+  "description": "Picks up energy blocks during the Shouki no Kami boss fight.",
+  "authors": [
+    {
+      "name": "爱丽丝",
+      "links": "https://github.com/itslyh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

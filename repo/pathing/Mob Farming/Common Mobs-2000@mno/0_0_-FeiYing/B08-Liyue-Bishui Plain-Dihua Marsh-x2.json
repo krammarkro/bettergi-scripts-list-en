@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "B08-Liyue-Bishui Plain-Dihua Marsh-x2",
+    "type": "collect",
+    "author": "蜜柑魚",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时43.96秒，包含以下怪物：x2Electro Cicin。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "tags": [],
+    "last_modified_time": 1752249622672,
+    "authors": [
+      {
+        "name": "蜜柑魚",
+        "links": "https://github.com/this-Fish"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 253.14,
+      "y": 1285.17,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 202.16,
+      "y": 1278.65,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "target"
+    },
+    {
+      "id": 3,
+      "x": 202.17,
+      "y": 1278.69,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 202.17,
+      "y": 1278.69,
+      "action": "combat_script",
+      "move_mode": "walk",
+      "action_params": "wait(0.1)",
+      "type": "orientation"
+    }
+  ]
+}

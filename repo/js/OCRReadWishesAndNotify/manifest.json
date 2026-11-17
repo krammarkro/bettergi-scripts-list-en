@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "OCR Read Wishes & Send Notification",
+  "version": "1.5",
+  "description": "Scans current Primogems and Intertwined Fates and sends webhook notification.",
+  "authors": [
+    {
+      "name": "1xygyty1",
+      "links": "https://github.com/1xygyty1"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

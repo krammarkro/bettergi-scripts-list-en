@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Medicine Consumption Statistics",
+  "version": "1.0",
+  "bgi_version": "0.54",
+  "description": "Logs and tracks recovery dishes and medicines used over time.",
+  "authors": [
+    {
+      "name": "爱丽丝",
+      "links": "https://github.com/itslyh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "saved_files": [
+    "assets/*.txt"
+  ],
+  "tags": []
+}

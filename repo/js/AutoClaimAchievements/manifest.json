@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Claim Achievements",
+  "version": "1.5",
+  "description": "Automatically navigates through the achievement menu and claims all completed Primogems.",
+  "tags": [
+    "OCR",
+    "成就"
+  ],
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

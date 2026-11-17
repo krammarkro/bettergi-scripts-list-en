@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Loop Use Food",
+  "version": "1.1",
+  "bgi_version": "0.41.0",
+  "description": "Periodically consumes configured buff food during extended tasks.",
+  "tags": [
+    "循环料理使用"
+  ],
+  "authors": [
+    {
+      "name": "呱呱z",
+      "links": "https://github.com/jidingcai"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

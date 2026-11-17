@@ -1,0 +1,22 @@
+{
+  "manifest_version": 1,
+  "name": "Batch Hunt Character Ascension Bosses",
+  "version": "0.8.3",
+  "bgi_version": "0.60.2",
+  "description": "Continuously hunts specified overworld bosses for character ascension materials.",
+  "authors": [
+    {
+      "name": "DarkFlameMaster",
+      "links": "https://github.com/1004452714"
+    }
+  ],
+  "library": [
+    "."
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "saved_files": [
+    "assets/config"
+  ],
+  "tags": []
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Recharge All Team Burst Energy",
+  "version": "1.7",
+  "description": "Recharges elemental bursts for all team members at the Statue of The Seven or domain.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    },
+    {
+      "name": "空",
+      "links": "https://github.com/whd-dad"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

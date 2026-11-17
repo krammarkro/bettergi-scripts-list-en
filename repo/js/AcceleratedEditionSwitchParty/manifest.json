@@ -1,13 +1,13 @@
 {
   "manifest_version": 1,
-  "name": "回神像切换指定队伍(换队)加速版",
+  "name": "Fast Statue Party Switch",
   "version": "1.7",
   "bgi_version": "0.44.4",
-  "description": "",
+  "description": "Accelerated party switching at the Statue of The Seven.",
   "authors": [
     {
       "name": "起个名字好难的喵",
-      "links":"https://github.com/MisakaAldrich"
+      "links": "https://github.com/MisakaAldrich"
     },
     {
       "name": "秋云",
@@ -15,5 +15,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

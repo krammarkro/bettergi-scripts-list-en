@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "传送点激活检测工具",
+  "name": "Teleport Waypoint Activation Check",
   "version": "3.2.0",
   "bgi_version": "0.61.2",
-  "description": "系统检测全图传送点是否可以正常传送，支持断点续跑、异常复测、慢速点标记和结果报告。",
+  "description": "Checks which overworld waypoints have not yet been unlocked.",
   "tags": [
     "传送",
     "检测",

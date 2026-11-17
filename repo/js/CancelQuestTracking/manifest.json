@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "name": "Cancel Quest Tracking",
+  "version": "1.0",
+  "description": "Clears the active quest navigation indicator from the screen.",
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "main": "main.js",
+  "tags": []
+}

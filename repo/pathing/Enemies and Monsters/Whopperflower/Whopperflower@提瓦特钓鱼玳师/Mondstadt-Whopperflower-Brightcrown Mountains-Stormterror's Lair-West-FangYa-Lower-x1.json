@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Mondstadt-Whopperflower-Brightcrown Mountains-Stormterror's Lair-West-FangYa-Lower-x1",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Whopperflower-x1\nMondstadt-Brightcrown MountainsStormterror's Lair西方崖下",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 344.99,
+      "y": 2570.92,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 350.5,
+      "y": 2566.91,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 378.5,
+      "y": 2534,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 378.5,
+      "y": 2534,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "target"
+    }
+  ]
+}

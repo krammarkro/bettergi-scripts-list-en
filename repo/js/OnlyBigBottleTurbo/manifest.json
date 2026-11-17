@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "只要大瓶极速版",
+  "name": "Only Big Potions (Turbo)",
   "version": "1.0.1",
   "bgi_version": "0.64.0",
-  "description": "基于原作者 mno 的“只要大瓶”制作的高速圣遗物分解脚本",
+  "description": "Uses only large energy potions in event domains.",
   "authors": [
     {
       "name": "Purfeather",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

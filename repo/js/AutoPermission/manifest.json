@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "自动设置权限",
+  "name": "Auto Grant Admin Privileges",
   "version": "2.1",
-  "description": "设置进入世界的权限,默认锁门",
+  "description": "Ensures proper permissions for game interaction and overlays.",
   "authors": [
     {
       "name": "½",

@@ -1,13 +1,14 @@
 {
   "manifest_version": 1,
-  "name": "自动采集晶蝶(枫丹)",
+  "name": "Auto Crystalfly Trap",
   "version": "1.1",
-  "description": "BetterGI自带脚本，自动采集离传送点较近的晶蝶。请在队伍中务必携带早柚/瑶瑶，使用成男/成女角色。并保证所有传送点都已经激活！",
+  "description": "Automates deployment and collection of Crystalfly Traps.",
   "authors": [
     {
       "name": "huiyadanli",
       "links": "https://github.com/huiyadanli"
     }
   ],
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

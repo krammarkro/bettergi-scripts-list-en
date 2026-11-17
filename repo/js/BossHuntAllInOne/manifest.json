@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Boss Hunt All-in-One",
+  "version": "1.5.4",
+  "description": "Full automation run for farming overworld world bosses.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    },
+    {
+      "name": "Tool_tingsu",
+      "links": "https://github.com/Tooltingsu"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

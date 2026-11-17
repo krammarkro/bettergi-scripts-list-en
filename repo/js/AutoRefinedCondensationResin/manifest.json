@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "自动合成浓缩树脂",
+  "name": "Auto Craft Condensed Resin",
   "version": "1.4",
   "bgi_version": "0.55.0",
-  "description": "\n可前往多国合成台自动合成浓缩树脂（仅支持中文语言）。\n可设置特定星期几执行任务。\n特殊时间处理：00:00~04:00视为前一天。",
+  "description": "Navigates to crafting bench and crafts Condensed Resin automatically.",
   "tags": [
     "OCR",
     "合成树脂"

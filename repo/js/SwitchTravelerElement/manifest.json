@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Switch Traveler Element",
+  "version": "1.0",
+  "description": "Teleports to the appropriate Statue of The Seven and resonates with the selected element.",
+  "authors": [
+    {
+      "name": "mno",
+      "links": "https://github.com/Bedrockx"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

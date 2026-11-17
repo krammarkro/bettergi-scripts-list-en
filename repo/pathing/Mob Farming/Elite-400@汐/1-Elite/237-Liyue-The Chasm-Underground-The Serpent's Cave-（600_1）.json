@@ -1,0 +1,55 @@
+{
+  "info": {
+    "name": "237-Liyue-The Chasm-Underground-The Serpent's Cave-（600_1）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时41秒，包含x1Elite，预计收入600Mora，包含以下怪物：x1Shadowy Husk: Standard Bearer。",
+    "map_name": "TheChasm",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 891.64,
+      "y": 764.61,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 919.41,
+      "y": 734.81,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "action_params": "1800",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 924.19,
+      "y": 729.87,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 924.19,
+      "y": 729.87,
+      "action": "combat_script",
+      "move_mode": "walk",
+      "action_params": "wait(0.2)",
+      "type": "orientation"
+    }
+  ]
+}

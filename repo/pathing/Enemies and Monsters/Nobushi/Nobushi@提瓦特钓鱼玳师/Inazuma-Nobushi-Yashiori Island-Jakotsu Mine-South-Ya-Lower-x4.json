@@ -1,0 +1,44 @@
+{
+  "info": {
+    "name": "Inazuma-Nobushi-Yashiori Island-Jakotsu Mine-South-Ya-Lower-x4",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Nobushi-x4\nInazuma-Yashiori IslandJakotsu Mine南崖下",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": -2399.54,
+      "y": -4127.87,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "action": "",
+      "move_mode": "walk",
+      "type": "path",
+      "x": -2359.27,
+      "y": -4137.68,
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "action": "fight",
+      "move_mode": "run",
+      "type": "target",
+      "x": -2356.27,
+      "y": -4126.68,
+      "action_params": ""
+    }
+  ]
+}

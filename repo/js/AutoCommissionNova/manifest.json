@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "name": "自动每日委托",
+  "name": "Auto Daily Commissions Nova",
   "version": "1.0.5",
   "tags": [
     "委托",
@@ -9,7 +9,7 @@
     "成就",
     "历练点"
   ],
-  "description": "自动识别接取完成每日委托,目前挪德卡莱地区稳定支持,其他地区等待完善,使用前请阅读README",
+  "description": "Enhanced daily commission automation with smart navigation.",
   "authors": [
     {
       "name": "DarkFlameMaster",

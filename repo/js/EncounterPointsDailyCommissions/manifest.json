@@ -1,0 +1,20 @@
+{
+  "manifest_version": 1,
+  "name": "Complete Daily Commissions via Encounter Points",
+  "version": "2.3.1",
+  "bgi_version": "0.63.1",
+  "description": "Automatically claims daily commission rewards using accumulated Encounter Points.",
+  "authors": [
+    {
+      "name": "起个名字好难的喵",
+      "links": "https://github.com/MisakaAldrich"
+    },
+    {
+      "name": "蜜柑魚",
+      "links": "https://github.com/this-Fish"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

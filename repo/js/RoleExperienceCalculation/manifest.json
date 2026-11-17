@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "角色经验计算",
+  "name": "Character EXP Calculator",
   "version": "1.1",
   "bgi_version": "0.54.0",
-  "description": "用于计算指定角色在当前等级到目标等级所需的经验",
+  "description": "Calculates required hero's wits and mora for character levels.",
   "authors": [
     {
       "name": "skr",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

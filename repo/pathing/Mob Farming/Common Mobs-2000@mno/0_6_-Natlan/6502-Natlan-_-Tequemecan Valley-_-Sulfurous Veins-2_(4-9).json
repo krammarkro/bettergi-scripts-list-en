@@ -1,0 +1,148 @@
+{
+  "info": {
+    "author": "Demo&汐&mno",
+    "authors": [
+      {
+        "name": "Demo"
+      },
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      },
+      {
+        "name": "mno",
+        "links": "https://github.com/Bedrockx"
+      }
+    ],
+    "bgi_version": "0.45.0",
+    "description": "  Route信息：该Route预计用时160.29秒，包含x13Common Mobs，预计收入688.5Mora，包含以下怪物：x2Treasure Hoarders: Pyro Potioneer、x1Treasure Hoarders: Electro Potioneer、x1Treasure Hoarders: Marksman、x1Treasure Hoarders: Pugilist、x1Forged Sand Shieldbreaker、x1疾讯勇士·重刃讯使、x1Tepetlisaurus Warrior: Rockbreaker Blade、x1Tepetlisaur Whelp、x3Tepetlisaurus、x1Yumkasaur Whelp。",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1759249127160,
+    "map_match_method": "",
+    "map_name": "Teyvat",
+    "name": "6502-Natlan-_-Tequemecan Valley-_-Sulfurous Veins-2_(4-9)",
+    "tags": [],
+    "type": "collect",
+    "version": "1.1"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 8400.54,
+      "y": -1221.38
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 2,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8433.01,
+      "y": -1298.91
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 3,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8446.6777,
+      "y": -1280.1396
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 4,
+      "locked": false,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8494.1924,
+      "y": -1300.2495
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 5,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8494.1924,
+      "y": -1300.2495
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 6,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8520.8535,
+      "y": -1286.791
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 7,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8517.28,
+      "y": -1240.54
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(0.1)",
+      "id": 8,
+      "move_mode": "dash",
+      "type": "orientation",
+      "x": 8517.28,
+      "y": -1240.54
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 9,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 8400.54,
+      "y": -1221.38
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(0.1)",
+      "id": 10,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 8343.1,
+      "y": -1356.85
+    },
+    {
+      "action": "stop_flying",
+      "action_params": "3000",
+      "id": 11,
+      "move_mode": "fly",
+      "type": "path",
+      "x": 8334.26,
+      "y": -1378.11
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 12,
+      "move_mode": "walk",
+      "type": "path",
+      "x": 8334.26,
+      "y": -1378.11
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(0.1)",
+      "id": 13,
+      "move_mode": "walk",
+      "type": "orientation",
+      "x": 8334.26,
+      "y": -1378.11
+    }
+  ]
+}

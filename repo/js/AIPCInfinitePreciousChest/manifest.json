@@ -1,0 +1,20 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Infinite Precious Chest",
+  "version": "4.3",
+  "bgi_version": "0.44.0",
+  "description": "Automated infinite precious chest farm script.",
+  "authors": [
+    {
+      "name": "起个名字好难的喵",
+      "links": "https://github.com/MisakaAldrich"
+    },
+    {
+      "name": "HZYgrandma",
+      "links": "https://github.com/HZYgrandma"
+    }
+  ],
+  "main": "main.js",
+  "settings_ui": "settings.json",
+  "tags": []
+}

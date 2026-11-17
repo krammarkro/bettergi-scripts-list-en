@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "616-Natlan-Volcano-Atocpan-Northwest-Beach-（200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时93.87秒，包含x2Elite与x135Common Mobs，预计收入11213.5Mora，包含以下怪物：x3Hilichurl、x1Anemo Hilichurl Rogue、x1Thundering Wayob Manifestation。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 10925.67,
+      "y": -2363.63,
+      "action": "force_tp",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 10852.9,
+      "y": -2326.13,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 10806.64,
+      "y": -2305.1,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

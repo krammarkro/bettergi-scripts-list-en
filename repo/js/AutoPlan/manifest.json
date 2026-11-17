@@ -1,7 +1,7 @@
 {
-  "name": "自动体力计划",
+  "name": "Auto Scheduled Task Planner",
   "version": "0.1.5",
-  "description": "",
+  "description": "Plans and sequences multiple daily tasks into a single automated run.",
   "settings_ui": "settings.json",
   "main": "main.js",
   "bgi_version": "0.64.2",
@@ -14,9 +14,12 @@
     }
   ],
   "dependencies": [],
-  "saved_files": ["record/*.json"],
+  "saved_files": [
+    "record/*.json"
+  ],
   "http_allowed_urls": [
-      "https://*",
-      "http://*"
-  ]
+    "https://*",
+    "http://*"
+  ],
+  "tags": []
 }

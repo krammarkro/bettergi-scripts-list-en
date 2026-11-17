@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "莉奈娅挖矿一条龙",
+  "name": "Linnea Mining Route",
   "version": "0.2.6",
   "bgi_version": "0.61.0",
-  "description": "不分矿种，稳定刷新即挖",
+  "description": "Specialized fast mining route with Zhongli.",
   "authors": [
     {
       "name": "躁动的氨气",
@@ -19,5 +19,6 @@
   "library": [
     ".",
     "utils"
-  ]
+  ],
+  "tags": []
 }

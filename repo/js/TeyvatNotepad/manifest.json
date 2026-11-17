@@ -1,0 +1,20 @@
+{
+  "manifest_version": 1,
+  "name": "Teyvat Notepad",
+  "version": "1.0.3",
+  "bgi_version": "0.55",
+  "description": "In-game overlay notepad for notes, tasks, and reminders.",
+  "authors": [
+    {
+      "name": "爱丽丝",
+      "links": "https://github.com/itslyh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "allow_js_notification": true,
+  "saved_files": [
+    "record/*.txt"
+  ],
+  "tags": []
+}

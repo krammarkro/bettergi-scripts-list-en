@@ -1,0 +1,80 @@
+{
+  "info": {
+    "name": "Liyue-Fowl-Qiongji Estuary-Yaoguang Shoal-Northwest-x2-Lower-Luo-2-Rou-2",
+    "type": "collect",
+    "version": "1.0",
+    "description": "地区: Liyue\n类型: Fowl\n详细位置: Qiongji EstuaryYaoguang ShoalNorthwest\n数目: 2\n附加信息: 2Fowl鸟共x2\n注意: 使用前请将游戏时间调到白天，Pathing位建议使用Kirara或Aloy",
+    "bgi_version": "0.43.1",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -255.01,
+      "y": 630.04,
+      "type": "teleport",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "x": -251.64,
+      "y": 627.92,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "x": -85.28,
+      "y": 568.97,
+      "type": "target",
+      "move_mode": "fly",
+      "action": "combat_script",
+      "action_params": "keypress(space),wait(1.5),attack(0.1)"
+    },
+    {
+      "id": 4,
+      "x": -83.55,
+      "y": 569.48,
+      "type": "target",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 5,
+      "x": -87.19,
+      "y": 568.79,
+      "type": "target",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 6,
+      "x": -87.65,
+      "y": 570.97,
+      "type": "target",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 7,
+      "x": -85.74,
+      "y": 567.56,
+      "type": "target",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    }
+  ]
+}

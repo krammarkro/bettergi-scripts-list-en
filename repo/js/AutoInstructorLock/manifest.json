@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "锁定四星教官",
+  "name": "Auto Lock Instructor Set",
   "version": "1.3",
-  "description": "锁定背包中的四星教官",
+  "description": "Automatically locks 4-star Instructor artifact pieces with useful stats.",
   "authors": [
     {
       "name": "mno",
@@ -10,5 +10,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

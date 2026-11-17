@@ -1,11 +1,11 @@
 {
   "manifest_version": 1,
-  "name": "AAA狗粮联机团购",
+  "name": "AAA Artifacts Co-op Group Farm",
   "version": "2.7.4",
   "tags": [
     "狗粮"
   ],
-  "description": "配合AAA狗粮批发使用，联机运行多条收尾路线",
+  "description": "Runs coordinated co-op routes for overworld artifact spots.",
   "saved_files": [
     "records/*.txt",
     "targets/*.png",

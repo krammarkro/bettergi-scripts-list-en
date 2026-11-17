@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "518-Fontaine-Petrichor--Tainted Water Phantasm-（200_3）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.1",
+    "description": "Route信息：该Route预计用时54秒，包含x3Elite，预计收入600Mora，包含以下怪物：x2Tainted Water-Splitting Phantasm、x1Tainted Water-Spouting Phantasm。",
+    "bgi_version": "0.52.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 4200.3,
+      "y": 1283.64,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 4211.5,
+      "y": 1277.04,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 4243.44,
+      "y": 1323.05,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

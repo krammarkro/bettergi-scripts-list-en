@@ -1,0 +1,32 @@
+{
+  "info": {
+    "name": "Whopperflower-CuiKuaiPo-Bottom-Left-2",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Whopperflower",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "san"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 1148,
+      "y": 133.25
+    },
+    {
+      "id": 2,
+      "action": "fight",
+      "move_mode": "run",
+      "type": "path",
+      "x": 1105.75,
+      "y": 37.49
+    }
+  ]
+}

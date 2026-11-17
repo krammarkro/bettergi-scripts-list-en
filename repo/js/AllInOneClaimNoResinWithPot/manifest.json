@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "All-in-One Claim No Resin (Weekly Bosses + Pot)",
+  "version": "1.4",
+  "description": "Defeats weekly bosses and overworld bosses without spending resin + Teapot.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    },
+    {
+      "name": "Colin",
+      "links": "https://github.com/ColinXHL"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

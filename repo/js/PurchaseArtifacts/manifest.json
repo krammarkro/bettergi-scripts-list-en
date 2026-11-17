@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "自动购买狗粮",
+  "name": "Auto Buy Artifacts from NPCs",
   "version": "2.6.5",
   "bgi_version": "0.64.0",
-  "description": "自动购买狗粮(9点位)",
+  "description": "Visits all overworld NPC shops to buy green/white artifacts.",
   "authors": [
     {
       "name": "柒叶子",
@@ -22,5 +22,6 @@
   "main": "main.js",
   "saved_files": [
     "record/"
-  ]
+  ],
+  "tags": []
 }

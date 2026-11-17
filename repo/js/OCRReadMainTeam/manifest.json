@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "name": "OCR Read Active Party",
+  "version": "1.2",
+  "description": "Recognizes characters in the current party using OCR.",
+  "authors": [
+    {
+      "name": "1xygyty1",
+      "links": "https://github.com/1xygyty1"
+    }
+  ],
+  "main": "main.js",
+  "tags": []
+}

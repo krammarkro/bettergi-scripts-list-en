@@ -1,13 +1,14 @@
 {
   "manifest_version": 1,
-  "name": "奶龙",
+  "name": "NaiLong Fun Script",
   "version": "1.1",
-  "description": "在日志窗口一直输出奶龙",
+  "description": "Community meme script.",
   "authors": [
     {
       "name": "HZYgrandma",
       "links": "https://github.com/HZYgrandma"
     }
   ],
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

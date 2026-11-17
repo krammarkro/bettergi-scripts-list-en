@@ -1,0 +1,54 @@
+{
+  "info": {
+    "authors": [
+      {
+        "links": "https://github.com/jidingcai",
+        "name": "呱呱z"
+      }
+    ],
+    "bgi_version": "0.45.0",
+    "description": "",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1756108277056,
+    "map_match_method": "",
+    "map_name": "Teyvat",
+    "name": "08-Tainted Water Phantasm-Fontaine-Beryl Region-Elynas-Right-x2",
+    "tags": [
+      "Elite-Guai",
+      "Level 100+",
+      "Tainted Water Phantasm",
+      "Efficient"
+    ],
+    "type": "collect",
+    "version": "1.1"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 4705.9072,
+      "y": 2951.8923
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 2,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 4682.0947,
+      "y": 2911.5359
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 3,
+      "move_mode": "fly",
+      "type": "target",
+      "x": 4658.0586,
+      "y": 2861.2954
+    }
+  ]
+}

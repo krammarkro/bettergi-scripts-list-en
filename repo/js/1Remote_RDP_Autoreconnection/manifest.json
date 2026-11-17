@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "1Remote RDP 自动重连",
+  "name": "1Remote RDP Auto Reconnection",
   "version": "1.0",
   "bgi_version": "0.39.1",
-  "description": "用于自动重连远程桌面连接的脚本。\n在连接断开时自动尝试重新连接。",
+  "description": "Script to automatically reconnect Remote Desktop Connection when disconnected.",
   "authors": [
     {
       "name": "火山",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

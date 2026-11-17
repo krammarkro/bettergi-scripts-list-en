@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Serenitea Pot Realm Depot Buyer",
+  "version": "1.1",
+  "bgi_version": "0.36.0",
+  "description": "Automatically buys weekly Transient Resin, Hero's Wits, and Mora from the Realm Depot.",
+  "authors": [
+    {
+      "name": "miludelongwang",
+      "links": "https://github.com/miludelongwang"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

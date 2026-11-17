@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Switch Graphics Quality Preset",
+  "version": "2.11",
+  "description": "Toggles graphics quality between Ultra and Low presets.",
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

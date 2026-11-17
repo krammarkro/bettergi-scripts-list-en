@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Inazuma-Specter-Seirai Island-Hiraumi Fort-West-Ya-Lower-x4",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Specter-x4\nInazuma-Seirai IslandHiraumi Fort西崖下",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -4184.89,
+      "y": -4244.61,
+      "type": "teleport",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "x": -4173.3,
+      "y": -4255.67,
+      "type": "path",
+      "move_mode": "dash",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "x": -4169.02,
+      "y": -4275.33,
+      "type": "path",
+      "move_mode": "dash",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 4,
+      "x": -4162.3,
+      "y": -4280.14,
+      "type": "path",
+      "move_mode": "dash",
+      "action": "fight",
+      "action_params": ""
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "info": {
+    "name": "417-Sumeru-ShaMo-The Sands of Three Canals-North-（600_1）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时78秒，包含x1Elite与x6Common Mobs，预计收入883.5Mora，包含以下怪物：x1Ruin Grader、x1Eremite Crossbow、x1Eremite Linebreaker、x2Eremite Sword-Dancer、x1Eremite Desert Clearwater、x1Eremite Sunfrost。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 5300.48,
+      "y": -197.96,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 5289.36,
+      "y": -181.84,
+      "action": "combat_script",
+      "move_mode": "fly",
+      "action_params": "click,wait(1);钟离 a(0.1),e(hold);茜特菈莉 e;莱依拉 e;伊涅芙 e;芙宁娜 e;玛薇卡 e;爱可菲 e;",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 5298.18,
+      "y": -126.9,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 5291.13,
+      "y": -116.63,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 5,
+      "x": 5294.13,
+      "y": -102.63,
+      "action": "",
+      "move_mode": "fly",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "x": 5289.88,
+      "y": -94.52,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

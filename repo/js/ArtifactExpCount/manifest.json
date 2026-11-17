@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "圣遗物经验统计",
+  "name": "Artifact EXP Calculator",
   "version": "1.2",
   "bgi_version": "0.55",
-  "description": "识别可分解的1-4星圣遗物和经验瓶数量",
+  "description": "Counts scrapable 1-4 star artifacts and enhancement sanctifying unctions/essences.",
   "authors": [
     {
       "name": "勺子",
@@ -14,5 +14,6 @@
   "main": "main.js",
   "saved_files": [
     "assets/*.txt"
-  ]
+  ],
+  "tags": []
 }

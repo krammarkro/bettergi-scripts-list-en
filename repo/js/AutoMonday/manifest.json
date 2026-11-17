@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "name": "全自动周一",
+  "name": "Auto Monday Weekly Routine",
   "version": "1.4.6",
   "tags": [
     "周常",
@@ -11,7 +11,7 @@
     "四方八方之网",
     "投资券"
   ],
-  "description": "全自动周常：包含纪行、爱可菲和参变仪等，详情见readme",
+  "description": "Automates Monday weekly resets: weekly bosses, reputation requests, and realm depot.",
   "authors": [
     {
       "name": "江紫烟owo",

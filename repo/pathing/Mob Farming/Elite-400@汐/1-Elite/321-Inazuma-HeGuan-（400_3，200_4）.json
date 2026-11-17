@@ -1,0 +1,132 @@
+{
+  "info": {
+    "name": "321-Inazuma-HeGuan-（400_3，200_4）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时117秒，包含x7Elite与x3Common Mobs，预计收入2121.5Mora，包含以下怪物：x2Wooden Shield Hilichurl Guard、x1Electro Hilichurl Shooter、x1Crackling Axe Mitachurl、x2Rockfond Rifthound Whelp、x1Thundercraven Rifthound Whelp、x2Rockfond Rifthound、x1Thundercraven Rifthound。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ],
+    "tags": [],
+    "last_modified_time": 1755623996121,
+    "enable_monster_loot_split": false,
+    "map_match_method": ""
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -2595.99,
+      "y": -6697.75,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": -2649,
+      "y": -6747.25,
+      "action": "combat_script",
+      "move_mode": "run",
+      "action_params": "keypress(f);芙宁娜 e;玛薇卡 e;爱可菲 e;伊涅芙 e;",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": -2696.75,
+      "y": -6754.25,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": -2719.75,
+      "y": -6754.75,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 5,
+      "x": -2743.25,
+      "y": -6746.25,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "x": -2743.25,
+      "y": -6746.25,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 7,
+      "x": -2731.12,
+      "y": -6740.13,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 8,
+      "x": -2731.12,
+      "y": -6740.13,
+      "action": "combat_script",
+      "move_mode": "walk",
+      "action_params": "wait(0.2)",
+      "type": "orientation"
+    },
+    {
+      "id": 9,
+      "x": -2595.99,
+      "y": -6697.75,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 10,
+      "x": -2573.75,
+      "y": -6664.25,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 11,
+      "x": -2578.8164,
+      "y": -6618.5449,
+      "type": "path",
+      "move_mode": "dash",
+      "action": "fight",
+      "action_params": "",
+      "locked": false
+    },
+    {
+      "id": 12,
+      "x": -2578.8164,
+      "y": -6618.5449,
+      "type": "orientation",
+      "move_mode": "dash",
+      "action": "combat_script",
+      "action_params": "wait(0.2)"
+    }
+  ]
+}

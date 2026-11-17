@@ -1,0 +1,44 @@
+{
+  "info": {
+    "name": "Fontemer Aberrant-21-Erinnyes Forest-South-04",
+    "type": "collect",
+    "version": "1.0",
+    "description": "",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "鸿羽er",
+        "links": "https://github.com/evildoer12138"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 3592.25,
+      "y": 3260.75,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "x": 3626.75,
+      "y": 3236.25,
+      "action": "fight",
+      "action_params": "",
+      "move_mode": "run",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 3623.5,
+      "y": 3222,
+      "action": "fight",
+      "action_params": "",
+      "move_mode": "walk",
+      "type": "target"
+    }
+  ]
+}

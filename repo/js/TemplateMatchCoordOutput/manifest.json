@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Template Match Coordinate Output",
+  "version": "1.1",
+  "description": "Developer tool to debug and print template match coordinates.",
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

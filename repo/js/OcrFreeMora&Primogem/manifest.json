@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "摩拉&原石识别",
+  "name": "OCR Free Mora & Primogem Check",
   "version": "1.2",
   "tags": [],
-  "description": "更准确、更低性能开销的摩拉和原石等贵重物品识别",
+  "description": "Checks and logs free Primogem and Mora rewards.",
   "saved_files": [],
   "authors": [
     {

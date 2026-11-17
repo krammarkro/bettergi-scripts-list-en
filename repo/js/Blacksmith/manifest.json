@@ -1,0 +1,30 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Blacksmith Forging",
+  "version": "2.4.3",
+  "bgi_version": "0.64.0",
+  "description": "Visits the blacksmith to forge Mystic Enhancement Ores automatically.",
+  "tags": [
+    "铁匠铺",
+    "锻造",
+    "精锻用魔矿",
+    "图像识别",
+    "模板匹配",
+    "OCR"
+  ],
+  "authors": [
+    {
+      "name": "呱呱z",
+      "links": "https://github.com/jidingcai"
+    },
+    {
+      "name": "寒露"
+    },
+    {
+      "name": "蜜柑魚",
+      "links": "https://github.com/this-Fish"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

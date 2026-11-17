@@ -1,13 +1,13 @@
 {
   "manifest_version": 1,
-  "name": "鸡腿好感",
+  "name": "Auto Friendship Fowl Farm",
   "version": "1.6.1",
   "tags": [
     "好感",
     "突发事件"
   ],
   "bgi_version": "0.45.0",
-  "description": "消耗禽肉喂狗，完成“动物密友”好感任务，获取角色好感、摩拉、锻造矿。确保队伍满员，每天最多10次。",
+  "description": "Farms random events near bird feeding spots for friendship EXP and fowl.",
   "authors": [
     {
       "name": "花火"

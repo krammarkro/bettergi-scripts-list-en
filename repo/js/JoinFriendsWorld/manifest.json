@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
-  "name": "加入好友的世界",
-  "description": "快让我访问!",
+  "name": "Auto Join Friend's World",
+  "description": "Automatically joins friends' worlds when they accept co-op.",
   "version": "1.0.0",
   "main": "main.js",
   "settings_ui": "settings.json",
@@ -10,5 +10,6 @@
       "name": "ftnfurina",
       "links": "https://github.com/ftnfurina"
     }
-  ]
+  ],
+  "tags": []
 }

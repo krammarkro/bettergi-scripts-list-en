@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "234-Liyue-Chenyu Vale-Upper-Mt. Lingmeng-East-（200_3）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时54秒，包含x3Elite与x3Common Mobs，预计收入721.5Mora，包含以下怪物：x2Hilichurl Fighter、x1Hilichurl Berserker、x1Blazing Axe Mitachurl、x1Hydro Hilichurl Rogue、x1Anemo Hilichurl Rogue。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 1725.47,
+      "y": 2115.08,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 1737.29,
+      "y": 2178.53,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 1789.95,
+      "y": 2148.36,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 1815.52,
+      "y": 2133.17,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 5,
+      "x": 1822.61,
+      "y": 2151.44,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "info": {
+    "name": "A04-Matsutake-Mondstadt-Windrise-1-Zhu-Without Nahida",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Without NahidaMatsutake版，Route会夹杂Other一些小材料，对比Nahida版本效率不高，且有些小瑕疵，不过并不影响Matsutake采集！嗯对，有问题联系QQ3522426260",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "寰宇-@3522426260"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": -1536.76,
+      "y": 1978.73,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "x": -1593.64,
+      "y": 2000.84,
+      "type": "path",
+      "move_mode": "fly",
+      "action": "",
+      "action_params": ""
+    }
+  ]
+}

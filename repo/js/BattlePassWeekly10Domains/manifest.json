@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Battle Pass Weekly: 10 Domains All-in-One",
+  "version": "1.5",
+  "bgi_version": "0.55.0",
+  "description": "Quickly completes 10 domain runs to fulfill the weekly Battle Pass mission.",
+  "authors": [
+    {
+      "name": "Tool_tingsu",
+      "links": "https://github.com/Tooltingsu"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

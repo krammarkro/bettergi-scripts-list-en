@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "自动恰咯",
+  "name": "Ciallo Sound Utility",
   "version": "0.0.2",
   "tags": [],
-  "description": "挑战向好友列表前七位发送ciallo让他们感到莫名其妙",
+  "description": "Fun utility and greeting sound effects.",
   "authors": [
     {
       "name": "mno",

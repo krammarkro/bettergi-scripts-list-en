@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Inazuma-Nobushi-Kannazuka-Tatarasuna-South-FangLvePian-West Shore-Bian-x5",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Nobushi-x5\nInazuma-KannazukaTatarasuna南方略偏West Shore边",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": -3156.27,
+      "y": -3885.53,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "type": "path",
+      "x": -3139.09,
+      "y": -4026.17,
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "x": -3139.49,
+      "y": -4026.75,
+      "type": "path",
+      "action": "fight",
+      "action_params": "",
+      "move_mode": "walk"
+    },
+    {
+      "id": 4,
+      "action": "fight",
+      "move_mode": "walk",
+      "type": "target",
+      "x": -3187.58,
+      "y": -4026.08,
+      "action_params": ""
+    }
+  ]
+}

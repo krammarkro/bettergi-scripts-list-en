@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "324-Inazuma-Enkanomiya-The Narrows-Southwest-（200_5）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时105秒，包含x5Elite与x3Common Mobs，预计收入1121.5Mora，包含以下怪物：x1Hilichurl Fighter、x2Hilichurl Shooter、x2Wooden Shieldwall Mitachurl、x3Ruin Guard。",
+    "map_name": "Enkanomiya",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 851.06,
+      "y": 340.24,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 844.06,
+      "y": 302.81,
+      "action": "combat_script",
+      "move_mode": "dash",
+      "action_params": "w(6),wait(2)",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 844.06,
+      "y": 302.81,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "orientation"
+    },
+    {
+      "id": 4,
+      "x": 851.06,
+      "y": 340.24,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 5,
+      "x": 888.51,
+      "y": 362.04,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "x": 920.38,
+      "y": 368.19,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

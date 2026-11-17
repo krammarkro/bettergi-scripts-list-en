@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "退出游戏多模式",
+  "name": "Multi-Instance Exit Game",
   "version": "1.2",
-  "description": "用于各种各样的退出游戏",
+  "description": "Gracefully exits multiple Genshin Impact game clients.",
   "tags": [
     "退出游戏",
     "关闭游戏",

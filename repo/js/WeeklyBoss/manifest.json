@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "周本一条龙",
+  "name": "Weekly Boss Farming",
   "version": "4.1",
-  "description": "https://www.bilibili.com/video/BV1F2uvz3E4K/?vd_source=9dfaf88af48ecc0ff95a41f1145af7a2",
+  "description": "Automates teleporting to and completing weekly trounce domains.",
   "authors": [
     {
       "name": "柒叶子",
@@ -10,5 +10,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "BGI-地图追踪加载器（联机版）",
+  "name": "Multi-User Pathing Loader",
   "version": "1.0.3",
   "bgi_version": "0.45.0",
-  "description": "基于聊天框实现的同步联机锄地",
+  "description": "Manages and loads pathing routes for multiple accounts.",
   "authors": [
     {
       "name": "提瓦特钓鱼玳师",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

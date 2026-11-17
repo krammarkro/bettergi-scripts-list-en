@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "OCR Text Coordinates Output",
+  "version": "1.2",
+  "bgi_version": "0.55",
+  "description": "Outputs screen coordinates of matched in-game text.",
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

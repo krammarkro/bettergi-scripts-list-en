@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "Teleport to Specific Crafting Bench",
+  "version": "1.0.1",
+  "description": "Teleports to the designated city crafting bench (Mondstadt, Liyue, Fontaine, etc.).",
+  "authors": [
+    {
+      "name": "naralan",
+      "link": ""
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

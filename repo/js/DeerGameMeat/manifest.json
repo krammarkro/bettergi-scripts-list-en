@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "少女与鹿的兽肉灭绝计划",
+  "name": "Deer Hunting Raw Meat Farm",
   "version": "1.5",
   "bgi_version": "0.55.0",
-  "description": "菈乌玛/哥伦比娅兽肉路线脚本，支持潮湿状态检测和自动调时间功能",
+  "description": "Automated hunting in Natlan for raw meat.",
   "authors": [
     {
       "name": "zaodonganqi",
@@ -15,5 +15,6 @@
   "saved_files": [
     "data/*.txt",
     "user_data.txt"
-  ]
+  ],
+  "tags": []
 }

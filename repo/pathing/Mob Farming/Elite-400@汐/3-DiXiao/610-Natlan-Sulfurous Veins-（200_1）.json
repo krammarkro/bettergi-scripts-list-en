@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "610-Natlan-Sulfurous Veins-（200_1）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时43.13秒，包含x1Elite，预计收入200Mora，包含以下怪物：x1Secret Source Automaton: Hunter-Seeker。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 8400.59,
+      "y": -1221.34,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 8455.89,
+      "y": -1227.93,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

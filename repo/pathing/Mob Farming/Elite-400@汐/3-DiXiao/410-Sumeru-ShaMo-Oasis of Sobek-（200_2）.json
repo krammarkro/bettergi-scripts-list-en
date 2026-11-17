@@ -1,0 +1,54 @@
+{
+  "info": {
+    "name": "410-Sumeru-ShaMo-Oasis of Sobek-（200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "2Primal Construct  Route信息：该Route预计用时46秒，包含x102Elite，预计收入20400Mora，包含以下怪物：x2Primal Construct: Prospector。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 4691.5,
+      "y": -2352.25,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 4760.45,
+      "y": -2334.15,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 4780.88,
+      "y": -2324.38,
+      "action": "combat_script",
+      "move_mode": "run",
+      "action_params": "keypress(t),wait(2)",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 4819.5,
+      "y": -2303,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

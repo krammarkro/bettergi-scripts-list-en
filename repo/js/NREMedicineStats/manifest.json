@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "NRE Medicine Usage Statistics",
+  "version": "2.1.1",
+  "bgi_version": "0.51",
+  "description": "Tracks food consumed through the NRE (Menu 30) gadget.",
+  "authors": [
+    {
+      "name": "勺子",
+      "links": "https://github.com/skyflag2022"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "saved_files": [
+    "assets/*.txt"
+  ],
+  "tags": []
+}

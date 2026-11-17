@@ -1,0 +1,71 @@
+{
+  "info": {
+    "name": "Mondstadt-Whopperflower-Windwail Highland-Dadaupa Gorge-Southeast-x2",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Whopperflower-x2\nMondstadt-Windwail HighlandDadaupa GorgeSoutheast",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -1870.46,
+      "y": 1327.68,
+      "type": "teleport",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "action": "",
+      "move_mode": "fly",
+      "type": "path",
+      "x": -1843,
+      "y": 1296.33,
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "action": "fight",
+      "move_mode": "walk",
+      "type": "path",
+      "x": -1748.5,
+      "y": 1302.83,
+      "action_params": ""
+    },
+    {
+      "id": 4,
+      "x": -1728.5,
+      "y": 1302.5,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 5,
+      "action": "",
+      "move_mode": "fly",
+      "type": "path",
+      "x": -1629.5,
+      "y": 1305.83,
+      "action_params": ""
+    },
+    {
+      "id": 6,
+      "action": "fight",
+      "move_mode": "walk",
+      "type": "target",
+      "x": -1583.5,
+      "y": 1306.33,
+      "action_params": ""
+    }
+  ]
+}

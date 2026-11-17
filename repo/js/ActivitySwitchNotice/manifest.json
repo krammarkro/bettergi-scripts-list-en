@@ -1,7 +1,7 @@
 {
-  "name": "活动期限/周本通知器",
+  "name": "Event & Weekly Boss Notifier",
   "version": "0.2.1",
-  "description": "",
+  "description": "Notifies about event deadlines, weekly boss resets, and battle pass reminders.",
   "settings_ui": "settings.json",
   "main": "main.js",
   "bgi_version": "0.63.0",
@@ -12,9 +12,12 @@
     }
   ],
   "dependencies": [],
-  "saved_files": ["recognition-result.json"],
+  "saved_files": [
+    "recognition-result.json"
+  ],
   "http_allowed_urls": [
-      "https://*",
-      "http://*"
-  ]
+    "https://*",
+    "http://*"
+  ],
+  "tags": []
 }

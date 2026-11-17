@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "点击消除新",
+  "name": "Auto Dismiss Announcements",
   "version": "1.0",
-  "description": "点击消除背包中的新",
+  "description": "Automatically closes event banners, notices, and update popups.",
   "authors": [
     {
       "name": "mno",
@@ -10,5 +10,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

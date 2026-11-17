@@ -1,10 +1,10 @@
 {
-  "time": "20261118030051",
+  "time": "20261118061534",
   "url": "https://github.com/babalae/bettergi-scripts-list/archive/refs/heads/main.zip",
   "file": "repo.json",
   "build": {
     "version": 1,
-    "sourceCommit": "3f220078441b3168df8918f168f03a7faea739d5"
+    "sourceCommit": "645d9e0694f5f5b7806474326c952f61f8558d98"
   },
   "indexes": [
     {

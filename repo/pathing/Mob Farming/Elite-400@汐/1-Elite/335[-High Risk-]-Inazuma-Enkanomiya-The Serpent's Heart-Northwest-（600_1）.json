@@ -1,0 +1,51 @@
+{
+  "info": {
+    "author": "汐",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ],
+    "bgi_version": "0.45.0",
+    "description": "  Route信息：该Route预计用时58秒，包含x1Elite，预计收入600Mora，包含以下怪物：x1Abyss Lector: Violet Lightning。",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1759246541873,
+    "map_match_method": "",
+    "map_name": "Enkanomiya",
+    "name": "335[-High Risk-]-Inazuma-Enkanomiya-The Serpent's Heart-Northwest-（600_1）",
+    "tags": [],
+    "type": "collect",
+    "version": "1.0"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 452.27,
+      "y": -119.1
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 2,
+      "locked": false,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 499.0044,
+      "y": -141.7712
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(0.2)",
+      "id": 3,
+      "move_mode": "dash",
+      "type": "orientation",
+      "x": 499.0044,
+      "y": -141.7712
+    }
+  ]
+}

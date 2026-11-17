@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "锄地一条龙",
+  "name": "Auto Overworld Mob Sweep All-in-One",
   "version": "2.13.6",
-  "description": "一站式解决自动化锄地，支持只拾取狗粮，请仔细阅读README.md后使用",
+  "description": "Comprehensive overworld mob sweep route automation.",
   "authors": [
     {
       "name": "mno",
@@ -27,5 +27,6 @@
     "pathing/0-保留/*/*.json",
     "pathing/0-保留/*/*/*.json",
     "pathing/0-保留/*/*/*/*.json"
-  ]
+  ],
+  "tags": []
 }

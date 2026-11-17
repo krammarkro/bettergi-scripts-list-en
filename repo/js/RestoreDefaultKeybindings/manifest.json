@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Restore Default Keybindings",
+  "version": "1.1",
+  "bgi_version": "0.45.0",
+  "description": "Resets in-game keybindings to system defaults.",
+  "authors": [
+    {
+      "name": "寒烟",
+      "links": "https://github.com/214-hanyan"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

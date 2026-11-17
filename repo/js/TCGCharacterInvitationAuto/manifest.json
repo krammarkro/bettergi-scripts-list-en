@@ -1,0 +1,17 @@
+{
+  "manifest_version": 1,
+  "name": "TCG Character Invitations Full Auto",
+  "version": "1.2",
+  "description": "Automatically invites and defeats characters for their talent cards.",
+  "tags": [
+    "七圣召唤"
+  ],
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

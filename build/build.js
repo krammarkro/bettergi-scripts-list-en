@@ -310,9 +310,9 @@ function prioritizeVersionTag(tags) {
 
 function extractInfoFromCombatFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
-    const authorMatch = content.match(/\/\/\s*作者\s*[:：](.*)/);
-    const descriptionMatch = content.match(/\/\/\s*描述\s*[:：](.*)/);
-    const versionMatch = content.match(/\/\/\s*版本\s*[:：](.*)/);
+    const authorMatch = content.match(/\/\/\s*(?:作者|Author)\s*[:：](.*)/i);
+    const descriptionMatch = content.match(/\/\/\s*(?:描述|Description)\s*[:：](.*)/i);
+    const versionMatch = content.match(/\/\/\s*(?:版本|Version)\s*[:：](.*)/i);
     const lines = content.split('\n');
 
     const tags = [...new Set(
@@ -428,25 +428,25 @@ function extractInfoFromPathingFile(filePath, parentFolders) {
     }
     // 区分怪物拾取标识
     if (contentObj.info && contentObj.info.enable_monster_loot_split) {
-        tags.unshift("区分怪物拾取");
+        tags.unshift("Monster Loot Split");
     }
     if (contentObj.positions && Array.isArray(contentObj.positions)) {
         const actions = contentObj.positions.map(pos => pos.action);
-        if (actions.includes('nahida_collect')) tags.push('纳西妲');
-        if (actions.includes('hydro_collect')) tags.push('水元素力收集');
-        if (actions.includes('anemo_collect')) tags.push('风元素力收集');
-        if (actions.includes('electro_collect')) tags.push('雷元素力收集');
-        if (actions.includes('pyro_collect')) tags.push('火元素力收集');
-        if (actions.includes('up_down_grab_leaf')) tags.push('四叶印');
-        if (actions.includes('mining')) tags.push('挖矿');
-        if (actions.includes('fight')) tags.push('战斗');
-        if (actions.includes('log_output')) tags.push('有日志');
-        if (actions.includes('pick_around')) tags.push('转圈拾取');
-        if (actions.includes('fishing')) tags.push('钓鱼');
-        if (actions.includes('set_time')) tags.push('时间调整');
-        if (actions.includes('use_gadget')) tags.push('小道具');
+        if (actions.includes('nahida_collect')) tags.push('Nahida');
+        if (actions.includes('hydro_collect')) tags.push('Hydro Collect');
+        if (actions.includes('anemo_collect')) tags.push('Anemo Collect');
+        if (actions.includes('electro_collect')) tags.push('Electro Collect');
+        if (actions.includes('pyro_collect')) tags.push('Pyro Collect');
+        if (actions.includes('up_down_grab_leaf')) tags.push('Four-Leaf Sigil');
+        if (actions.includes('mining')) tags.push('Mining');
+        if (actions.includes('fight')) tags.push('Combat');
+        if (actions.includes('log_output')) tags.push('Has Log');
+        if (actions.includes('pick_around')) tags.push('Spin Pick');
+        if (actions.includes('fishing')) tags.push('Fishing');
+        if (actions.includes('set_time')) tags.push('Time Adjust');
+        if (actions.includes('use_gadget')) tags.push('Gadget');
         const move_modes = contentObj.positions.map(pos => pos.move_mode);
-        if (move_modes.includes('climb')) tags.push("有攀爬");
+        if (move_modes.includes('climb')) tags.push("Climbing");
         
     }
     // 确保标签数组中没有重复项
@@ -468,11 +468,11 @@ function extractInfoFromPathingFile(filePath, parentFolders) {
 
 function extractInfoFromTCGFile(filePath, parentFolder) {
     const content = fs.readFileSync(filePath, 'utf8');
-    const authorMatch = content.match(/\/\/\s*作者\s*[:：](.*)/);
-    const descriptionMatch = content.match(/\/\/\s*描述\s*[:：](.*)/);
-    const versionMatch = content.match(/\/\/\s*版本\s*[:：](.*)/);
+    const authorMatch = content.match(/\/\/\s*(?:作者|Author)\s*[:：](.*)/i);
+    const descriptionMatch = content.match(/\/\/\s*(?:描述|Description)\s*[:：](.*)/i);
+    const versionMatch = content.match(/\/\/\s*(?:版本|Version)\s*[:：](.*)/i);
     // 移除最低版本提取，TCG脚本无需最低版本要求
-    const characterMatches = content.match(/角色\d+\s?=([^|\r\n{]+)/g);
+    const characterMatches = content.match(/(?:角色|Character)\d+\s?=([^|\r\n{]+)/gi);
 
     // 获取最后更新时间
     const gitTimestamp = getGitTimestamp(filePath);
@@ -480,14 +480,14 @@ function extractInfoFromTCGFile(filePath, parentFolder) {
 
     let tags = characterMatches
         ? characterMatches.map(match => match.split('=')[1].trim())
-            .filter(tag => tag && !tag.startsWith('角色'))
+            .filter(tag => tag && !tag.startsWith('角色') && !tag.startsWith('Character'))
         : [];
 
-    if (filePath.includes('惊喜牌组')) {
-        tags = ['惊喜牌组', ...tags];
+    if (filePath.includes('惊喜牌组') || filePath.includes('Surprise Decks')) {
+        tags = ['Surprise Deck', ...tags];
     }
-    if (filePath.includes('酒馆挑战')) {
-        tags = ['酒馆挑战', ...tags];
+    if (filePath.includes('酒馆挑战') || filePath.includes('Tavern Challenges')) {
+        tags = ['Tavern Challenge', ...tags];
     }
     
     // 优先使用文件中的版本号，其次使用提交时间
@@ -677,8 +677,8 @@ const result = folderOrder
                     return aHasNoIcon ? 1 : -1;
                 }
                 
-                // 使用拼音排序
-                return a.name.localeCompare(b.name, 'zh-CN', {
+                // 使用英文排序
+                return a.name.localeCompare(b.name, 'en', {
                     numeric: true,
                     sensitivity: 'accent',
                     caseFirst: false
@@ -700,7 +700,7 @@ const repoJson = {
         hour12: false,
         timeZone: 'Asia/Shanghai'
     }).replace(/[/\s,:]/g, ''),
-    "url": "https://github.com/babalae/bettergi-scripts-list/archive/refs/heads/main.zip",
+    "url": "https://github.com/krammarkro/bettergi-scripts-list-en/archive/refs/heads/main.zip",
     "file": "repo.json",
     "build": { version: BUILD_VERSION, sourceCommit },
     "indexes": result

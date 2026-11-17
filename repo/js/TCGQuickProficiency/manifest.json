@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "七圣召唤卡牌熟练度速刷",
+  "name": "TCG Quick Proficiency Farm",
   "version": "1.4",
   "bgi_version": "0.45.0",
-  "description": "七圣召唤卡牌熟练度速刷",
+  "description": "Farms character card proficiency in Genius Invokation TCG.",
   "authors": [
     {
       "name": "Ayaka-Main",
@@ -11,5 +11,6 @@
     }
   ],
   "settings_ui": "settings.json",
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

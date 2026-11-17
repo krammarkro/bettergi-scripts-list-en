@@ -1,14 +1,15 @@
 {
   "manifest_version": 1,
-  "name": "自动月卡",
+  "name": "Skip Welkin Moon Animation",
   "version": "0.5",
   "bgi_version": "0.54.0",
-  "description": "一直等待直到点击掉月卡",
+  "description": "Automatically skips the Blessing of the Welkin Moon daily popup.",
   "authors": [
     {
       "name": "躁动的氨气",
       "links": "https://github.com/zaodonganqi"
     }
   ],
-  "main": "main.js"
+  "main": "main.js",
+  "tags": []
 }

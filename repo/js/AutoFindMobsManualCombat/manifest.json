@@ -1,0 +1,21 @@
+{
+  "manifest_version": 1,
+  "name": "Auto Find Mobs (Manual Combat)",
+  "version": "1.12",
+  "bgi_version": "0.64",
+  "description": "Navigates to mob locations automatically and pauses for manual combat.",
+  "saved_files": [
+    "pathing/",
+    "user/",
+    "pathing_record/"
+  ],
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

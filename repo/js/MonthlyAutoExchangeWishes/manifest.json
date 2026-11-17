@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Monthly Auto Exchange Fates",
+  "version": "1.2",
+  "description": "Automatically exchanges Stardust for 5 Intertwined Fates and 5 Acquaint Fates on the 1st of each month.",
+  "authors": [
+    {
+      "name": "柒叶子",
+      "links": "https://github.com/5117600049"
+    },
+    {
+      "name": "云端客",
+      "links": "https://github.com/Kirito520Asuna"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

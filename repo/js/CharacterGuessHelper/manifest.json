@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "name": "Character Guess Helper",
+  "version": "3.0",
+  "bgi_version": "0.61.2",
+  "description": "Interactive helper tool for character guessing minigames.",
+  "authors": [
+    {
+      "name": "ddaodan",
+      "link": "https://github.com/ddaodan"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "saved_files": [
+    "data.json"
+  ],
+  "tags": []
+}

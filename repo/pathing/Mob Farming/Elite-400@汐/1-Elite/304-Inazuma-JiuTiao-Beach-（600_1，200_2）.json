@@ -1,0 +1,167 @@
+{
+  "info": {
+    "name": "304-Inazuma-JiuTiao-Beach-（600_1，200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时183秒，包含x3Elite与x17Common Mobs，预计收入1769.5Mora，包含以下怪物：x3Pyro Slime、x2Hilichurl、x1Hilichurl Fighter、x1Pyro Hilichurl Shooter、x1Cryo Hilichurl Shooter、x1Thunderhelm Lawachurl、x1Anemo Samachurl、x1Pyro Abyss Mage、x1Electro Abyss Mage、x1Treasure Hoarders: Scout、x1Treasure Hoarders: Pyro Potioneer、x1Treasure Hoarders: Electro Potioneer、x3野伏·火伏番、x2Kairagi: Fiery Might。",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ],
+    "map_name": "Teyvat",
+    "tags": [],
+    "last_modified_time": 1754745202027,
+    "enable_monster_loot_split": false,
+    "map_match_method": ""
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": -3437.05,
+      "y": -3319.79,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": -3383.28,
+      "y": -3311.19,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": -3362.47,
+      "y": -3307.64,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": -3363.95,
+      "y": -3271.77,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 5,
+      "x": -3379.63,
+      "y": -3260.94,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "x": -3384.86,
+      "y": -3234.99,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 7,
+      "x": -3353.56,
+      "y": -3222.27,
+      "action": "combat_script",
+      "move_mode": "run",
+      "action_params": "attack(0.5)",
+      "type": "path"
+    },
+    {
+      "id": 8,
+      "x": -3353.5,
+      "y": -3192.75,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 9,
+      "x": -3382.97,
+      "y": -3196.21,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 10,
+      "x": -3382.97,
+      "y": -3196.21,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 11,
+      "x": -3410.21,
+      "y": -3201.27,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 12,
+      "x": -3420.82,
+      "y": -3190.97,
+      "action": "combat_script",
+      "move_mode": "dash",
+      "action_params": "keypress(f);芙宁娜 e;爱可菲 e;伊涅芙 e;",
+      "type": "path"
+    },
+    {
+      "id": 13,
+      "x": -3437.87,
+      "y": -3173.36,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 14,
+      "x": -3456.7,
+      "y": -3136.63,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 15,
+      "x": -3477.19,
+      "y": -3156.25,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 16,
+      "x": -3524.16,
+      "y": -3163.04,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

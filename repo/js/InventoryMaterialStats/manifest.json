@@ -1,0 +1,24 @@
+{
+  "manifest_version": 1,
+  "name": "Inventory Material Statistics",
+  "version": "2.68.3",
+  "bgi_version": "0.55",
+  "description": "Aggregates material quantities and calculates ascension readiness.",
+  "saved_files": [
+    "pathing/",
+    "history_record/",
+    "overwrite_record/",
+    "latest_record.txt",
+    "user/",
+    "pathing_record/"
+  ],
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

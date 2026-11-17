@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "name": "All-in-One Daily (No Domains + Serenitea Pot)",
+  "version": "1.0",
+  "description": "Full daily routine: commissions, expedition, teapot, without domain runs.",
+  "authors": [
+    {
+      "name": "凉城"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

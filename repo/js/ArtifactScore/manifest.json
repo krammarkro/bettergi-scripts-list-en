@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "圣遗物实时评分",
+  "name": "Real-time Artifact Rater",
   "version": "1.8.2",
   "bgi_version": "0.65.0",
-  "description": "在角色圣遗物界面通过浮窗实时显示圣遗物的评分",
+  "description": "Displays real-time artifact CV and rating floating window on the artifact interface.",
   "authors": [
     {
       "name": "躁动的氨气",
@@ -15,5 +15,6 @@
   "library": [
     ".",
     "utils"
-  ]
+  ],
+  "tags": []
 }

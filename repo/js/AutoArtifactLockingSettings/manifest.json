@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "自动配置圣遗物锁定方案",
+  "name": "Auto Artifact Locking Settings",
   "version": "1.0.4",
   "bgi_version": "0.56.2",
-  "description": "自动配置圣遗物锁定方案，方案来源于 哔哩哔哩 @酸儒书生 https://www.bilibili.com/video/BV13YHQzMEAT",
+  "description": "Automated rules and filters to lock valuable artifacts.",
   "authors": [
     {
       "name": "bling-yshs",
@@ -18,5 +18,6 @@
   "main": "main.js",
   "library": [
     "."
-  ]
+  ],
+  "tags": []
 }

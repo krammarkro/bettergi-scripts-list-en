@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "芙芙挂机暗杀流",
+  "name": "Furina Defeat Local Legend (Ousia)",
   "version": "1.1",
   "bgi_version": "0.37.2",
-  "description": "",
+  "description": "Uses Furina's Salon Members to defeat overworld Local Legends.",
   "authors": [
     {
       "name": "起个名字好难的喵",

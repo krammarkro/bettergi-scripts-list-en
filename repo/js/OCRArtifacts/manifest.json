@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "OCRArtifacts",
+  "name": "OCR Artifact Scanner",
   "version": "1.0.1",
-  "description": "读取背包圣遗物并解析为json格式",
+  "description": "Optical character recognition for artifact substats export.",
   "authors": [
     {
       "name": "zlh",
@@ -14,5 +14,6 @@
   "saved_files": [
     "records/*.txt",
     "records/*.json"
-  ]
+  ],
+  "tags": []
 }

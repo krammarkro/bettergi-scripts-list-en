@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "513-Fontaine-Elynas-East-Tainted Water Phantasm-（200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "2Tainted Water Phantasm  Route信息：该Route预计用时72.29秒，包含x2Elite与x1Common Mobs，预计收入440.5Mora，包含以下怪物：x2Tainted Water-Splitting Phantasm、x1Arithmetic Enhancer Mek。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 4705.61,
+      "y": 2951.58,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 4681.1,
+      "y": 2902.76,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 4664.99,
+      "y": 2865.37,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

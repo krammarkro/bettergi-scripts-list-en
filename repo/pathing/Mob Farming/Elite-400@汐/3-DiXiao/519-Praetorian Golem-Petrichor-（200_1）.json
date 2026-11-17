@@ -1,0 +1,40 @@
+{
+  "info": {
+    "name": "519-Praetorian Golem-Petrichor-（200_1）",
+    "type": "collect",
+    "authors": [
+      {
+        "name": "Tool_tingsu",
+        "links": "https://github.com/Tooltingsu"
+      }
+    ],
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时36秒，包含x1Elite，预计收入200Mora，包含以下怪物：x1Praetorian Golem。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "tags": [],
+    "last_modified_time": 1754765854819,
+    "enable_monster_loot_split": false,
+    "map_match_method": ""
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 3848.5771,
+      "y": 1136.9517,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 3873.8398,
+      "y": 1138.0249,
+      "action": "fight",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

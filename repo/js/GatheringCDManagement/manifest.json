@@ -1,0 +1,27 @@
+{
+  "manifest_version": 1,
+  "name": "Gathering CD & Respawn Timer Manager",
+  "version": "3.1.1",
+  "bgi_version": "0.44.8",
+  "description": "Tracks local specialty 48-hour respawn timers and ore cycles.",
+  "saved_files": [
+    "pathing/",
+    "record/",
+    "blacklists/",
+    "assets/targetItems/保留/",
+    "settings.json"
+  ],
+  "authors": [
+    {
+      "name": "mno",
+      "links": "https://github.com/Bedrockx"
+    },
+    {
+      "name": "蜜柑魚",
+      "links": "https://github.com/this-Fish"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "04-Radish-Liyue-Dihua Marsh-x3",
+    "type": "collect",
+    "version": "1.0",
+    "description": "04-Radish-LiyueDihua Marsh-x3",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "小刘忙"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 730.39,
+      "y": 1062.57,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 663,
+      "y": 990.5,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 649,
+      "y": 954,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 641.65,
+      "y": 921.14,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 5,
+      "x": 634.74,
+      "y": 906.39,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    },
+    {
+      "id": 6,
+      "x": 639.92,
+      "y": 900.83,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "",
+      "action_params": ""
+    }
+  ]
+}

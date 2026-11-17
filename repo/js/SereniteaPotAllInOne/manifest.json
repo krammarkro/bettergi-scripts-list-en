@@ -1,0 +1,24 @@
+{
+  "manifest_version": 1,
+  "name": "Serenitea Pot All-in-One",
+  "version": "1.3",
+  "bgi_version": "0.55.0",
+  "description": "Collects realm currency, friendship EXP, plants, and crafts furniture.",
+  "tags": [
+    "尘歌壶",
+    "模拟点击",
+    "周计划"
+  ],
+  "authors": [
+    {
+      "name": "miludelongwang",
+      "links": "https://github.com/miludelongwang"
+    },
+    {
+      "name": "蜜柑魚",
+      "links": "https://github.com/this-Fish"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

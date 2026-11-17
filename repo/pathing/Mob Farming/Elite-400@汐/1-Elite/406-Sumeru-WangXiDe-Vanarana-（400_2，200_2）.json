@@ -1,0 +1,65 @@
+{
+  "info": {
+    "name": "406-Sumeru-WangXiDe-Vanarana-（400_2，200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时58.88秒，包含x4Elite与x235Common Mobs，预计收入10717.5Mora，包含以下怪物：x2Thundercraven Rifthound Whelp、x1Rockfond Rifthound、x1Thundercraven Rifthound。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 4046.04,
+      "y": -739.91,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 3996.25,
+      "y": -709.5,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 3977.12,
+      "y": -708,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 3930.04,
+      "y": -699,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path",
+      "locked": false
+    },
+    {
+      "id": 5,
+      "x": 3930.04,
+      "y": -699,
+      "action": "combat_script",
+      "move_mode": "run",
+      "action_params": "wait(0.2)",
+      "type": "orientation"
+    }
+  ]
+}

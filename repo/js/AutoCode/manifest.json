@@ -1,9 +1,9 @@
 {
   "manifest_version": 1,
-  "name": "自动使用兑换码",
+  "name": "Auto Redeem Codes",
   "version": "6.6.2",
   "bgi_version": "0.61.0",
-  "description": "支持国服与国际服，可按服务器过滤兑换码",
+  "description": "Automatically redeems the latest active Genshin Impact promo codes.",
   "authors": [
     {
       "name": "Tool_tingsu",
@@ -33,5 +33,6 @@
   ],
   "http_allowed_urls": [
     "https://cnb.cool/bettergi/genshin-redeem-code/*"
-  ]
+  ],
+  "tags": []
 }

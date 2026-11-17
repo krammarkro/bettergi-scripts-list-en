@@ -1,0 +1,86 @@
+{
+  "info": {
+    "authors": [
+      {
+        "links": "https://github.com/jiegedabaobei",
+        "name": "汐"
+      }
+    ],
+    "bgi_version": "0.45.0",
+    "description": "  Route信息：该Route预计用时105秒，包含以下怪物：x2Wilderness Hunter、x1Oprichniki Line Trooper、x2Oprichniki Support Trooper、x1Oprichniki Grenadier、x1Oprichniki Vanguard、x1Oprichniki Medic、x2Oprichniki Fireblade Shock Trooper、x1Hydro Slime、x1Large Hydro Slime。",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1758916066368,
+    "map_match_method": "",
+    "map_name": "Teyvat",
+    "name": "706-Nod-Krai-Shoal of Starconches-North-（400_2）",
+    "tags": [],
+    "type": "collect",
+    "version": "1.0"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 9560.4287,
+      "y": 2134.2742
+    },
+    {
+      "action": "stop_flying",
+      "action_params": "",
+      "id": 2,
+      "move_mode": "fly",
+      "type": "path",
+      "x": 9556.4785,
+      "y": 2166.8408
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 3,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 9549.1172,
+      "y": 2245.3127
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 4,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 9607.2393,
+      "y": 2310.0378
+    },
+    {
+      "action": "combat_script",
+      "action_params": "keypress(x);芙宁娜 e;玛薇卡 e;爱可菲 e;伊涅芙 e;",
+      "id": 5,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 9635.125,
+      "y": 2378.5001
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 6,
+      "locked": false,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 9638.5137,
+      "y": 2390.2954
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(0.2)",
+      "id": 7,
+      "move_mode": "dash",
+      "type": "orientation",
+      "x": 9638.5137,
+      "y": 2390.2954
+    }
+  ]
+}

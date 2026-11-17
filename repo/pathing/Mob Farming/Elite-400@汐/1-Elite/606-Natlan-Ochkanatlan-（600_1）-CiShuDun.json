@@ -1,0 +1,64 @@
+{
+  "info": {
+    "name": "606-Natlan-Ochkanatlan-（600_1）-CiShuDun",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时61秒，包含x1Elite，预计收入600Mora，包含以下怪物：x1Tenebrous Mimiflora。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.45.0",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 9757.93,
+      "y": -613.62,
+      "action": "force_tp",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 9767.55,
+      "y": -603.87,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 9802.44,
+      "y": -609.74,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "action_params": "1700",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 9825.85,
+      "y": -632.36,
+      "action": "fight",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 5,
+      "x": 9825.85,
+      "y": -632.36,
+      "action": "combat_script",
+      "move_mode": "dash",
+      "action_params": "wait(0.2)",
+      "type": "orientation"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "name": "OCR Switch Weapon",
+  "version": "2.23",
+  "description": "Automates switching weapon presets based on OCR matching.",
+  "authors": [
+    {
+      "name": "吉吉喵",
+      "links": "https://github.com/JJMdzh"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js",
+  "tags": []
+}

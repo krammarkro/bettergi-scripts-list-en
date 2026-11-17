@@ -1,0 +1,58 @@
+{
+  "info": {
+    "authors": [
+      {
+        "links": "https://github.com/zhy0070",
+        "name": "烤鱼"
+      }
+    ],
+    "bgi_version": "0.52.0",
+    "description": "  Route信息：该Route预计用时38秒，包含以下怪物：x1Secret Source Automaton: Hunter-Seeker、x1Tatankasaur Whelp、x1Tatankasaurus。",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1767735776178,
+    "map_match_method": "",
+    "map_name": "AncientSacredMountain",
+    "name": "MiYuanJiBing-ShengShan-Sea of Shifting Sentience-Southeast-（1）",
+    "tags": [],
+    "type": "collect",
+    "version": "1.0"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 185.3328,
+      "y": -43.5044
+    },
+    {
+      "action": "combat_script",
+      "action_params": "attack;芙宁娜 e",
+      "id": 2,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 183.4169,
+      "y": -36.1978
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 3,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 182.5173,
+      "y": -59.4282
+    },
+    {
+      "action": "combat_script",
+      "action_params": "wait(1)",
+      "id": 4,
+      "move_mode": "dash",
+      "type": "orientation",
+      "x": 182.5173,
+      "y": -59.4282
+    }
+  ]
+}

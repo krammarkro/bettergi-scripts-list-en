@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "Inazuma-Nobushi-Watatsumi Island-Bourou Village-Left Side-Ya-Lower-AnBian-x3",
+    "type": "collect",
+    "version": "1.0",
+    "description": "Nobushi-x3\nInazuma-Watatsumi IslandBourou VillageLeft Side崖下岸边",
+    "bgi_version": "0.42.0",
+    "authors": [
+      {
+        "name": "提瓦特钓鱼玳师",
+        "links": "https://github.com/Hijiwos"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "action": "",
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": -754.8,
+      "y": -4000.05,
+      "action_params": ""
+    },
+    {
+      "id": 2,
+      "action": "",
+      "move_mode": "run",
+      "type": "path",
+      "x": -671.75,
+      "y": -3982.79,
+      "action_params": ""
+    },
+    {
+      "id": 3,
+      "action": "",
+      "move_mode": "walk",
+      "type": "path",
+      "x": -650.74,
+      "y": -3987.79,
+      "action_params": ""
+    },
+    {
+      "id": 4,
+      "action": "stop_flying",
+      "move_mode": "fly",
+      "type": "path",
+      "x": -638.23,
+      "y": -3986.79,
+      "action_params": ""
+    },
+    {
+      "id": 5,
+      "x": -638.23,
+      "y": -3986.79,
+      "type": "path",
+      "move_mode": "walk",
+      "action": "fight",
+      "action_params": ""
+    }
+  ]
+}

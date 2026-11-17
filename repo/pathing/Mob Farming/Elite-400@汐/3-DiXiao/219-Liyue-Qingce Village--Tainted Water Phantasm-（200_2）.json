@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "219-Liyue-Qingce Village--Tainted Water Phantasm-（200_2）",
+    "type": "collect",
+    "author": "汐",
+    "version": "1.0",
+    "description": "  Route信息：该Route预计用时41.18秒，包含x2Elite与x5000Common Mobs，预计收入202900Mora，包含以下怪物：x1Tainted Water-Splitting Phantasm、x1Tainted Water-Spouting Phantasm。",
+    "bgi_version": "0.42.3",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 547.74,
+      "y": 1766.79,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 540.83,
+      "y": 1766.03,
+      "action": "",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 475.23,
+      "y": 1789.23,
+      "action": "fight",
+      "move_mode": "run",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

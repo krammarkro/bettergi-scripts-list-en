@@ -1,11 +1,11 @@
 {
   "manifest_version": 1,
-  "name": "AAA狗粮批发",
+  "name": "AAA Artifact Bulk Supply",
   "version": "2.6.5",
   "tags": [
     "狗粮"
   ],
-  "description": "直接利用“富98个上限点”1号/2号路线交替运行(路线不重复),来给收尾和额外路线卡时间，花最少的时间拿最多的狗粮",
+  "description": "Alternating high-yield routes to efficiently farm 1-4 star artifacts.",
   "saved_files": [
     "records/*.txt",
     "assets/targetItems/保留/*.png",

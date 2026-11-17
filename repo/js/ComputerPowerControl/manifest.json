@@ -1,0 +1,21 @@
+{
+  "manifest_version": 1,
+  "name": "Computer Power Management",
+  "version": "1.0",
+  "description": "Shuts down, sleeps, or hibernates PC upon task completion.",
+  "tags": [
+    "计算机",
+    "关机",
+    "注销",
+    "休眠",
+    "重启"
+  ],
+  "authors": [
+    {
+      "name": "呱呱z",
+      "links": "https://github.com/jidingcai"
+    }
+  ],
+  "settings_ui": "settings.json",
+  "main": "main.js"
+}

@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "Fowl-2-06-Liyue-ZongShiBen-Top-Right-2-Rou-×2",
+    "type": "collect",
+    "version": "1.0",
+    "description": "1、Sucrose行走位，且队伍里带着Kirara或Aloy。别带双风Pathing；2、不需要生存位，生存位放技能容易惊动鸟；3、运行其它地图追踪会吓跑这里的鸟，建议优先运行此追踪；4、杀死的鸟在12小时后刷新，被吓跑的鸟0点或12点刷新，1肉鸟和2肉鸟每日上限各x200。",
+    "map_name": "Teyvat",
+    "bgi_version": "0.52.0",
+    "tags": [
+      "Sucrose",
+      "Fowl",
+      "Kirara",
+      "Aloy"
+    ],
+    "authors": [
+      {
+        "name": "灰林鸮",
+        "links": "https://github.com/Strix-nivicolum"
+      }
+    ]
+  },
+  "positions": [
+    {
+      "id": 1,
+      "x": 1271.17,
+      "y": 1563.99,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "teleport"
+    },
+    {
+      "id": 2,
+      "x": 1251.88,
+      "y": 1536.85,
+      "action": "",
+      "move_mode": "dash",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 3,
+      "x": 1252.44,
+      "y": 1525.25,
+      "action": "combat_script",
+      "move_mode": "dash",
+      "action_params": "砂糖 e",
+      "type": "path"
+    },
+    {
+      "id": 4,
+      "x": 1254.2,
+      "y": 1516.88,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "target"
+    },
+    {
+      "id": 5,
+      "x": 1250.96,
+      "y": 1522.41,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    },
+    {
+      "id": 6,
+      "x": 1252.96,
+      "y": 1515.41,
+      "action": "",
+      "move_mode": "walk",
+      "action_params": "",
+      "type": "path"
+    }
+  ]
+}

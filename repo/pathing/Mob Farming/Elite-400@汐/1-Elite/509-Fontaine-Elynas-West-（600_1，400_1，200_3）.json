@@ -1,0 +1,86 @@
+{
+  "info": {
+    "author": "汐",
+    "authors": [
+      {
+        "name": "汐",
+        "links": "https://github.com/jiegedabaobei"
+      }
+    ],
+    "bgi_version": "0.45.0",
+    "description": "  Route信息：该Route预计用时107秒，包含x5Elite，预计收入1600Mora，包含以下怪物：x1Large Overgrown Breacher Primus、x2Overgrown Breacher Primus、x1Ruin Hunter、x1Ruin Grader。",
+    "enable_monster_loot_split": false,
+    "last_modified_time": 1759426377945,
+    "map_match_method": "",
+    "map_name": "Teyvat",
+    "name": "509-Fontaine-Elynas-West-（600_1，400_1，200_3）",
+    "tags": [],
+    "type": "collect",
+    "version": "1.0"
+  },
+  "positions": [
+    {
+      "action": "",
+      "action_params": "",
+      "id": 1,
+      "move_mode": "walk",
+      "type": "teleport",
+      "x": 4954.93,
+      "y": 2760.1
+    },
+    {
+      "action": "combat_script",
+      "action_params": "keypress(VK_SPACE),wait(2.6),click",
+      "id": 2,
+      "move_mode": "fly",
+      "type": "path",
+      "x": 5038.62,
+      "y": 2781.66
+    },
+    {
+      "action": "stop_flying",
+      "action_params": "",
+      "id": 3,
+      "move_mode": "fly",
+      "type": "path",
+      "x": 5047.72,
+      "y": 2785.22
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 4,
+      "move_mode": "walk",
+      "type": "path",
+      "x": 5051.5,
+      "y": 2783.87
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 5,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 5066.1855,
+      "y": 2784.0166
+    },
+    {
+      "action": "",
+      "action_params": "",
+      "id": 6,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 5071.0635,
+      "y": 2841.9617
+    },
+    {
+      "action": "fight",
+      "action_params": "",
+      "id": 7,
+      "move_mode": "dash",
+      "type": "path",
+      "x": 5075.2,
+      "y": 2862.29
+    }
+  ]
+}
